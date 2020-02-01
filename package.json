@@ -4,15 +4,19 @@
   "description": "Made by Jiwon & KimJinYoung",
   "main": "app.js",
   "dependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
     "@babel/node": "^7.8.4",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
     "babel": "^6.23.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "gitignore": "^0.6.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "bable-node init.js"
+    "start": "babel-node init.js"
   },
   "author": "Jiwon & KimJinYoung",
   "license": "ISC"

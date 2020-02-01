@@ -1,15 +1,11 @@
-import express from "express";
-
-const app = express();
-const PORT = "4000"
+import dotenv from "dotenv";
+import app from "./app";
 
 
-app.get("/", function(){
-    res.send("whatever");
-})
+dotenv.config();
 
-
+const PORT = process.env.PORT;
 
 app.listen(PORT, function(){
-    console.log(`Listening on ${PORT}`)
+    console.log(`Listening on : ${PORT}`)
 });
