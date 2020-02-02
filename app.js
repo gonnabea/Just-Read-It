@@ -5,5 +5,4 @@ const app = express();
 
 app.use(globalRouter);
 
-
 export default app;
