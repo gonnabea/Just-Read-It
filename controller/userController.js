@@ -10,3 +10,7 @@ export const login = (req, res) => {
 export const join = (req, res) => {
     res.render("join");
 }
+
+export const addBook = (req, res) => {
+    res.render("uploadBook");
+}
