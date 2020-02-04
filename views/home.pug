@@ -1,13 +1,355 @@
-<!DOCTYPE html>
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title HOME
-    body
-        header 
-            a(href=routes.home) GOODREADS
-            a(href=routes.login) LOGIN
-            a(href=routes.join) JOIN
-        h1  굿리즈 코리아에 오신 것을 환영합니다!
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  link(rel='stylesheet', href='../css/styles.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css')
+  link(href='https://fonts.googleapis.com/css?family=Nanum+Pen+Script&display=swap&subset=korean', rel='stylesheet')
+  title Book Read For Your mine
+.all_box
+  header.header
+    .main_title
+      a(href='index.html')
+        h1.ilne
+          | We Read 
+          strong Books
+      pre.
+        \n
+         다양한 양하고 인기있는 
+        
+         책을 지금 바로 만나 보세요!
+        
+                 
+        
+                                
+    ul.info_box
+      li.log_in
+        input.text(type='text', placeholder='Email address')
+        input.password(type='password', placeholder='password')
+        input.button.hov(type='button', value='로그인')
+        input#checkbox.checkbox(type='checkbox')
+        span Remember me
+      h3 &#xBC14;&#xB85C; &#xAC00;&#xC785;&#xD558;&#xAE30;
+      li.sign_up
+        input.text(type='text', placeholder='name')
+        input.email(type='email', placeholder='email address')
+        input.password(type='password', placeholder='password')
+        input.button.hov(type='button', value='가입하기')
+      li.Social_Service
+        img.twitter_icon.hov(src='../images/twitter_icon.svg')
+        span.none twitter
+        img.facebook_icon.hov(src='../images/facebook_icon.svg')
+        span.none facebook
+        img.google_icon.hov(src='../images/google_icon.png')
+        span.none google
+        img.amazon_icon.hov(src='../images/amazon_icon.png')
+        span.none amazone
+  main.main
+    article.article
+      ul.article_contents
+        li.article_text
+          h1 Hellow books
+          pre.
+            \n 다음에 읽을 책은 고르셨나요?
+            
+                아직 정하지 못 하셨다면 당신의 
+            
+            취향에 맞는 책을 추천 드립니다.
+            
+                        
+        li.article_text
+          | article_text_2
+      ul.main_contens
+        li.main_area
+          .corver_box
+            h2 &quot;&#xCDE8;&#xD5A5; &#xC800;&#xACA9;~! &#xB2F9;&#xC2E0;&#xC744; &#xC704;&#xD55C; &#xCC45;&quot;
+            .corver_all
+              .corver_left
+                a(href='')
+                  img(src='../images/books001.png', width='100')
+                a(href='')
+                  img(src='../images/books001.png', width='100')
+                a(href='')
+                  img(src='../images/books001.png', width='100')
+                a(href='')
+                  img(src='../images/books001.png', width='100')
+              .arrow
+                img(src='../images/icon.svg')
+                // //아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon"> www.flaticon.com</a>
+              .corver_right
+                a(href='')
+                  img(src='../images/books002.png', width='100')
+        li.main_area
+          .corver_box
+            h2 &#xB2F9;&#xC2E0;&#xC774; &#xC88B;&#xC544;&#xD560; &#xB9CC;&#xD55C;&#xCC45; 
+            .corver_all
+              .corver_left
+                a(href='')
+                  img(src='../images/books001.png', width='100')
+                a(href='')
+                  img(src='../images/books001.png', width='100')
+                a(href='')
+                  img(src='../images/books001.png', width='100')
+                a(href='')
+                  img(src='../images/books001.png', width='100')
+              .arrow
+                img(src='../images/icon.svg')
+                // //아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon"> www.flaticon.com</a>
+              .corver_right
+                a(href='')
+                  img(src='../images/books002.png', width='100')
+  nav.nav_ber
+    ul.list_box
+      h2 Love list?
+      li.booklist
+        .list_title
+          a.hyper_link(href='')
+            | Best Crime &amp; Mystery Books
+        .list_img
+          a(href='')
+            img(src='../images/books002.png', width='100')
+          a(href='')
+            img(src='../images/books002.png', width='100')
+          a(href='')
+            img(src='../images/books002.png', width='100')
+          a(href='')
+            img(src='../images/books002.png', width='100')
+        .small_text
+          | &#xC11C;&#xC801; &#xCD94;&#xCC9C;&#xC218;
+      li.booklist
+        .list_title
+          a.hyper_link(href='')
+            | Best Crime &amp; Mystery Books
+        .list_img
+          a(href='')
+            img(src='../images/books002.png', width='100')
+          a(href='')
+            img(src='../images/books002.png', width='100')
+          a(href='')
+            img(src='../images/books002.png', width='100')
+          a(href='')
+            img(src='../images/books002.png', width='100')
+        .small_text
+          | &#xC11C;&#xC801; &#xCD94;&#xCC9C;&#xC218;
+      li.booklist
+        .list_title
+          a.hyper_link(href='')
+            | Best Crime &amp; Mystery Books
+        .list_img
+          a(href='')
+            img(src='../images/books002.png', width='100')
+          a(href='')
+            img(src='../images/books002.png', width='100')
+          a(href='')
+            img(src='../images/books002.png', width='100')
+          a(href='')
+            img(src='../images/books002.png', width='100')
+        .small_text
+          | &#xC11C;&#xC801; &#xCD94;&#xCC9C;&#xC218;
+    a.hyper_link(href='') More book lists
+    ul.list_box
+      h2 Are you an author or a publisher?
+      p
+        | Gain access to a massive audience of
+        | more than 90 million book lovers.
+        | Goodreads is a great place to
+        | promote your books.
+      div(style='text-align: center')
+        a.list_box_btn(href='') Author program 
+        a.list_box_btn(href='') Advertise
+  footer.footer
+    .info
+      .devaroper
+        | front_end: &#xAE40;&#xC9C4;&#xC601;
+        | Email:kjy1670@naver.com
+      .devaroper
+        | back_end: &#xCD5C;&#xC9C0;&#xC6D0;
+        | Email:winning1993@naver.com
+  section.browsebox
+    h2 Search and browse books
+    .sitesearch
+      .search
+        input(type='text', placeholder='제목 또는 작가 검색하기')
+        i.fas.fa-search
+      ul.lists
+        li.list_link
+          div
+            a.hyper_link(href='') Art
+          div
+            a.hyper_link(href='') &#xC804;&#xAE30;
+          div
+            a.hyper_link(href='') &#xC0AC;&#xC5C5;
+          div
+            a.hyper_link(href='') &#xC5B4;&#xB9B0;&#xC774;
+          div
+            a.hyper_link(href='') &#xACE0;&#xC804;
+          div
+            a.hyper_link(href='') &#xB9CC;&#xD654;
+          div
+            a.hyper_link(href='') &#xC694;&#xB9AC;
+          div
+            a.hyper_link(href='')
+              | &#xC804;&#xC790;
+        li.list_link
+          div
+            a.hyper_link(href='') &#xACF5;&#xC0C1;
+          div
+            a.hyper_link(href='')
+              | &#xC18C;&#xC124;
+          div
+            a.hyper_link(href='') &#xADF8;&#xB798;&#xD53D; &#xC18C;&#xC124;
+          div
+            a.hyper_link(href='') &#xC5ED;&#xC0AC; &#xC18C;&#xC124;
+          div
+            a.hyper_link(href='') &#xC5ED;&#xC0AC;
+          div
+            a.hyper_link(href='') &#xACF5;&#xD3EC;
+          div
+            a.hyper_link(href='') &#xD68C;&#xC0C1;&#xB85D;
+          div
+            a.hyper_link(href='') &#xC74C;&#xC545;
+        li.list_link
+          div
+            a.hyper_link(href='') &#xC2E0;&#xBE44;
+          div
+            a.hyper_link(href='') &#xC2E4;&#xD654;
+          div
+            a.hyper_link(href='') &#xC2DC;
+          div
+            a.hyper_link(href='') &#xC2EC;&#xB9AC;&#xD559;
+          div
+            a.hyper_link(href='') &#xB85C;&#xB9E8;&#xC2A4;
+          div
+            a.hyper_link(href='') &#xACFC;&#xD559;
+          div
+            a.hyper_link(href='') &#xACF5;&#xC0C1; &#xACFC;&#xD559;
+          div
+            a.hyper_link(href='') &#xC790;&#xC870;
+        li.list_link
+          div
+            a.hyper_link(href='') &#xC2A4;&#xD3EC;&#xCE20;
+          div
+            a.hyper_link(href='') &#xC2A4;&#xB9B4;&#xB7EC;
+          div
+            a.hyper_link(href='') &#xC5EC;&#xD589;
+          div
+            a.hyper_link(href='') &#xCCAD;&#xB144;
+          div
+            a.hyper_link(href='') &#xB354; &#xB9CE;&#xC740; &#xC7A5;&#xB974;
+          div
+            a.hyper_link(href='') &#xC778;&#xC6A9;&#xBD80;&#xD638;
+    .quotes
+      h2 Quotes
+      #Quotes.feature_teaser_box
+        a(href='')
+          img(src='https://images.gr-assets.com/authors/1331977133p2/5768330.jpg', alt='')
+        .quotes_text
+          | &ldquo;Always forgive your enemies; nothing annoys them so much.&rdquo;
+          br
+          span.quotes_text_name
+            | &horbar; Oscar Wilde
+        ul.quotes_list
+          li.old_year
+            a.hyper_link(href='')
+              | Best quotes
+          li.old_year
+            a.hyper_link(href='')
+              | Love quotes
+          li.old_year
+            a.hyper_link(href='')
+              | Inspirational quotes
+          li.old_year
+            a.hyper_link(href='')
+              | Funny quotes
+          li.old_year
+            a.hyper_link(href='')
+              | Motivational quotes
+          li.old_year
+            a.hyper_link(href='')
+              | Life quotes
+          li.old_year
+            a.hyper_link(href='')
+              | Friends quotes
+          li.old_year
+            a.hyper_link(href='')
+              | Positive quotes
+          li.old_year
+            a.hyper_link(href='')
+              | More quotes
+      .feature_teaser_box
+        h1
+          | 2019&#xB144; &#xCD5C;&#xACE0;&#xC758; &#xCC45;
+    .awardofyear
+      .best_seller_logo
+        a(href='')
+          img(src='../images/books003.png', alt='')
+      .best_seller_link
+        a.hyper_link(href='')
+          | Best Books 2019
+      .best_seller_link
+        a(href='')
+          | Best &#xC18C;&#xC124;
+      .best_seller_link
+        a(href='')
+          | Best &#xBBF8;&#xC2A4;&#xD130;&#xB9AC; &amp; &#xC2A4;&#xB9B4;&#xB7EC;
+      .best_seller_link
+        a(href='')
+          | Best &#xC5ED;&#xC0AC; &#xC18C;&#xC124;
+      .best_seller_link
+        a(href='')
+          | Best &#xD310;&#xD0C0;&#xC9C0;
+      .best_seller_link
+        a(href='')
+          | Best &#xB85C;&#xB9E8;&#xC2A4;
+      .best_seller_link
+        a(href='')
+          | Best &#xACF5;&#xC0C1;&#xACFC;&#xD559;
+      .best_seller_link
+        a(href='')
+          | Best &#xC720;&#xBA38;
+      .best_seller_link
+        a(href='')
+          | Best &#xD638;&#xB7EC;
+      .best_seller_link
+        a(href='')
+          | Best nofiction
+      .best_seller_link
+        a(href='')
+          | Best &#xD68C;&#xACE0;&#xB85D; &amp; &#xC804;&#xAE30;
+      .best_seller_link
+        a(href='')
+          | Best &#xC5ED;&#xC0AC; &amp; &#xC0DD;&#xBA85;
+      .best_seller_link
+        a(href='')
+          | Best &#xACFC;&#xD559; &amp; &#xAE30;&#xC220;
+      .best_seller_link
+        a(href='')
+          | Best &#xC74C;&#xC2DD; &amp; &#xC694;&#xB9AC;&#xCC45;
+      .best_seller_link
+        a(href='')
+          | Best &#xADF8;&#xB798;&#xD53D; &#xC18C;&#xC124; &amp; &#xB9CC;&#xD654;
+      .best_seller_link
+        a(href='')
+          | Best &#xC2DC;
+      .best_seller_link
+        a(href='')
+          | Best &#xB370;&#xBDD4; &#xC18C;&#xC124;
+      .best_seller_link
+        a(href='')
+          | Best &#xCCAD;&#xB144; &#xC18C;&#xC124;
+      .best_seller_link
+        a(href='')
+          | Best &#xCCAD;&#xB144; &#xD310;&#xD0C0;&#xC9C0; &amp; &#xACF5;&#xC0C1; &#xACFC;&#xD559;
+      .best_seller_link
+        a(href='')
+          | Best &#xD559;&#xC0DD; &amp; &#xC5B4;&#xB9B0;&#xC544;&#xC774;
+      .best_seller_link
+        a(href='')
+          | Best &#xADF8;&#xB9BC;&#xCC45;
+    br
+    br
+    br
+    br
+script(src='../js/link.js')
+script(src='../js/index.js')
