@@ -1,5 +1,8 @@
 {
     "presets": [
-        "@babel/env"
+        "env"
+    ],
+    "plugins": [
+        "transform-es2015-modules-umd"
     ]
-}
+  }
