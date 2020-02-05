@@ -10,7 +10,7 @@ head
 .all_box
   header.header
     .main_title
-      a(href='index.html')
+      a(href=routes.home)
         h1.ilne
           | We Read 
           strong Books
@@ -19,23 +19,26 @@ head
          다양한 양하고 인기있는 
         
          책을 지금 바로 만나 보세요!
-        
+    a(href=routes.addBook) 새로운 책 등록
                  
         
                                 
     ul.info_box
       li.log_in
-        input.text(type='text', placeholder='Email address')
-        input.password(type='password', placeholder='password')
-        input.button.hov(type='button', value='로그인')
+        form(action=routes.login method="post")
+          input(type="email" name="email" placeholder="이메일")
+          input(type="password" name="password" placeholder="패스워드")
+          input(type="submit" value="로그인")
         input#checkbox.checkbox(type='checkbox')
         span Remember me
       h3 &#xBC14;&#xB85C; &#xAC00;&#xC785;&#xD558;&#xAE30;
       li.sign_up
-        input.text(type='text', placeholder='name')
-        input.email(type='email', placeholder='email address')
-        input.password(type='password', placeholder='password')
-        input.button.hov(type='button', value='가입하기')
+        form(action=routes.join method="post")
+          input(type="text" name="username" placeholder="닉네임")
+          input(type="email" name="email" placeholder="이메일")
+          input(type="password" name="password" placeholder="패스워드")
+          input(type="password" name="password2" placeholder="패스워드 확인")
+          input(type="submit" value="회원가입")
       li.Social_Service
         img.twitter_icon.hov(src='../images/twitter_icon.svg')
         span.none twitter

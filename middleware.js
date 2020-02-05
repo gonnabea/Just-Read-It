@@ -8,6 +8,6 @@ export const localsMiddleware = (req, res, next) => {
 
 const upload = multer({ dest: 'uploads/' })
 
-const bookImageUpload = upload.single("images");
+const bookImageUpload = upload.single("bookImage");
 
 export default bookImageUpload;

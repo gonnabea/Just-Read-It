@@ -7,6 +7,7 @@ const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
 
+
 const routes = {
     home: HOME,
     bookDetail: BOOK_DETAIL,
@@ -17,7 +18,8 @@ const routes = {
     addBook: ADD_BOOK,
 
     bookList: BOOK_LIST,
-    profile: PROFILE
+    profile: PROFILE,
+    
 }
 
 export default routes;
