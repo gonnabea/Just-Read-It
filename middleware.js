@@ -6,7 +6,7 @@ export const localsMiddleware = (req, res, next) => {
     next();
 }
 
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'uploads/books/' })
 
 const bookImageUpload = upload.single("bookImage");
 

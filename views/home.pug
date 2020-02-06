@@ -48,7 +48,15 @@ head
         span.none google
         img.amazon_icon.hov(src='../images/amazon_icon.png')
         span.none amazone
+  
   main.main
+    .uploadedBooks
+      each item in books
+        img(src=item.imageUrl, alt=item.title)
+        span.book_title  #{item.title}
+        span.book_author #{item.author}
+        span.book_description #{item.description}
+        span.book_createdAt #{item.createdAt}
     article.article
       ul.article_contents
         li.article_text
