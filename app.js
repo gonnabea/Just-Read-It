@@ -11,6 +11,7 @@ app.use(userRouter);
 app.use(globalRouter);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use('/uploads', express.static('uploads'));
 app.set("view engine","pug");
 
 export default app;
