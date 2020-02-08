@@ -21,7 +21,8 @@ head
          책을 지금 바로 만나 보세요!
     a(href=routes.addBook) 새로운 책 등록
     if(user)
-      h1 #{user.email}(#{user.username}) 로그인 됨.             
+      h1 #{user.email}(#{user.username}) 로그인 됨.
+      a(href=routes.logout) 로그아웃             
     if(!user)                              
       ul.info_box
         li.log_in

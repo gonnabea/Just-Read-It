@@ -52,6 +52,11 @@ export const postJoin = async(req, res) => {
 }
 }
 
+export const logout = (req, res) => {
+    req.logout();
+    res.redirect(routes.home);
+}
+
 export const getAddBook = (req, res) => {
     res.render("uploadBook")
 }
