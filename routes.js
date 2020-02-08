@@ -1,7 +1,7 @@
 const HOME = "/";
 const BOOK_DETAIL = "/book-detail";
 const ADD_BOOK = "/add-book";
-const BOOK_LIST = "/book-list";
+const MY_BOOK_LIST = "/book-list";
 const PROFILE = "/profile";
 const JOIN = "/join";
 const LOGIN = "/login";
@@ -17,7 +17,7 @@ const routes = {
 
     addBook: ADD_BOOK,
 
-    bookList: BOOK_LIST,
+    myBookList: MY_BOOK_LIST,
     profile: PROFILE,
     
 }

@@ -51,6 +51,8 @@ head
           span.none amazone
       
   main.main
+    a(href=routes.myBookList) 내 서재
+
     .uploadedBooks
       each item in books
         img(src=item.imageUrl, alt=item.title width="100vh")
