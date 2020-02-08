@@ -3,7 +3,7 @@ import passport from "passport";
 import Localstrategy from 'passport-local';
 
 
-passport.use(new Localstrategy(User.authenticate()));
+passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());

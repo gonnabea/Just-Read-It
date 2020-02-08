@@ -20,39 +20,39 @@ head
         
          책을 지금 바로 만나 보세요!
     a(href=routes.addBook) 새로운 책 등록
-                 
-        
-                                
-    ul.info_box
-      li.log_in
-        form(action=routes.login method="post")
-          input(type="email" name="email" placeholder="이메일")
-          input(type="password" name="password" placeholder="패스워드")
-          input(type="submit" value="로그인")
-        input#checkbox.checkbox(type='checkbox')
-        span Remember me
-      h3 &#xBC14;&#xB85C; &#xAC00;&#xC785;&#xD558;&#xAE30;
-      li.sign_up
-        form(action=routes.join method="post")
-          input(type="text" name="username" placeholder="닉네임")
-          input(type="email" name="email" placeholder="이메일")
-          input(type="password" name="password" placeholder="패스워드")
-          input(type="password" name="password2" placeholder="패스워드 확인")
-          input(type="submit" value="회원가입")
-      li.Social_Service
-        img.twitter_icon.hov(src='../images/twitter_icon.svg')
-        span.none twitter
-        img.facebook_icon.hov(src='../images/facebook_icon.svg')
-        span.none facebook
-        img.google_icon.hov(src='../images/google_icon.png')
-        span.none google
-        img.amazon_icon.hov(src='../images/amazon_icon.png')
-        span.none amazone
-  
+    if(user)
+      h1 #{user.email}(#{user.username}) 로그인 됨.             
+    if(!user)                              
+      ul.info_box
+        li.log_in
+          form(action=routes.login method="post")
+            input(type="email" name="email" placeholder="이메일")
+            input(type="password" name="password" placeholder="패스워드")
+            input(type="submit" value="로그인")
+          input#checkbox.checkbox(type='checkbox')
+          span Remember me
+        h3 &#xBC14;&#xB85C; &#xAC00;&#xC785;&#xD558;&#xAE30;
+        li.sign_up
+          form(action=routes.join method="post")
+            input(type="text" name="username" placeholder="닉네임")
+            input(type="email" name="email" placeholder="이메일")
+            input(type="password" name="password" placeholder="패스워드")
+            input(type="password" name="password2" placeholder="패스워드 확인")
+            input(type="submit" value="회원가입")
+        li.Social_Service
+          img.twitter_icon.hov(src='../images/twitter_icon.svg')
+          span.none twitter
+          img.facebook_icon.hov(src='../images/facebook_icon.svg')
+          span.none facebook
+          img.google_icon.hov(src='../images/google_icon.png')
+          span.none google
+          img.amazon_icon.hov(src='../images/amazon_icon.png')
+          span.none amazone
+      
   main.main
     .uploadedBooks
       each item in books
-        img(src=item.imageUrl, alt=item.title)
+        img(src=item.imageUrl, alt=item.title width="100vh")
         span.book_title  #{item.title}
         span.book_author #{item.author}
         span.book_description #{item.description}

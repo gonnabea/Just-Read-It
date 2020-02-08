@@ -1,11 +1,13 @@
 import routes from "../routes";
 import Book from "../model/book";
 import User from "../model/user";
+import passport from "passport";
+
 
 export const home = async(req, res) => {
     try{
     const books = await Book.find({});
-    console.log(books);
+    
     res.render("home", {books})
     }catch(error){
         console.log(error);
@@ -16,23 +18,32 @@ export const login = (req, res) => {
     res.render("login");
 }
 
+export const postLogin =
+     passport.authenticate('local', {  
+    successRedirect: routes.home,
+    failureRedirect: routes.login,
+    failureFlash: true })
+   
+
 export const join = (req, res) => {
     res.render("join");
 }
 
 export const postJoin = async(req, res) => {
-    console.log(req.body)
     const {
         body: {username, email, password, password2}
     } = req;
     if(password == password2){
-    try{const newUser = await User.create({
+    try{const user ={
         username,
-        email,
+        email
+    }
+    const newUser = await User.register(
+        user,
         password
-    })
+    )
     console.log(`newUser:${newUser}`);
-    res.redirect(rotues.home)
+    res.redirect(routes.home)
 }catch(error){
     console.log(error);
 }
