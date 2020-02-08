@@ -1,5 +1,6 @@
 import routes from "../routes";
 import Book from "../model/book";
+import User from "../model/user";
 
 export const home = async(req, res) => {
     try{
@@ -17,6 +18,27 @@ export const login = (req, res) => {
 
 export const join = (req, res) => {
     res.render("join");
+}
+
+export const postJoin = async(req, res) => {
+    console.log(req.body)
+    const {
+        body: {username, email, password, password2}
+    } = req;
+    if(password == password2){
+    try{const newUser = await User.create({
+        username,
+        email,
+        password
+    })
+    console.log(`newUser:${newUser}`);
+    res.redirect(rotues.home)
+}catch(error){
+    console.log(error);
+}
+}else{
+    res.render("join", {error:"비밀번호가 일치하지 않습니다."})
+}
 }
 
 export const getAddBook = (req, res) => {
