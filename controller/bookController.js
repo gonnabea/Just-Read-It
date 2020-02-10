@@ -29,9 +29,10 @@ export const myBookList = (req, res) => {
     res.render("bookList");
 }
 
-export const bookDetail = (req, res) => {
+export const bookDetail = async(req, res) => {
     const { params: {id} } = req;
-    const book = Book.findById(id);
+    console.log(id)
+    const book = await Book.findById(id).populate("enrolledBy");
     console.log(book);
     res.render("book-detail" , {book});
 }

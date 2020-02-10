@@ -6,5 +6,12 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Document
     body
-        each item in book
-            h1 #{item.title}
+        img(src=`/${book.imageUrl}` alt=book.title width= "300vh")
+        h1 #{book.title}
+        h3 #{book.author}
+        h4 #{book.createdAt}
+        h4 #{book.description}
+        |Enrolled By
+        img(src=book.enrolledBy[0].profilePhoto width="50vh")
+        h3 #{book.enrolledBy[0].email}
+        h3 #{book.enrolledBy[0].username}

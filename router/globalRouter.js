@@ -12,7 +12,7 @@ globalRouter.get(routes.login, login);
 globalRouter.post(routes.login, postLogin);
 
 globalRouter.get(routes.googleAuth, 
-passport.authenticate('google', { scope: ['profile', 'email', 'openid'] })
+passport.authenticate('google', { scope: ['profile', 'email', 'openid'] }) // openid?
 )
 
 globalRouter.get(routes.googleAuthCallback,
