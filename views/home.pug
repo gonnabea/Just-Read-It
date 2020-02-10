@@ -19,9 +19,12 @@ head
          다양한 양하고 인기있는 
         
          책을 지금 바로 만나 보세요!
-    a(href=routes.addBook) 새로운 책 등록
+    
     if(user)
+      img(src=user.profilePhoto, alt="Profile photo.")
       h1 #{user.email}(#{user.username}) 로그인 됨.
+      a(href=routes.myBookList) 내 서재
+      a(href=routes.addBook) 새로운 책 등록
       a(href=routes.logout) 로그아웃             
     if(!user)                              
       ul.info_box
@@ -46,12 +49,11 @@ head
           img.facebook_icon.hov(src='../images/facebook_icon.svg')
           span.none facebook
           img.google_icon.hov(src='../images/google_icon.png')
-          span.none google
+          a(href=routes.googleAuth) Google
           img.amazon_icon.hov(src='../images/amazon_icon.png')
           span.none amazone
       
   main.main
-    a(href=routes.myBookList) 내 서재
 
     .uploadedBooks
       each item in books

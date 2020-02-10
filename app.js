@@ -26,6 +26,7 @@ app.use(localsMiddleware);
 app.use(userRouter);
 app.use(globalRouter);
 app.use('/uploads', express.static('uploads'));
+app.use('/images',express.static("images"));
 app.set("view engine","pug");
 
 export default app;
