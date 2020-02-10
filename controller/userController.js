@@ -6,7 +6,8 @@ import passport from "passport";
 
 export const home = async(req, res) => {
     try{
-    const books = await Book.find({});
+    const books = await Book.find({}).populate("enrolledBy");
+    
     
     res.render("home", {books})
     }catch(error){

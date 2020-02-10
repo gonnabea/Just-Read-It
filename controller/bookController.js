@@ -1,3 +1,6 @@
+import Book from "../model/book";
+import routes from "../routes";
+
 export const getAddBook = (req, res) => {
     res.render("uploadBook")
 }
@@ -12,7 +15,8 @@ export const postAddBook = async(req, res) => {
         title:bookName,
         author,
         description:bookDescription,
-        imageUrl:path
+        imageUrl:path,
+        enrolledBy: req.user.id
     })
     console.log(newBook);
 }catch(error){
@@ -23,4 +27,11 @@ export const postAddBook = async(req, res) => {
 
 export const myBookList = (req, res) => {
     res.render("bookList");
+}
+
+export const bookDetail = (req, res) => {
+    const { params: {id} } = req;
+    const book = Book.findById(id);
+    console.log(book);
+    res.render("book-detail" , {book});
 }

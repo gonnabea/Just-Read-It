@@ -21,7 +21,7 @@ head
          책을 지금 바로 만나 보세요!
     
     if(user)
-      img(src=user.profilePhoto, alt="Profile photo.")
+      img(src=user.profilePhoto, alt="Profile photo.", width="100vh")
       h1 #{user.email}(#{user.username}) 로그인 됨.
       a(href=routes.myBookList) 내 서재
       a(href=routes.addBook) 새로운 책 등록
@@ -57,11 +57,15 @@ head
 
     .uploadedBooks
       each item in books
-        img(src=item.imageUrl, alt=item.title width="100vh")
-        span.book_title  #{item.title}
-        span.book_author #{item.author}
-        span.book_description #{item.description}
-        span.book_createdAt #{item.createdAt}
+        a(href=routes.bookDetail(item.id))
+          img(src=item.imageUrl, alt=item.title width="100vh")
+          span.book_title  제목: #{item.title}
+          span.book_author 작가: #{item.author}
+          span.book_description 설명: #{item.description}
+          span.book_createdAt 등록일: #{item.createdAt}
+          span.book_enrolledBy 게시자:
+          img(src=item.enrolledBy[0].profilePhoto , alt="" width="100vh")
+          |#{item.enrolledBy[0].email}(#{item.enrolledBy[0].username})
     article.article
       ul.article_contents
         li.article_text

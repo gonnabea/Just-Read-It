@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const bookSchema = new mongoose.Schema({
     title:String,
@@ -7,9 +7,9 @@ const bookSchema = new mongoose.Schema({
         type:Date,
         default: Date.now
     },
-    enrolledBy:String,
+    enrolledBy:[{type: Schema.Types.ObjectId, ref:"User"}],
     imageUrl:String,
-    description:String
+    description:String,
 })
 
 const model = mongoose.model("Book", bookSchema);
