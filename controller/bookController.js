@@ -1,5 +1,6 @@
 import Book from "../model/book";
 import routes from "../routes";
+import User from "../model/user";
 
 export const getAddBook = (req, res) => {
     res.render("uploadBook")
@@ -28,14 +29,26 @@ export const postAddBook = async(req, res) => {
     res.redirect(routes.home);
 }
 
-export const myBookList = (req, res) => {
-    res.render("bookList");
-}
-
 export const bookDetail = async(req, res) => {
     const { params: {id} } = req;
     console.log(id)
     const book = await Book.findById(id).populate("enrolledBy");
     console.log(book);
     res.render("book-detail" , {book});
+}
+
+export const myBookList = async(req, res) => {
+    const currentUser = await User.findById(req.user.id).populate("favBooks");
+    
+    res.render("myBookList", {currentUser});
+}
+
+export const postMyBookList = (req, res) => {
+    const {
+        params: {id}, user
+    } = req;
+    user.favBooks.push(id)
+    user.save();
+    console.log(user);
+    res.redirect(`/${routes.myBookList(user.id)}`);
 }

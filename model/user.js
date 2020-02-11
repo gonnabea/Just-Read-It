@@ -14,7 +14,10 @@ const userSchema = new mongoose.Schema ({
     type: Schema.Types.ObjectId,
     ref: "Book"
     }],
-    favBooks: String
+    favBooks: [{
+        type: Schema.Types.ObjectId,
+        ref: "Book"
+    }]
 
 })
 

@@ -1,7 +1,7 @@
 const HOME = "/";
 const BOOK_DETAIL = "/book-detail/:id";
 const ADD_BOOK = "/add-book";
-const MY_BOOK_LIST = "/book-list";
+const MY_BOOK_LIST = "/book-list/:id";
 const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
@@ -25,7 +25,13 @@ const routes = {
     logout: LOGOUT,
 
     addBook: ADD_BOOK,
-    myBookList: MY_BOOK_LIST,
+    myBookList: (id) => {
+        if(id){
+            return `book-list/${id}`
+        }else{
+            return MY_BOOK_LIST
+        }
+    },
     profile: PROFILE,
 
     googleAuth: GOOGLE_AUTH,
