@@ -58,3 +58,10 @@ export const logout = (req, res) => {
     res.redirect(routes.home);
 }
 
+export const profile = async(req, res) => {
+    const {
+        params: {id}
+    } = req;
+    const currentUser = await User.findById(id).populate("uploadedBooks");
+    res.render("profile", {currentUser})
+}

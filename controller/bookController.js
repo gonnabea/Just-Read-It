@@ -19,6 +19,9 @@ export const postAddBook = async(req, res) => {
         enrolledBy: req.user.id
     })
     console.log(newBook);
+    const currentUser = req.user;
+    currentUser.uploadedBooks.push(newBook.id);
+    currentUser.save();
 }catch(error){
     console.log(error);
 }

@@ -2,7 +2,6 @@ const HOME = "/";
 const BOOK_DETAIL = "/book-detail/:id";
 const ADD_BOOK = "/add-book";
 const MY_BOOK_LIST = "/book-list";
-const PROFILE = "/profile";
 const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
@@ -10,6 +9,7 @@ const LOGOUT = "/logout";
 const GOOGLE_AUTH = "/auth/google";
 const GOOGLE_AUTH_CALLBACK = "/auth/google/callback";
 
+const PROFILE = "/user/:id";
 
 const routes = {
     home: HOME,
@@ -29,7 +29,15 @@ const routes = {
     profile: PROFILE,
 
     googleAuth: GOOGLE_AUTH,
-    googleAuthCallback: GOOGLE_AUTH_CALLBACK
+    googleAuthCallback: GOOGLE_AUTH_CALLBACK,
+
+    profile: (id) => {
+        if(id){
+            return `user/${id}`
+        }else{
+            return PROFILE
+        }
+    }
     
 }
 

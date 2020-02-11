@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Document
+    body
+        
+        img(src=currentUser.profilePhoto width="50vh")
+        span #{currentUser.username}
+        span #{currentUser.email}
+        h2 회원님이 등록한 책 리스트 :
+        each item in currentUser.uploadedBooks
+            img(src=`/${item.imageUrl}` width='100vh')
+            h2 #{item.title}
+            h3 #{item.author}
+            h3 #{item.description}
+            

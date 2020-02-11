@@ -21,8 +21,9 @@ head
          책을 지금 바로 만나 보세요!
     
     if(user)
-      img(src=user.profilePhoto, alt="Profile photo.", width="50vh")
-      h1 #{user.email}(#{user.username}) 로그인 됨.
+      a(href=routes.profile(user.id))
+        img(src=user.profilePhoto, alt="Profile photo.", width="50vh")
+        h1 #{user.email}(#{user.username}) 로그인 됨.
       a(href=routes.myBookList) 내 서재
       a(href=routes.addBook) 새로운 책 등록
       a(href=routes.logout) 로그아웃             
