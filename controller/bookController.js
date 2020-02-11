@@ -19,7 +19,7 @@ export const postAddBook = async(req, res) => {
         imageUrl:path,
         enrolledBy: req.user.id
     })
-    console.log(newBook);
+    
     const currentUser = req.user;
     currentUser.uploadedBooks.push(newBook.id);
     currentUser.save();
@@ -31,9 +31,9 @@ export const postAddBook = async(req, res) => {
 
 export const bookDetail = async(req, res) => {
     const { params: {id} } = req;
-    console.log(id)
+    
     const book = await Book.findById(id).populate("enrolledBy");
-    console.log(book);
+    
     res.render("book-detail" , {book});
 }
 
@@ -47,8 +47,15 @@ export const postMyBookList = (req, res) => {
     const {
         params: {id}, user
     } = req;
+    let overlap = false;
+    user.favBooks.forEach(element => {
+        if(element == id){
+            overlap = true;
+        }
+    });
+    if(overlap === false){
     user.favBooks.push(id)
     user.save();
-    console.log(user);
+    }
     res.redirect(`/${routes.myBookList(user.id)}`);
 }

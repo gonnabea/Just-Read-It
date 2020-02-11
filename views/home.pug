@@ -23,7 +23,7 @@ head
     if(user)
       a(href=routes.profile(user.id))
         img(src=user.profilePhoto, alt="Profile photo.", width="50vh")
-        h1 #{user.email}(#{user.username}) 로그인 됨.
+        h1 #{user.username}님 안녕하세요!
       a(href=routes.myBookList(user.id)) 내 서재
       a(href=routes.addBook) 새로운 책 등록
       a(href=routes.logout) 로그아웃             
@@ -68,8 +68,9 @@ head
           span.book_enrolledBy 게시자:
           img(src=item.enrolledBy[0].profilePhoto , alt="" width="50vh")
           |#{item.enrolledBy[0].email}(#{item.enrolledBy[0].username})
-        form(action=`/${routes.myBookList(item.id)}` method="post")
-          input(type="submit" value="즐겨찾기")
+        if(user)
+          form(action=`/${routes.myBookList(item.id)}` method="post")
+            input(type="submit" value="즐겨찾기")
         
     article.article
       ul.article_contents

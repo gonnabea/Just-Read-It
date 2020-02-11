@@ -25,11 +25,9 @@ async function (accessToken, refreshToken, profile, cb) {
     });
     console.log(user)
     */
-   console.log(profile, cb);
     const {
         _json: { id, picture, name, email }
     } = profile;
-    console.log()
     try {
         const user = await User.findOne({ email })
         if (user) {
