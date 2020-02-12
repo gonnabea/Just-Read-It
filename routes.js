@@ -11,6 +11,8 @@ const GOOGLE_AUTH_CALLBACK = "/auth/google/callback";
 
 const PROFILE = "/user/:id";
 
+const POSTREVIEW = "/book-review/:id";
+
 const routes = {
     home: HOME,
     bookDetail: function(id) {
@@ -42,6 +44,13 @@ const routes = {
             return `user/${id}`
         }else{
             return PROFILE
+        }
+    },
+    postReview: (id) => {
+        if(id){
+            return `/book-review/${id}`
+        }else{
+            return POSTREVIEW
         }
     }
     

@@ -10,6 +10,10 @@ const bookSchema = new mongoose.Schema({
     enrolledBy:[{type: Schema.Types.ObjectId, ref:"User"}],
     imageUrl:String,
     description:String,
+    review:[{
+        type: Schema.Types.ObjectId,
+        ref: "Review"
+    }]
 })
 
 const model = mongoose.model("Book", bookSchema);

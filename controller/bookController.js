@@ -1,6 +1,7 @@
 import Book from "../model/book";
 import routes from "../routes";
 import User from "../model/user";
+import Review from "../model/review";
 
 export const getAddBook = (req, res) => {
     res.render("uploadBook")
@@ -32,7 +33,7 @@ export const postAddBook = async(req, res) => {
 export const bookDetail = async(req, res) => {
     const { params: {id} } = req;
     
-    const book = await Book.findById(id).populate("enrolledBy");
+    const book = await Book.findById(id).populate("enrolledBy").populate("review");
     
     res.render("book-detail" , {book});
 }
@@ -58,4 +59,25 @@ export const postMyBookList = (req, res) => {
     user.save();
     }
     res.redirect(`/${routes.myBookList(user.id)}`);
+}
+
+export const postReview = async(req, res) => {
+    const {
+        body: {
+            reviewContent,
+            rate
+        },
+        params: {id},
+        user
+    } = req;
+    console.log(reviewContent, rate, id, req.user)
+    const book = await Book.findById(id);
+    const review = await Review.create({
+        creator: user.id,
+        content: reviewContent,
+        rate
+    })
+    book.review.push(review.id);
+    book.save();
+    res.redirect(`/${routes.bookDetail(id)}`);
 }
