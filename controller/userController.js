@@ -67,30 +67,13 @@ export const profile = async(req, res) => {
     res.render("profile", {currentUser})
 }
 
-export const search = (req, res) => {
+export const search = async(req, res) => {
+    const books = await Book.find({})
     let miniSearch = new MiniSearch({
-        fields: ['title', 'text'], // fields to index for full-text search
-        storeFields: ['title', 'category'] // fields to return with search results
+        fields: ['title', 'author'], // fields to index for full-text search
+        storeFields: ['title', 'author'] // fields to return with search results
       })
-    const documents = [
-        {
-          id: 1,
-          title: 'Moby Dick',
-          text: 'Call me Ishmael. Some years ago...',
-          category: 'fiction'
-        },
-        {
-          id: 2,
-          title: 'Zen and the Art of Motorcycle Maintenance',
-          text: 'I can see by my watch...',
-          category: 'fiction'
-        },
-        {
-          id: 3,
-          title: 'Neuromancer',
-          text: 'The sky above the port was...',
-          category: 'fiction'
-        }]
+    const documents = books
     miniSearch.addAll(documents);
     let results = miniSearch.search(req.body.search)
     console.log(results)
