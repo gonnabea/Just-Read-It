@@ -71,11 +71,12 @@ export const search = async(req, res) => {
     const books = await Book.find({})
     let miniSearch = new MiniSearch({
         fields: ['title', 'author'], // fields to index for full-text search
-        storeFields: ['title', 'author'] // fields to return with search results
+        storeFields: ['title', 'author', 'imageUrl'] // fields to return with search results
       })
-    const documents = books
-    miniSearch.addAll(documents);
+    miniSearch.addAll(books);
+    
     let results = miniSearch.search(req.body.search)
+    
     console.log(results)
-    res.redirect(routes.home)
+    res.render("search", {results})
 }

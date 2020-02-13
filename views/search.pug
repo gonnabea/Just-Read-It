@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body
+        h2 "#{results[0].terms}" 검색결과:
+        each item in results
+            a(href=routes.bookDetail(item.id))
+                img(src=item.imageUrl, alt=item.imageUrl)
+                h1 #{item.title}
+                h2 #{item.author}
