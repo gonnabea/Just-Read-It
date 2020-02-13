@@ -193,11 +193,13 @@ head
         | back_end: &#xCD5C;&#xC9C0;&#xC6D0;
         | Email:winning1993@naver.com
   section.browsebox
-    h2 Search and browse books
+    h2 검색하여 책 찾기
     .sitesearch
       .search
-        input(type='text', placeholder='제목 또는 작가 검색하기')
-        i.fas.fa-search
+        form(action=routes.search method="post")
+          input(type='text', name="search" placeholder='제목 또는 작가 검색하기')
+          input(type="submit" value='검색' )
+          i.fas.fa-search
       ul.lists
         li.list_link
           div

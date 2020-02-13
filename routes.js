@@ -13,6 +13,8 @@ const PROFILE = "/user/:id";
 
 const POSTREVIEW = "/book-review/:id";
 
+const SEARCH = "/book-search";
+
 const routes = {
     home: HOME,
     bookDetail: function(id) {
@@ -52,7 +54,8 @@ const routes = {
         }else{
             return POSTREVIEW
         }
-    }
+    },
+    search: SEARCH
     
 }
 
