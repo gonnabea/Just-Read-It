@@ -13,13 +13,15 @@ html(lang="en")
         h4 #{book.description}
         |Enrolled By
         img(src=book.enrolledBy[0].profilePhoto width="50vh")
-        h3 #{book.enrolledBy[0].email}
         h3 #{book.enrolledBy[0].username}
         if(user)
             form(action=routes.postReview(book.id) method="post")
                 input(type="text", name="reviewContent", placeholder="책에 대한 평가를 남겨주세요!")
                 input(type="number" name="rate", placeholder="평점을 남겨주세요" min=0 max=10 value=5 step=.1)
                 input(type="submit" value="등록")
-        h3 #{book.review[0].content}
-        h3 #{book.review[0].rate}점
-        h4 #{book.review[0].createdAt}
+        each item in book.review
+            img(src=item.creatorPhoto width="50vh")
+            h3 #{item.creator}
+            h3 #{item.content}
+            h3 #{item.rate}점
+            h4 #{item.createdAt}

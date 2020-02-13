@@ -33,7 +33,7 @@ export const postAddBook = async(req, res) => {
 export const bookDetail = async(req, res) => {
     const { params: {id} } = req;
     
-    const book = await Book.findById(id).populate("enrolledBy").populate("review");
+    const book = await Book.findById(id).populate("enrolledBy").populate("review")
     
     res.render("book-detail" , {book});
 }
@@ -52,6 +52,7 @@ export const postMyBookList = (req, res) => {
     user.favBooks.forEach(element => {
         if(element == id){
             overlap = true;
+            
         }
     });
     if(overlap === false){
@@ -73,9 +74,10 @@ export const postReview = async(req, res) => {
     console.log(reviewContent, rate, id, req.user)
     const book = await Book.findById(id);
     const review = await Review.create({
-        creator: user.id,
         content: reviewContent,
-        rate
+        rate,
+        creator: user.username,
+        creatorPhoto: user.profilePhoto
     })
     book.review.push(review.id);
     book.save();

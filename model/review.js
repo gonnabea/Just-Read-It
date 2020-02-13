@@ -1,10 +1,8 @@
 import mongoose, { Schema } from "mongoose";
 
 const reviewSchema = new mongoose.Schema({
-    creator: [{
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    }],
+    creator: String,
+    creatorPhoto: String,
     content: String,
     rate:{
         type: Number,

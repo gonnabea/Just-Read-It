@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import deepPopulate from "mongoose-deep-populate"
 
 const bookSchema = new mongoose.Schema({
     title:String,
@@ -15,6 +16,8 @@ const bookSchema = new mongoose.Schema({
         ref: "Review"
     }]
 })
+
+bookSchema.plugin(deepPopulate(mongoose));
 
 const model = mongoose.model("Book", bookSchema);
 
