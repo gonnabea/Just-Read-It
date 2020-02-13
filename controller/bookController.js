@@ -32,10 +32,16 @@ export const postAddBook = async(req, res) => {
 
 export const bookDetail = async(req, res) => {
     const { params: {id} } = req;
-    
+    let rateFigure = 0;
+    let booksFigure = 0;
     const book = await Book.findById(id).populate("enrolledBy").populate("review")
-    
-    res.render("book-detail" , {book});
+    console.log(book.review)
+    book.review.forEach( argument => {
+        rateFigure += argument.rate;
+        booksFigure += 1;
+    })
+    const totalRate = (rateFigure/booksFigure).toPrecision(2);
+    res.render("book-detail" , {book, totalRate});
 }
 
 export const myBookList = async(req, res) => {

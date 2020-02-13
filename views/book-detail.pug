@@ -8,6 +8,10 @@ html(lang="en")
     body
         img(src=`/${book.imageUrl}` alt=book.title width= "300vh")
         h1 #{book.title}
+        if(totalRate !== "NaN")
+            h2 #{totalRate}/10
+        else
+            h2 평점 없음
         h3 #{book.author}
         h4 #{book.createdAt}
         h4 #{book.description}
