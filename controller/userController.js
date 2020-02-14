@@ -61,9 +61,9 @@ export const logout = (req, res) => {
 
 export const profile = async(req, res) => {
     const {
-        params: {id}
+        user: {id}
     } = req;
-    const currentUser = await User.findById(id).populate("uploadedBooks");
+    const currentUser = await User.findById(id).populate("uploadedBooks").populate("reviews");
     res.render("profile", {currentUser})
 }
 

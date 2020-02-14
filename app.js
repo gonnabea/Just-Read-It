@@ -8,6 +8,7 @@ import passport from "passport";
 import "./passport";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import expressReactViews from "express-react-views";
 
 const app = express();
 dotenv.config();
@@ -27,6 +28,7 @@ app.use(userRouter);
 app.use(globalRouter);
 app.use('/uploads', express.static('uploads'));
 app.use('/images',express.static("images"));
-app.set("view engine","pug");
-
+app.set("view engine","jsx");
+app.set("views", __dirname + '/react-front');
+app.engine('jsx', expressReactViews.createEngine());
 export default app;

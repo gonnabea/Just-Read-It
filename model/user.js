@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema ({
     favBooks: [{
         type: Schema.Types.ObjectId,
         ref: "Book"
+    }],
+    reviews: [{
+        type: Schema.Types.ObjectId,
+        ref: "Review"
     }]
 
 })

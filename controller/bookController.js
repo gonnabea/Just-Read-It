@@ -87,5 +87,7 @@ export const postReview = async(req, res) => {
     })
     book.review.push(review.id);
     book.save();
+    user.reviews.push(review.id)
+    user.save();
     res.redirect(`/${routes.bookDetail(id)}`);
 }

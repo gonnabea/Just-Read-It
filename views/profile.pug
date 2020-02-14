@@ -16,4 +16,7 @@ html(lang="en")
             h2 #{item.title}
             h3 #{item.author}
             h3 #{item.description}
+        each item in currentUser.reviews
+            h1 #{item.content}
+            
             
