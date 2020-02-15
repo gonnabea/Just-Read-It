@@ -3,7 +3,7 @@ import React from "react";
 
 function home(){
   return (
-    "왜 안되냐"
+    <h1>asffsfd</h1>
   )
 }
 
