@@ -77,6 +77,6 @@ export const search = async(req, res) => {
     
     let results = miniSearch.search(req.body.search)
     
-    console.log(results)
+    
     res.render("search", {results})
 }
