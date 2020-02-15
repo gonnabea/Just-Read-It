@@ -12,6 +12,7 @@ export const postAddBook = async(req, res) => {
     const {
         body: {bookName,bookDescription,author}, file:{path}
     } = req;
+    console.log(req.body,req.file);
     try{
     const newBook = await Book.create({
         title:bookName,
