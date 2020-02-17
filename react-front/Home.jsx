@@ -5,9 +5,28 @@ import Header from "./Header";
 //const Ho = pug.compileFile("home.pug");
 
 function Home(props){
-
+    const bookList =
+        props.books.map(book => {
+            return (
+                <>
+                {console.log(book)}
+                <img src={book.imageUrl} alt={book.imageUrl}/>
+                <h1>{book.title}</h1>
+                <h2>{book.author}</h2>
+                <h3>{JSON.stringify(book.createdAt)}</h3>
+                <h3>{book.description}</h3>
+                
+                </>
+                )
+        })
+    
     //ReactDOM.render(<Join/>, document.getElementById("root"));
-     return  ( <Header/>);
+     return  ( 
+     <React.Fragment>
+         <Header/>
+         {bookList}
+    </React.Fragment>
+     );
 }
 
 export default Home;
