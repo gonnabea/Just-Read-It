@@ -3,7 +3,7 @@ class search extends React.Component{
     render(){
         const results = this.props.results
         console.log(results)
-        const resultScreen = results.map( (books) => {
+        const resultScreen = results.map( books => {
             return (
              <React.Fragment>
             <img src={books.imageUrl}/>

@@ -5,7 +5,7 @@ import routes from "../routes";
 
 function Login(){
     return(
-        <form action={routes.login} method="post">
+    <form action={routes.login} method="post">
     <input type="email" name="email" placeholder="이메일"></input>
     <input type="password" name="password" placeholder="패스워드"></input>
     <input type="submit" value="로그인" ></input>
@@ -13,10 +13,6 @@ function Login(){
     );
 }
 
-class Join extends React.Component{
 
-    render(){ return Login();
-    }
-}
 
- export default Join;
+ export default Login;
