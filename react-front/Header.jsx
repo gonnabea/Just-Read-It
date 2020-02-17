@@ -20,6 +20,7 @@ function Header(){
       <a href={routes.login}>로그인</a>
       <a href={routes.logout}> 로그아웃</a>
       <a href={routes.join}>가입</a>
+      <a href={routes.addBook}>새로운 책 등록</a>
       </div>    
     );
 }
