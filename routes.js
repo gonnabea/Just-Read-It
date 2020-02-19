@@ -2,6 +2,7 @@ const HOME = "/";
 const BOOK_DETAIL = "/book-detail/:id";
 const ADD_BOOK = "/add-book";
 const EDIT_BOOK = "/edit-book/:id";
+const DELETE_BOOK = "/delete-book/:id";
 const MY_BOOK_LIST = "/book-list/:id";
 const JOIN = "/join";
 const LOGIN = "/login";
@@ -43,6 +44,13 @@ const routes = {
             return `/edit-book/${id}`
         }else{
             return EDIT_BOOK
+        }
+    },
+    deleteBook: (id) => {
+        if(id){
+            return `/delete-book/${id}`
+        }else{
+            return DELETE_BOOK
         }
     },
     profile: PROFILE,

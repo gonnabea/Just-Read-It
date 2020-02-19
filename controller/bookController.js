@@ -106,3 +106,15 @@ export const editBook = async(req, res) => {
         console.log(error);
     }
 }
+
+export const deleteBook = async(req, res) => {
+    const {
+        params: {id}
+    } = req;
+    try {
+        await Book.findByIdAndDelete({_id:id})
+        res.redirect(routes.home);
+    }catch(error){
+        console.log(error)
+    }
+}
