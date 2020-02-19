@@ -92,3 +92,17 @@ export const postReview = async(req, res) => {
     user.save();
     res.redirect(`/${routes.bookDetail(id)}`);
 }
+
+export const editBook = async(req, res) => {
+    const { 
+    params : {id},
+    body: {title, description, author}
+    } = req;
+    try{
+    const book = await Book.findByIdAndUpdate({_id:id}, {title, description, author})
+    console.log(book);
+    res.redirect(`/${routes.bookDetail(id)}`);
+    }catch(error){
+        console.log(error);
+    }
+}

@@ -1,6 +1,6 @@
 import express from "express";
 import routes from "../routes";
-import { getAddBook, postAddBook, myBookList, postMyBookList, postReview } from "../controller/bookController";
+import { getAddBook, postAddBook, myBookList, postMyBookList, postReview, editBook } from "../controller/bookController";
 import bookImageUpload from "../middleware";
 import { profile, search } from "../controller/userController";
 
@@ -16,5 +16,7 @@ userRouter.post(routes.myBookList(), postMyBookList);
 
 userRouter.post(routes.postReview(), postReview);
 
-userRouter.post(routes.search, search)
+userRouter.post(routes.search, search);
+
+userRouter.post(routes.editBook(), editBook);
 export default userRouter;
