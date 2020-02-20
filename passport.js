@@ -58,11 +58,28 @@ passport.use(new NaverStrategy({
     callbackURL: `http://localhost:4000${routes.naverAuthCallback}`
 },
 async function(accessToken, refreshToken, profile, cb){
-    process.nextTick(function(){
         console.log(profile);
-    })
-    //const { _json : {email, profile_image} } = profile;
-
+    
+    const { _json : {id,email, profile_image, nickname} } = profile;
+    try{
+        const user = await User.findOne({email})
+        if (user) {
+            user.naverId = id;
+            user.profilePhoto = profile_image;
+            user.save();
+            return cb(null, user)
+        }
+        const newUser = await User.create({
+            email,
+            username: nickname,
+            naverId: id,
+            profilePhoto: profile_image
+        });
+        return cb(null, newUser);
+        
+    }catch(error){
+        return cb(error)
+    }
     
 }
 ))

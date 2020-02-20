@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema ({
         default:"/images/defaultImage.webp"
     },
     googleId: Number,
+    naverId: Number,
     uploadedBooks: [{
     type: Schema.Types.ObjectId,
     ref: "Book"
