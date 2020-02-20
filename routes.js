@@ -7,6 +7,7 @@ const MY_BOOK_LIST = "/book-list/:id";
 const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
+const EDIT_USER ="/edit-user/:id";
 
 const GOOGLE_AUTH = "/auth/google";
 const GOOGLE_AUTH_CALLBACK = "/auth/google/callback";
@@ -73,7 +74,14 @@ const routes = {
             return POSTREVIEW
         }
     },
-    search: SEARCH
+    search: SEARCH,
+    editUser: (id) => {
+        if(id){
+            return `/edit-user/${id}`
+        }else{
+            return EDIT_USER
+        }
+    }
     
 }
 

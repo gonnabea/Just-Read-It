@@ -2,7 +2,7 @@ import express from "express";
 import routes from "../routes";
 import { getAddBook, postAddBook, myBookList, postMyBookList, postReview, editBook, deleteBook } from "../controller/bookController";
 import bookImageUpload from "../middleware";
-import { profile, search } from "../controller/userController";
+import { profile, search, editUser, postEditUser } from "../controller/userController";
 
 const userRouter = express.Router();
 
@@ -19,5 +19,8 @@ userRouter.post(routes.postReview(), postReview);
 userRouter.post(routes.search, search);
 
 userRouter.post(routes.editBook(), editBook);
-userRouter.post(routes.deleteBook(), deleteBook)
+userRouter.post(routes.deleteBook(), deleteBook);
+
+userRouter.get(routes.editUser(), editUser);
+userRouter.post(routes.editUser(), postEditUser)
 export default userRouter;

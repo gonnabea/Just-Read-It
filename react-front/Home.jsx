@@ -5,11 +5,11 @@ import Header from "./Header";
 //const Ho = pug.compileFile("home.pug");
 
 function Home(props){
+    
     const bookList =
         props.books.map(book => {
             return (
                 <>
-                {console.log(book)}
                 <a href={props.routes.bookDetail(book.id)}>
                 <img src={book.imageUrl} alt={book.imageUrl}/>
                 <h1>{book.title}</h1>
@@ -24,7 +24,7 @@ function Home(props){
     //ReactDOM.render(<Join/>, document.getElementById("root"));
      return  ( 
      <React.Fragment>
-         <Header/>
+        {Header(props)}     
          {bookList}
     </React.Fragment>
      );
