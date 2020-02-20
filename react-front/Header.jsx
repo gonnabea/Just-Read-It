@@ -6,8 +6,10 @@ function Header(props){
     
     return( 
         <div className="home">
-            <h1>books</h1>
-        <a href={props.routes.editUser(props.user.id)}>프로필 수정</a>
+        <a href={props.routes.home}>
+        <img src="images\Book-Worm.jpg" alt="" width="100vh"/>
+        </a>
+        <a href={props.routes.profile(props.user.id)}>프로필</a>
       {/*<a href={routes.profile(props.user.id)}>
       <img src={props.user.profilePhoto} alt="Profile photo." width="50vh"></img>
     </a>

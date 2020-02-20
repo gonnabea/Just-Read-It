@@ -1,5 +1,5 @@
 import React from "react";
-class profile extends React.Component{
+class editProfile extends React.Component{
     render(){
         return(
             
@@ -16,4 +16,4 @@ class profile extends React.Component{
     }
 }
 
-export default profile;
+export default editProfile;

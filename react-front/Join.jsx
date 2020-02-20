@@ -2,11 +2,11 @@ import React from "react";
 import routes from "../routes"
 
 
-function Join() {
+function Join(props) {
 
     return (
         <div className="join_box">
-            <form action={routes.join} method="post">
+            <form action={props.routes.join} method="post">
                 <input type="text" name="username" required={true} placeholder="닉네임" />
                 <input type="text" name="email" required={true} placeholder="이메일" />
                 <input type="password" name="password" required={true} placeholder="비밀번호" />
