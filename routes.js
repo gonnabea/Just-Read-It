@@ -12,6 +12,7 @@ const EDIT_USER ="/edit-user/:id";
 const GOOGLE_AUTH = "/auth/google";
 const GOOGLE_AUTH_CALLBACK = "/auth/google/callback";
 const NAVER_AUTH = "/auth/naver";
+const NAVER_AUTH_CALLBACK = "/auth/naver/callback"
 
 const PROFILE = "/user/:id";
 
@@ -59,6 +60,7 @@ const routes = {
     googleAuth: GOOGLE_AUTH,
     googleAuthCallback: GOOGLE_AUTH_CALLBACK,
     naverAuth: NAVER_AUTH,
+    naverAuthCallback: NAVER_AUTH_CALLBACK,
 
     profile: (id) => {
         if(id){

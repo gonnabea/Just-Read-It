@@ -2,6 +2,7 @@ import User from "./model/user";
 import passport from "passport";
 import routes from "./routes";
 import GoogleStrategy from "passport-google-oauth20";
+import NaverStrategy from "passport-naver";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -50,6 +51,21 @@ async function (accessToken, refreshToken, profile, cb) {
 }
 )
 )
+
+passport.use(new NaverStrategy({
+    clientID: process.env.NAVER_CLIENT_ID,
+    clientSecret: process.env.NAVER_CLIENT_SECRET,
+    callbackURL: `http://localhost:4000${routes.naverAuthCallback}`
+},
+async function(accessToken, refreshToken, profile, cb){
+    process.nextTick(function(){
+        console.log(profile);
+    })
+    //const { _json : {email, profile_image} } = profile;
+
+    
+}
+))
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());

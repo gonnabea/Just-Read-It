@@ -22,6 +22,19 @@ globalRouter.get(routes.googleAuthCallback,
     }
 )
 
+globalRouter.get(routes.naverAuth, 
+    passport.authenticate('naver', {
+        failureRedirect: routes.login
+    })
+    )
+
+globalRouter.get(routes.naverAuthCallback,
+    passport.authenticate('naver', { failureRedirect: routes.login}),
+    function(req, res) {
+        res.redirect(routes.home);
+    }
+    )
+
 globalRouter.get(routes.logout, logout);
 
 globalRouter.get(routes.join, join);
