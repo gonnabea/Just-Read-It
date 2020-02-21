@@ -3,14 +3,16 @@ import Book from "../model/book";
 import User from "../model/user";
 import passport from "passport";
 import MiniSearch from "minisearch";
-
+import akin from "@asymmetrik/akin";
 
 export const home = async(req, res) => {
     try{
     const books = await Book.find({}).populate("enrolledBy");
-    
-    
-    res.render("home", {books})
+    let recommendation = await akin.recommendation.getAllRecommendationsForUser(
+        req.user._id
+      );
+    console.log(recommendation)
+    res.render("home", {books, recommendation : recommendation.recommendations})
     }catch(error){
         console.log(error);
     }

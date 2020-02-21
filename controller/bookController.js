@@ -2,6 +2,7 @@ import Book from "../model/book";
 import routes from "../routes";
 import User from "../model/user";
 import Review from "../model/review";
+import akin from "@asymmetrik/akin";
 
 export const getAddBook = (req, res) => {
     res.render("uploadBook")
@@ -35,8 +36,11 @@ export const bookDetail = async(req, res) => {
     const { params: {id} } = req;
     let rateFigure = 0;
     let booksFigure = 0;
-    const book = await Book.findById(id).populate("enrolledBy").populate("review")
-    console.log(book.review)
+    const book = await Book.findById(id).populate("enrolledBy").populate("review");
+    await akin.activity.log(req.user.id, book.id)
+    akin.run()
+    
+    
     book.review.forEach( argument => {
         rateFigure += argument.rate;
         booksFigure += 1;
