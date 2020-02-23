@@ -44,10 +44,7 @@ function Header(props){
           <Title/>
           <div className="flex_box"style={pstyle} >
       
-        <a href={props.routes.
-          home}>
-        <img src="images\Book-Worm.jpg" alt="" width="100vh"/>
-        </a>
+        
         <ProfileLink/>
       {/*<a href={routes.profile(props.user.id)}>
       <img src={props.user.profilePhoto} alt="Profile photo." width="50vh"></img>
