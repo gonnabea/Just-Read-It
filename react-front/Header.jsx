@@ -1,12 +1,36 @@
 
 import React from "react";
 import routes from "../routes"
+import Title from "./title";
 
 function Header(props){
+
+  const style={
+    postion:"absolute",
+    color:"red",
+  }
+      
+  const pstyle={
+    position:"absolute",
+    color:"red",
+    fontSize: "1rem",
+    right:"10px",
+    top:"10px",
+    padding:"10px",
+    textDecoration: "none",
+
+  }
+  const amrgin={
+    margin:"7px",
+    textDecoration: "none",
+
+  }
+
+
   function ProfileLink(){  
   if(props.user){
     return(
-      <a href={props.routes.profile(props.user.id)}>프로필</a>
+      <a href={props.routes.profile(props.user.id)} style={pstyle}>프로필</a>
     )
     }else {
       return(
@@ -16,7 +40,9 @@ function Header(props){
   }
 
     return( 
-      <div className="home">
+      <div className="header">
+          <Title/>
+          <div className="flex_box"style={pstyle} >
       
         <a href={props.routes.
           home}>
@@ -29,15 +55,16 @@ function Header(props){
     {<a href={routes.myBookList(user.id)} >내 서재</a>}*/}
       {/* <a href={routes.addBook}> 새로운 책 등록</a>, */}
       <form action={routes.search} method="post">
-          <input type="text" name="search"  required={true} placeholder="검색"/>
-          <input type="submit" value="검색"/>
+          <input type="text" name="search"  required={true} placeholder="검색" style={amrgin}/>
+          <input type="submit" value="검색" style={amrgin}/>
           {/* <i className="fa fas-search fa-2x"></i> */}
       </form>
-      <a href={routes.login}>로그인</a>
-      <a href={routes.logout}> 로그아웃</a>
-      <a href={routes.join}>가입</a>
-      <a href={routes.addBook}>새로운 책 등록</a>
-      </div>    
+      <a href={routes.login} style={amrgin}>로그인</a>
+      <a href={routes.logout} style={amrgin}> 로그아웃</a>
+      <a href={routes.join} style={amrgin}>가입</a>
+      <a href={routes.addBook} style={amrgin}>새로운 책 등록</a>
+      </div>
+      </div>      
     );
 }
 

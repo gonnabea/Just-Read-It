@@ -16,15 +16,15 @@ export const home = async(req, res) => {
         req.user.id
       );
     recommendation=  await recommendation.then(function(result) {
-        return(result) // "Some User token"
+        return(result) 
      })
-     console.log(recommendation)
+     
       if(recommendation !== null){
           
       const recomedbooksID = recommendation.recommendations.map( argument => {
           return(argument.item)
       })
-      console.log(recomedbooksID)
+      
       const recomendBooks = await Promise.all(recomedbooksID.map(async argument => {
           const book = await Book.findById(argument);
           return(book)

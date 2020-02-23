@@ -3,26 +3,70 @@ import React from "react";
 class bookDetail extends React.Component {
     
     render(){
+        const bookimg = {
+            margin:"1rem",
+            borderRadius:"10px",
+            boxShadow: `2px 2px 2px 0px rgba(0,0,0,0.75),
+            1px 2px 3px 3px rgba(0,0,0,0.75)`,
+        }
+        const title={
+            padding:"0.7rem",
+            border:"1px solid red",
+            width:"50%",
+            borderRadius:"10px",
+            boxShadow: `2px 2px 2px 0px rgba(0,0,0,0.75),
+            1px 2px 3px 3px rgba(0,0,0,0.75)`,
+        }
+        const inmargin={
+            margin:"10px",
+            display:"flex",
+            flexDirection:"column",
+            width:"100%",
+            alignItems:"center",
+        }
+        const centerBox={
+            display:"flex",
+            flexDirection:"column",
+            alignItems:"center",
+            fontWeight:"500",
+            color:"blue",
+        }
+        
+        const inputstyle ={
+        margin: "5px",
+        borderRadius:"10px",
+
+        }
+        const reviewset={
+            margin:"0.8rem",
+            textAlign:"center",
+        }
+
+        const postReview={
+            margin:"5px",
+        }
+
         const book = this.props.book
         return(
         <React.Fragment>
-        <img src={`/${book.imageUrl}`}/>
-        <h1>{book.title}</h1>
+        <div className="center_box" style={centerBox}>
+        <img src={`/${book.imageUrl}`} style={bookimg}/>
+        <h1 style={title}>{book.title}</h1>
         <h3>{JSON.stringify(book.createdAt)}</h3>
         <h2>{book.totalRate}</h2>
         <h2>{book.author}</h2>
         <h3>{book.description}</h3>
         <h3>{this.props.totalRate}점</h3>
-        <form action={this.props.routes.editBook(book.id)} method="post">
-        <input type="text" name="title" placeholder="수정할 이름" value={book.title}/>
-        <input type="textarea" name="description" placeholder="상세내용" value={book.description}/>
-        <input type="text" name="author" placeholder="작가 이름" value={book.author}/>
+        <form action={this.props.routes.editBook(book.id)} method="post" style={inmargin}>
+        <input type="text" name="title" placeholder="수정할 이름" value={book.title} style={inputstyle}/>
+        <input type="textarea" name="description" placeholder="상세내용" value={book.description} style={inputstyle}/>
+        <input type="text" name="author" placeholder="작가 이름" value={book.author} style={inputstyle}/>
         <input type="submit" value="수정하기"/>
         </form>
-        <form action={this.props.routes.deleteBook(book.id)} method="post">
+        <form action={this.props.routes.deleteBook(book.id)} method="post" style={reviewset}>
         <input type="submit" value="책 삭제"/>
         </form>
-        <form action={this.props.routes.postReview(book.id)} method="post">
+        <form action={this.props.routes.postReview(book.id)} method="post" style={postReview}>
                 <input type="text" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!"/>
                 <input type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={5} step={.1}/>
                 <input type="submit" value="등록"/>
@@ -35,15 +79,16 @@ class bookDetail extends React.Component {
         h4 #{item.createdAt}*/}
         {book.review.map( (item) => {
                 return(
-                    <>
+                    <div style={reviewset}>
                 <img src={item.creatorPhoto} width="50vh"/>
                 <h3>{item.creator}</h3>
                 <h3>{item.content}</h3>
                 <h3>{item.rate}</h3>
                 <h3>{JSON.stringify(item.createdAt)}</h3>
-                </>
+                </div>
                 )
         } )}
+        </div>
         </React.Fragment>
         )
     }
