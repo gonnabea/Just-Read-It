@@ -58,7 +58,7 @@ passport.use(new NaverStrategy({
     callbackURL: `http://localhost:4000${routes.naverAuthCallback}`
 },
 async function(accessToken, refreshToken, profile, cb){
-        console.log(profile);
+        
     
     const { _json : {id,email, profile_image, nickname} } = profile;
     try{

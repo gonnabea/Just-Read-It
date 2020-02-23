@@ -37,14 +37,15 @@ export const bookDetail = async(req, res) => {
     let rateFigure = 0;
     let booksFigure = 0;
     const book = await Book.findById(id).populate("enrolledBy").populate("review");
-    await akin.activity.log(req.user.id, book.id)
-    akin.run()
-    
-    
+    if(req.user){
+     akin.activity.log(req.user.id, book.id)
+     akin.run()
+    }
     book.review.forEach( argument => {
         rateFigure += argument.rate;
         booksFigure += 1;
     })
+    
     const totalRate = (rateFigure/booksFigure).toPrecision(2);
     res.render("book-detail" , {book, totalRate});
 }

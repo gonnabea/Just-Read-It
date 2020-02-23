@@ -5,14 +5,40 @@ import passport from "passport";
 import MiniSearch from "minisearch";
 import akin from "@asymmetrik/akin";
 
+
 export const home = async(req, res) => {
     try{
     const books = await Book.find({}).populate("enrolledBy");
-    let recommendation = await akin.recommendation.getAllRecommendationsForUser(
-        req.user._id
+    
+    
+    if(req.user){
+    let recommendation = akin.recommendation.getAllRecommendationsForUser(
+        req.user.id
       );
-    console.log(recommendation)
-    res.render("home", {books, recommendation : recommendation.recommendations})
+    recommendation=  await recommendation.then(function(result) {
+        return(result) // "Some User token"
+     })
+     console.log(recommendation)
+      if(recommendation !== null){
+          
+      const recomedbooksID = recommendation.recommendations.map( argument => {
+          return(argument.item)
+      })
+      console.log(recomedbooksID)
+      const recomendBooks = await Promise.all(recomedbooksID.map(async argument => {
+          const book = await Book.findById(argument);
+          return(book)
+      }))
+    console.log(`recommendation:${recommendation}`)
+    res.render("home", {books, recomendBooks})
+      }else{
+        res.render("home", {books})
+      }
+    
+    }else{
+        
+        res.render("home", {books})
+      }
     }catch(error){
         console.log(error);
     }

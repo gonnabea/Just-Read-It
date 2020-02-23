@@ -3,13 +3,26 @@ import React from "react";
 import routes from "../routes"
 
 function Header(props){
-    
+  function ProfileLink(){  
+  if(props.user){
+    return(
+      <a href={props.routes.profile(props.user.id)}>프로필</a>
+    )
+    }else {
+      return(
+        <h2>로그인 된 유저가 없습니다.</h2>
+      )
+    }  
+  }
+
     return( 
-        <div className="home">
-        <a href={props.routes.home}>
+      <div className="home">
+      
+        <a href={props.routes.
+          home}>
         <img src="images\Book-Worm.jpg" alt="" width="100vh"/>
         </a>
-        <a href={props.routes.profile(props.user.id)}>프로필</a>
+        <ProfileLink/>
       {/*<a href={routes.profile(props.user.id)}>
       <img src={props.user.profilePhoto} alt="Profile photo." width="50vh"></img>
     </a>
