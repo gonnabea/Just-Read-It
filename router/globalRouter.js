@@ -35,6 +35,15 @@ globalRouter.get(routes.naverAuthCallback,
     }
     )
 
+globalRouter.get(routes.slackAuth,
+    passport.authorize('slack')
+    )
+
+globalRouter.get(routes.slackAuthCallback,
+  passport.authorize('slack', { failureRedirect: routes.login }),
+  (req, res) => res.redirect(routes.home) // Successful authentication, redirect home.
+);
+
 globalRouter.get(routes.logout, logout);
 
 globalRouter.get(routes.join, join);

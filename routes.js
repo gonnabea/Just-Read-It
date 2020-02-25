@@ -13,7 +13,8 @@ const GOOGLE_AUTH = "/auth/google";
 const GOOGLE_AUTH_CALLBACK = "/auth/google/callback";
 const NAVER_AUTH = "/auth/naver";
 const NAVER_AUTH_CALLBACK = "/auth/naver/callback"
-
+const SLACK_AUTH = "/auth/slack";
+const SLACK_AUTH_CALLBACK = "/auth/slack/callback";
 const PROFILE = "/user/:id";
 
 const POSTREVIEW = "/book-review/:id";
@@ -61,6 +62,8 @@ const routes = {
     googleAuthCallback: GOOGLE_AUTH_CALLBACK,
     naverAuth: NAVER_AUTH,
     naverAuthCallback: NAVER_AUTH_CALLBACK,
+    slackAuth: SLACK_AUTH,
+    slackAuthCallback: SLACK_AUTH_CALLBACK,
 
     profile: (id) => {
         if(id){

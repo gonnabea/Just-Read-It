@@ -35,7 +35,7 @@ class uploadBook extends React.Component{
             <Title />
             <div style={griarea} >
         <form action={this.props.routes.addBook} method="post" enctype="multipart/form-data" style={flex_box}>
-            <input type="text" name="bookname" placeholder="책 제목" required="true" style={inputstyle}/>
+            <input type="text" name="bookName" placeholder="책 제목" required="true" style={inputstyle}/>
             <input type="textarea" name="bookDescription" placeholder="책 상세설명" style={inputstyle}/>
             <input type="text" name="author" placeholder="작가 이름" style={inputstyle}/>
             <input type="file" name="bookImage" style={inputstyle}/>

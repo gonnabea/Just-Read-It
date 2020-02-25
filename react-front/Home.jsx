@@ -75,7 +75,8 @@ function Home(props){
                 <img src={book.imageUrl} alt={book.imageUrl} width={"100vh"} style={img_box}/>
                 <div className="text_box" >
                 <h1>{book.title}</h1>
-                <h2>{book.author}</h2>
+                <h2>작가 : {book.author}</h2>
+                <h3>({book.enrolledBy[0].username}님이 등록)</h3>
                 <h3>{JSON.stringify(book.createdAt)}</h3>
                 <h3>{book.description}</h3>
                 </div>

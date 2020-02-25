@@ -4,6 +4,7 @@ import routes from "./routes";
 import GoogleStrategy from "passport-google-oauth20";
 import NaverStrategy from "passport-naver";
 import dotenv from "dotenv";
+import SlackStrategy from "passport-slack";
 
 dotenv.config();
 
@@ -83,6 +84,18 @@ async function(accessToken, refreshToken, profile, cb){
     
 }
 ))
+/*
+passport.use(new SlackStrategy({
+    clientID: process.env.SLACK_CLIENT_ID,
+    clientSecret: process.env.SLACK_CLIENT_SECRET,
+    skipUserProfile: false, // default
+    scope: ['identity.basic', 'identity.email', 'identity.avatar', 'identity.team'] // default
+}, async(accessToken, refreshToken, profile, done) => {
+    console.log(profile)
+    done(null, profile);
+}
 
+))
+*/
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());

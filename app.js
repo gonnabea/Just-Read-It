@@ -12,7 +12,7 @@ import expressReactViews from "express-react-views";
 
 const app = express();
 dotenv.config();
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static("public"));
