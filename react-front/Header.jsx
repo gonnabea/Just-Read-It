@@ -38,6 +38,22 @@ function Header(props){
       )
     }  
   }
+  function CheckLogin() {
+  if(props.user){
+    return ( 
+      <>
+    <a href={routes.logout} style={amrgin}> 로그아웃</a>
+    <a href={routes.addBook} style={amrgin}>새로운 책 등록</a>
+    </>)
+  }else{
+    return ( 
+    <>
+    <a href={routes.login} style={amrgin}>로그인</a>
+    <a href={routes.join} style={amrgin}>가입</a> 
+    </>
+    )
+  }
+}
 
     return( 
       <div className="header">
@@ -56,10 +72,7 @@ function Header(props){
           <input type="submit" value="검색" style={amrgin}/>
           {/* <i className="fa fas-search fa-2x"></i> */}
       </form>
-      <a href={routes.login} style={amrgin}>로그인</a>
-      <a href={routes.logout} style={amrgin}> 로그아웃</a>
-      <a href={routes.join} style={amrgin}>가입</a>
-      <a href={routes.addBook} style={amrgin}>새로운 책 등록</a>
+      <CheckLogin/>
       </div>
       </div>      
     );
