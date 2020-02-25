@@ -11,4 +11,20 @@ const upload = multer({ dest: 'uploads/books/' })
 
 const bookImageUpload = upload.single("bookImage");
 
+export const checkUserExist = (req, res, next) => {
+    if(req.user){
+        next()
+    }else{
+        res.redirect(routes.home)
+    }
+}
+
+export const onlyLoggedOut = (req, res, next) => {
+    if(req.user){
+       res.redirect(routes.home) 
+    }else{
+        next()
+    }
+}
+
 export default bookImageUpload;
