@@ -90,9 +90,27 @@ passport.use(new SlackStrategy.Strategy({
     clientSecret: process.env.SLACK_CLIENT_SECRET,
     skipUserProfile: false, // default
     scope: ['identity.basic', 'identity.email', 'identity.avatar', 'identity.team'] // default
-}, async(accessToken, refreshToken, profile, done) => {
-    console.log(profile)
-    done(null, profile);
+}, async(accessToken, refreshToken, profile, cb) => {
+    const { user : {id,email, image_512, name} } = profile;
+    try{
+        const user = await User.findOne({email})
+        if (user) {
+            user.slackId = id;
+            user.profilePhoto = image_512;
+            user.save();
+            return cb(null, user)
+        }
+        const newUser = await User.create({
+            email,
+            name,
+            slackId: id,
+            profilePhoto: image_512
+        });
+        return cb(null, newUser);
+        
+    }catch(error){
+        return cb(error)
+    }
 }
 
 ))

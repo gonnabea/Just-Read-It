@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema ({
     },
     googleId: Number,
     naverId: Number,
+    slackId: String,
     uploadedBooks: [{
     type: Schema.Types.ObjectId,
     ref: "Book"
