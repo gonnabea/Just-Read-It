@@ -84,8 +84,8 @@ async function(accessToken, refreshToken, profile, cb){
     
 }
 ))
-/*
-passport.use(new SlackStrategy({
+
+passport.use(new SlackStrategy.Strategy({
     clientID: process.env.SLACK_CLIENT_ID,
     clientSecret: process.env.SLACK_CLIENT_SECRET,
     skipUserProfile: false, // default
@@ -96,6 +96,6 @@ passport.use(new SlackStrategy({
 }
 
 ))
-*/
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
