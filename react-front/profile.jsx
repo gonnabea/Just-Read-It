@@ -5,9 +5,8 @@ class profile extends React.Component{
         
         return(
             <>
-        <h2>{this.props.currentUser.username}님이 등록한 책 리스트:</h2>
             <img src={this.props.currentUser.profilePhoto}/>
-        <h2>{this.props.currentUser.username}님</h2>
+        <h2>{this.props.currentUser.username}님이 등록한 책 리스트:</h2>
         <a href={this.props.routes.editUser(this.props.user.id)}>프로필 수정</a>
         {this.props.currentUser.uploadedBooks.map(book => {
             return(

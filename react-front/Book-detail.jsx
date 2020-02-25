@@ -72,7 +72,22 @@ class bookDetail extends React.Component {
         </>
             )
         
-        }else{
+        }else if(user){
+            return (
+                <>
+                <form action={`/${routes.myBookList(book.id)}`} method="post">
+                <input type="submit" value="즐겨찾기 등록"/>
+                </form>
+                <form action={routes.postReview(book.id)} method="post" style={postReview}>
+                <input type="text" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!"/>
+                <input type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={5} step={.1}/>
+                <input type="submit" value="등록"/>
+        </form>
+        </>
+            )
+        }
+        
+        else{
             return ""
                 
 
@@ -86,7 +101,6 @@ class bookDetail extends React.Component {
         <img src={`/${book.imageUrl}`} style={bookimg}/>
         <h1 style={title}>{book.title}</h1>
         <h3>{JSON.stringify(book.createdAt)}</h3>
-        <h2>{book.totalRate}</h2>
         <h2>{book.author}</h2>
         <h3>{book.description}</h3>
         <h3>{this.props.totalRate}점</h3>
