@@ -1,3 +1,5 @@
+import e from "express";
+
 const HOME = "/";
 const BOOK_DETAIL = "/book-detail/:id";
 const ADD_BOOK = "/add-book";
@@ -5,6 +7,7 @@ const EDIT_BOOK = "/edit-book/:id";
 const DELETE_BOOK = "/delete-book/:id";
 const MY_BOOK_LIST = "/book-list/:id";
 const DELETE_FAV_BOOK = "/delete-fav/:id";
+const DELETE_RATE = "/delete-rate/:id";
 const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
@@ -93,6 +96,13 @@ const routes = {
             return `/edit-user/${id}`
         }else{
             return EDIT_USER
+        }
+    },
+    deleteRate: (id) => {
+        if(id){
+            return `/delete-rate/${id}`
+        }else{
+            return DELETE_RATE
         }
     }
     
