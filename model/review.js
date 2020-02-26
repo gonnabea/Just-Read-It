@@ -11,8 +11,7 @@ const reviewSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    },
-    email: String
+    }
 })
 
 const model = mongoose.model("Review", reviewSchema);
