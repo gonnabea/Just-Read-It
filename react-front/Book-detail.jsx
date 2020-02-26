@@ -107,6 +107,7 @@ class bookDetail extends React.Component {
         <div className="center_box" style={centerBox}>
         <img src={`/${book.imageUrl}`} style={bookimg}/>
         <h1 style={title}>{book.title}</h1>
+        <h4>{book.likeFigure}명이 즐겨찾기에 등록</h4>
         <h3>{JSON.stringify(book.createdAt)}</h3>
         <h2>{book.author}</h2>
         <h3>{book.description}</h3>

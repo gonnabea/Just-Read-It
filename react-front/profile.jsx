@@ -10,12 +10,12 @@ class profile extends React.Component{
         <a href={this.props.routes.editUser(this.props.user.id)}>프로필 수정</a>
         {this.props.currentUser.uploadedBooks.map(book => {
             return(
-            <>
+            <a href={`/${this.props.routes.bookDetail(book.id)}`}>
             <img src={`/${book.imageUrl}`} alt=""/>
             <h2>{book.title}</h2>
             <h3>{book.author}</h3>
             <h4>{book.description}</h4>
-            </>
+            </a>
             )
         })}
         </>

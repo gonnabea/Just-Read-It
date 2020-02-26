@@ -14,7 +14,11 @@ const bookSchema = new mongoose.Schema({
     review:[{
         type: Schema.Types.ObjectId,
         ref: "Review"
-    }]
+    }],
+    likeFigure:{
+        type: Number,
+        default: 0
+    }
 })
 
 bookSchema.plugin(deepPopulate(mongoose));

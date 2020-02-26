@@ -104,7 +104,7 @@ const routes = {
         }else{
             return DELETE_RATE
         }
-    }
+    }    
     
 }
 

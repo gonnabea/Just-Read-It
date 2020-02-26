@@ -54,11 +54,12 @@ function Home(props){
         return (
             props.recomendBooks.map(argument => {
                 return (
-                    <>
+                    <a href={`/${props.routes.bookDetail(argument.id)}`}>
         <img src={argument.imageUrl}/>
         <h1>{argument.title}</h1>
-        
-        </>)
+        <h3>{argument.author}</h3>
+        <h3>{argument.description}</h3>
+        </a>)
     })
     
     )}else{

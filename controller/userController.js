@@ -99,7 +99,7 @@ export const search = async(req, res) => {
     const books = await Book.find({})
     let miniSearch = new MiniSearch({
         fields: ['title', 'author', 'description'], // fields to index for full-text search
-        storeFields: ['title', 'author', 'imageUrl'] // fields to return with search results
+        storeFields: ['title', 'author', 'imageUrl', 'description'] // fields to return with search results
       })
     miniSearch.addAll(books);
     
@@ -135,3 +135,4 @@ export const postEditUser = async(req, res) => {
     }
     
 }
+

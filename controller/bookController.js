@@ -56,7 +56,7 @@ export const myBookList = async(req, res) => {
     res.render("myBookList", {currentUser});
 }
 
-export const postMyBookList = (req, res) => {
+export const postMyBookList = async(req, res) => {
     const {
         params: {id}, user
     } = req;
@@ -70,7 +70,11 @@ export const postMyBookList = (req, res) => {
     if(overlap === false){
     user.favBooks.push(id)
     user.save();
+    const book = await Book.findById(id)
+    book.likeFigure +=1;
+    book.save()
     }
+
     res.redirect(`/${routes.myBookList(user.id)}`);
 }
 
@@ -137,6 +141,10 @@ export const deleteFavBook = async(req, res) => {
             }
             a+=1;
         })
+        const book = await Book.findById(id)
+        book.likeFigure -=1;
+        book.save()
+
     res.redirect(`/${routes.myBookList(user.id)}`)
 }
 
@@ -150,5 +158,5 @@ export const deleteRate = async(req, res) => {
     }catch(error){
         console.log(error)
     }
-    res.redirect(routes.home)
+    res.redirect("back")
 }

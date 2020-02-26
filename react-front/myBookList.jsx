@@ -14,6 +14,7 @@ class MyBookList extends React.Component{
         {this.props.currentUser.favBooks.map(book => {
             return(
             <>
+            <a href={`/${this.props.routes.bookDetail(book.id)}`}>
             <img src={`/${book.imageUrl}`} alt=""/>
             <h2>{book.title}</h2>
             <h3>{book.author}</h3>
@@ -21,6 +22,7 @@ class MyBookList extends React.Component{
             <form action={routes.deleteFavBook(book.id)} method="post">
                 <input type="submit" value="즐겨찾기 삭제"/>
             </form>
+            </a>
             </>
             )
         })}
