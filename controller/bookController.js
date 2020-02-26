@@ -124,3 +124,17 @@ export const deleteBook = async(req, res) => {
     }
 }
 
+export const deleteFavBook = async(req, res) => {
+    const {
+        params : {id}, user
+    } = req;
+    let a = 0;
+        user.favBooks.map(favBook => {
+            if(favBook == id){
+                user.favBooks.splice(a,1)
+                user.save();
+            }
+            a+=1;
+        })
+    res.redirect(`/${routes.myBookList(user.id)}`)
+}

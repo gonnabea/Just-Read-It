@@ -44,6 +44,7 @@ function Header(props){
       <>
     <a href={routes.logout} style={amrgin}> 로그아웃</a>
     <a href={routes.addBook} style={amrgin}>새로운 책 등록</a>
+    <a href={routes.myBookList(props.user.id)} style={amrgin}>즐겨찾기 목록</a>
     </>)
   }else{
     return ( 

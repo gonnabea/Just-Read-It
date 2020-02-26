@@ -4,6 +4,7 @@ const ADD_BOOK = "/add-book";
 const EDIT_BOOK = "/edit-book/:id";
 const DELETE_BOOK = "/delete-book/:id";
 const MY_BOOK_LIST = "/book-list/:id";
+const DELETE_FAV_BOOK = "/delete-fav/:id";
 const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
@@ -54,6 +55,13 @@ const routes = {
             return `/delete-book/${id}`
         }else{
             return DELETE_BOOK
+        }
+    },
+    deleteFavBook: (id) => {
+        if(id){
+            return `/delete-fav/${id}`
+        }else{
+            return DELETE_FAV_BOOK
         }
     },
     profile: PROFILE,

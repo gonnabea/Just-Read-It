@@ -3,6 +3,7 @@ import React from "react";
 class MyBookList extends React.Component{
     render(){
         console.log(this.props.currentUser)
+        const routes = this.props.routes
         return(
             <>
             <img src={this.props.currentUser.profilePhoto}/>
@@ -17,6 +18,9 @@ class MyBookList extends React.Component{
             <h2>{book.title}</h2>
             <h3>{book.author}</h3>
             <h4>{book.description}</h4>
+            <form action={routes.deleteFavBook(book.id)} method="post">
+                <input type="submit" value="즐겨찾기 삭제"/>
+            </form>
             </>
             )
         })}
