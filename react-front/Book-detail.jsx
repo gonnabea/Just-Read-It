@@ -89,11 +89,18 @@ class bookDetail extends React.Component {
         
         else{
             return ""
-                
-
-            
         }
-        } 
+        }
+        
+        function UserWhoRated(review) {
+            if(user && review.email == user.email){
+                return(
+                    <form action={routes.deleteRate(review.id)} method="post">
+                    <input type="submit" value="삭제"/>
+                    </form>
+                )
+            }
+        }
         
         return(
             <React.Fragment>
@@ -119,6 +126,7 @@ class bookDetail extends React.Component {
                 <h3>{item.content}</h3>
                 <h3>{item.rate}</h3>
                 <h3>{JSON.stringify(item.createdAt)}</h3>
+                {UserWhoRated(item)}
                 </div>
                 )
         } )}

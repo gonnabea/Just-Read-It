@@ -1,6 +1,6 @@
 import express from "express";
 import routes from "../routes";
-import { getAddBook, postAddBook, myBookList, postMyBookList, postReview, editBook, deleteBook, deleteFavBook } from "../controller/bookController";
+import { getAddBook, postAddBook, myBookList, postMyBookList, postReview, editBook, deleteBook, deleteFavBook, deleteRate } from "../controller/bookController";
 import bookImageUpload, { checkUserExist } from "../middleware";
 import { profile, search, editUser, postEditUser } from "../controller/userController";
 
@@ -25,4 +25,6 @@ userRouter.get(routes.editUser(),checkUserExist, editUser);
 userRouter.post(routes.editUser(),checkUserExist, postEditUser);
 
 userRouter.post(routes.deleteFavBook(), checkUserExist, deleteFavBook);
+
+userRouter.post(routes.deleteRate(), checkUserExist, deleteRate);
 export default userRouter;

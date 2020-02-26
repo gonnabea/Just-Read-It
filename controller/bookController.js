@@ -89,7 +89,8 @@ export const postReview = async(req, res) => {
         content: reviewContent,
         rate,
         creator: user.username,
-        creatorPhoto: user.profilePhoto
+        creatorPhoto: user.profilePhoto,
+        email: user.email
     })
     book.review.push(review.id);
     book.save();
@@ -137,4 +138,17 @@ export const deleteFavBook = async(req, res) => {
             a+=1;
         })
     res.redirect(`/${routes.myBookList(user.id)}`)
+}
+
+export const deleteRate = async(req, res) => {
+    const {
+        params : {id}, user
+    } = req;
+    try{
+        await Review.findByIdAndDelete({_id : id})
+        
+    }catch(error){
+        console.log(error)
+    }
+    res.redirect(routes.home)
 }
