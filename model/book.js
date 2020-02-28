@@ -18,6 +18,9 @@ const bookSchema = new mongoose.Schema({
     likeFigure:{
         type: Number,
         default: 0
+    },
+    genre: {
+        
     }
 })
 

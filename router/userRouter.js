@@ -9,7 +9,7 @@ const userRouter = express.Router();
 userRouter.get(routes.addBook,checkUserExist, getAddBook);
 userRouter.post(routes.addBook,checkUserExist, bookImageUpload, postAddBook);
 
-userRouter.get(routes.profile(),checkUserExist, profile);
+userRouter.get(routes.profile(), profile);
 
 userRouter.get(routes.myBookList(),checkUserExist, myBookList);
 userRouter.post(routes.myBookList(),checkUserExist, postMyBookList);
