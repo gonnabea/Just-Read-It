@@ -3,13 +3,23 @@ import Title from "./title";
 import { BaseLayout } from "./layout";
 import Header from "./Header";
 import GlobalStyle from "./globalStyles/ResetCss";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-const BookSize = styled.img`
+const Background = styled.section`
+background-image: url("https://wallpaperset.com/w/full/d/d/8/488615.jpg");
+background-size: cover;
+`
+
+const Book = styled.img`
 width : 30%;
 height : 100%;
 box-shadow: 10px 5px 20px black;
+
+
+
 `
+
+
 
 const BookInfos = styled.div`
 width: 100%;
@@ -28,7 +38,7 @@ height: 70%;
 const CommentSpace = styled.section`
     display: flex;
     flex-direction: column;
-    box-shadow: 10px 5px 20px #5BA0F3;
+    box-shadow: 10px 5px 20px #00c8eb;
     width: 30%;
     border-radius: 20px;
     align-items: center;
@@ -37,7 +47,9 @@ const Comments = styled.ul`
 overflow: auto;
 width: 100%;
 height:100%;
-background-color: #FFF484;
+background-image: url('https://neilpatel.com/wp-content/uploads/2015/03/comments.jpg');
+background-size: cover;
+background-position: center center;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -48,6 +60,12 @@ const Comment = styled.li`
 display:flex;
 flex-direction: column;
 align-items: center;
+color:black;
+background-color: rgba(255,255,255,0.3);
+`
+
+const BookIntroduce = styled.section`
+background-color:rgba(255,255,255,0.3);
 `
 
 class bookDetail extends React.Component {
@@ -138,10 +156,13 @@ class bookDetail extends React.Component {
         return (
             <BaseLayout>
                 <GlobalStyle/>
+                <Background>
                 {Header(this.props)}
                     <BookInfos>
                     <Middle>
-                    <BookSize src={`/${book.imageUrl}`}/>
+                    <Book
+                     src={`/${book.imageUrl}`}/>
+                      
                     <CommentSpace>
                     <Comments>
                     {book.review.map((item) => {
@@ -181,17 +202,18 @@ class bookDetail extends React.Component {
                     <ActivateReview/>
                     </CommentSpace>
                     </Middle>
+                    <BookIntroduce>
+                    <h1>{book.title} {totalStar} ({this.props.totalRate})</h1>
+                    
+                    
                     <h5>{book.author}</h5>
-                    <h1>{book.title}</h1>
                     <h4>{book.likeFigure}명이 즐겨찾기에 등록</h4>
                     <h3>{JSON.stringify(book.createdAt)}</h3>
-                    <h3>{book.description}</h3>
-                    <h3>{totalStar}</h3>
-                    <h3>{this.props.totalRate}</h3>
-                
+                    <h5>{book.description}</h5>
+                    </BookIntroduce>
                     </BookInfos>
                     <CheckUser />
-                    
+                </Background>
             </BaseLayout>
         )
     }
