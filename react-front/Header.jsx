@@ -2,6 +2,14 @@
 import React from "react";
 import routes from "../routes"
 import Title from "./title";
+import { BaseLayout } from "./layout";
+import styled from "styled-components";
+
+const HeaderStyle = styled.header`
+height: 10vh;
+width: 100%;
+display: flex;
+`
 
 function Header(props) {
   
@@ -35,25 +43,20 @@ function Header(props) {
   }
 
   return (
-    <div className="header">
+      <BaseLayout>
+      <HeaderStyle>
       <Title />
-      <div className="flex_box" >
+      
 
 
         <ProfileLink />
-        {/*<a href={routes.profile(props.user.id)}>
-      <img src={props.user.profilePhoto} alt="Profile photo." width="50vh"></img>
-    </a>
-    {<a href={routes.myBookList(user.id)} >내 서재</a>}*/}
-        {/* <a href={routes.addBook}> 새로운 책 등록</a>, */}
         <form action={routes.search} method="post">
           <input type="text" name="search" required={true} placeholder="검색" />
           <input type="submit" value="검색" />
-          {/* <i className="fa fas-search fa-2x"></i> */}
         </form>
         <CheckLogin />
-      </div>
-    </div>
+        </HeaderStyle>
+        </BaseLayout>
   );
 }
 

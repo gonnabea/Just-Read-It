@@ -1,10 +1,14 @@
 import React from "react";
 import Login from "./Login";
 import Header from "./Header";
+import styled from "styled-components";
+import { BaseLayout } from "./layout";
+import GlobalStyle from "./globalStyles/ResetCss";
 // import Recommend from "./Recommend";
 
 
 //const Ho = pug.compileFile("home.pug");
+
 
 
 function Home(props) {
@@ -66,7 +70,8 @@ function Home(props) {
     //ReactDOM.render(<Join/>, document.getElementById("root"));
     return (
 
-        <React.Fragment>
+        <BaseLayout>
+            <GlobalStyle/>
             {Header(props)}
             {bookList}
             <div>
@@ -76,7 +81,8 @@ function Home(props) {
                 </ul>
             </div>
             {/* {console.log(`recom from react : ${props.recomendBooks}`)} */}
-        </React.Fragment>
+        </BaseLayout>
+
     );
 }
 
