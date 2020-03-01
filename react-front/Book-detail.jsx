@@ -10,13 +10,39 @@ background-image: url("https://wallpaperset.com/w/full/d/d/8/488615.jpg");
 background-size: cover;
 `
 
-const Book = styled.img`
+const Book = styled.div`
 width : 30%;
 height : 100%;
 box-shadow: 10px 5px 20px black;
+transform-style: preserve-3d;
 
-
-
+img:nth-child(1){
+    transform-style: preserve-3d;
+    width : 100%;
+height : 100%;
+transform:scaleZ(2);
+}
+div:nth-child(2){
+    width : 100%;
+height : 100%;
+background-color:black;
+display:none;
+}
+img:nth-child(1):hover{
+    animation: 1s flip-book infinite;
+    @keyframes flip-book {
+        0%{
+            transform:rotateY(0deg)
+            
+            translateZ(0px)
+        }
+        100%{
+            transform:rotateY(180deg)
+            translateZ(200px)
+            
+        }
+    }
+}
 `
 
 
@@ -42,6 +68,7 @@ const CommentSpace = styled.section`
     width: 30%;
     border-radius: 20px;
     align-items: center;
+    background-color:black;
     `
 const Comments = styled.ul`
 overflow: auto;
@@ -139,12 +166,12 @@ class bookDetail extends React.Component {
             if (this.props.totalRate) {
 
                 if (this.props.totalRate / parseInt(this.props.totalRate) >= 1.1) {
-                    for (let i = 0; i < this.props.totalRate; i++) {
+                    for (let i = 0; i < this.props.totalRate; i+=2) {
                         totalStar += "★";
                     }
                 }
                 else {
-                    for (let i = 0; i < parseInt(this.props.totalRate); i++) {
+                    for (let i = 0; i < parseInt(this.props.totalRate); i+=2) {
                         totalStar += "★";
                     }
                 }
@@ -160,9 +187,11 @@ class bookDetail extends React.Component {
                 {Header(this.props)}
                     <BookInfos>
                     <Middle>
-                    <Book
-                     src={`/${book.imageUrl}`}/>
-                      
+                    <Book>
+                    <img src={`/${book.imageUrl}`}/>
+                    <div></div>
+                    </Book>
+                     
                     <CommentSpace>
                     <Comments>
                     {book.review.map((item) => {
@@ -174,12 +203,12 @@ class bookDetail extends React.Component {
 
                             if (item.rate) {
                                 if (item.rate / parseInt(item.rate) >= 1.1) {
-                                    for (let i = 0; i < item.rate; i++) {
+                                    for (let i = 0; i < item.rate; i+=2) {
                                         star += "★";
                                     }
                                 }
                                 else {
-                                    for (let i = 0; i < parseInt(item.rate); i++) {
+                                    for (let i = 0; i < parseInt(item.rate); i+=2) {
                                         star += "★";
                                     }
                                 }
