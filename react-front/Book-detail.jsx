@@ -11,36 +11,60 @@ background-size: cover;
 `
 
 const Book = styled.div`
-width : 30%;
-height : 100%;
-box-shadow: 10px 5px 20px black;
-transform-style: preserve-3d;
-
-img:nth-child(1){
+    animation: book-rotate 10s ease-in-out;
     transform-style: preserve-3d;
-    width : 100%;
-height : 100%;
-transform:scaleZ(2);
-}
-div:nth-child(2){
-    width : 100%;
-height : 100%;
-background-color:black;
-display:none;
-}
-img:nth-child(1):hover{
-    animation: 1s flip-book infinite;
-    @keyframes flip-book {
-        0%{
-            transform:rotateY(0deg)
-            
-            translateZ(0px)
-        }
-        100%{
-            transform:rotateY(180deg)
-            translateZ(200px)
-            
-        }
+    transform-origin: 100px 100px 0;
+    div:nth-child(n+1){
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        line-height: 200px;
+        
+    }
+    div:nth-child(1){
+        background-color: red;
+        background-size: cover;
+        background-position: center center;
+        transform: translateZ(100px);
+    }
+    div:nth-child(2){
+        background-color: orange;
+        background-size: cover;
+        background-position: center center;
+        transform: translateZ(100px);
+        transform: rotateY(90deg) translateZ(100px);
+    }
+    div:nth-child(3){
+        background-color: yellow;
+        background-size: cover;
+        background-position: center center;
+        transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
+    }
+    div:nth-child(4){
+        background-color: green;
+        background-size: cover;
+        background-position: center center;
+        transform: rotateY(180deg) rotateZ(90deg) translateZ(100px);
+    }
+    div:nth-child(5){
+        background-color: blue;
+        background-size: cover;
+        background-position: center center;
+        transform: rotateY(90deg) rotateZ(90deg) translateZ(100px);
+    }
+    div:nth-child(6){
+        background-color: purple;
+        background-size: cover;
+        background-position: center center;
+        transform: rotateX(-90deg) translateZ(100px);
+    }
+@keyframes book-rotate {
+    from,to{
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    50%{
+        transform: rotateY(180deg);
     }
 }
 `
@@ -188,7 +212,11 @@ class bookDetail extends React.Component {
                     <BookInfos>
                     <Middle>
                     <Book>
-                    <img src={`/${book.imageUrl}`}/>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                     <div></div>
                     </Book>
                      

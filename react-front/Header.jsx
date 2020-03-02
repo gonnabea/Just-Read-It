@@ -16,7 +16,7 @@ function Header(props) {
   function ProfileLink() {
     if (props.user) {
       return (
-        <a href={props.routes.profile(props.user.id)}>프로필</a>
+        <a href={`/${props.routes.profile(props.user.id)}`}>프로필</a>
       )
     } else {
       return (
@@ -30,7 +30,7 @@ function Header(props) {
         <>
           <a href={routes.logout}> 로그아웃</a>
           <a href={routes.addBook}>새로운 책 등록</a>
-          <a href={routes.myBookList(props.user.id)}>즐겨찾기 목록</a>
+          <a href={`/${routes.myBookList(props.user.id)}`}>즐겨찾기 목록</a>
         </>)
     } else {
       return (
