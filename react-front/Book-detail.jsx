@@ -11,7 +11,12 @@ background-size: cover;
 `
 
 const Book = styled.div`
-    animation: book-rotate 10s ease-in-out;
+margin-left: 50px;
+
+:hover{
+    animation: book-rotate 2s ease-in-out;
+    animation-fill-mode: forwards;
+}
     transform-style: preserve-3d;
     transform-origin: 100px 100px 0;
     div:nth-child(n+1){
@@ -19,21 +24,29 @@ const Book = styled.div`
         width: 200px;
         height: 200px;
         line-height: 200px;
-        line-height: 200px;
-        
+        border: solid 2px black;
     }
     div:nth-child(1){
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        border: solid 2px black;
         background-color: red;
         background-size: cover;
         background-position: center center;
-        transform: translateZ(100px);
+        transform: translateZ(50px);
     }
     div:nth-child(2){
-        background-color: orange;
+        position: absolute;
+        width: 100px;
+        height: 200px;
+        line-height: 200px;
+        border: solid 2px black;
+        background-color: white;
         background-size: cover;
         background-position: center center;
-        transform: translateZ(100px);
-        transform: rotateY(90deg) translateZ(100px);
+        transform: rotateY(90deg) translateZ(150px);
     }
     div:nth-child(3){
         background-color: yellow;
@@ -42,19 +55,32 @@ const Book = styled.div`
         transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
     }
     div:nth-child(4){
-        background-color: green;
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        background-color: black;
+        color: white;
         background-size: cover;
         background-position: center center;
-        transform: rotateY(180deg) rotateZ(90deg) translateZ(100px);
+        transform: rotateY(180deg) rotateZ(90deg) translateZ(50px);
+        span:nth-child(1){
+            background-color: black;
+        }
     }
     div:nth-child(5){
-        background-color: blue;
+        position: absolute;
+        width: 200px;
+        height: 100px;
+        line-height: 100px;
+        border: solid 2px black;
+        background-color: black;
         background-size: cover;
         background-position: center center;
-        transform: rotateY(90deg) rotateZ(90deg) translateZ(100px);
+        transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px) translateX(50px);
     }
     div:nth-child(6){
-        background-color: purple;
+        background-color: white;
         background-size: cover;
         background-position: center center;
         transform: rotateX(-90deg) translateZ(100px);
@@ -63,7 +89,7 @@ const Book = styled.div`
     from,to{
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     }
-    50%{
+    100%{
         transform: rotateY(180deg);
     }
 }
@@ -212,10 +238,10 @@ class bookDetail extends React.Component {
                     <BookInfos>
                     <Middle>
                     <Book>
+                    <div><img src={`/${book.imageUrl}`} width="200px" height="200px"/></div>
                     <div></div>
                     <div></div>
-                    <div></div>
-                    <div></div>
+                    <div><span>{book.description}</span></div>
                     <div></div>
                     <div></div>
                     </Book>
