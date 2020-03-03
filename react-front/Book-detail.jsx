@@ -58,14 +58,16 @@ margin-left: 50px;
         position: absolute;
         width: 200px;
         height: 200px;
-        line-height: 200px;
         background-color: black;
         color: white;
         background-size: cover;
         background-position: center center;
         transform: rotateY(180deg) rotateZ(90deg) translateZ(50px);
+       
         span:nth-child(1){
             background-color: black;
+            position:absolute;
+           
         }
     }
     div:nth-child(5){
@@ -145,10 +147,13 @@ const BookIntroduce = styled.section`
 background-color:rgba(255,255,255,0.3);
 `
 
+const User_img = styled.img`
+    border-radius:100%;
+`;
 class bookDetail extends React.Component {
 
     render() {
-     
+
         const user = this.props.user;
         const book = this.props.book;
         const routes = this.props.routes;
@@ -160,9 +165,9 @@ class bookDetail extends React.Component {
                 return (
                     <>
                         <form action={routes.editBook(book.id)} method="post">
-                            <input type="text" name="title" placeholder="수정할 이름" value={book.title}/>
-                            <input type="textarea" name="description" placeholder="상세내용" value={book.description}/>
-                            <input type="text" name="author" placeholder="작가 이름" value={book.author}/>
+                            <input type="text" name="title" placeholder="수정할 이름" value={book.title} />
+                            <input type="textarea" name="description" placeholder="상세내용" value={book.description} />
+                            <input type="text" name="author" placeholder="작가 이름" value={book.author} />
                             <input type="submit" value="수정하기" />
                         </form>
                         <form action={routes.deleteBook(book.id)} method="post">
@@ -185,15 +190,15 @@ class bookDetail extends React.Component {
                 return ""
             }
         }
-        
-        function ActivateReview(){
+
+        function ActivateReview() {
             if (user) {
                 return (
                     <form action={routes.postReview(book.id)} method="post">
-                            <input type="text" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!" />
-                            <input type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={5} step={.1} />
-                            <input type="submit" value="등록" />
-                        </form>
+                        <input type="text" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!" />
+                        <input type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={5} step={.1} />
+                        <input type="submit" value="등록" />
+                    </form>
                 )
             }
             return "";
@@ -216,12 +221,12 @@ class bookDetail extends React.Component {
             if (this.props.totalRate) {
 
                 if (this.props.totalRate / parseInt(this.props.totalRate) >= 1.1) {
-                    for (let i = 0; i < this.props.totalRate; i+=2) {
+                    for (let i = 0; i < this.props.totalRate; i += 2) {
                         totalStar += "★";
                     }
                 }
                 else {
-                    for (let i = 0; i < parseInt(this.props.totalRate); i+=2) {
+                    for (let i = 0; i < parseInt(this.props.totalRate); i += 2) {
                         totalStar += "★";
                     }
                 }
@@ -232,68 +237,70 @@ class bookDetail extends React.Component {
 
         return (
             <BaseLayout>
-                <GlobalStyle/>
+                <GlobalStyle />
                 <Background>
-                {Header(this.props)}
+               { Header(this.props)}
                     <BookInfos>
-                    <Middle>
-                    <Book>
-                    <div><img src={`/${book.imageUrl}`} width="200px" height="200px"/></div>
-                    <div></div>
-                    <div></div>
-                    <div><span>{book.description}</span></div>
-                    <div></div>
-                    <div></div>
-                    </Book>
-                     
-                    <CommentSpace>
-                    <Comments>
-                    {book.review.map((item) => {
+                        <Middle>
+                            <Book>
+                                <div>
+                                    <img src={`/${book.imageUrl}`} width="200px" height="200px" />
+                                    </div>
+                                <div></div>
+                                <div></div>
+                                <div><span>{book.description}</span></div>
+                                <div></div>
+                                <div></div>
+                            </Book>
 
-                        let star = "";
+                            <CommentSpace>
+                                <Comments>
+                                    {book.review.map((item) => {
+
+                                        let star = "";
 
 
-                        const starPoint = () => {
+                                        const starPoint = () => {
 
-                            if (item.rate) {
-                                if (item.rate / parseInt(item.rate) >= 1.1) {
-                                    for (let i = 0; i < item.rate; i+=2) {
-                                        star += "★";
-                                    }
-                                }
-                                else {
-                                    for (let i = 0; i < parseInt(item.rate); i+=2) {
-                                        star += "★";
-                                    }
-                                }
-                            }
-                        }
-                        starPoint();
-                        return (
-                            <Comment>
-                                <img src={item.creatorPhoto} width="50vh" />
-                                <h3>{item.creator}</h3>
-                                <h3>{item.content}</h3>
-                                <h3>{star}</h3>
-                                <h3>{item.rate}점</h3>
-                                <h3>{JSON.stringify(item.createdAt)}</h3>
-                                {UserWhoRated(item)}
-                            </Comment>
-                        )
-                    })}
-                    </Comments>
-                    <ActivateReview/>
-                    </CommentSpace>
-                    </Middle>
-                    <BookIntroduce>
-                    <h1>{book.title} {totalStar} ({this.props.totalRate})</h1>
-                    
-                    
-                    <h5>{book.author}</h5>
-                    <h4>{book.likeFigure}명이 즐겨찾기에 등록</h4>
-                    <h3>{JSON.stringify(book.createdAt)}</h3>
-                    <h5>{book.description}</h5>
-                    </BookIntroduce>
+                                            if (item.rate) {
+                                                if (item.rate / parseInt(item.rate) >= 1.1) {
+                                                    for (let i = 0; i < item.rate; i += 2) {
+                                                        star += "★";
+                                                    }
+                                                }
+                                                else {
+                                                    for (let i = 0; i < parseInt(item.rate); i += 2) {
+                                                        star += "★";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        starPoint();
+                                        return (
+                                            <Comment>
+                                                <img src={item.creatorPhoto} width="50vh" />
+                                                <h3>{item.creator}</h3>
+                                                <h3>{item.content}</h3>
+                                                <h3>{star}</h3>
+                                                <h3>{item.rate}점</h3>
+                                                <h3>{JSON.stringify(item.createdAt)}</h3>
+                                                {UserWhoRated(item)}
+                                            </Comment>
+                                        )
+                                    })}
+                                </Comments>
+                                <ActivateReview />
+                            </CommentSpace>
+                        </Middle>
+                        <BookIntroduce>
+                            <h1>{book.title} {totalStar} ({this.props.totalRate})</h1>
+
+
+                            <h5>{book.author}</h5>
+                            <h4>{book.likeFigure}명이 즐겨찾기에 등록</h4>
+                            <h3>{JSON.stringify(book.createdAt)}</h3>
+                            <h5>{book.description}</h5>
+                        </BookIntroduce>
                     </BookInfos>
                     <CheckUser />
                 </Background>

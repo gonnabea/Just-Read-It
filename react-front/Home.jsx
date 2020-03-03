@@ -1,15 +1,58 @@
 import React from "react";
-import Login from "./Login";
 import Header from "./Header";
-import styled from "styled-components";
 import { BaseLayout } from "./layout";
+import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
-// import Recommend from "./Recommend";
 
 
-//const Ho = pug.compileFile("home.pug");
+const Div = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+`;
 
+const Recom_div = styled.div`
+    width:40%;
+    height:50%;
+    display:fixed;
+    position:absolute;
+    right:0;
+    top:0;
+    overflow: auto;
+    margin-right:1rem;
+    margin-top:10.5vh;
+`;
 
+const Ul = styled.ul`
+    display:flex;
+`;
+
+const Li = styled.li`
+    display:flex;
+    flex-direction:column;
+    text-overflow: auto;
+    margin-right:1rem;
+`;
+
+const Image = styled.img`
+    width:20rem;
+    height:100%;
+    margin-top:1rem;
+    margin-left:1rem;
+`;
+const Span = styled.span`
+    text-overflow: hidden;    
+    overflow: hidden;
+    width:100px;
+    heigth:100px;
+`;
+
+const A = styled.a`
+    margin-right:1rem; 
+    display:flex;
+    flex-direction:column;
+    text-overflow: hidden;
+`;
 
 function Home(props) {
 
@@ -21,24 +64,23 @@ function Home(props) {
             )
         }
     }
+
     function recomSys() {
 
         if (props.recomendBooks) {
             return (
                 props.recomendBooks.map(argument => {
                     return (
-                        <li >
-                            <a href={`/${props.routes.bookDetail(argument.id)}`}>
-                                <img src={argument.imageUrl} />
-                                <h3>{argument.title}</h3>
-                                <h4>{argument.author}</h4>
-                                <h4>{argument.description}</h4>
-                            </a>
-                        </li>
+                        <Li>
+                            <A href={`/${props.routes.bookDetail(argument.id)}`}>
+                                <Image src={argument.imageUrl} />
+                                <Span>{argument.title}</Span>
+                                <Span>{argument.author}</Span>
+                                <Span>{argument.description}</Span>
+                            </A>
+                        </Li>
                     )
-
                 })
-
             )
         } else {
             return "";
@@ -51,7 +93,7 @@ function Home(props) {
                 <div className="booklist_home">
                     <div className="grid_box">
                         <a href={props.routes.bookDetail(book.id)}>
-                            <img src={book.imageUrl} alt={book.imageUrl}/>
+                            <Image src={book.imageUrl} alt={book.imageUrl} />
                             <div className="text_box" >
                                 <h1>{book.title}</h1>
                                 <h2>작가 : {book.author}</h2>
@@ -69,20 +111,17 @@ function Home(props) {
 
     //ReactDOM.render(<Join/>, document.getElementById("root"));
     return (
-
         <BaseLayout>
-            <GlobalStyle/>
+            <GlobalStyle />
             {Header(props)}
             {bookList}
-            <div>
+            <Recom_div>
                 {recommendList()}
-                <ul>
+                <Ul>
                     {recomSys()}
-                </ul>
-            </div>
-            {/* {console.log(`recom from react : ${props.recomendBooks}`)} */}
+                </Ul>
+            </Recom_div>
         </BaseLayout>
-
     );
 }
 

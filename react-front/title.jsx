@@ -1,12 +1,27 @@
 import React from "react";
+import { BaseLayout } from "./layout";
+import styled, { createGlobalStyle } from "styled-components";
+import GlobalStyle from "./globalStyles/ResetCss";
+
+
+
+const Imag_styles = styled.img`
+    position: relative;
+    width:10rem;
+    height:10vh;
+    /* 15% */
+    display:inline-block;
+`;
 
 export default function title() {
-
-
     return (
-
-        <a href="/">
-            <img src="/images/Long_Story.png" alt="" width="100%" height="100%"/>
-        </a>);
+        <BaseLayout>
+            <GlobalStyle/>
+                <a href="/">
+                    <Imag_styles src="/images/Long_Story.png" />
+                </a>
+        </BaseLayout>
+    );
 
 }
+// /images/Long_Story.png
