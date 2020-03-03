@@ -11,9 +11,9 @@ background-size: cover;
 `
 
 const Book = styled.div`
-margin-left: 50px;
-
-:hover{
+    margin-left: 50px;
+    
+    :hover{
     animation: book-rotate 2s ease-in-out;
     animation-fill-mode: forwards;
 }
@@ -23,14 +23,12 @@ margin-left: 50px;
         position: absolute;
         width: 200px;
         height: 200px;
-        line-height: 200px;
         border: solid 2px black;
     }
     div:nth-child(1){
         position: absolute;
         width: 200px;
         height: 200px;
-        line-height: 200px;
         border: solid 2px black;
         background-color: red;
         background-size: cover;
@@ -41,7 +39,6 @@ margin-left: 50px;
         position: absolute;
         width: 100px;
         height: 200px;
-        line-height: 200px;
         border: solid 2px black;
         background-color: white;
         background-size: cover;
@@ -62,7 +59,7 @@ margin-left: 50px;
         color: white;
         background-size: cover;
         background-position: center center;
-        transform: rotateY(180deg) rotateZ(90deg) translateZ(50px);
+        transform: rotateY(180deg) rotateZ(0deg) translateZ(50px);
        
         span:nth-child(1){
             background-color: black;
@@ -74,7 +71,7 @@ margin-left: 50px;
         position: absolute;
         width: 200px;
         height: 100px;
-        line-height: 100px;
+        
         border: solid 2px black;
         background-color: black;
         background-size: cover;
@@ -150,6 +147,7 @@ background-color:rgba(255,255,255,0.3);
 const User_img = styled.img`
     border-radius:100%;
 `;
+
 class bookDetail extends React.Component {
 
     render() {
@@ -157,8 +155,6 @@ class bookDetail extends React.Component {
         const user = this.props.user;
         const book = this.props.book;
         const routes = this.props.routes;
-
-
         function CheckUser() {
 
             if (user && user.id == book.enrolledBy[0]._id) {

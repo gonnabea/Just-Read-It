@@ -6,7 +6,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
 const Image = styled.img`
-    widht:100px;
+    width:100px;
     height:100px;
     border-radius:100%;
     margin:1rem;

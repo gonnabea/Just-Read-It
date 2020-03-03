@@ -44,7 +44,7 @@ const Span = styled.span`
     text-overflow: hidden;    
     overflow: hidden;
     width:100px;
-    heigth:100px;
+    height:100px;
 `;
 
 const A = styled.a`

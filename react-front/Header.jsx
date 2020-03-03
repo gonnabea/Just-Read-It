@@ -83,6 +83,9 @@ border-radius: 20px;
 
 @media screen and (max-width: 900px)
 { 
+  html 1rem = 16px
+  html 1rem = 10px
+
   width:15rem;
   display:flex;
 

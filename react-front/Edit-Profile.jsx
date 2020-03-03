@@ -14,6 +14,7 @@ const Div = styled.div`
     align-items:center;
 
 `;
+
 const Bakc_ground = styled.div`
     display:flex;
     width:30rem;
@@ -26,7 +27,7 @@ const Bakc_ground = styled.div`
     &>form>*{
         display:flex;
         flex-direction:column;
-        
+
         margin:0.4rem;
     }
 `;
