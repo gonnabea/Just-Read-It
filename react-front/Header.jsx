@@ -12,6 +12,7 @@ const Div = styled.div`
   display:flex;
   background-color:rgba(255, 235, 205, 0.233);
   justify-content:space-between;
+  /*position:fixed;*/
 `;
 const RightDiv = styled.div`
   margin:0;
@@ -68,7 +69,7 @@ border-radius: 20px;
 }
 
 `;
-const Sinput= styled.input`
+const Sinput = styled.input`
 width:100%;
 align-items:center;
 margin:0.6rem auto;
@@ -83,16 +84,12 @@ border-radius: 20px;
 
 @media screen and (max-width: 900px)
 { 
-  html 1rem = 16px
-  html 1rem = 10px
-
   width:15rem;
   display:flex;
-
 }
 
 `;
-const Log=styled.div`
+const Log = styled.div`
   position:absolute;
   right:0;
   margin:1.3rem;
@@ -102,7 +99,7 @@ const Log=styled.div`
   display:none;
 }
 `;
-const Binput= styled.input`
+const Binput = styled.input`
 margin:0.6rem;
 width:${props => props.width || "35px"};
 height:${props => props.height || "25px"};
@@ -134,8 +131,7 @@ function Header(props) {
           <A href={`/${props.routes.profile(props.user.id)}`}>
             <Log>
               프로필
-              </Log>
-            {/* <img src={user.profile} width="10rem" /> */}
+            </Log>
           </A>
         </RightDiv>
 
@@ -144,7 +140,7 @@ function Header(props) {
       return (
         <RightDiv>
           <Log>
-          <h4 style={{color:"red"}}>로그인 된 유저가 없습니다.</h4>
+            <h4 style={{ color: "red" }}>로그인 된 유저가 없습니다.</h4>
           </Log>
         </RightDiv>
       )
@@ -161,8 +157,12 @@ function Header(props) {
     } else {
       return (
         <RightDiv>
-            <A color="blue" href={routes.login}>로그인</A>
-            <A color="blue" href={routes.join}>가입</A>
+          <A color="blue" href={routes.login}>
+            로그인
+            </A>
+          <A color="blue" href={routes.join}>
+            가입
+            </A>
         </RightDiv>
       )
     }
@@ -176,15 +176,10 @@ function Header(props) {
         <Box_right>
           <ProfileLink />
           <Search_box>
-            {/*<a href={routes.profile(props.user.id)}>
-      <img src={props.user.profilePhoto} alt="Profile photo." width="50vh"></img>
-    </a>
-    {<a href={routes.myBookList(user.id)} >내 서재</a>}*/}
-            {/* <a href={routes.addBook}> 새로운 책 등록</a>, */}
             <form action={routes.search} method="post">
               <Sinput margin_left="8rem" height="2.3rem" width="30rem" type="text" name="search" required={true} placeholder="책 검색하기 ..." />
               <Binput margin_left="0.5rem" type="submit" value="검색" />
-              {/* <i className="fa fas-search fa-2x"></i> */}
+
             </form>
           </Search_box>
           <CheckLogin />

@@ -44,12 +44,14 @@ const Book = styled.div`
         background-size: cover;
         background-position: center center;
         transform: rotateY(90deg) translateZ(150px);
+        color:white;
     }
     div:nth-child(3){
         background-color: yellow;
         background-size: cover;
         background-position: center center;
         transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
+        color:white;
     }
     div:nth-child(4){
         position: absolute;
@@ -77,12 +79,14 @@ const Book = styled.div`
         background-size: cover;
         background-position: center center;
         transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px) translateX(50px);
+        color:white;
     }
     div:nth-child(6){
         background-color: white;
         background-size: cover;
         background-position: center center;
         transform: rotateX(-90deg) translateZ(100px);
+        color:white;
     }
 @keyframes book-rotate {
     from,to{
@@ -155,6 +159,7 @@ class bookDetail extends React.Component {
         const user = this.props.user;
         const book = this.props.book;
         const routes = this.props.routes;
+        console.log(book)
         function CheckUser() {
 
             if (user && user.id == book.enrolledBy[0]._id) {
@@ -245,7 +250,7 @@ class bookDetail extends React.Component {
                                 <div></div>
                                 <div></div>
                                 <div><span>{book.description}</span></div>
-                                <div></div>
+                                <div>{book.title}</div>
                                 <div></div>
                             </Book>
 

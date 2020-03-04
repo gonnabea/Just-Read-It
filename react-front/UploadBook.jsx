@@ -51,7 +51,7 @@ class uploadBook extends React.Component {
                             <Input type="text" name="bookName" placeholder="책 제목" required="true" />
                             <Ainput type="textarea" name="bookDescription" placeholder="책 상세설명" />
                             <Input type="text" name="author" placeholder="작가 이름" />
-                            <Input style={{ color: "red",cursor:"pointer" }} type="file" name="bookImage" />
+                            <Input style={{ color: "red",cursor:"pointer" }} type="file" name="bookImage" accept="image/*" />
                             <Input style={{cursor:"pointer"}} type="submit" value="제출" />
                         </form>
                     </Box_img>

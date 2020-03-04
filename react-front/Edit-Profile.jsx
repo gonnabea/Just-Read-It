@@ -15,7 +15,7 @@ const Div = styled.div`
 
 `;
 
-const Bakc_ground = styled.div`
+const Back_ground = styled.div`
     display:flex;
     width:30rem;
     height:20rem;
@@ -27,7 +27,6 @@ const Bakc_ground = styled.div`
     &>form>*{
         display:flex;
         flex-direction:column;
-
         margin:0.4rem;
     }
 `;
@@ -39,7 +38,7 @@ class editProfile extends React.Component {
                 <GlobalStyle />
                     {Header(this.props)}
                 <Div className="user_edit proile">
-                    <Bakc_ground>
+                    <Back_ground>
                         <form action={this.props.routes.editUser(this.props.user.id)}>
                             <input type="text" name="username" placeholder="닉네임" />
                             <input style={{color:"red"}} type="file" name="profilePhoto" placeholder="프로필 사진" />
@@ -47,7 +46,7 @@ class editProfile extends React.Component {
                             <input type="password" name="password2" placeholder="비밀번호 확인" />
                             <input type="submit" value="프로필 수정" />
                         </form>
-                    </Bakc_ground>
+                    </Back_ground>
                 </Div>
             </BaseLayout>
         )

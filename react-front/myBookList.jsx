@@ -12,7 +12,6 @@ const Flex_box = styled.div`
     height:100vh;
     align-items:center;
     justify-content:center;
-
 `;
 
 const Grid_box = styled.div`
@@ -47,24 +46,6 @@ const ImageSize = styled.img`
     height:15rem;
     transform:rotateY(80deg);
     margin-right:-6.3rem;
-/* 
-    &:hover{
-        cursor: pointer;
-        animation: book 1s linear ;
-    }
-    @keyframes book {
-        0%{
-            transform:rotateY(80deg);
-            transform: rotateX(0);
-            transform: translateY(0);
-        } 
-        100%{ 
-            transform: rotateY(180deg);
-            transform: rotateX(-45deg);
-            transform: translateY(20deg);
-        }
-        
-    } */
 `;
 
 const Side_cover = styled.div`
@@ -73,26 +54,11 @@ const Side_cover = styled.div`
     background-color:gray;
     text-overflow:hidden;
     overflow:hidden;
-    /* &:hover{
-        cursor: pointer;
-        animation: book 1s linear ;
-    }
-    @keyframes book {
-        0%{
-            transform: rotateX(0);
-            transform: translateY(0);
-        } 
-        100%{ 
-            transform: rotateX(-30deg);
-            transform: translateY(15px);
-        }
-    } */
     z-index:2;
 `;
 
 const Back_cover = styled.div`
     margin-left:-6.3rem;
-
     width: 15rem;
     height:15rem;
     background-color: black;
@@ -100,8 +66,6 @@ const Back_cover = styled.div`
     text-overflow:hidden;
     overflow:hidden;
     transform:rotateY(80deg);
-
-
 `;
 
 const Image_box = styled.img`
@@ -109,20 +73,6 @@ const Image_box = styled.img`
     height:15rem;
     background-color:gray;
     margin-right:-5px;
-    /* &:hover{
-        cursor: pointer;
-        animation: book 1s linear ;
-    }
-    @keyframes book {
-        0%{
-            transform:rotateX(0);
-            transform:translateY(0);
-        }
-        100%{
-            transform:rotateX(-30deg);
-            transform:translateY(15px);
-        }
-    } */
 `;
 
 const Input = styled.input`
@@ -155,30 +105,26 @@ const A = styled.a`
             transform: translateY(15px);
         }
     }
-
 `;
 
 const Span = styled.span`
     width: 15rem;
     overflow: hidden;
-
 `;
 
 class MyBookList extends React.Component {
 
     render() {
+
         const routes = this.props.routes
         return (
             <BaseLayout>
                 <GlobalStyle />
                 {Header(this.props)}
-
                 <Flex_box>
-
                     <h2>{this.props.currentUser.username}
                         님의 즐겨찾기 목록:
                     </h2>
-
                     <Grid_box className="list">
                         {this.props.currentUser.favBooks.map(book => {
                             return (

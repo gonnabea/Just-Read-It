@@ -53,6 +53,10 @@ const A = styled.a`
     flex-direction:column;
     text-overflow: hidden;
 `;
+const Reflex = styled.div`
+    display:flex;
+    flex-direction:column-reverse;
+`;
 
 function Home(props) {
 
@@ -60,7 +64,9 @@ function Home(props) {
     function recommendList() {
         if (props.recomendBooks) {
             return (
-                <h4>{props.user.username}님만을 위한 추천 리스트 : </h4>
+                <h4 >
+                    {props.user.username}님만을 위한 추천 리스트 :
+                    </h4>
             )
         }
     }
@@ -103,8 +109,6 @@ function Home(props) {
                             </div>
                         </a>
                     </div>
-
-
                 </div>
             )
         })
