@@ -8,12 +8,13 @@ import GlobalStyle from "./globalStyles/ResetCss";
 const Div = styled.div`
   width:100%;
   height:10vh;
-  position:sticky;
+  position:fixed;
   display:flex;
   background-color:rgba(255, 235, 205, 0.233);
   justify-content:space-between;
   /*position:fixed;*/
 `;
+
 const RightDiv = styled.div`
   margin:0;
   justify-content:space-between;

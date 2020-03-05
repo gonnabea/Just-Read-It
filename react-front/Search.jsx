@@ -1,7 +1,34 @@
 import React from "react";
 import Title from "./title";
+import Header from "./Header";
+import { BaseLayout } from "./layout";
+import styled, { createGlobalStyle } from "styled-components";
+import GlobalStyle from "./globalStyles/ResetCss";
 
 
+const Box = styled.div`
+    font-family: 'Gugi', cursive;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-size:1rem;
+
+`;
+
+const Image = styled.img`
+    width:10rem;
+    height:100%;
+`;
+
+const Ul = styled.ul`
+    display:flex;
+`;
+
+const Li = styled.li`
+    font-family: 'Nanum Pen Script', cursive;
+
+`;
 class search extends React.Component {
     render() {
         const results = this.props.results
@@ -9,37 +36,41 @@ class search extends React.Component {
             if (results[0]) {
                 return (
                     <div>
-                        <Title />
+                        <Header />
 
                         <h1>{results[0].terms[0]} 검색결과 : </h1>
-                        {resultScreen}
+                        <Ul>
+                            {resultScreen}
+                        </Ul>
                     </div>
                 )
             } else {
                 return (
                     <>
-                        <Title />
+                        <Header />
 
                         <h1>검색결과가 없습니다.</h1>
                     </>
                 )
             }
         }
-        console.log(results)
         const resultScreen = results.map(books => {
             return (
-                <React.Fragment>
-                    <div className="search_list">
-                        <ul className="book_info">
+                <BaseLayout>
+                    <GlobalStyle />
+                    <Box className="search_list">
+                        <li>
                             <a href={`/${this.props.routes.bookDetail(books.id)}`}>
-                                <img src={books.imageUrl} />
-                                <h1>{books.title}</h1>
-                                <h3>{books.author}</h3>
-                                <h3>{books.description}</h3>
+                                <Image src={books.imageUrl} />
+                                <span>{books.title}</span>
+                                <span>{books.author}</span>
+                                <span>{books.description}</span>
                             </a>
-                        </ul>
-                    </div>
-                </React.Fragment>
+                        </li>
+                    </Box>
+
+                </BaseLayout>
+
             )
         })
 
@@ -48,7 +79,6 @@ class search extends React.Component {
             <CheckSearchResult />
 
         );
-
     }
 }
 

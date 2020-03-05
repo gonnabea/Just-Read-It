@@ -29,7 +29,7 @@ export const home = async(req, res) => {
           const book = await Book.findById(argument);
           return(book)
       }))
-    console.log(`recommendation:${recommendation}`)
+    //console.log(`recommendation:${recommendation}`)
     res.render("home", {books, recomendBooks})
       }else{
         res.render("home", {books})
@@ -72,7 +72,6 @@ export const postJoin = async(req, res) => {
         user,
         password
     )
-    console.log(`newUser:${newUser}`);
     res.redirect(routes.home)
 }catch(error){
     console.log(error);
@@ -124,8 +123,7 @@ export const postEditUser = async(req, res) => {
             const newUser = await User.findByIdAndUpdate({_id:id},
                 {username, profilePhoto}
                 );
-                
-                console.log(newUser)
+            
         }catch(error){
             console.log(error)
             res.redirect(routes.home);

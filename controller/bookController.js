@@ -13,7 +13,6 @@ export const postAddBook = async(req, res) => {
     const {
         body: {bookName,bookDescription,author}, file:{path}
     } = req;
-    console.log(req.body,req.file);
     try{
     const newBook = await Book.create({
         title:bookName,
@@ -87,7 +86,6 @@ export const postReview = async(req, res) => {
         params: {id},
         user
     } = req;
-    console.log(reviewContent, rate, id, req.user)
     const book = await Book.findById(id);
     const review = await Review.create({
         content: reviewContent,
@@ -110,7 +108,6 @@ export const editBook = async(req, res) => {
     } = req;
     try{
     const book = await Book.findByIdAndUpdate({_id:id}, {title, description, author})
-    console.log(book);
     res.redirect(`/${routes.bookDetail(id)}`);
     }catch(error){
         console.log(error);

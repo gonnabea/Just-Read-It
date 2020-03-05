@@ -21,6 +21,8 @@ const Recom_div = styled.div`
     overflow: auto;
     margin-right:1rem;
     margin-top:10.5vh;
+    grid-area: span 1 / span 4;
+    
 `;
 
 const Ul = styled.ul`
@@ -35,16 +37,24 @@ const Li = styled.li`
 `;
 
 const Image = styled.img`
-    width:20rem;
+    width:15rem;
     height:100%;
     margin-top:1rem;
     margin-left:1rem;
+
+    @media screen and (max-width: 1300px)
+    { 
+        position:relative;
+        width:10rem;
+    }
+
 `;
 const Span = styled.span`
     text-overflow: hidden;    
     overflow: hidden;
     width:100px;
     height:100px;
+    
 `;
 
 const A = styled.a`
@@ -56,6 +66,56 @@ const A = styled.a`
 const Reflex = styled.div`
     display:flex;
     flex-direction:column-reverse;
+`;
+const Grid_box = styled.div`
+    display:grid;
+    grid-template-columns: repeat(5,1fr);
+
+    text-align:center;
+
+     
+    @media screen and (max-width: 1300px)
+    { 
+        text-align:center;
+
+        grid-template-columns: repeat(3,1fr);
+    }
+
+`;
+
+const Text_box = styled.div`
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    overflow:hidden;
+`;
+
+const Spantwo = styled.span`
+width:100%;
+ text-overflow: hidden;    
+    overflow: hidden;
+`;
+
+const H_one = styled.h1`
+    font-size: 1rem;
+    text-align:center;
+     @media screen and (max-width: 1300px)
+    { 
+        font-size: 0.7rem;
+    }
+`;
+
+const H_two = styled.h2`
+        font-size: 0.7rem;
+
+ @media screen and (max-width: 1300px)
+    {
+        font-size: 0.5rem;
+
+    }
+`;
+const Header_line = styled.div`
+    margin-top: 15vh;
 `;
 
 function Home(props) {
@@ -96,20 +156,20 @@ function Home(props) {
     const bookList =
         props.books.map(book => {
             return (
-                <div className="booklist_home">
-                    <div className="grid_box">
+                <Header_line>
+                    <div>
                         <a href={props.routes.bookDetail(book.id)}>
                             <Image src={book.imageUrl} alt={book.imageUrl} />
-                            <div className="text_box" >
-                                <h1>{book.title}</h1>
-                                <h2>작가 : {book.author}</h2>
-                                <h3>({book.enrolledBy[0].username}님이 등록)</h3>
-                                <h3>{JSON.stringify(book.createdAt)}</h3>
-                                <h3>{book.description}</h3>
-                            </div>
+                            <Text_box className="text_box" >
+                                <H_one>{book.title}</H_one>
+                                <H_two>작가 : {book.author}</H_two>
+                                <Spantwo>({book.enrolledBy[0].username}님이 등록)</Spantwo>
+                                <Spantwo>{JSON.stringify(book.createdAt)}</Spantwo>
+                                {/* <Spantwo>{book.description}</Spantwo> */}
+                            </Text_box>
                         </a>
                     </div>
-                </div>
+                </Header_line>
             )
         })
 
@@ -118,13 +178,15 @@ function Home(props) {
         <BaseLayout>
             <GlobalStyle />
             {Header(props)}
-            {bookList}
-            <Recom_div>
-                {recommendList()}
-                <Ul>
-                    {recomSys()}
-                </Ul>
-            </Recom_div>
+                <Grid_box>
+                    {bookList}
+                    <Recom_div>
+                        {recommendList()}
+                        <Ul>
+                            {recomSys()}
+                        </Ul>
+                    </Recom_div>
+                </Grid_box>
         </BaseLayout>
     );
 }

@@ -11,42 +11,50 @@ background-size: cover;
 `
 
 const Book = styled.div`
-    margin-left: 50px;
-    
+    width: 30%;
+    @import url('https://fonts.googleapis.com/css?family=Gugi&display=swap&subset=korean');
+    box-shadow: 10px 10px 10px;
     :hover{
-    animation: book-rotate 2s ease-in-out;
+    animation: book-rotate 1s ;
     animation-fill-mode: forwards;
 }
+    :active{
+    animation: book-rotate2 .5s ;
+    animation-fill-mode: forwards;
+    }
     transform-style: preserve-3d;
-    transform-origin: 100px 100px 0;
     div:nth-child(n+1){
         position: absolute;
-        width: 200px;
+
         height: 200px;
         border: solid 2px black;
     }
     div:nth-child(1){
         position: absolute;
-        width: 200px;
-        height: 200px;
+        width: 100%;
+        height: 100%;
         border: solid 2px black;
         background-color: red;
         background-size: cover;
         background-position: center center;
-        transform: translateZ(50px);
+        transform: translateZ(2vw);
     }
     div:nth-child(2){
         position: absolute;
-        width: 100px;
-        height: 200px;
+        width: 3.5vw;
+        height: 100%;
         border: solid 2px black;
         background-color: white;
         background-size: cover;
         background-position: center center;
-        transform: rotateY(90deg) translateZ(150px);
+        transform: rotateY(90deg) translateZ(27.5vw);
         color:white;
     }
     div:nth-child(3){
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: solid 2px black;
         background-color: yellow;
         background-size: cover;
         background-position: center center;
@@ -55,33 +63,42 @@ const Book = styled.div`
     }
     div:nth-child(4){
         position: absolute;
-        width: 200px;
-        height: 200px;
+        width: 100%;
+        height: 100%;
         background-color: black;
         color: white;
+        font-size: 2vh;
+        display:flex;
         background-size: cover;
         background-position: center center;
-        transform: rotateY(180deg) rotateZ(0deg) translateZ(50px);
-       
+        transform: rotateY(180deg) rotateZ(0deg) translateZ(2vw);
         span:nth-child(1){
             background-color: black;
             position:absolute;
-           
+            font-family: 'Gugi', cursive;
+            margin: 6vh 6vh 0 6vh;
         }
     }
     div:nth-child(5){
         position: absolute;
-        width: 200px;
-        height: 100px;
-        
+        width: 4vw;
+        height: 100%;
         border: solid 2px black;
         background-color: black;
         background-size: cover;
         background-position: center center;
-        transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px) translateX(50px);
+        transform: rotateY(-90deg) rotateZ(0deg) translateZ(2.15vw) ;
+        font-size: 3vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-around;
         color:white;
     }
     div:nth-child(6){
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: solid 2px black;
         background-color: white;
         background-size: cover;
         background-position: center center;
@@ -91,11 +108,25 @@ const Book = styled.div`
 @keyframes book-rotate {
     from,to{
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+        box-shadow: 10px 10px 10px;
+        
     }
     100%{
         transform: rotateY(180deg);
+        box-shadow: -10px 10px 10px;
     }
 }
+@keyframes book-rotate2 {
+    from,to{
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+        
+    }
+    100%{
+        transform: rotateY(90deg)
+        
+    }
+}
+
 `
 
 
@@ -108,6 +139,7 @@ flex-direction: column;
 justify-content: space-around;
 `
 const Middle = styled.div`
+
 display: flex;
 justify-content: space-between;
 width: 100%;
@@ -159,7 +191,6 @@ class bookDetail extends React.Component {
         const user = this.props.user;
         const book = this.props.book;
         const routes = this.props.routes;
-        console.log(book)
         function CheckUser() {
 
             if (user && user.id == book.enrolledBy[0]._id) {
@@ -245,12 +276,12 @@ class bookDetail extends React.Component {
                         <Middle>
                             <Book>
                                 <div>
-                                    <img src={`/${book.imageUrl}`} width="200px" height="200px" />
+                                    <img src={`/${book.imageUrl}`} width="100%" height="100%" />
                                     </div>
                                 <div></div>
                                 <div></div>
                                 <div><span>{book.description}</span></div>
-                                <div>{book.title}</div>
+                                <div><span>{book.author}</span><span>{book.title}</span></div>
                                 <div></div>
                             </Book>
 

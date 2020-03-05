@@ -9,7 +9,7 @@ import GlobalStyle from "./globalStyles/ResetCss";
 const Flex_box = styled.div`
     display:flex;
     width:100%;
-    height:100vh;
+    height:90vh;
     align-items:center;
     justify-content:center;
 `;
@@ -25,14 +25,15 @@ const Grid_box = styled.div`
 `;
 
 const Bottom_nav = styled.div`
+    width:100%;
     position:absolute;
     bottom:0;
-    margin:0 auto;
-    width:100%;
-    margin-top:6rem;
+    left:25%;
+    margin:0 auto;    
 `;
 
 const Li = styled.li`
+    width:20rem;
     position: relative;
     bottom: 0;
     margin-bottom: 3rem;
@@ -44,14 +45,18 @@ const Li = styled.li`
 const ImageSize = styled.img`
     width: 15rem;
     height:15rem;
-    transform:rotateY(80deg);
+    Perspective : 100px;
+    transform:rotateY(0);
+    opacity: 0;
     margin-right:-6.3rem;
+    transform-style: preserve-3d;
 `;
 
 const Side_cover = styled.div`
     width: 30px;
     height:15rem;
-    background-color:gray;
+    text-align:center;
+    background-color:${props => props.color || "gray"};
     text-overflow:hidden;
     overflow:hidden;
     z-index:2;
@@ -68,6 +73,16 @@ const Back_cover = styled.div`
     transform:rotateY(80deg);
 `;
 
+const Up_cover = styled.div`
+    position:relative;
+    top:0;
+    border: 1px solid red;
+    width: ${props => props.width || "30px"};
+    height:${props => props.height || "15rem"};
+    background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAIVBMVEX///8AAADS0tI1NTVRUVEyMjJmZmYZGRlAQEDW1tbZ2dmAbgc1AAAAYElEQVR4nO3QgQ2AIAwAsCFOxf8P5otlmvaERgAAAAAAAAAAAAAAAAAAAAAAAADAb5w5O8ur4OAevT0FB+vo7S04AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCDNrBKA+vIaTt5AAAAAElFTkSuQmCC");
+
+`;
+
 const Image_box = styled.img`
     width: 25px;
     height:15rem;
@@ -76,6 +91,10 @@ const Image_box = styled.img`
 `;
 
 const Input = styled.input`
+    position:absolute;
+    bottom:-15%;
+    right:35%;
+
     display: block;
     &:hover{
         cursor: pointer;
@@ -90,26 +109,40 @@ const A = styled.a`
     justify-content:center;
     margin-bottom: 3rem;
     transform-style: preserve-3d;
-
+    
     &:hover{
         cursor: pointer;
         animation: book 1s linear ;
+        animation-fill-mode: forwards;
+
     }
+    
     @keyframes book {
         0%{
             transform: rotateX(0);
             transform: translateY(0);
         } 
+
         100%{ 
+            transform:rotateY(30deg);
             transform: rotateX(-30deg);
             transform: translateY(15px);
+            /* Perspective : (100px);
+            transform-origin :  0 100% 0 rotateX(-25deg); */
         }
     }
+
 `;
 
 const Span = styled.span`
     width: 15rem;
     overflow: hidden;
+`;
+
+const H2 = styled.h2`
+    position:absolute;
+    top:0;
+    margin-top:6rem;
 `;
 
 class MyBookList extends React.Component {
@@ -122,23 +155,23 @@ class MyBookList extends React.Component {
                 <GlobalStyle />
                 {Header(this.props)}
                 <Flex_box>
-                    <h2>{this.props.currentUser.username}
-                        님의 즐겨찾기 목록:
-                    </h2>
+                    <H2 >{this.props.currentUser.username}
+                        님의 서재:
+                    </H2>
                     <Grid_box className="list">
                         {this.props.currentUser.favBooks.map(book => {
                             return (
                                 <Li>
                                     <A href={`/${this.props.routes.bookDetail(book.id)}`}>
-                                        <ImageSize src={`/${book.imageUrl}`} alt="" />
+                                        <ImageSize className="ImageSize" src={`/${book.imageUrl}`} />
                                         <Side_cover>
                                             <h3>{book.title}</h3>
                                         </Side_cover>
                                         {/* <h4>{book.author}</h4> */}
-                                        <Back_cover>
+                                        <Back_cover className="Back_cover">
                                             <span>{book.description}</span>
                                         </Back_cover>
-                                        <form style={{display:"block"}} action={routes.deleteFavBook(book.id)} method="post">
+                                        <form action={routes.deleteFavBook(book.id)} method="post">
                                             <Input type="submit" value="즐겨찾기 삭제" />
                                         </form>
                                     </A>
@@ -147,7 +180,7 @@ class MyBookList extends React.Component {
                         })}
                     </Grid_box>
                     <Bottom_nav>
-                        <img src="../images/shelf.png" alt="" />
+                        <img style={{ width: "50%" }} src="../images/shelf.png" alt="" />
                     </Bottom_nav>
                 </Flex_box>
             </BaseLayout>
