@@ -1,9 +1,9 @@
 import React from "react";
-import routes from "../routes"
-import Title from "./title";
+import routes from "../../routes"
+import Title from "../title";
 import { BaseLayout } from "./layout";
 import styled, { createGlobalStyle } from "styled-components";
-import GlobalStyle from "./globalStyles/ResetCss";
+import GlobalStyle from "./ResetCss";
 
 const Div = styled.div`
   width:100%;
@@ -13,6 +13,15 @@ const Div = styled.div`
   background-color:rgba(255, 235, 205, 0.233);
   justify-content:space-between;
   /*position:fixed;*/
+  z-index:5;
+`;
+
+const Imag_styles = styled.img`
+position: relative;
+width:10rem;
+height:10vh;
+/* 15% */
+display:inline-block;
 `;
 
 const RightDiv = styled.div`
@@ -173,7 +182,9 @@ function Header(props) {
     <BaseLayout>
       <GlobalStyle />
       <Div className="class_name_header" >
-        <Title />
+            <a href="/">
+                <Imag_styles src="/images/Long_Story.png" />
+            </a>
         <Box_right>
           <ProfileLink />
           <Search_box>
@@ -193,3 +204,4 @@ function Header(props) {
 
 
 export default Header;
+           

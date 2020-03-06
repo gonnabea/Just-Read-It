@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "./title";
-import { BaseLayout } from "./layout";
-import Header from "./Header";
+import { BaseLayout } from "./globalStyles/layout";
+import Header from "./globalStyles/Header";
 import GlobalStyle from "./globalStyles/ResetCss";
 import styled, { keyframes } from "styled-components";
 
@@ -93,6 +93,15 @@ const Book = styled.div`
         flex-direction:column;
         justify-content:space-around;
         color:white;
+        span:nth-child(1){
+         transform:rotateZ(90deg);
+            text-align:center;
+            display:flex;
+            width:6.5em;
+            height:1em;
+            margin-bottom:-4rem;
+           
+        }
     }
     div:nth-child(6){
         position: absolute;

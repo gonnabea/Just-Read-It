@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "../react-front/title";
-import Header from "./Header";
-import { BaseLayout } from "./layout";
+import Header from "./globalStyles/Header";
+import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 

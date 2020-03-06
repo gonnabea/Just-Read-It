@@ -24,6 +24,7 @@ const PROFILE = "/user/:id";
 const POSTREVIEW = "/book-review/:id";
 
 const SEARCH = "/book-search";
+const KAKAOSEARCH = "https://dapi.kakao.com/v3/search/book?target=title";
 
 const routes = {
     home: HOME,
@@ -104,7 +105,9 @@ const routes = {
         }else{
             return DELETE_RATE
         }
-    }    
+    },
+    kakaoSearch: KAKAOSEARCH
+    
     
 }
 

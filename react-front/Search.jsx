@@ -1,13 +1,13 @@
 import React from "react";
 import Title from "./title";
-import Header from "./Header";
-import { BaseLayout } from "./layout";
+import Header from "./globalStyles/Header";
+import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
 
 const Box = styled.div`
-    font-family: 'Gugi', cursive;
+    /* font-family: 'Gugi', cursive; */
     display:flex;
     justify-content:center;
     align-items:center;
@@ -26,7 +26,7 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
-    font-family: 'Nanum Pen Script', cursive;
+    /* font-family: 'Nanum Pen Script', cursive; */
 
 `;
 class search extends React.Component {

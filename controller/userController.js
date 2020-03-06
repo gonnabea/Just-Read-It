@@ -134,3 +134,7 @@ export const postEditUser = async(req, res) => {
     
 }
 
+export const getKakaoSearch = (req, res) => {
+    
+   
+}

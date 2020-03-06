@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "./title";
-import Header from "./Header";
-import { BaseLayout } from "./layout";
+import Header from "./globalStyles/Header";
+import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
@@ -12,28 +12,43 @@ const Flex_box = styled.div`
     height:90vh;
     align-items:center;
     justify-content:center;
+    text-align:center;
 `;
 
 const Grid_box = styled.div`
     position:absolute;
-    display:flex;
+    display:grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, auto);
+
     width:100%;
     height:40vh;
     justify-content:center;
     align-items:center;
     bottom:0;
+    /* width: 30px; */
+
 `;
 
 const Bottom_nav = styled.div`
-    width:100%;
+    /* width:100%; */
     position:absolute;
     bottom:0;
-    left:25%;
-    margin:0 auto;    
+    margin:0 auto;
+    &>img{
+        width:100rem;
+    }    
+    @media screen and (max-width: 1300px)
+    { 
+        &>img{
+        width:60rem;
+    }   
+
+    }
 `;
 
 const Li = styled.li`
-    width:20rem;
+    width:35px;
     position: relative;
     bottom: 0;
     margin-bottom: 3rem;
@@ -43,7 +58,7 @@ const Li = styled.li`
 `;
 
 const ImageSize = styled.img`
-    width: 15rem;
+    width:35px;
     height:15rem;
     Perspective : 100px;
     transform:rotateY(0);
@@ -109,7 +124,8 @@ const A = styled.a`
     justify-content:center;
     margin-bottom: 3rem;
     transform-style: preserve-3d;
-    
+    width:35px;
+
     &:hover{
         cursor: pointer;
         animation: book 1s linear ;
@@ -180,7 +196,7 @@ class MyBookList extends React.Component {
                         })}
                     </Grid_box>
                     <Bottom_nav>
-                        <img style={{ width: "50%" }} src="../images/shelf.png" alt="" />
+                        <img  src="../images/shelf.png" alt="" />
                     </Bottom_nav>
                 </Flex_box>
             </BaseLayout>

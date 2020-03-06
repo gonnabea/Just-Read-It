@@ -1,10 +1,8 @@
 import React from "react";
-import Title from "./title";
-import Header from "./Header";
-import { BaseLayout } from "./layout";
+import Header from "./globalStyles/Header";
+import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
-
 
 
 const Divs = styled.div`
@@ -38,9 +36,11 @@ const Ainput = styled.textarea`
 
 `;
 
-
 class uploadBook extends React.Component {
+    
+     
     render() {
+        
         return (
             <BaseLayout>
                 <GlobalStyle />
@@ -52,13 +52,21 @@ class uploadBook extends React.Component {
                             <Ainput type="textarea" name="bookDescription" placeholder="책 상세설명" />
                             <Input type="text" name="author" placeholder="작가 이름" />
                             <Input style={{ color: "red",cursor:"pointer" }} type="file" name="bookImage" accept="image/*" />
-                            <Input style={{cursor:"pointer"}} type="submit" value="제출" />
+                            <Input style={{cursor:"pointer"}} type="submit" value="등록하기" />
                         </form>
+                        
+                <div>카카오 책에서 찾아보기</div>
+                <form action={this.props.routes.kakaoSearch} method="get">
+                <input type="text" placeholder="책 제목을 입력하세요"/>
+                <input  type="submit" value="검색"/>
+                </form>
+
                     </Box_img>
                 </Divs>
             </BaseLayout>
         )
+            
     }
-}
+    }
 
 export default uploadBook;

@@ -9,9 +9,11 @@ import "./passport";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import expressReactViews from "express-react-views";
+import helmet from "helmet";
 
 const app = express();
 dotenv.config();
+app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());

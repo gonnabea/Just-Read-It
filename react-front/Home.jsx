@@ -1,6 +1,7 @@
 import React from "react";
-import Header from "./Header";
-import { BaseLayout } from "./layout";
+import Header from "./globalStyles/Header";
+import ReactDOM from "react-dom";
+import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
@@ -12,32 +13,54 @@ const Div = styled.div`
 `;
 
 const Recom_div = styled.div`
-    width:40%;
-    height:50%;
-    display:fixed;
+    width:100%;
+    height:45vh;
+    display:grid;
+    overflow: auto;
+    grid-area: span 1/ span 5;
+    background:   rgba(8, 177, 199, 0.767);
+
+    /* display:fixed;
     position:absolute;
     right:0;
-    top:0;
-    overflow: auto;
-    margin-right:1rem;
-    margin-top:10.5vh;
-    grid-area: span 1 / span 4;
+    top:0; */
+    /* margin-right:1rem;
+    margin-top:10.5vh; */
     
+    @media screen and (max-width: 1300px)
+    { 
+        grid-area: span 1/ span 3;
+    }
+`;
+const Recom_a = styled.a`
+    display:flex;
+    text-align:center;
+    align-items:center;
+    justify-content:center;
 `;
 
 const Ul = styled.ul`
-    display:flex;
+    display:block;
+    margin-top:-5rem;
 `;
 
 const Li = styled.li`
     display:flex;
-    flex-direction:column;
-    text-overflow: auto;
+    text-align:center;
+    align-items:center;
+    margin-top:3.5rem;
+    /* flex-direction:column; */
+    /* text-overflow: auto; */
     margin-right:1rem;
+    
+`;
+
+const Button = styled.button`
+    margin:0.6rem;
 `;
 
 const Image = styled.img`
-    width:15rem;
+    width:${props => props.width || "15rem"};
     height:100%;
     margin-top:1rem;
     margin-left:1rem;
@@ -50,11 +73,11 @@ const Image = styled.img`
 
 `;
 const Span = styled.span`
+    display:block;
     text-overflow: hidden;    
     overflow: hidden;
     width:100px;
     height:100px;
-    
 `;
 
 const A = styled.a`
@@ -67,17 +90,16 @@ const Reflex = styled.div`
     display:flex;
     flex-direction:column-reverse;
 `;
+
 const Grid_box = styled.div`
     display:grid;
     grid-template-columns: repeat(5,1fr);
-
     text-align:center;
 
      
     @media screen and (max-width: 1300px)
     { 
         text-align:center;
-
         grid-template-columns: repeat(3,1fr);
     }
 
@@ -114,17 +136,20 @@ const H_two = styled.h2`
 
     }
 `;
+
 const Header_line = styled.div`
-    margin-top: 15vh;
 `;
 
 function Home(props) {
 
+    const nextPage = () => {
+        console.log("!!!!!!!!!");
+    }
 
     function recommendList() {
         if (props.recomendBooks) {
             return (
-                <h4 >
+                <h4 style={{ marginTop: "6rem" }}>
                     {props.user.username}님만을 위한 추천 리스트 :
                     </h4>
             )
@@ -137,13 +162,13 @@ function Home(props) {
             return (
                 props.recomendBooks.map(argument => {
                     return (
-                        <Li>
-                            <A href={`/${props.routes.bookDetail(argument.id)}`}>
-                                <Image src={argument.imageUrl} />
+                        <Li classNanme="reco_list">
+                            <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
+                                <Image width="10rem" src={argument.imageUrl} />
                                 <Span>{argument.title}</Span>
                                 <Span>{argument.author}</Span>
                                 <Span>{argument.description}</Span>
-                            </A>
+                            </Recom_a>
                         </Li>
                     )
                 })
@@ -173,20 +198,34 @@ function Home(props) {
             )
         })
 
-    //ReactDOM.render(<Join/>, document.getElementById("root"));
     return (
         <BaseLayout>
             <GlobalStyle />
             {Header(props)}
-                <Grid_box>
-                    {bookList}
-                    <Recom_div>
-                        {recommendList()}
-                        <Ul>
-                            {recomSys()}
-                        </Ul>
-                    </Recom_div>
-                </Grid_box>
+            <Grid_box>
+
+                <Recom_div>
+                    {recommendList()}
+                    <Ul>
+                        {recomSys()}
+                        <Button click="PrevPage">
+                            Prev
+                            </Button>
+                        <Button onClick="nextPage">
+                            Next
+
+                        </Button>
+                    </Ul>
+                </Recom_div>
+                {bookList}
+
+                <Button color="blue" >
+                    Next 
+                    {
+                      `onClick=${nextPage}`
+                    }
+                </Button>
+            </Grid_box>
         </BaseLayout>
     );
 }

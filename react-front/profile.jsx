@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "./title";
-import Header from "./Header";
-import { BaseLayout } from "./layout";
+import Header from "./globalStyles/Header";
+import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
@@ -27,7 +27,7 @@ const Grid_area = styled.div`
     display:grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 1rem;
-    
+
     @media screen and (max-width: 900px){
    
         grid-template-columns: repeat(3, 1fr);
