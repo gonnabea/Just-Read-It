@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema ({
     }],
     recomedBooks : [{
         type: Schema.Types.ObjectId,
-        ref: "Review"
+        ref: "Book"
     }]
 })
 

@@ -18,11 +18,22 @@ const Book = styled.div`
     animation: book-rotate 1s ;
     animation-fill-mode: forwards;
 }
-    :active{
+    /*:active{
     animation: book-rotate2 .5s ;
+    animation-fill-mode: forwards;
+    }*/
+    :active{
+    animation: moveBook 1s ;
     animation-fill-mode: forwards;
     }
     transform-style: preserve-3d;
+        @keyframes moveBook {
+            0%{
+                margin-left:0;
+            }100%{
+                margin-left:40vw;
+            }
+        }
     div:nth-child(n+1){
         position: absolute;
 
@@ -38,6 +49,20 @@ const Book = styled.div`
         background-size: cover;
         background-position: center center;
         transform: translateZ(2vw);
+        transform-origin: 0 0;
+        :active {animation: openBook 1s;
+            animation-fill-mode: forwards;
+        @keyframes openBook {
+            from,to{
+                transform: rotateY(0deg)
+                
+            }
+            100%{
+                transform: rotateY(-180deg)
+                
+            }
+        }
+    }
     }
     div:nth-child(2){
         position: absolute;
@@ -93,14 +118,13 @@ const Book = styled.div`
         flex-direction:column;
         justify-content:space-around;
         color:white;
+       
         span:nth-child(1){
-         transform:rotateZ(90deg);
+            transform:rotateZ(90deg);
             text-align:center;
             display:flex;
-            width:6.5em;
-            height:1em;
-            margin-bottom:-4rem;
-           
+            width:10em ;
+            font-size:1rem;
         }
     }
     div:nth-child(6){
@@ -207,7 +231,7 @@ class bookDetail extends React.Component {
                     <>
                         <form action={routes.editBook(book.id)} method="post">
                             <input type="text" name="title" placeholder="수정할 이름" value={book.title} />
-                            <input type="textarea" name="description" placeholder="상세내용" value={book.description} />
+                            <textarea name="description" placeholder="상세내용" value={book.description} />
                             <input type="text" name="author" placeholder="작가 이름" value={book.author} />
                             <input type="submit" value="수정하기" />
                         </form>

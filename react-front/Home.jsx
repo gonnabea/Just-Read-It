@@ -33,7 +33,7 @@ const Recom_div = styled.div`
     }
 `;
 const Recom_a = styled.a`
-    display:flex;
+    display:fle;
     text-align:center;
     align-items:center;
     justify-content:center;
@@ -157,10 +157,15 @@ function Home(props) {
     }
 
     function recomSys() {
-
+        console.log(props.recomendBooks)
         if (props.recomendBooks) {
+            console.log(props.recomendBooks.length)
             return (
                 props.recomendBooks.map(argument => {
+                    if(argument === null){
+                        return "";
+                    }
+                    else{
                     return (
                         <Li classNanme="reco_list">
                             <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
@@ -170,7 +175,7 @@ function Home(props) {
                                 <Span>{argument.description}</Span>
                             </Recom_a>
                         </Li>
-                    )
+                    )}
                 })
             )
         } else {

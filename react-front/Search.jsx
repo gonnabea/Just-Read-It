@@ -8,26 +8,61 @@ import GlobalStyle from "./globalStyles/ResetCss";
 
 const Box = styled.div`
     /* font-family: 'Gugi', cursive; */
+    width:100%;
+    height:100%;
     display:flex;
+    flex-direction:column;
     justify-content:center;
-    align-items:center;
     text-align:center;
     font-size:1rem;
+    position:absolute;
 
+`;
+
+const Grid_box = styled.div`
+    display:grid;
+    grid-template-columns: repeat(5,1fr);
+    text-align:center;
+     @media screen and (max-width: 1300px)
+    { 
+        grid-template-columns: repeat(3,1fr);
+    }
+     
 `;
 
 const Image = styled.img`
-    width:10rem;
+    width:15rem;
     height:100%;
+    @media screen and (max-width: 1300px)
+    { 
+        text-align:center;
+        position:relative;
+        width:10rem;
+
+    }
 `;
 
-const Ul = styled.ul`
+const A = styled.a`
+    margin:0.4rem;
     display:flex;
+    width:80%;
+    flex-direction:column;
+    text-align:center;
+    justify-content:center;
+    align-items:center;
+    margin:0.3rem;
 `;
 
-const Li = styled.li`
-    /* font-family: 'Nanum Pen Script', cursive; */
+const H_one = styled.h1`
+    display:grid;
+    margin-top:8rem;
+    grid-area: span 1 /span 5;
+    text-align:center;
 
+`;
+const Span = styled.span`
+    margin-top:0.4rem;
+    text-overflow:ellipsis;
 `;
 class search extends React.Component {
     render() {
@@ -35,48 +70,57 @@ class search extends React.Component {
         function CheckSearchResult() {
             if (results[0]) {
                 return (
-                    <div>
+
+                    <>
                         <Header />
 
-                        <h1>{results[0].terms[0]} 검색결과 : </h1>
-                        <Ul>
-                            {resultScreen}
-                        </Ul>
-                    </div>
+                        {/* <Box className="search_list"> */}
+                        <H_one  >
+                            {results[0].terms[0]} 검색결과 :
+                            </H_one>
+                        {resultScreen}
+
+                        {/* </Box> */}
+                    </>
+
                 )
             } else {
                 return (
                     <>
                         <Header />
 
-                        <h1>검색결과가 없습니다.</h1>
+                        <H_one >
+                            검색결과가 없습니다.
+                        </H_one>
                     </>
                 )
             }
         }
         const resultScreen = results.map(books => {
             return (
-                <BaseLayout>
-                    <GlobalStyle />
-                    <Box className="search_list">
-                        <li>
-                            <a href={`/${this.props.routes.bookDetail(books.id)}`}>
-                                <Image src={books.imageUrl} />
-                                <span>{books.title}</span>
-                                <span>{books.author}</span>
-                                <span>{books.description}</span>
-                            </a>
-                        </li>
-                    </Box>
+                <div>
+                    <A href={`/${this.props.routes.bookDetail(books.id)}`}>
+                        <Image src={books.imageUrl} />
+                        <Span>{books.title}</Span>
+                        <Span>{books.author}</Span>
+                        {/* <Span>{books.description}</Span> */}
+                    </A>
+                </div>
 
-                </BaseLayout>
 
             )
         })
 
         return (
             //console.log(resultScreen),
-            <CheckSearchResult />
+            <BaseLayout>
+                <GlobalStyle />
+                <Grid_box>
+
+                    <CheckSearchResult />
+                </Grid_box>
+
+            </BaseLayout>
 
         );
     }

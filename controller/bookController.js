@@ -36,10 +36,6 @@ export const bookDetail = async(req, res) => {
     let rateFigure = 0;
     let booksFigure = 0;
     const book = await Book.findById(id).populate("enrolledBy").populate("review");
-    if(req.user){
-     akin.activity.log(req.user.id, book.id)
-     akin.run()
-    }
     book.review.forEach( argument => {
         rateFigure += argument.rate;
         booksFigure += 1;
@@ -59,6 +55,8 @@ export const postMyBookList = async(req, res) => {
     const {
         params: {id}, user
     } = req;
+    akin.activity.log(user.id, id)
+    akin.run()
     let overlap = false;
     user.favBooks.forEach(element => {
         if(element == id){
@@ -115,11 +113,17 @@ export const editBook = async(req, res) => {
 }
 
 export const deleteBook = async(req, res) => {
+    
     const {
         params: {id}
     } = req;
+    const users = await User.find({})
+    users.map(async(user)=>{
+        await akin.activity.removeLog(user.id, id);
+    })
+    
     try {
-        await Book.findByIdAndDelete({_id:id})
+        await Book.findByIdAndRemove({_id:id})
         res.redirect(routes.home);
     }catch(error){
         console.log(error)

@@ -93,7 +93,6 @@ export const profile = async(req, res) => {
     const currentUser = await User.findById(id).populate("uploadedBooks").populate("reviews");
     res.render("profile", {currentUser})
 }
-
 export const search = async(req, res) => {
     const books = await Book.find({})
     let miniSearch = new MiniSearch({
