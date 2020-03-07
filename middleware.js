@@ -1,5 +1,7 @@
 import routes from "./routes";
 import multer from "multer";
+import crypto from "crypto";
+import mime from "mime-types";
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.routes = routes;
@@ -7,7 +9,19 @@ export const localsMiddleware = (req, res, next) => {
     next();
 }
 
-const upload = multer({ dest: 'uploads/books/' })
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/books/')
+    },
+    filename: function (req, file, cb) {
+      crypto.pseudoRandomBytes(16, function (err, raw) {
+        cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+      });
+    }
+  });
+/*https://github.com/expressjs/multer/issues/170*/
+const upload = multer({ storage })
 
 const bookImageUpload = upload.single("bookImage");
 

@@ -1,6 +1,6 @@
 import React from "react";
-import Title from "./title";
 import { BaseLayout } from "./globalStyles/layout";
+import Title from "./title";
 import Header from "./globalStyles/Header";
 import GlobalStyle from "./globalStyles/ResetCss";
 import styled, { keyframes } from "styled-components";
@@ -93,7 +93,7 @@ const Book = styled.div`
         position: absolute;
         width: 100%;
         height: 100%;
-        background-color: black;
+       
         color: white;
         font-size: 2vh;
         display:flex;
@@ -101,7 +101,7 @@ const Book = styled.div`
         background-position: center center;
         transform: rotateY(180deg) rotateZ(0deg) translateZ(2vw);
         span:nth-child(1){
-            background-color: black;
+           
             position:absolute;
             font-family: 'Gugi', cursive;
             margin: 6vh 6vh 0 6vh;
@@ -250,6 +250,7 @@ class bookDetail extends React.Component {
                 )
 
             } else if (user) {
+                
                 return (
                     <>
                         <form action={`/${routes.myBookList(book.id)}`} method="post">
@@ -269,7 +270,7 @@ class bookDetail extends React.Component {
                 return (
                     <form action={routes.postReview(book.id)} method="post">
                         <input type="text" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!" />
-                        <input type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={5} step={.1} />
+                        <input type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={0} step={.1} />
                         <input type="submit" value="등록" />
                     </form>
                 )
@@ -321,7 +322,7 @@ class bookDetail extends React.Component {
                                     </div>
                                 <div></div>
                                 <div></div>
-                                <div><span>{book.description}</span></div>
+                                <div ><span>{book.description}</span></div>
                                 <div><span>{book.author}</span><span>{book.title}</span></div>
                                 <div></div>
                             </Book>

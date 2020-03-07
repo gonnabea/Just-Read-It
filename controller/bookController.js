@@ -3,7 +3,8 @@ import routes from "../routes";
 import User from "../model/user";
 import Review from "../model/review";
 import akin from "@asymmetrik/akin";
-import getColors from "get-image-colors";
+import ColorThief from "colorthief";
+import fs from "fs";
 
 
 export const getAddBook = (req, res) => {
@@ -34,23 +35,30 @@ export const postAddBook = async(req, res) => {
 }
 
 export const bookDetail = async(req, res) => {
+
     const { params: {id} } = req;
     let rateFigure = 0;
     let booksFigure = 0;
     const book = await Book.findById(id).populate("enrolledBy").populate("review");
+    console.log(book)
+    if(book){
     book.review.forEach( argument => {
+        if(argument.rate!=0){
         rateFigure += argument.rate;
         booksFigure += 1;
+        }
     })
     console.log(book.imageUrl)
-    try{
-    getColors(book.imageUrl).then(colors => {
-        console.log(colors)
-    })}catch(error){
-        console.log(error)
-    }
+    
+    const pickedColor = ColorThief.getColor(book.imageUrl)
+            .then(color => {console.log(color)})
+            .catch(err => {console.log(err)})
+    console.log(pickedColor)
     const totalRate = (rateFigure/booksFigure).toPrecision(2);
-    res.render("book-detail" , {book, totalRate});
+    res.render("book-detail" , {book, totalRate, pickedColor});
+}else{
+    res.render("404");
+}
 }
 
 export const myBookList = async(req, res) => {
