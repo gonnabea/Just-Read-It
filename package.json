@@ -23,6 +23,8 @@
     "express": "^4.17.1",
     "express-react-views": "^0.11.0",
     "express-session": "^1.17.0",
+    "fast-average-color": "^6.0.1",
+    "get-image-colors": "^2.0.0",
     "gitignore": "^0.6.0",
     "helmet": "^3.21.3",
     "minisearch": "^2.1.3",

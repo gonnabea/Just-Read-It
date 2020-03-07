@@ -142,6 +142,7 @@ function Header(props) {
         <RightDiv>
           <A href={`/${props.routes.profile(props.user.id)}`}>
             <Log>
+          <img src={props.user.profilePhoto} width="40vw" height="40vw"/>
               프로필
             </Log>
           </A>
@@ -164,7 +165,7 @@ function Header(props) {
         <RightDiv>
           <A href={routes.logout}> 로그아웃</A>
           <A href={routes.addBook}>새로운 책 등록</A>
-          <A href={`/${routes.myBookList(props.user.id)}`}>즐겨찾기 목록</A>
+          <A href={`/${routes.myBookList(props.user.id)}`}>내 서재</A>
         </RightDiv>)
     } else {
       return (

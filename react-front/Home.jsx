@@ -71,6 +71,21 @@ const Image = styled.img`
         width:10rem;
     }
 
+:hover{
+animation: Hover 0.2s ease-in-out;
+animation-fill-mode: forwards;
+@keyframes Hover {
+    0%{
+        box-shadow: 0;
+        transform: translateY(0);
+    }
+    100%{
+        box-shadow: 10px 10px 20px black;
+        transform: translateY(-5vw);
+    }
+}
+}
+
 `;
 const Span = styled.span`
     display:block;
@@ -140,6 +155,11 @@ const H_two = styled.h2`
 const Header_line = styled.div`
 `;
 
+const Book = styled.a`
+transform-style: preserve-3d;
+animation-fill-mode: forwards;
+`
+
 function Home(props) {
 
     const nextPage = () => {
@@ -188,7 +208,7 @@ function Home(props) {
             return (
                 <Header_line>
                     <div>
-                        <a href={props.routes.bookDetail(book.id)}>
+                        <Book href={props.routes.bookDetail(book.id)}>
                             <Image src={book.imageUrl} alt={book.imageUrl} />
                             <Text_box className="text_box" >
                                 <H_one>{book.title}</H_one>
@@ -197,7 +217,7 @@ function Home(props) {
                                 <Spantwo>{JSON.stringify(book.createdAt)}</Spantwo>
                                 {/* <Spantwo>{book.description}</Spantwo> */}
                             </Text_box>
-                        </a>
+                      </Book>
                     </div>
                 </Header_line>
             )
@@ -227,7 +247,7 @@ function Home(props) {
                 <Button color="blue" >
                     Next 
                     {
-                      `onClick=${nextPage}`
+                      `${nextPage}`
                     }
                 </Button>
             </Grid_box>

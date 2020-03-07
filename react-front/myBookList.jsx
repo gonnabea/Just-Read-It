@@ -47,7 +47,7 @@ const Bottom_nav = styled.div`
     }
 `;
 
-const Li = styled.li`
+const Div = styled.div`
     width:35px;
     position: relative;
     bottom: 0;
@@ -56,6 +56,7 @@ const Li = styled.li`
     align-items:center;
     justify-content:center;
     margin:0 auto;
+    margin-right:2rem;
 `;
 
 const ImageSize = styled.img`
@@ -178,7 +179,7 @@ class MyBookList extends React.Component {
                     <Grid_box className="list">
                         {this.props.currentUser.favBooks.map(book => {
                             return (
-                                <Li>
+                                <Div>
                                     <A href={`/${this.props.routes.bookDetail(book.id)}`}>
                                         <ImageSize className="ImageSize" src={`/${book.imageUrl}`} />
                                         <Side_cover>
@@ -192,7 +193,7 @@ class MyBookList extends React.Component {
                                             <Input type="submit" value="즐겨찾기 삭제" />
                                         </form>
                                     </A>
-                                </Li>
+                                </Div>
                             )
                         })}
                     </Grid_box>

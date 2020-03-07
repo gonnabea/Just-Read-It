@@ -8,9 +8,12 @@ import styled, { keyframes } from "styled-components";
 const Background = styled.section`
 background-image: url("https://wallpaperset.com/w/full/d/d/8/488615.jpg");
 background-size: cover;
+padding-bottom: 20vh;
 `
 
 const Book = styled.div`
+    margin-top: 10vh;
+    padding-bottom: 60vh;
     width: 30%;
     @import url('https://fonts.googleapis.com/css?family=Gugi&display=swap&subset=korean');
     box-shadow: 10px 10px 10px;
@@ -38,13 +41,13 @@ const Book = styled.div`
         position: absolute;
 
         height: 200px;
-        border: solid 2px black;
+        border: solid 2px white;
     }
     div:nth-child(1){
         position: absolute;
         width: 100%;
         height: 100%;
-        border: solid 2px black;
+        border: solid 2px white;
         background-color: red;
         background-size: cover;
         background-position: center center;
@@ -68,7 +71,7 @@ const Book = styled.div`
         position: absolute;
         width: 3.5vw;
         height: 100%;
-        border: solid 2px black;
+        border: solid 2px white;
         background-color: white;
         background-size: cover;
         background-position: center center;
@@ -79,7 +82,7 @@ const Book = styled.div`
         position: absolute;
         width: 200px;
         height: 200px;
-        border: solid 2px black;
+        border: solid 2px white;
         background-color: yellow;
         background-size: cover;
         background-position: center center;
@@ -108,7 +111,7 @@ const Book = styled.div`
         position: absolute;
         width: 4vw;
         height: 100%;
-        border: solid 2px black;
+        border: solid 2px white;
         background-color: black;
         background-size: cover;
         background-position: center center;
@@ -131,7 +134,7 @@ const Book = styled.div`
         position: absolute;
         width: 200px;
         height: 200px;
-        border: solid 2px black;
+        border: solid 2px white;
         background-color: white;
         background-size: cover;
         background-position: center center;
@@ -180,6 +183,8 @@ height: 70%;
 `
 
 const CommentSpace = styled.section`
+    margin-top: 10vh;
+    padding-bottom: 60vh;
     display: flex;
     flex-direction: column;
     box-shadow: 10px 5px 20px #00c8eb;
@@ -189,6 +194,8 @@ const CommentSpace = styled.section`
     background-color:black;
     `
 const Comments = styled.ul`
+    
+    padding-bottom: 60vh;
 overflow: auto;
 width: 100%;
 height:100%;
@@ -210,6 +217,7 @@ background-color: rgba(255,255,255,0.3);
 `
 
 const BookIntroduce = styled.section`
+margin-bottom: -15vw;
 background-color:rgba(255,255,255,0.3);
 `
 
@@ -245,7 +253,7 @@ class bookDetail extends React.Component {
                 return (
                     <>
                         <form action={`/${routes.myBookList(book.id)}`} method="post">
-                            <input type="submit" value="즐겨찾기 등록" />
+                            <input type="submit" value="내 서재에 놓기" />
                         </form>
                     </>
                 )
@@ -362,7 +370,7 @@ class bookDetail extends React.Component {
 
 
                             <h5>{book.author}</h5>
-                            <h4>{book.likeFigure}명이 즐겨찾기에 등록</h4>
+                            <h4>{book.likeFigure}명이 서재에 보관 중</h4>
                             <h3>{JSON.stringify(book.createdAt)}</h3>
                             <h5>{book.description}</h5>
                         </BookIntroduce>

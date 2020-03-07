@@ -3,6 +3,8 @@ import routes from "../routes";
 import User from "../model/user";
 import Review from "../model/review";
 import akin from "@asymmetrik/akin";
+import getColors from "get-image-colors";
+
 
 export const getAddBook = (req, res) => {
     res.render("uploadBook")
@@ -40,7 +42,13 @@ export const bookDetail = async(req, res) => {
         rateFigure += argument.rate;
         booksFigure += 1;
     })
-    
+    console.log(book.imageUrl)
+    try{
+    getColors(book.imageUrl).then(colors => {
+        console.log(colors)
+    })}catch(error){
+        console.log(error)
+    }
     const totalRate = (rateFigure/booksFigure).toPrecision(2);
     res.render("book-detail" , {book, totalRate});
 }
@@ -117,10 +125,7 @@ export const deleteBook = async(req, res) => {
     const {
         params: {id}
     } = req;
-    const users = await User.find({})
-    users.map(async(user)=>{
-        await akin.activity.removeLog(user.id, id);
-    })
+
     
     try {
         await Book.findByIdAndRemove({_id:id})
