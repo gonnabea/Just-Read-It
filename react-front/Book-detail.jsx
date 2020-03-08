@@ -103,6 +103,7 @@ class bookDetail extends React.Component {
                                 <div>
                                     <img src={`/${book.imageUrl}`} width="100%" height="100%" />
                                     </div>
+                                    <section>{book.description}</section>
                                 <div></div>
                                 <div></div>
                                 <div><span>{book.description}</span></div>
@@ -186,70 +187,76 @@ const Book = styled.div`
     animation-fill-mode: forwards;
     }*/
     :active{
-    animation: moveBook 1s ;
+    animation: moveBook 0.5s ease-in-out;
     animation-fill-mode: forwards;
     }
     transform-style: preserve-3d;
         @keyframes moveBook {
             0%{
                 margin-left:0;
+                box-shadow: 0px 0px 0px;
             }100%{
                 margin-left:40vw;
+                padding: 5vw;
+                box-shadow: 0px 0px 0px;
             }
         }
-    div:nth-child(n+1){
-        position: absolute;
-
-        height: 200px;
-        border: solid 2px black;
-    }
+    
     div:nth-child(1){
         position: absolute;
         width: 100%;
         height: 100%;
-        border: solid 2px black;
+        border: solid 10px black;
+        border-left:0;
         background-color: red;
         background-size: cover;
         background-position: center center;
         transform: translateZ(2vw);
         transform-origin: 0 0;
-        :active {animation: openBook 1s;
+        :active {animation: openBook 0.5s ease-in-out;
             animation-fill-mode: forwards;
         @keyframes openBook {
             from,to{
-                transform: rotateY(0deg)
+                transform: rotateY(0deg);
                 
             }
             100%{
-                transform: rotateY(-180deg)
+                transform: rotateY(-180deg);
                 
             }
         }
     }
     }
-    div:nth-child(2){
+    section:nth-child(2){
+        margin-top:10px;
         position: absolute;
-        width: 3.5vw;
+        width: 100%;
         height: 100%;
-        border: solid 2px black;
-        background-color: white;
-        background-size: cover;
-        background-position: center center;
-        transform: rotateY(90deg) translateZ(27.5vw);
-        color:white;
+        background-color:white;
+        z-index:-1;
     }
     div:nth-child(3){
         position: absolute;
+        width: 3.5vw;
+        height: 100%;
+        background-color: white;
+        background-size: cover;
+        background-position: center center;
+        border: 0;
+        transform: rotateY(90deg) translateZ(27.5vw);
+        color:white;
+    }
+    div:nth-child(4){
+        position: absolute;
         width: 200px;
         height: 200px;
-        border: solid 2px black;
         background-color: yellow;
         background-size: cover;
         background-position: center center;
         transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
         color:white;
     }
-    div:nth-child(4){
+    div:nth-child(5){
         position: absolute;
         width: 100%;
         height: 100%;
@@ -259,6 +266,8 @@ const Book = styled.div`
         background-size: cover;
         background-position: center center;
         transform: rotateY(180deg) rotateZ(0deg) translateZ(2vw);
+        border: solid 10px black;
+        border-right: 0;
         span:nth-child(1){
             position:absolute;
             font-family: 'Gugi', cursive;
@@ -268,40 +277,37 @@ const Book = styled.div`
             filter: invert(100%);
         }
     }
-    div:nth-child(5){
+    div:nth-child(6){
         position: absolute;
         width: 4vw;
         height: 100%;
-        
+        border-top:solid 10px black;
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         background-size: cover;
         background-position: center center;
-        transform: rotateY(-90deg) rotateZ(0deg) translateZ(2.15vw) ;
+        transform: rotateY(-90deg) rotateZ(0deg) translateZ(2vw) ;
         font-size: 3vh;
         display:flex;
         flex-direction:column;
         justify-content:space-around;
-       
         span:nth-child(1){
             transform:rotateZ(90deg);
             text-align:center;
             display:flex;
             width:10em ;
             font-size:1rem;
-            background-color:rgba(0,0,0,0.4);
             color: ${props => props.coverColor ? props.coverColor : "black"};
             -webkit-filter: invert(100%);
             filter: invert(100%);
             
         }
         span:nth-child(2){
-            background-color:rgba(0,0,0,0.4);
             color: ${props => props.coverColor ? props.coverColor : "black"};
             -webkit-filter: invert(100%);
             filter: invert(100%);
         }
     }
-    div:nth-child(6){
+    div:nth-child(7){
         position: absolute;
         width: 200px;
         height: 200px;
