@@ -99,7 +99,7 @@ class bookDetail extends React.Component {
                { Header(this.props)}
                     <BookInfos>
                         <Middle>
-                            <Book>
+                            <Book coverColor={this.props.coverColor}>
                                 <div>
                                     <img src={`/${book.imageUrl}`} width="100%" height="100%" />
                                     </div>
@@ -253,18 +253,19 @@ const Book = styled.div`
         position: absolute;
         width: 100%;
         height: 100%;
-        
-        color: white;
+        background-color: ${props => props.coverColor ? props.coverColor : "black"};
         font-size: 2vh;
         display:flex;
         background-size: cover;
         background-position: center center;
         transform: rotateY(180deg) rotateZ(0deg) translateZ(2vw);
         span:nth-child(1){
-            background-color: ${props =>props.coverColor};
             position:absolute;
             font-family: 'Gugi', cursive;
             margin: 6vh 6vh 0 6vh;
+            color: ${props => props.coverColor ? props.coverColor : "black"};
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
         }
     }
     div:nth-child(5){
@@ -280,7 +281,6 @@ const Book = styled.div`
         display:flex;
         flex-direction:column;
         justify-content:space-around;
-        color:white;
        
         span:nth-child(1){
             transform:rotateZ(90deg);
@@ -288,6 +288,17 @@ const Book = styled.div`
             display:flex;
             width:10em ;
             font-size:1rem;
+            background-color:rgba(0,0,0,0.4);
+            color: ${props => props.coverColor ? props.coverColor : "black"};
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
+            
+        }
+        span:nth-child(2){
+            background-color:rgba(0,0,0,0.4);
+            color: ${props => props.coverColor ? props.coverColor : "black"};
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
         }
     }
     div:nth-child(6){
@@ -309,7 +320,7 @@ const Book = styled.div`
     }
     100%{
         transform: rotateY(180deg);
-        box-shadow: -10px 10px 10px;
+        box-shadow: 0px 0px 0px;
     }
 }
 @keyframes book-rotate2 {
