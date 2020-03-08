@@ -62,7 +62,7 @@ const Div = styled.div`
 const ImageSize = styled.img`
     width:35px;
     height:15rem;
-    Perspective : 100px;
+    perspective : 100px;
     transform:rotateY(0);
     opacity: 0;
     margin-right:-6.3rem;

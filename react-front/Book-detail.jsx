@@ -5,6 +5,167 @@ import Header from "./globalStyles/Header";
 import GlobalStyle from "./globalStyles/ResetCss";
 import styled, { keyframes } from "styled-components";
 
+
+
+class bookDetail extends React.Component {
+
+    render() {
+
+        const user = this.props.user;
+        const book = this.props.book;
+        const routes = this.props.routes;
+        function CheckUser() {
+
+            if (user && user.id == book.enrolledBy[0]._id) {
+                return (
+                    <>
+                        <form action={routes.editBook(book.id)} method="post">
+                            <input type="text" name="title" placeholder="수정할 이름" value={book.title} />
+                            <textarea name="description" placeholder="상세내용" value={book.description} />
+                            <input type="text" name="author" placeholder="작가 이름" value={book.author} />
+                            <input type="submit" value="수정하기" />
+                        </form>
+                        <form action={routes.deleteBook(book.id)} method="post">
+                            <input type="submit" value="책 삭제" />
+                        </form>
+                    </>
+                )
+
+            } else if (user) {
+                
+                return (
+                    <>
+                        <form action={`/${routes.myBookList(book.id)}`} method="post">
+                            <input type="submit" value="내 서재에 놓기" />
+                        </form>
+                    </>
+                )
+            }
+
+            else {
+                return ""
+            }
+        }
+
+        function ActivateReview() {
+            if (user) {
+                return (
+                    <form action={routes.postReview(book.id)} method="post">
+                        <input type="text" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!" />
+                        <input type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={0} step={.1} />
+                        <input type="submit" value="등록" />
+                    </form>
+                )
+            }
+            return "";
+        }
+
+        function UserWhoRated(review) {
+            if (user && review.email == user.email) {
+                return (
+                    <form action={routes.deleteRate(review.id)} method="post">
+                        <input type="submit" value="삭제" />
+                    </form>
+                )
+            }
+        }
+
+        let totalStar = "";
+
+        let totalPoint = () => {
+
+            if (this.props.totalRate) {
+
+                if (this.props.totalRate / parseInt(this.props.totalRate) >= 1.1) {
+                    for (let i = 0; i < this.props.totalRate; i += 2) {
+                        totalStar += "★";
+                    }
+                }
+                else {
+                    for (let i = 0; i < parseInt(this.props.totalRate); i += 2) {
+                        totalStar += "★";
+                    }
+                }
+            }
+        }
+        totalPoint();
+
+
+        return (
+            <BaseLayout>
+            {console.log(this.props.coverColor)}
+                <GlobalStyle />
+                <Background>
+               { Header(this.props)}
+                    <BookInfos>
+                        <Middle>
+                            <Book>
+                                <div>
+                                    <img src={`/${book.imageUrl}`} width="100%" height="100%" />
+                                    </div>
+                                <div></div>
+                                <div></div>
+                                <div><span>{book.description}</span></div>
+                                <div><span>{book.author}</span><span>{book.title}</span></div>
+                                <div></div>
+                            </Book>
+
+                            <CommentSpace>
+                                <Comments>
+                                    {book.review.map((item) => {
+
+                                        let star = "";
+
+
+                                        const starPoint = () => {
+
+                                            if (item.rate) {
+                                                if (item.rate / parseInt(item.rate) >= 1.1) {
+                                                    for (let i = 0; i < item.rate; i += 2) {
+                                                        star += "★";
+                                                    }
+                                                }
+                                                else {
+                                                    for (let i = 0; i < parseInt(item.rate); i += 2) {
+                                                        star += "★";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        starPoint();
+                                        return (
+                                            <Comment>
+                                                <img src={item.creatorPhoto} width="50vh" />
+                                                <h3>{item.creator}</h3>
+                                                <h3>{item.content}</h3>
+                                                <h3>{star}</h3>
+                                                <h3>{item.rate}점</h3>
+                                                <h3>{JSON.stringify(item.createdAt)}</h3>
+                                                {UserWhoRated(item)}
+                                            </Comment>
+                                        )
+                                    })}
+                                </Comments>
+                                <ActivateReview />
+                            </CommentSpace>
+                        </Middle>
+                        <BookIntroduce>
+                            <h1>{book.title} {totalStar} ({this.props.totalRate})</h1>
+
+
+                            <h5>{book.author}</h5>
+                            <h4>{book.likeFigure}명이 서재에 보관 중</h4>
+                            <h3>{JSON.stringify(book.createdAt)}</h3>
+                            <h5>{book.description}</h5>
+                        </BookIntroduce>
+                    </BookInfos>
+                    <CheckUser />
+                </Background>
+            </BaseLayout>
+        )
+    }
+}
+
 const Background = styled.section`
 background-image: url("https://wallpaperset.com/w/full/d/d/8/488615.jpg");
 background-size: cover;
@@ -15,7 +176,6 @@ const Book = styled.div`
     margin-top: 10vh;
     padding-bottom: 60vh;
     width: 30%;
-    @import url('https://fonts.googleapis.com/css?family=Gugi&display=swap&subset=korean');
     box-shadow: 10px 10px 10px;
     :hover{
     animation: book-rotate 1s ;
@@ -41,13 +201,13 @@ const Book = styled.div`
         position: absolute;
 
         height: 200px;
-        border: solid 2px white;
+        border: solid 2px black;
     }
     div:nth-child(1){
         position: absolute;
         width: 100%;
         height: 100%;
-        border: solid 2px white;
+        border: solid 2px black;
         background-color: red;
         background-size: cover;
         background-position: center center;
@@ -71,7 +231,7 @@ const Book = styled.div`
         position: absolute;
         width: 3.5vw;
         height: 100%;
-        border: solid 2px white;
+        border: solid 2px black;
         background-color: white;
         background-size: cover;
         background-position: center center;
@@ -82,7 +242,7 @@ const Book = styled.div`
         position: absolute;
         width: 200px;
         height: 200px;
-        border: solid 2px white;
+        border: solid 2px black;
         background-color: yellow;
         background-size: cover;
         background-position: center center;
@@ -93,7 +253,7 @@ const Book = styled.div`
         position: absolute;
         width: 100%;
         height: 100%;
-       
+        
         color: white;
         font-size: 2vh;
         display:flex;
@@ -101,7 +261,7 @@ const Book = styled.div`
         background-position: center center;
         transform: rotateY(180deg) rotateZ(0deg) translateZ(2vw);
         span:nth-child(1){
-           
+            background-color: ${props =>props.coverColor};
             position:absolute;
             font-family: 'Gugi', cursive;
             margin: 6vh 6vh 0 6vh;
@@ -111,8 +271,8 @@ const Book = styled.div`
         position: absolute;
         width: 4vw;
         height: 100%;
-        border: solid 2px white;
-        background-color: black;
+        
+        background-color: ${props => props.coverColor ? props.coverColor : "black"};
         background-size: cover;
         background-position: center center;
         transform: rotateY(-90deg) rotateZ(0deg) translateZ(2.15vw) ;
@@ -134,7 +294,7 @@ const Book = styled.div`
         position: absolute;
         width: 200px;
         height: 200px;
-        border: solid 2px white;
+        border: solid 2px black;
         background-color: white;
         background-size: cover;
         background-position: center center;
@@ -224,163 +384,5 @@ background-color:rgba(255,255,255,0.3);
 const User_img = styled.img`
     border-radius:100%;
 `;
-
-class bookDetail extends React.Component {
-
-    render() {
-
-        const user = this.props.user;
-        const book = this.props.book;
-        const routes = this.props.routes;
-        function CheckUser() {
-
-            if (user && user.id == book.enrolledBy[0]._id) {
-                return (
-                    <>
-                        <form action={routes.editBook(book.id)} method="post">
-                            <input type="text" name="title" placeholder="수정할 이름" value={book.title} />
-                            <textarea name="description" placeholder="상세내용" value={book.description} />
-                            <input type="text" name="author" placeholder="작가 이름" value={book.author} />
-                            <input type="submit" value="수정하기" />
-                        </form>
-                        <form action={routes.deleteBook(book.id)} method="post">
-                            <input type="submit" value="책 삭제" />
-                        </form>
-                    </>
-                )
-
-            } else if (user) {
-                
-                return (
-                    <>
-                        <form action={`/${routes.myBookList(book.id)}`} method="post">
-                            <input type="submit" value="내 서재에 놓기" />
-                        </form>
-                    </>
-                )
-            }
-
-            else {
-                return ""
-            }
-        }
-
-        function ActivateReview() {
-            if (user) {
-                return (
-                    <form action={routes.postReview(book.id)} method="post">
-                        <input type="text" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!" />
-                        <input type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={0} step={.1} />
-                        <input type="submit" value="등록" />
-                    </form>
-                )
-            }
-            return "";
-        }
-
-        function UserWhoRated(review) {
-            if (user && review.email == user.email) {
-                return (
-                    <form action={routes.deleteRate(review.id)} method="post">
-                        <input type="submit" value="삭제" />
-                    </form>
-                )
-            }
-        }
-
-        let totalStar = "";
-
-        let totalPoint = () => {
-
-            if (this.props.totalRate) {
-
-                if (this.props.totalRate / parseInt(this.props.totalRate) >= 1.1) {
-                    for (let i = 0; i < this.props.totalRate; i += 2) {
-                        totalStar += "★";
-                    }
-                }
-                else {
-                    for (let i = 0; i < parseInt(this.props.totalRate); i += 2) {
-                        totalStar += "★";
-                    }
-                }
-            }
-        }
-        totalPoint();
-
-
-        return (
-            <BaseLayout>
-                <GlobalStyle />
-                <Background>
-               { Header(this.props)}
-                    <BookInfos>
-                        <Middle>
-                            <Book>
-                                <div>
-                                    <img src={`/${book.imageUrl}`} width="100%" height="100%" />
-                                    </div>
-                                <div></div>
-                                <div></div>
-                                <div ><span>{book.description}</span></div>
-                                <div><span>{book.author}</span><span>{book.title}</span></div>
-                                <div></div>
-                            </Book>
-
-                            <CommentSpace>
-                                <Comments>
-                                    {book.review.map((item) => {
-
-                                        let star = "";
-
-
-                                        const starPoint = () => {
-
-                                            if (item.rate) {
-                                                if (item.rate / parseInt(item.rate) >= 1.1) {
-                                                    for (let i = 0; i < item.rate; i += 2) {
-                                                        star += "★";
-                                                    }
-                                                }
-                                                else {
-                                                    for (let i = 0; i < parseInt(item.rate); i += 2) {
-                                                        star += "★";
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        starPoint();
-                                        return (
-                                            <Comment>
-                                                <img src={item.creatorPhoto} width="50vh" />
-                                                <h3>{item.creator}</h3>
-                                                <h3>{item.content}</h3>
-                                                <h3>{star}</h3>
-                                                <h3>{item.rate}점</h3>
-                                                <h3>{JSON.stringify(item.createdAt)}</h3>
-                                                {UserWhoRated(item)}
-                                            </Comment>
-                                        )
-                                    })}
-                                </Comments>
-                                <ActivateReview />
-                            </CommentSpace>
-                        </Middle>
-                        <BookIntroduce>
-                            <h1>{book.title} {totalStar} ({this.props.totalRate})</h1>
-
-
-                            <h5>{book.author}</h5>
-                            <h4>{book.likeFigure}명이 서재에 보관 중</h4>
-                            <h3>{JSON.stringify(book.createdAt)}</h3>
-                            <h5>{book.description}</h5>
-                        </BookIntroduce>
-                    </BookInfos>
-                    <CheckUser />
-                </Background>
-            </BaseLayout>
-        )
-    }
-}
 
 export default bookDetail

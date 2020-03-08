@@ -32,7 +32,7 @@ const Div = styled.div`
     position:absolute;
     top:40%;
     border: 1px solid red;
-    bacground-color: #55efc4;
+    background-color: #55efc4;
     box-shadow: 0px 0px 17px 4px rgba(0,0,0,0.75);
     padding:2rem;
 `;
