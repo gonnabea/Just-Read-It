@@ -21,10 +21,11 @@ const Grid_box = styled.div`
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(3, auto);
 
-    width:100%;
+    width:80%;
     height:40vh;
     justify-content:center;
     align-items:center;
+    margin:0 auto;
     bottom:0;
     /* width: 30px; */
 
@@ -50,23 +51,24 @@ const Bottom_nav = styled.div`
 const Div = styled.div`
     width:35px;
     position: relative;
-    bottom: 0;
+    bottom: 10%;
     margin-bottom: 3rem;
     display:flex;
     align-items:center;
     justify-content:center;
     margin:0 auto;
     margin-right:2rem;
+    transform-style: preserve-3d;
+
 `;
 
 const ImageSize = styled.img`
     width:35px;
     height:15rem;
-    perspective : 100px;
-    transform:rotateY(0);
-    opacity: 0;
+    transform:rotateY(45deg);
+    /* opacity: 0; */
     margin-right:-6.3rem;
-    transform-style: preserve-3d;
+    position:absolute;
 `;
 
 const Side_cover = styled.div`
@@ -76,7 +78,7 @@ const Side_cover = styled.div`
     background-color:${props => props.color || "gray"};
     text-overflow:hidden;
     overflow:hidden;
-    z-index:2;
+    z-index:3;
 `;
 
 const Back_cover = styled.div`
@@ -87,8 +89,10 @@ const Back_cover = styled.div`
     color:white;
     text-overflow:hidden;
     overflow:hidden;
-    transform:rotateY(80deg);
-`;
+    transform:rotateY(-90deg) translateX(-14vh) translateZ(-10vh); 
+    position:absolute;
+
+    `;
 
 const Up_cover = styled.div`
     position:relative;
@@ -97,13 +101,11 @@ const Up_cover = styled.div`
     width: ${props => props.width || "30px"};
     height:${props => props.height || "15rem"};
     background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAIVBMVEX///8AAADS0tI1NTVRUVEyMjJmZmYZGRlAQEDW1tbZ2dmAbgc1AAAAYElEQVR4nO3QgQ2AIAwAsCFOxf8P5otlmvaERgAAAAAAAAAAAAAAAAAAAAAAAADAb5w5O8ur4OAevT0FB+vo7S04AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCDNrBKA+vIaTt5AAAAAElFTkSuQmCC");
-
-`;
+    `;
 
 const Image_box = styled.img`
     width: 25px;
     height:15rem;
-    background-color:gray;
     margin-right:-5px;
 `;
 
@@ -124,27 +126,28 @@ const A = styled.a`
     bottom:0;  
     align-items:center;
     justify-content:center;
+    /* perspective : 100px; */
+    z-index:2;
     margin-bottom: 3rem;
-    transform-style: preserve-3d;
     width:35px;
-
+    
     &:hover{
         cursor: pointer;
         animation: book 1s linear ;
         animation-fill-mode: forwards;
+        transform-style: preserve-3d;
 
     }
     
     @keyframes book {
         0%{
-            transform: rotateX(0);
-            transform: translateY(0);
+            transform:rotateY(0) rotateX(-0) translateZ(0);
+
         } 
 
         100%{ 
-            transform:rotateY(30deg);
-            transform: rotateX(-30deg);
-            transform: translateY(15px);
+            transform: rotateY(20deg) rotateX(20deg) translateZ(20px);
+           
             /* Perspective : (100px);
             transform-origin :  0 100% 0 rotateX(-25deg); */
         }
@@ -181,7 +184,8 @@ class MyBookList extends React.Component {
                             return (
                                 <Div>
                                     <A href={`/${this.props.routes.bookDetail(book.id)}`}>
-                                        <ImageSize className="ImageSize" src={`/${book.imageUrl}`} />
+                                        <ImageSize  src={`/${book.imageUrl}`} />
+                                        
                                         <Side_cover>
                                             <h3>{book.title}</h3>
                                         </Side_cover>
@@ -189,10 +193,10 @@ class MyBookList extends React.Component {
                                         <Back_cover className="Back_cover">
                                             <span>{book.description}</span>
                                         </Back_cover>
+                                    </A>
                                         <form action={routes.deleteFavBook(book.id)} method="post">
                                             <Input type="submit" value="즐겨찾기 삭제" />
                                         </form>
-                                    </A>
                                 </Div>
                             )
                         })}

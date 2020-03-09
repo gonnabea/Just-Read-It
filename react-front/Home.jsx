@@ -74,6 +74,7 @@ const Image = styled.img`
 :hover{
 animation: Hover 0.2s ease-in-out;
 animation-fill-mode: forwards;
+transform-style: preserve-3d;
 @keyframes Hover {
     0%{
         box-shadow: 0;

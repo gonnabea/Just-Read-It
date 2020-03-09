@@ -11,11 +11,23 @@ const Div = styled.div`
   position:fixed;
 
   display:flex;
-  background-color:rgba(255, 235, 205, 0.233);
+  background-color:rgba(255, 255, 255, 0.233);
   justify-content:space-between;
   /*position:fixed;*/
   z-index:5;
   scroll-behavior: smooth;
+  :hover{
+    animation:hover 0.5s;
+    animation-fill-mode:forwards;
+    @keyframes hover {
+      0%{
+        background-color:rgba(255, 255, 255, 0.233);
+      }
+      100%{
+        background-color:rgba(255, 255, 255, 1);
+      }
+    }
+  }
 `;
 
 const Imag_styles = styled.img`
@@ -42,7 +54,9 @@ const A = styled.a`
   margin:0.7rem;
   text-decoration:none;
   color:${props => props.color || "red"};
-  
+  :hover{
+    color:#9ACD32;
+  }
 @media screen and (max-width: 900px)
 { 
     display:none;
@@ -57,7 +71,6 @@ const Search_box = styled.div`
   position:absolute;
   margin:0 auto;
   display:flex;
-
 `;
 
 const Input = styled.input`
@@ -106,10 +119,10 @@ const Log = styled.div`
   right:0;
   margin:1.3rem;
   
-@media screen and (max-width: 900px)
-{ 
-  display:none;
-}
+  @media screen and (max-width: 900px)
+  { 
+    display:none;
+  }
 `;
 const Binput = styled.input`
 margin:0.6rem;
@@ -134,6 +147,14 @@ border-radius: 20px;
 
 `;
 
+const Prifile_img = styled.img`
+  width:40px;
+  height:40px;
+  border-radius:100%;
+  margin-top:0.3rem;
+
+
+`;
 function Header(props) {
 
   function ProfileLink() {
@@ -142,7 +163,7 @@ function Header(props) {
         <RightDiv>
           <A href={`/${props.routes.profile(props.user.id)}`}>
             <Log>
-          <img src={props.user.profilePhoto} width="40vw" height="40vw"/>
+          <Prifile_img src={props.user.profilePhoto}   />
               프로필
             </Log>
           </A>

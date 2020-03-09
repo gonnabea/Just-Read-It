@@ -103,10 +103,18 @@ class bookDetail extends React.Component {
                                 <div>
                                     <img src={`/${book.imageUrl}`} width="100%" height="100%" />
                                     </div>
-                                    <section>{book.description}</section>
+                                    <section><p>{book.description}</p></section>
                                 <div></div>
                                 <div></div>
-                                <div><span>{book.description}</span></div>
+                                <div>
+                                    <span>
+                            <h1>{book.title} {totalStar} ({this.props.totalRate})</h1>
+                            <h5>{book.author}</h5>
+                            <h4>{book.likeFigure}명이 서재에 보관 중</h4>
+                            <h3>{JSON.stringify(book.createdAt)}</h3>
+                            <h5>{book.description}</h5>
+                                    </span>
+                            </div>
                                 <div><span>{book.author}</span><span>{book.title}</span></div>
                                 <div></div>
                             </Book>
@@ -150,15 +158,14 @@ class bookDetail extends React.Component {
                                 <ActivateReview />
                             </CommentSpace>
                         </Middle>
-                        <BookIntroduce>
+                     {/*   <BookIntroduce>
                             <h1>{book.title} {totalStar} ({this.props.totalRate})</h1>
-
-
                             <h5>{book.author}</h5>
                             <h4>{book.likeFigure}명이 서재에 보관 중</h4>
                             <h3>{JSON.stringify(book.createdAt)}</h3>
                             <h5>{book.description}</h5>
                         </BookIntroduce>
+                     */}
                     </BookInfos>
                     <CheckUser />
                 </Background>
@@ -208,7 +215,7 @@ const Book = styled.div`
         height: 100%;
         border: solid 10px black;
         border-left:0;
-        background-color: red;
+        background-color: ${props => props.coverColor ? props.coverColor : "black"};
         background-size: cover;
         background-position: center center;
         transform: translateZ(2vw);
@@ -221,10 +228,24 @@ const Book = styled.div`
                 
             }
             100%{
-                transform: rotateY(-180deg);
+                transform: rotateY(-150deg);
                 
             }
         }
+    }
+    img:nth-child(1){
+        :active{
+        animation:fadeImage 0.5s;
+        animation-fill-mode:forwards;
+        @keyframes fadeImage {
+            0%{
+                opacity:1;
+            }
+            100%{
+                opacity:0;
+            }
+        }
+    }
     }
     }
     section:nth-child(2){
@@ -232,8 +253,12 @@ const Book = styled.div`
         position: absolute;
         width: 100%;
         height: 100%;
-        background-color:white;
+        background-color:rgb(245, 219, 136);
         z-index:-1;
+        border-left:solid 2px black;
+        p:nth-child(1){
+            margin: 3vw;
+        }
     }
     div:nth-child(3){
         position: absolute;
@@ -245,6 +270,7 @@ const Book = styled.div`
         border: 0;
         transform: rotateY(90deg) translateZ(27.5vw);
         color:white;
+        
     }
     div:nth-child(4){
         position: absolute;
