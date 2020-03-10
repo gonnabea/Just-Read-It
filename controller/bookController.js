@@ -71,8 +71,29 @@ export const bookDetail = async(req, res) => {
 
 export const myBookList = async(req, res) => {
     const currentUser = await User.findById(req.user.id).populate("favBooks");
+    const myBooks = await currentUser.favBooks;
+    let a;
+    let colorArray = await myBooks.map(async(book)=>{
+        const pickedColor = ColorThief.getColor(book.imageUrl,3)
+                .then(color => {return color})
+                .catch(err => {console.log(err)})
+        
+        const rgb = await pickedColor.then((result)=>{
+            return result
+        })
+        const R = rgb[0];
+        const G = rgb[1];
+        const B = rgb[2];
     
-    res.render("myBookList", {currentUser});
+        const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
+            const hex = x.toString(16)
+            return hex.length === 1 ? '0' + hex : hex
+          }).join('');
+          a = rgbToHex(R,G,B);
+          return rgbToHex(R,G,B);
+    })
+    console.log(a);
+    res.render("myBookList", {currentUser, colorArray});
 }
 
 export const postMyBookList = async(req, res) => {

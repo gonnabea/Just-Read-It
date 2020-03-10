@@ -1,16 +1,13 @@
-import React from "react";
+ import React from "react";
 import { BaseLayout } from "./globalStyles/layout";
 import Title from "./title";
 import Header from "./globalStyles/Header";
 import GlobalStyle from "./globalStyles/ResetCss";
 import styled, { keyframes } from "styled-components";
 
-
-
 class bookDetail extends React.Component {
 
     render() {
-
         const user = this.props.user;
         const book = this.props.book;
         const routes = this.props.routes;
@@ -198,14 +195,14 @@ const Book = styled.div`
     animation-fill-mode: forwards;
     }
     transform-style: preserve-3d;
+    perspective: 100vw;
         @keyframes moveBook {
             0%{
-                margin-left:0;
-                box-shadow: 0px 0px 0px;
+                
+                transform: translateX(0vw) translateZ(0px);
             }100%{
-                margin-left:40vw;
-                padding: 5vw;
-                box-shadow: 0px 0px 0px;
+                
+                transform: translateX(50vw) translateZ(100px);
             }
         }
     
@@ -215,15 +212,19 @@ const Book = styled.div`
         height: 100%;
         border: solid 10px black;
         border-left:0;
+        text-overflow:hidden;
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         background-size: cover;
         background-position: center center;
+        perspective: 100vw;
         transform: translateZ(2vw);
         transform-origin: 0 0;
         :active {animation: openBook 0.5s ease-in-out;
             animation-fill-mode: forwards;
+            transform-style: preserve-3d;
+            perspective:100px;
         @keyframes openBook {
-            from,to{
+            0%{
                 transform: rotateY(0deg);
                 
             }
@@ -254,6 +255,7 @@ const Book = styled.div`
         width: 100%;
         height: 100%;
         background-color:rgb(245, 219, 136);
+        text-overflow:hidden;
         z-index:-1;
         border-left:solid 2px black;
         p:nth-child(1){
@@ -290,6 +292,7 @@ const Book = styled.div`
         font-size: 2vh;
         display:flex;
         background-size: cover;
+        text-overflow:hidden;
         background-position: center center;
         transform: rotateY(180deg) rotateZ(0deg) translateZ(2vw);
         border: solid 10px black;

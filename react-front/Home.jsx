@@ -72,19 +72,23 @@ const Image = styled.img`
     }
 
 :hover{
-animation: Hover 0.2s ease-in-out;
+ animation: Hover 0.2s;
 animation-fill-mode: forwards;
 transform-style: preserve-3d;
-@keyframes Hover {
-    0%{
-        box-shadow: 0;
-        transform: translateY(0);
-    }
-    100%{
-        box-shadow: 10px 10px 20px black;
-        transform: translateY(-5vw);
-    }
-}
+
+    @keyframes Hover {
+        0%{
+            box-shadow: 0;
+            transform: translateY(0);
+        }
+        100%{
+            box-shadow: 10px 10px 20px black;
+            transform: translateY(-5vw);
+        }
+    } 
+
+    /*box-shadow: 10px 10px 20px black;
+        transform: translateY(-5vw);*/
 }
 
 `;
@@ -183,20 +187,21 @@ function Home(props) {
             console.log(props.recomendBooks.length)
             return (
                 props.recomendBooks.map(argument => {
-                    if(argument === null){
+                    if (argument === null) {
                         return "";
                     }
-                    else{
-                    return (
-                        <Li classNanme="reco_list">
-                            <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
-                                <Image width="10rem" src={argument.imageUrl} />
-                                <Span>{argument.title}</Span>
-                                <Span>{argument.author}</Span>
-                                <Span>{argument.description}</Span>
-                            </Recom_a>
-                        </Li>
-                    )}
+                    else {
+                        return (
+                            <Li classNanme="reco_list">
+                                <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
+                                    <Image width="10rem" src={argument.imageUrl} />
+                                    <Span>{argument.title}</Span>
+                                    <Span>{argument.author}</Span>
+                                    <Span>{argument.description}</Span>
+                                </Recom_a>
+                            </Li>
+                        )
+                    }
                 })
             )
         } else {
@@ -218,7 +223,7 @@ function Home(props) {
                                 <Spantwo>{JSON.stringify(book.createdAt)}</Spantwo>
                                 {/* <Spantwo>{book.description}</Spantwo> */}
                             </Text_box>
-                      </Book>
+                        </Book>
                     </div>
                 </Header_line>
             )
@@ -246,9 +251,9 @@ function Home(props) {
                 {bookList}
 
                 <Button color="blue" >
-                    Next 
+                    Next
                     {
-                      `${nextPage}`
+                        `${nextPage}`
                     }
                 </Button>
             </Grid_box>

@@ -5,6 +5,7 @@ import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
+ 
 
 const Flex_box = styled.div`
     display:flex;
@@ -17,9 +18,8 @@ const Flex_box = styled.div`
 
 const Grid_box = styled.div`
     position:absolute;
-    display:grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(3, auto);
+    display:flex;
+    justify-content:center;
 
     width:80%;
     height:40vh;
@@ -27,23 +27,23 @@ const Grid_box = styled.div`
     align-items:center;
     margin:0 auto;
     bottom:0;
-    /* width: 30px; */
-
+ 
 `;
 
 const Bottom_nav = styled.div`
-    /* width:100%; */
     position:absolute;
-    bottom:0;
+    bottom:8%;
     margin:0 auto;
+    z-index:-2;
     &>img{
-        width:100rem;
+        width:60rem;
     }    
     @media screen and (max-width: 1300px)
     { 
-        &>img{
-        width:60rem;
-    }   
+        &>img
+        {
+            width:100%;
+        }   
 
     }
 `;
@@ -51,57 +51,116 @@ const Bottom_nav = styled.div`
 const Div = styled.div`
     width:35px;
     position: relative;
-    bottom: 10%;
+    bottom: 32%;
     margin-bottom: 3rem;
+    margin-right:1rem;
     display:flex;
     align-items:center;
     justify-content:center;
-    margin:0 auto;
-    margin-right:2rem;
     transform-style: preserve-3d;
+    
+    &:hover{
+        cursor: pointer;
+        animation: book 0.5s linear ;
+        animation-fill-mode: forwards;
+        transform-style: preserve-3d;
+       
+    }
+
+
+    :active{
+        animation: front 0.5s linear ;
+        animation-fill-mode: forwards;
+    }
+        transform-style: preserve-3d;
+        /* perspective:100px;  */
+        
+        @keyframes front{
+            0%{
+                transform: translateZ(0px)  translateY(10px)   rotateX(-15deg) rotateY(-7deg) ;
+            }
+            100%{
+                transform: translateX(100px) rotateY(-90deg);
+            }
+        }
+     
+
+
+    @keyframes book {
+        0%{
+           
+            transform:translateZ(0px)  rotateX(-3deg) rotateY(-3deg) ;
+        } 
+        100%{ 
+            transform: translateZ(-10px)  translateY(15px)   rotateX(-15deg) rotateY(-7deg) ;
+           
+        }
+    }
+
 
 `;
 
 const ImageSize = styled.img`
-    width:35px;
-    height:15rem;
-    transform:rotateY(45deg);
-    /* opacity: 0; */
+    width:40vh;
+    height:45vh;
     margin-right:-6.3rem;
+    transform: rotateY(90deg)   translateX(20vh)  translateZ(2vh)  translateY(0.4vh) ;
     position:absolute;
+    z-index:2;
+
 `;
 
 const Side_cover = styled.div`
-    width: 30px;
-    height:15rem;
+    width: 20vh;
+    height:45vh;
     text-align:center;
-    background-color:${props => props.color || "gray"};
-    text-overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+    background-color:${props => props.coverColor ? props.coverColor : "pink"};
+    color:white;
+    text-overflow: ellipsis;
+
     overflow:hidden;
-    z-index:3;
+    z-index:1;
+
+    &>span{
+        width:30px;
+        text-align:center;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+
 `;
 
 const Back_cover = styled.div`
     margin-left:-6.3rem;
-    width: 15rem;
-    height:15rem;
-    background-color: black;
+    width: 39.3vh;
+    height:45vh;
+    background-color:${props => props.coverColor ? props.coverColor : "black"};
     color:white;
     text-overflow:hidden;
     overflow:hidden;
-    transform:rotateY(-90deg) translateX(-14vh) translateZ(-10vh); 
+    transform:rotateY(-90deg) translateX(-20vh) translateZ(-11vh); 
     position:absolute;
-
-    `;
+    z-index:1;
+`;
 
 const Up_cover = styled.div`
-    position:relative;
-    top:0;
-    border: 1px solid red;
-    width: ${props => props.width || "30px"};
-    height:${props => props.height || "15rem"};
+
     background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAIVBMVEX///8AAADS0tI1NTVRUVEyMjJmZmYZGRlAQEDW1tbZ2dmAbgc1AAAAYElEQVR4nO3QgQ2AIAwAsCFOxf8P5otlmvaERgAAAAAAAAAAAAAAAAAAAAAAAADAb5w5O8ur4OAevT0FB+vo7S04AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCDNrBKA+vIaTt5AAAAAElFTkSuQmCC");
-    `;
+    width: 2.7rem;
+    height:40vh;
+    background-color:${props => props.coverColor ? props.coverColor : "black"};    
+    background:black;
+    transform:rotateX(90deg)  translateX(-0.2vh) translateY(-20vh)   translateZ(-4.6vh) ; 
+    position:absolute;
+    bottom:65%;
+    z-index:3;
+
+`;
+
 
 const Image_box = styled.img`
     width: 25px;
@@ -111,47 +170,58 @@ const Image_box = styled.img`
 
 const Input = styled.input`
     position:absolute;
-    bottom:-15%;
-    right:35%;
-
-    display: block;
+    bottom:2%;
+    left:0;
+    z-index:2;
     &:hover{
         cursor: pointer;
     }
 `;
 
 const A = styled.a`
-    position:relative;
+   position:relative;
     display:flex;
-    bottom:0;  
     align-items:center;
     justify-content:center;
-    /* perspective : 100px; */
-    z-index:2;
-    margin-bottom: 3rem;
-    width:35px;
-    
+    width:50px;
+    transform-style: preserve-3d;
+/* 
     &:hover{
         cursor: pointer;
-        animation: book 1s linear ;
+        animation: book 0.5s linear ;
         animation-fill-mode: forwards;
         transform-style: preserve-3d;
-
-    }
-    
-    @keyframes book {
-        0%{
-            transform:rotateY(0) rotateX(-0) translateZ(0);
-
-        } 
-
-        100%{ 
-            transform: rotateY(20deg) rotateX(20deg) translateZ(20px);
-           
-            /* Perspective : (100px);
-            transform-origin :  0 100% 0 rotateX(-25deg); */
+        &>img:first-child{
         }
     }
+
+
+    :active{
+        animation: front 0.5s linear ;
+        animation-fill-mode: forwards;
+        transform-style: preserve-3d;
+    }
+    @keyframes front{
+        0%{
+            transform: translateZ(-10px)  translateY(10px)   rotateX(-15deg) rotateY(-7deg) ;
+        }
+        100%{
+            transform: translateZ(-200px) rotateY(-90deg);
+        }
+    }
+
+
+    @keyframes book {
+        0%{
+           
+            transform:translateZ(0px)  rotateX(-3deg) rotateY(-3deg) ;
+        } 
+        100%{ 
+            transform: translateZ(-10px)  translateY(15px)   rotateX(-15deg) rotateY(-7deg) ;
+           
+        }
+    } */
+
 
 `;
 
@@ -182,27 +252,28 @@ class MyBookList extends React.Component {
                     <Grid_box className="list">
                         {this.props.currentUser.favBooks.map(book => {
                             return (
-                                <Div>
+                                <Div> 
                                     <A href={`/${this.props.routes.bookDetail(book.id)}`}>
                                         <ImageSize  src={`/${book.imageUrl}`} />
-                                        
+
                                         <Side_cover>
-                                            <h3>{book.title}</h3>
+                                            <span >{book.title}</span>
                                         </Side_cover>
                                         {/* <h4>{book.author}</h4> */}
                                         <Back_cover className="Back_cover">
                                             <span>{book.description}</span>
                                         </Back_cover>
+                                        <Up_cover></Up_cover>
                                     </A>
-                                        <form action={routes.deleteFavBook(book.id)} method="post">
-                                            <Input type="submit" value="즐겨찾기 삭제" />
-                                        </form>
+                                    <form action={routes.deleteFavBook(book.id)} method="post">
+                                        <Input type="submit" value="삭제" />
+                                    </form>
                                 </Div>
                             )
                         })}
                     </Grid_box>
                     <Bottom_nav>
-                        <img  src="../images/shelf.png" alt="" />
+                        <img src="../images/shelf.png" alt="" />
                     </Bottom_nav>
                 </Flex_box>
             </BaseLayout>
