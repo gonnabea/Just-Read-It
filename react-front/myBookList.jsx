@@ -14,6 +14,7 @@ const Flex_box = styled.div`
     align-items:center;
     justify-content:center;
     text-align:center;
+
 `;
 
 const Grid_box = styled.div`
@@ -27,7 +28,88 @@ const Grid_box = styled.div`
     align-items:center;
     margin:0 auto;
     bottom:0;
- 
+    transform-style: preserve-3d;
+    perspective: 650px; 
+    animation-fill-mode: forwards;
+    &>div>a>img:nth-child(1){
+        /*앞 */
+        visibility: hidden; 
+        /* opacity: 0; */
+    }
+    &>div>a>div:nth-child(3){
+        /*뒤 */
+        visibility: hidden; 
+         /* opacity: 0;  */
+    }
+    &>div>a>div:nth-child(4){
+        /*위 */
+        visibility: hidden; 
+        /* opacity: 0; */
+    }
+    &>div:first-child:hover{
+        &>a>img:nth-child(1){
+            visibility: visible;
+            /* animation: fade_in_out 0.5s linear;
+            animation-fill-mode: forwards; */
+        }
+    }
+     &>div:hover{
+        &>a>img:nth-child(1){
+            visibility: visible;
+            animation: fade_in_out 0.5s linear;
+            animation-fill-mode: forwards;
+        }
+    } 
+    &>div:nth-last-child(1):hover{
+        &>a>div:nth-child(3){
+            visibility: visible;
+            transform:  rotateY(-90deg) translateX(-19.5vh) translateZ(-9vh);
+            animation: fade_in_out 0.5s linear;
+            animation-fill-mode: forwards;
+        }
+    }
+    &>div:nth-last-child(2):hover{
+        &>a>div:nth-child(3){
+            visibility: visible;
+            animation: fade_in_out 0.5s linear;
+            animation-fill-mode: forwards;
+        }
+    }
+    &>div:nth-last-child(3):hover{
+        &>a>div:nth-child(3){
+            visibility: visible;
+            animation: fade_in_out 0.5s linear;
+            animation-fill-mode: forwards;
+        }
+    }
+    &>div:nth-last-child(4):hover{
+        &>a>div:nth-child(3){
+            visibility: visible;
+            animation: fade_in_out 0.5s linear;
+            animation-fill-mode: forwards;
+        }
+    }
+    &>div:nth-last-child(5):hover{
+        &>a>div:nth-child(3){
+            visibility: visible;
+            animation: fade_in_out 0.5s linear;
+            animation-fill-mode: forwards;
+        }
+    }
+    
+
+    @keyframes fade_in_out {
+        0%{
+            opacity: 0;
+            
+        }
+        100%{
+            opacity: 1;
+
+        }
+    }
+
+    
 `;
 
 const Bottom_nav = styled.div`
@@ -44,58 +126,61 @@ const Bottom_nav = styled.div`
         {
             width:100%;
         }   
-
     }
 `;
 
 const Div = styled.div`
-    width:35px;
+  
+
     position: relative;
     bottom: 32%;
     margin-bottom: 3rem;
-    margin-right:1rem;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    margin-right:0.2rem;
+    
     transform-style: preserve-3d;
+    text-overflow: ellipsis;
+    /* perspective:100px;  */
     
     &:hover{
         cursor: pointer;
-        animation: book 0.5s linear ;
+        animation: book 1s linear ;
         animation-fill-mode: forwards;
         transform-style: preserve-3d;
-       
     }
-
+            @keyframes book {
+                0%{
+                   
+                    transform:translateZ(0px)  rotateX(-3deg) rotateY(-3deg) ;
+                } 
+                100%{ 
+                    transform: translateZ(5vh)  translateY(20px)   rotateX(-7deg) rotateY(-4deg) ;
+                   
+                }
+            }
 
     :active{
-        animation: front 0.5s linear ;
+        animation: front 0.5s ease-in-out;
         animation-fill-mode: forwards;
     }
         transform-style: preserve-3d;
-        /* perspective:100px;  */
         
         @keyframes front{
             0%{
                 transform: translateZ(0px)  translateY(10px)   rotateX(-15deg) rotateY(-7deg) ;
             }
             100%{
-                transform: translateX(100px) rotateY(-90deg);
+                transform:  translateZ(20vh) ;
             }
         }
-     
+        @keyframes deg{
+            0%{
 
-
-    @keyframes book {
-        0%{
-           
-            transform:translateZ(0px)  rotateX(-3deg) rotateY(-3deg) ;
-        } 
-        100%{ 
-            transform: translateZ(-10px)  translateY(15px)   rotateX(-15deg) rotateY(-7deg) ;
-           
+            }
+            100%{
+                transform:  rotateY(-90deg) ;
+            }
         }
-    }
+        /* rotateY(0.3turn)  translateZ(300px) */
 
 
 `;
@@ -104,9 +189,10 @@ const ImageSize = styled.img`
     width:40vh;
     height:45vh;
     margin-right:-6.3rem;
-    transform: rotateY(90deg)   translateX(20vh)  translateZ(2vh)  translateY(0.4vh) ;
+    transform: rotateY(90deg)   translateX(20.3vh)  translateZ(2.5vh)   ;
     position:absolute;
-    z-index:2;
+    z-index:1;
+
 
 `;
 
@@ -120,10 +206,8 @@ const Side_cover = styled.div`
     text-align:center;
     background-color:${props => props.coverColor ? props.coverColor : "pink"};
     color:white;
-    text-overflow: ellipsis;
-
+    z-index:4;
     overflow:hidden;
-    z-index:1;
 
     &>span{
         width:30px;
@@ -132,9 +216,11 @@ const Side_cover = styled.div`
         text-orientation: mixed;
     }
 
+
 `;
 
 const Back_cover = styled.div`
+    z-index:2;
     margin-left:-6.3rem;
     width: 39.3vh;
     height:45vh;
@@ -142,14 +228,12 @@ const Back_cover = styled.div`
     color:white;
     text-overflow:hidden;
     overflow:hidden;
-    transform:rotateY(-90deg) translateX(-20vh) translateZ(-11vh); 
+    transform:rotateY(-90deg) translateX(-19.8vh) translateZ(-9.4vh); 
     position:absolute;
-    z-index:1;
 `;
 
 const Up_cover = styled.div`
-
-    background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAIVBMVEX///8AAADS0tI1NTVRUVEyMjJmZmYZGRlAQEDW1tbZ2dmAbgc1AAAAYElEQVR4nO3QgQ2AIAwAsCFOxf8P5otlmvaERgAAAAAAAAAAAAAAAAAAAAAAAADAb5w5O8ur4OAevT0FB+vo7S04AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCDNrBKA+vIaTt5AAAAAElFTkSuQmCC");
+    /* background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAIVBMVEX///8AAADS0tI1NTVRUVEyMjJmZmYZGRlAQEDW1tbZ2dmAbgc1AAAAYElEQVR4nO3QgQ2AIAwAsCFOxf8P5otlmvaERgAAAAAAAAAAAAAAAAAAAAAAAADAb5w5O8ur4OAevT0FB+vo7S04AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCDNrBKA+vIaTt5AAAAAElFTkSuQmCC"); */
     width: 2.7rem;
     height:40vh;
     background-color:${props => props.coverColor ? props.coverColor : "black"};    
@@ -157,7 +241,6 @@ const Up_cover = styled.div`
     transform:rotateX(90deg)  translateX(-0.2vh) translateY(-20vh)   translateZ(-4.6vh) ; 
     position:absolute;
     bottom:65%;
-    z-index:3;
 
 `;
 
@@ -171,57 +254,19 @@ const Image_box = styled.img`
 const Input = styled.input`
     position:absolute;
     bottom:2%;
-    left:0;
-    z-index:2;
+    left:20%;
     &:hover{
         cursor: pointer;
     }
 `;
 
 const A = styled.a`
-   position:relative;
+    position:relative;
     display:flex;
     align-items:center;
     justify-content:center;
     width:50px;
     transform-style: preserve-3d;
-/* 
-    &:hover{
-        cursor: pointer;
-        animation: book 0.5s linear ;
-        animation-fill-mode: forwards;
-        transform-style: preserve-3d;
-        &>img:first-child{
-        }
-    }
-
-
-    :active{
-        animation: front 0.5s linear ;
-        animation-fill-mode: forwards;
-        transform-style: preserve-3d;
-    }
-    @keyframes front{
-        0%{
-            transform: translateZ(-10px)  translateY(10px)   rotateX(-15deg) rotateY(-7deg) ;
-        }
-        100%{
-            transform: translateZ(-200px) rotateY(-90deg);
-        }
-    }
-
-
-    @keyframes book {
-        0%{
-           
-            transform:translateZ(0px)  rotateX(-3deg) rotateY(-3deg) ;
-        } 
-        100%{ 
-            transform: translateZ(-10px)  translateY(15px)   rotateX(-15deg) rotateY(-7deg) ;
-           
-        }
-    } */
-
 
 `;
 
@@ -255,9 +300,9 @@ class MyBookList extends React.Component {
                                 <Div> 
                                     <A href={`/${this.props.routes.bookDetail(book.id)}`}>
                                         <ImageSize  src={`/${book.imageUrl}`} />
-
+ 
                                         <Side_cover>
-                                            <span >{book.title}</span>
+                                            <span>{book.title}</span>
                                         </Side_cover>
                                         {/* <h4>{book.author}</h4> */}
                                         <Back_cover className="Back_cover">

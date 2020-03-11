@@ -7,16 +7,21 @@ import GlobalStyle from "./globalStyles/ResetCss";
 
 
 const Main_box = styled.div`
+    width:100%;
+    height:100%;
     display:flex;
     flex-direction:column;
     text-align:center;
     justify-content:center;
     align-items:center;
+    background-image:url("https://cdn.pixabay.com/photo/2020/03/03/20/31/laguna-4899802_960_720.jpg");
+    background-size:cover;
+    background-position:center center;
 
 `;
 
 const Image = styled.img`
- margin:1.5rem;
+    margin:1.5rem;
     width:4rem;
     border-radius:100%;
     padding:0.6rem;
@@ -35,6 +40,9 @@ const Div = styled.div`
     background-color: #55efc4;
     box-shadow: 0px 0px 17px 4px rgba(0,0,0,0.75);
     padding:2rem;
+    background-image:url("https://cdn.pixabay.com/photo/2020/03/09/15/52/nature-4916153__340.jpg");
+    background-size:cover;
+    background-position:center center;
 `;
 
 
@@ -57,20 +65,42 @@ const Input = styled.input`
     }
 `;
 
+const Span_line = styled.span`
+    width:100%;
+    margin: 0 2rem;
+    color:white;
+    font-size:1rem;
+    font-weight:300;
+    
+    :hover{
+        font-weight:500;
+        text-decoration:underline;
+    }
+`;
+const Bottom_box = styled.div`
+    display:flex;
+    flex-direction:column;
+    &>div:first-child{
+        margin-bottom:0.7rem;
+    }
+
+`;
+
+
 function Join(props) {
     return (
         <BaseLayout>
             <GlobalStyle />
-                <Header />
-            <Main_box className="join_box" >
+            <Header />
+            <Main_box  >
                 <Div>
                     {/* {Header(this.props)} */}
                     <form action={props.routes.join} method="post" >
                         <Input type="text" name="username" required={true} placeholder="닉네임" />
-                        <Input  type="text" name="email" required={true} placeholder="이메일" />
-                        <Input  type="password" name="password" required={true} placeholder="비밀번호" />
-                        <Input  type="password" name="password2" required={true} placeholder="비밀번호 확인" />
-                        <Input  type="submit" value="가입하기" />
+                        <Input type="text" name="email" required={true} placeholder="이메일" />
+                        <Input type="password" name="password" required={true} placeholder="비밀번호" />
+                        <Input type="password" name="password2" required={true} placeholder="비밀번호 확인" />
+                        <Input type="submit" value="가입하기" />
                     </form>
                     <div>
                         <A href={props.routes.googleAuth}>
@@ -86,6 +116,22 @@ function Join(props) {
                             <Image src="https://a.slack-edge.com/80588/marketing/img/icons/icon_slack_hash_colored.png" />
                         </A>
                     </div>
+                    <Bottom_box>
+                        <div>
+                            <input type="checkbox" name="news_check" />
+                            <span style={{color:"white",fontSize:"13px"}}>최신 소식을 이메일로 받겠습니다.</span>
+                        </div>
+                        <div>
+                            <Span_line>
+                                계정이 이미 있으신가요
+                            </Span_line>
+                            <a href={props.routes.login}>
+                                <Span_line>
+                                    로그인
+                                </Span_line>
+                            </a>
+                        </div>
+                    </Bottom_box>
                 </Div>
             </Main_box>
         </BaseLayout>

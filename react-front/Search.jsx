@@ -11,7 +11,6 @@ const Box = styled.div`
     width:100%;
     height:100%;
     display:flex;
-    flex-direction:column;
     justify-content:center;
     text-align:center;
     font-size:1rem;
@@ -21,73 +20,97 @@ const Box = styled.div`
 
 const Grid_box = styled.div`
     display:grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(auto-fill,auto,1fr);
     text-align:center;
-     @media screen and (max-width: 1300px)
-    { 
-        grid-template-columns: repeat(3,1fr);
+    grid-gap: 10px;
+    @media screen and (max-width: 600px)
+    {
+        grid-template-columns: repeat(auto-fill,3,1fr);
+        
     }
      
 `;
+const Div = styled.div`
+    display:grid;
+`;
 
 const Image = styled.img`
-    width:15rem;
+    width:20vh;
     height:100%;
+    text-align:center;
     @media screen and (max-width: 1300px)
     { 
         text-align:center;
-        position:relative;
-        width:10rem;
-
+        width:10vh;
+    }
+    @media screen and (max-width: 600px)
+    {
+        text-align:center;
+        width:6.5vh;
+        
     }
 `;
 
 const A = styled.a`
-    margin:0.4rem;
+    margin:0.4vh;
     display:flex;
     width:80%;
     flex-direction:column;
     text-align:center;
     justify-content:center;
     align-items:center;
-    margin:0.3rem;
+    @media screen and (max-width: 600px)
+    {
+        margin:1vh;
+    }
 `;
 
 const H_one = styled.h1`
     display:grid;
-    margin-top:8rem;
+    margin-top:10vh;
+    margin-bottom:5vh;
     grid-area: span 1 /span 5;
     text-align:center;
 
 `;
 const Span = styled.span`
-    margin-top:0.4rem;
+    margin-top:0.4vh;
     text-overflow:ellipsis;
+    font-size:2vh;
+    @media screen and (max-width: 1300px)
+    { 
+        font-size:1.5vh;
+        
+    }
+    @media screen and (max-width: 600px)
+    {
+        font-size:1vh;
+        
+    }
+
 `;
 class search extends React.Component {
     render() {
-        const results = this.props.results
+        const results = this.props.results;
+        const searchingBy = this.props.searchingBy;
+        console.log(results)
         function CheckSearchResult() {
             if (results[0]) {
                 return (
 
                     <>
-                        <Header />
 
-                        {/* <Box className="search_list"> */}
                         <H_one  >
-                            {results[0].terms[0]} 검색결과 :
-                            </H_one>
+                            {searchingBy} 검색결과 :
+                        </H_one>
                         {resultScreen}
 
-                        {/* </Box> */}
                     </>
 
                 )
             } else {
                 return (
                     <>
-                        <Header />
 
                         <H_one >
                             검색결과가 없습니다.
@@ -115,6 +138,7 @@ class search extends React.Component {
             //console.log(resultScreen),
             <BaseLayout>
                 <GlobalStyle />
+                    {Header(this.props)}
                 <Grid_box>
 
                     <CheckSearchResult />

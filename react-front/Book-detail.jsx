@@ -202,7 +202,7 @@ const Book = styled.div`
                 transform: translateX(0vw) translateZ(0px);
             }100%{
                 
-                transform: translateX(50vw) translateZ(100px);
+                transform: translateX(40vw) translateZ(100px);
             }
         }
     
@@ -226,11 +226,12 @@ const Book = styled.div`
         @keyframes openBook {
             0%{
                 transform: rotateY(0deg);
+                box-shadow: 0px 0px 0px;
                 
             }
             100%{
-                transform: rotateY(-150deg);
-                
+                transform: rotateY(-130deg);
+                box-shadow: 10px 10px 10px;
             }
         }
     }
@@ -419,6 +420,7 @@ display:flex;
 flex-direction: column;
 align-items: center;
 color:black;
+margin-top:0.3rem;
 background-color: rgba(255,255,255,0.3);
 `
 

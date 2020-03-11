@@ -101,10 +101,10 @@ export const search = async(req, res) => {
       })
     miniSearch.addAll(books);
     
-    let results = miniSearch.search(req.body.search)
+    let results = miniSearch.search(req.body.search, { prefix: true})
     
     
-    res.render("search", {results})
+    res.render("search", {results, searchingBy : req.body.search})
 }
 
 export const editUser = (req, res) => {

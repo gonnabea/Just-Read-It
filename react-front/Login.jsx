@@ -6,14 +6,16 @@ import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
 const Divs = styled.div`
-    width:100%;
-    height:80vh;
+    height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
     margin:1.4rem;
+    background-size:cover;
+    background-position:center center;
+    background-image:url("https://cdn.pixabay.com/photo/2020/02/06/08/49/water-4823433_960_720.jpg");
     &>*>span{
         color:yellow;
     }
@@ -32,26 +34,46 @@ const Image = styled.img`
     width:4rem;
     border-radius:100%;
     padding:0.6rem;
-    border:0.7px solid rgba(255, 206, 173, 0.459);
-    background-color: rgba(151, 150, 150, 0.164);
+    /* border:0.7px solid rgba(255, 206, 173, 0.459); */
+     background-color: rgba(151, 150, 150, 0.164); 
 
 `;
 const Box_img = styled.div`
     display:flex;
     width:30rem;
     height:20rem;
-    background-color:rgba(229, 224, 149, 0.582);
     align-items:center;
     justify-content:center;
     flex-direction:column;
     border-bottom-right-radius:10px;
-  
+    background-color:#4983ca;
+    box-shadow: -1px 0px 21px 0px rgba(0,0,0,0.75);
+    border-radius:10px;
 `;
 
 const Input = styled.input`
     margin:0.4rem;
     &:hover{
         cursor:pointer;
+    }
+`;
+const Bottom_box = styled.div`
+    display:flex;
+    justify-content:space-between;
+    margin:0.7rem;
+    border-top:1px solid white;
+    padding:0.3rem;
+`;
+const Span_line = styled.span`
+    width:100%;
+    margin: 0 2rem;
+    color:white;
+    font-size:1rem;
+    font-weight:300;
+    
+    :hover{
+        font-weight:500;
+        text-decoration:underline;
     }
 `;
 
@@ -61,9 +83,8 @@ function Login(props) {
         return (
             <BaseLayout>
                 <GlobalStyle />
-                <div style={{ marginTop: "-1.45rem" }}>
-                    <Header />
-                </div>
+                {Header(props)}
+
                 <Divs >
                     <Box_img>
                         <form action={props.routes.login} method="post">
@@ -71,6 +92,10 @@ function Login(props) {
                             <Input type="password" name="password" placeholder="패스워드"></Input>
                             <Input type="submit" value="로그인"></Input>
                         </form>
+                        <div>
+                            <input type="checkbox" name="user_check" />
+                            <span style={{ color: "red" }}>Remember me</span>
+                        </div>
                         <div>
                             <Asns href={props.routes.googleAuth}>
                                 <span>구글 로그인</span>
@@ -85,6 +110,19 @@ function Login(props) {
                                 <Image src="https://a.slack-edge.com/80588/marketing/img/icons/icon_slack_hash_colored.png" />
                             </Asns>
                         </div>
+                        <Bottom_box>
+                            <a href={props.routes.home}>
+                                <Span_line>
+                                    비밀번호를 잊으셨나요?
+                                </Span_line>
+                            </a>
+                            <a href={props.routes.join}>
+                                <Span_line>
+                                    회원가입
+                                </Span_line>
+                            </a>
+
+                        </Bottom_box>
                     </Box_img>
                 </Divs>
             </BaseLayout>

@@ -167,30 +167,31 @@ animation-fill-mode: forwards;
 
 function Home(props) {
 
-    const nextPage = () => {
-        console.log("!!!!!!!!!");
-    }
 
+    
     function recommendList() {
         if (props.recomendBooks) {
             return (
                 <h4 style={{ marginTop: "6rem" }}>
                     {props.user.username}님만을 위한 추천 리스트 :
-                    </h4>
+                </h4>
             )
         }
     }
-
+    
     function recomSys() {
-        console.log(props.recomendBooks)
+        // console.log(props.recomendBooks)
         if (props.recomendBooks) {
-            console.log(props.recomendBooks.length)
+            // console.log(props.recomendBooks.length)
             return (
-                props.recomendBooks.map(argument => {
-                    if (argument === null) {
-                        return "";
-                    }
-                    else {
+                props.recomendBooks.map(argument =>
+                    {
+                        if (argument === null) 
+                        {
+                            return "";
+                        }
+                    else 
+                    {
                         return (
                             <Li classNanme="reco_list">
                                 <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
@@ -200,6 +201,7 @@ function Home(props) {
                                     <Span>{argument.description}</Span>
                                 </Recom_a>
                             </Li>
+                            
                         )
                     }
                 })
@@ -207,8 +209,8 @@ function Home(props) {
         } else {
             return "";
         }
-
     }
+
     const bookList =
         props.books.map(book => {
             return (
@@ -251,10 +253,7 @@ function Home(props) {
                 {bookList}
 
                 <Button color="blue" >
-                    Next
-                    {
-                        `${nextPage}`
-                    }
+                    
                 </Button>
             </Grid_box>
         </BaseLayout>
