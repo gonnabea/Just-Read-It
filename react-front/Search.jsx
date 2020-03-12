@@ -10,7 +10,7 @@ const Box = styled.div`
     /* font-family: 'Gugi', cursive; */
     width:100%;
     height:100%;
-    display:flex;
+    display:flex; 
     justify-content:center;
     text-align:center;
     font-size:1rem;
@@ -19,10 +19,15 @@ const Box = styled.div`
 `;
 
 const Grid_box = styled.div`
+    height:100%;
     display:grid;
     grid-template-columns: repeat(auto-fill,auto,1fr);
     text-align:center;
     grid-gap: 10px;
+     background-image:url("https://cdn.pixabay.com/photo/2015/07/27/20/16/book-863418_1280.jpg");
+    background-size:100% 100%  ;
+    background-position:center center;
+    
     @media screen and (max-width: 600px)
     {
         grid-template-columns: repeat(auto-fill,3,1fr);
@@ -77,6 +82,7 @@ const Span = styled.span`
     margin-top:0.4vh;
     text-overflow:ellipsis;
     font-size:2vh;
+    color:white;
     @media screen and (max-width: 1300px)
     { 
         font-size:1.5vh;
@@ -89,6 +95,7 @@ const Span = styled.span`
     }
 
 `;
+
 class search extends React.Component {
     render() {
         const results = this.props.results;
@@ -139,6 +146,7 @@ class search extends React.Component {
             <BaseLayout>
                 <GlobalStyle />
                     {Header(this.props)}
+
                 <Grid_box>
 
                     <CheckSearchResult />

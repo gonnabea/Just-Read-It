@@ -5,7 +5,6 @@ import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
-
 const Div = styled.div`
     display:flex;
     justify-content:center;
@@ -33,15 +32,51 @@ const Recom_div = styled.div`
     }
 `;
 const Recom_a = styled.a`
-    display:fle;
+    display:flex;
     text-align:center;
     align-items:center;
     justify-content:center;
 `;
 
+let i = 1;
+
 const Ul = styled.ul`
     display:block;
     margin-top:-5rem;
+    
+    /* &>li:first-child>a>span:nth-child(2){
+        color:red;
+    }
+    &>li:nth-child(2)>a>span:nth-child(2){
+        color:red;
+    } */
+    &>li{
+        margin-top:6rem;
+        display:flex;
+        flex-direction:column;
+    }
+   
+    &>li:nth-child(${i})>a>span:nth-child(2){
+        color:blue;
+    }
+    &>li:nth-child(${i})>a>span:nth-child(3){
+        color:blue;
+        ${i++}
+    }
+    
+    &>li:nth-child(${i})>a>span:nth-child(2){
+        color:blue;
+        ${i++}
+    }
+   
+
+    &>li:nth-child(${i})>a>span:nth-child(2){
+        color:blue;
+        ${i=1}
+    }
+
+
+
 `;
 
 const Li = styled.li`
@@ -70,26 +105,28 @@ const Image = styled.img`
         position:relative;
         width:10rem;
     }
+/* 
+    &:hover{
+     animation: Hover 0.2s 250ms linear forwards;
+    transform-style: preserve-3d; 
 
-:hover{
- animation: Hover 0.2s;
-animation-fill-mode: forwards;
-transform-style: preserve-3d;
 
-    @keyframes Hover {
-        0%{
-            box-shadow: 0;
-            transform: translateY(0);
-        }
-        100%{
-            box-shadow: 10px 10px 20px black;
-            transform: translateY(-5vw);
-        }
-    } 
+        @keyframes Hover {
+            0%{
+                box-shadow: 0;
+                transform: translateY(0vh);
+            }
+        
+            100%{
+                box-shadow: 10px 10px 20px black;
+                transform: translateY(-4vh);
+                border-radius:5px;
+            }
+        } 
 
-    /*box-shadow: 10px 10px 20px black;
-        transform: translateY(-5vw);*/
-}
+    box-shadow: 10px 10px 20px black;
+        transform: translateY(-5vw);
+    } */
 
 `;
 const Span = styled.span`
@@ -163,10 +200,35 @@ const Header_line = styled.div`
 const Book = styled.a`
 transform-style: preserve-3d;
 animation-fill-mode: forwards;
+
+:hover{
+
+
+&>img:first-child{
+    animation: Hover 0.2s 250ms linear forwards;
+    transform-style: preserve-3d;
+        @keyframes Hover {
+            0%{
+                box-shadow: 0;
+                transform: translateY(0vh);
+            }
+        
+            100%{
+                box-shadow: 10px 10px 20px black;
+                transform: translateY(-4vh);
+                border-radius:5px;
+            }
+        } 
+
+    /*box-shadow: 10px 10px 20px black;
+        transform: translateY(-5vw);*/
+    }
+}
+
 `
 
 function Home(props) {
-
+ 
 
     
     function recommendList() {
@@ -200,9 +262,9 @@ function Home(props) {
                                     <Span>{argument.author}</Span>
                                     <Span>{argument.description}</Span>
                                 </Recom_a>
+                                
                             </Li>
-                            
-                        )
+                            )
                     }
                 })
             )
@@ -211,6 +273,15 @@ function Home(props) {
         }
     }
 
+    function example(){
+        console.log("xxx")
+       
+    }
+
+    const handleClick = () =>{
+        console.log("sdfasfgdgbxgdzgsdfbsfvbx")
+       }
+       
     const bookList =
         props.books.map(book => {
             return (
@@ -250,12 +321,13 @@ function Home(props) {
                         </Button>
                     </Ul>
                 </Recom_div>
+                <Button id="btn" >
+                    this button
+                </Button>
                 {bookList}
 
-                <Button color="blue" >
-                    
-                </Button>
             </Grid_box>
+            <script src="/vanilla/home.js"></script>
         </BaseLayout>
     );
 }

@@ -34,12 +34,50 @@ const Div = styled.div`
 
 const Imag_styles = styled.img`
 position: relative;
-width:10rem;
+width:8rem;
 height:10vh;
 /* 15% */
 display:inline-block;
+/* filter: grayscale(20%); */
+color:blue;
+
+&:hover{
+  animation: hover_turn 2s linear infinite forwards;
+  
+}
+  @keyframes hover_turn{
+    0%{
+      transform: rotateY(0turn);
+    }
+    50%{
+      transform: rotateY(0.5turn);
+    }
+    100%{
+      transform: rotateY(1turn);
+    }
+  }
 `;
 
+const Logo_a = styled.a`
+
+
+&:hover{
+  animation: hover_turn 1s linear infinite forwards;
+}
+  @keyframes hover_turn{
+    0%{
+
+    }
+    50%{
+      transform:rotateY(0.5);
+      
+    }
+    100%{
+      transform:rotateY(1);
+
+    }
+  }
+`;
 
 const A = styled.a`
   margin:0.7rem;
@@ -58,9 +96,8 @@ const Search_box = styled.div`
   position:absolute;
   display:flex;
   right:-30%;
-  
   &:hover{
-    cursor: pointer;
+    
     /* animation:search_width 1s linear;
     animation-fill-mode: forwards;   */
     
@@ -128,12 +165,34 @@ const Sinput = styled.input`
   height:${props => props.height || "3vh"};
   margin-left:${props => props.margin_left || "0px"}; 
   border-radius: 20px;
+  border: solid 2px black;
+  text-align:center;
+   
+  @keyframes hover_animation {
+    0% {
+      box-shadow: 0 30px 60px -12px rgba(70, 70, 209, 0.25),
+        0 18px 36px -18px rgba(0, 0, 0, 0.3),
+        0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+    }
+ 
+    50% {
+        box-shadow: 0px 60px 17px -38px rgba(73,62,224,1);
+    }
+    100% {
+        box-shadow: 1px 20px 10px -20px rgba(73,62,224,1);
+    }
+  }
 
-  &:hover{
+  :hover{
+    animation: hover_animation 1.5s linear infinite forwards;
+  } 
+
+  &:focus{
+    outline:none;
     cursor: pointer;
-     animation:search_width 1s linear;
-    animation-fill-mode: forwards;   
-    
+     animation: search_width 0.5s linear;
+      animation-fill-mode: forwards;   
+
   }
 
   @keyframes search_width{
@@ -173,7 +232,10 @@ const Binput = styled.input`
   width:${props => props.width || "35px"};
   height:${props => props.height || "25px"};
   margin-left:${props => props.margin_left || "0px"}; 
-  border-radius: 20px;
+  border-radius: 5px;
+  background-color: black;
+  color:white;
+  border:none;
   &:hover{
   cursor: pointer;
 }
@@ -221,6 +283,13 @@ const Icon_box = styled.div`
         
     }
 
+    img:first-child
+    {
+      position:absolute;
+      right:0;
+      top:0;
+    }
+
     i:first-child
     {
       position:absolute;
@@ -255,6 +324,16 @@ const User_none = styled.div`
     top:0;
     right:10%;
 `;
+
+const Menu_img = styled.img`
+  display:block;
+  width:40px;
+  height:40px;
+  border-radius:100%;
+  margin-top:0.3rem;
+  margin-left:0.3rem;
+`;
+
 function Header(props) {
 
   function ProfileLink() {
@@ -278,10 +357,26 @@ function Header(props) {
       )
     }
   }
+  function ProfileImage() {
+    if(props.user)
+    {
+
+      return(
+        <Prifile_img src={props.user.profilePhoto} />  
+      )
+    }
+    else{
+      return(
+        <i class="fas fa-bars fa-2x"></i>
+      )
+    }
+  }
+  
   function CheckLogin() {
     if (props.user) {
       return (
         <>
+        <Prifile_img src={props.user.profilePhoto} /> 
           <A href={routes.logout}> 로그아웃</A>
           <A href={routes.addBook}>새로운 책 등록</A>
           <A href={`/${routes.myBookList(props.user.id)}`}>내 서재</A>
@@ -303,26 +398,35 @@ function Header(props) {
   return (
     <BaseLayout>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-      <script >
-
-      </script>
+     
       <GlobalStyle />
       <Div className="class_name_header" >
         <a href={routes.home}>
           {/* <Imag_styles src="/images/Long_Story.png" /> */}
-          <Imag_styles src="https://cdn.pixabay.com/photo/2012/04/24/16/58/seal-40435_960_720.png" />
+          {/* <Imag_styles src="https://cdn.pixabay.com/photo/2017/07/28/20/14/ribbon-2549692_960_720.png" /> */}
+          
+          {/* book↓*/}
+          {/* <Imag_styles src="https://cdn.pixabay.com/photo/2017/05/27/13/33/logo-2348459_960_720.jpg" /> */}
+
+          {/* 팬더↓*/}
+          {/* <Imag_styles src="https://cdn.pixabay.com/photo/2014/04/03/10/00/panda-309548_960_720.png" /> */}
+
+          {/* 오리↓*/}
+          {/* <Imag_styles src="https://cdn.pixabay.com/photo/2017/02/01/09/57/animal-2029283_960_720.png" /> */}
+
+          <Imag_styles src="https://cdn.pixabay.com/photo/2016/12/08/15/45/panda-1892023_960_720.png" />
         </a>
 
         <Search_box>
           <Form  action={routes.search} method="post">
-            <Sinput margin_left="8rem" height="2.3rem"  type="text" name="search" required={true} placeholder="제목 저자 검색하기 ..." className="button"/>
+            <Sinput margin_left="8rem" height="2.3rem"  type="text" name="search" required={true} placeholder="제목,작가,소개글 ..." className="button"/>
             <Binput margin_left="0.5rem" type="submit" value="검색" />
           </Form>
         </Search_box>
 
           <Icon_box>
-            <i class="fas fa-bars fa-2x"></i>
-
+          
+            <ProfileImage/>
             <ul>
               <li>
                 <ProfileLink />
@@ -333,6 +437,7 @@ function Header(props) {
             </ul>
 
           </Icon_box>
+
       </Div>
     </BaseLayout>
 

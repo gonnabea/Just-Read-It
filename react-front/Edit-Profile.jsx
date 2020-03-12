@@ -13,6 +13,22 @@ const Div = styled.div`
     justify-content:center;
     align-items:center;
 
+    background: rgb(2,79,55);
+    background: linear-gradient(128deg, rgba(2,79,55,1) 0%, rgba(5,140,205,0.9752275910364145) 51%, rgba(3,19,29,1) 99%);
+    &>div:first-child{
+
+    }
+
+    &>div>form>input:last-child{
+        &:active {
+            #test{
+                visibility: visible; 
+
+            }
+
+        }
+    }
+
 `;
 
 const Back_ground = styled.div`
@@ -21,15 +37,29 @@ const Back_ground = styled.div`
     height:20rem;
     flex-direction:column;
     background-color:rgba(229, 224, 149, 0.582);
-    box-shadow: 0px 10px 5px 1px rgba(0,0,0,0.75);
     justify-content:center;
     align-items:center;
+    border-radius:6px;
+    box-shadow: 0px 10px 5px 1px rgba(0,0,0,0.75);
+
     &>form>*{
         display:flex;
-        flex-direction:column;
+         flex-direction:column;
         margin:0.4rem;
     }
 `;
+
+const Change_img = styled.img`
+    width:15rem;
+    display:flex;
+    /* visibility: hidden;  */
+    position:absolute;
+    margin:0 auto;
+    z-index:2;
+    border-bottom:3px solid red;
+
+`;
+
 
 class editProfile extends React.Component {
     render() {
@@ -46,6 +76,7 @@ class editProfile extends React.Component {
                             <input type="password" name="password2" placeholder="비밀번호 확인" />
                             <input type="submit" value="프로필 수정" />
                         </form>
+                    <Change_img id="text" src="https://cdn.pixabay.com/photo/2018/03/15/16/17/sign-3228713_960_720.png"/>
                     </Back_ground>
                 </Div>
             </BaseLayout>

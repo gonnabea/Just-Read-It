@@ -8,11 +8,17 @@ const globalStyle = createGlobalStyle`
     text-decoration: none;
 }
 
-::-webkit-scrollbar { width: 5.2px; }
-::-webkit-scrollbar-track { background-color:#5D5D5D; }
-::-webkit-scrollbar-thumb { background: #303030; }
+::-webkit-scrollbar { width: 1.5vh; }
+::-webkit-scrollbar-track { 
+    background-color:#5D5D5D;
+    
+ }
+::-webkit-scrollbar-thumb { 
+    background: yellowgreen;
+    border-radius:10px; }
 ::-webkit-scrollbar-thumb:hover { background: #404040; }
 ::-webkit-scrollbar-thumb:active { background: #808080; }
 ::-webkit-scrollbar-button { display: none; }
+
 `
 export default globalStyle;

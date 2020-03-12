@@ -5,107 +5,75 @@ import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
- 
+
 
 const Flex_box = styled.div`
     display:flex;
     width:100%;
-    height:90vh;
+    height:100%;
     align-items:center;
     justify-content:center;
     text-align:center;
-
+    
 `;
 
 const Grid_box = styled.div`
     position:absolute;
     display:flex;
     justify-content:center;
+    perspective:800px;  
 
     width:80%;
-    height:40vh;
-    justify-content:center;
+    height:60vh;
     align-items:center;
     margin:0 auto;
     bottom:0;
     transform-style: preserve-3d;
-    perspective: 650px; 
     animation-fill-mode: forwards;
-    &>div>a>img:nth-child(1){
+
+    &>div>div>a>img:nth-child(1){
         /*앞 */
         visibility: hidden; 
         /* opacity: 0; */
     }
-    &>div>a>div:nth-child(3){
+    &>div>div>a>div:nth-child(3){
         /*뒤 */
         visibility: hidden; 
          /* opacity: 0;  */
     }
-    &>div>a>div:nth-child(4){
+    &>div>div>a>div:nth-child(4){
         /*위 */
-        visibility: hidden; 
+         visibility: hidden;  
         /* opacity: 0; */
     }
-    &>div:first-child:hover{
+
+    &>div>div:hover{
         &>a>img:nth-child(1){
-            visibility: visible;
-            /* animation: fade_in_out 0.5s linear;
-            animation-fill-mode: forwards; */
-        }
-    }
-     &>div:hover{
-        &>a>img:nth-child(1){
-            visibility: visible;
+        /*앞 */
+        visibility: visible;
             animation: fade_in_out 0.5s linear;
             animation-fill-mode: forwards;
         }
-    } 
-    &>div:nth-last-child(1):hover{
         &>a>div:nth-child(3){
-            visibility: visible;
-            transform:  rotateY(-90deg) translateX(-19.5vh) translateZ(-9vh);
-            animation: fade_in_out 0.5s linear;
-            animation-fill-mode: forwards;
-        }
-    }
-    &>div:nth-last-child(2):hover{
-        &>a>div:nth-child(3){
+            /*뒤 */
             visibility: visible;
             animation: fade_in_out 0.5s linear;
             animation-fill-mode: forwards;
         }
-    }
-    &>div:nth-last-child(3):hover{
-        &>a>div:nth-child(3){
+        &>a>div:nth-child(4){
+            /*위 */
             visibility: visible;
             animation: fade_in_out 0.5s linear;
             animation-fill-mode: forwards;
         }
     }
-    &>div:nth-last-child(4):hover{
-        &>a>div:nth-child(3){
-            visibility: visible;
-            animation: fade_in_out 0.5s linear;
-            animation-fill-mode: forwards;
-        }
-    }
-    &>div:nth-last-child(5):hover{
-        &>a>div:nth-child(3){
-            visibility: visible;
-            animation: fade_in_out 0.5s linear;
-            animation-fill-mode: forwards;
-        }
-    }
-    
 
     @keyframes fade_in_out {
         0%{
             opacity: 0;
-            
         }
         100%{
             opacity: 1;
-
         }
     }
 
@@ -114,11 +82,11 @@ const Grid_box = styled.div`
 
 const Bottom_nav = styled.div`
     position:absolute;
-    bottom:8%;
+    bottom:5%;
     margin:0 auto;
-    z-index:-2;
+    z-index:-1;
     &>img{
-        width:60rem;
+        width:120vh;
     }    
     @media screen and (max-width: 1300px)
     { 
@@ -134,71 +102,53 @@ const Div = styled.div`
 
     position: relative;
     bottom: 32%;
-    margin-bottom: 3rem;
-    margin-right:0.2rem;
-    
+    margin-bottom: -22.5vh;
+    /* margin-right:0.2rem; */
     transform-style: preserve-3d;
     text-overflow: ellipsis;
-    /* perspective:100px;  */
     
     &:hover{
         cursor: pointer;
-        animation: book 1s linear ;
-        animation-fill-mode: forwards;
-        transform-style: preserve-3d;
+        animation: hover_book 0.4s linear forwards;
     }
-            @keyframes book {
+            @keyframes hover_book {
                 0%{
-                   
-                    transform:translateZ(0px)  rotateX(-3deg) rotateY(-3deg) ;
+
                 } 
                 100%{ 
-                    transform: translateZ(5vh)  translateY(20px)   rotateX(-7deg) rotateY(-4deg) ;
-                   
+                    transform:rotateX(-30deg) translateZ(10vh);
                 }
             }
 
-    :active{
-        animation: front 0.5s ease-in-out;
-        animation-fill-mode: forwards;
+    &:active{
+        animation: active_book 0.5s linear forwards;
     }
-        transform-style: preserve-3d;
-        
-        @keyframes front{
+        @keyframes active_book{
             0%{
-                transform: translateZ(0px)  translateY(10px)   rotateX(-15deg) rotateY(-7deg) ;
+                transform:rotateX(-30deg) translateZ(10vh);
             }
+           
             100%{
                 transform:  translateZ(20vh) ;
-            }
-        }
-        @keyframes deg{
-            0%{
 
             }
-            100%{
-                transform:  rotateY(-90deg) ;
-            }
         }
-        /* rotateY(0.3turn)  translateZ(300px) */
+      
 
 
 `;
 
 const ImageSize = styled.img`
-    width:40vh;
-    height:45vh;
-    margin-right:-6.3rem;
-    transform: rotateY(90deg)   translateX(20.3vh)  translateZ(2.5vh)   ;
+    width:20vh;
+    height:40vh;
+    transform: rotateY(90deg)   translateX(10.2vh)  translateZ(2.5vh)   ;
     position:absolute;
-    z-index:1;
-
-
+    z-index:2;
 `;
 
 const Side_cover = styled.div`
-    width: 20vh;
-    height:45vh;
+    width: 5.7vh;
+    height:40vh;
     text-align:center;
     display:flex;
     flex-direction:column;
@@ -206,50 +156,44 @@ const Side_cover = styled.div`
     text-align:center;
     background-color:${props => props.coverColor ? props.coverColor : "pink"};
     color:white;
-    z-index:4;
+    z-index:3;
+    
+    color:red;
+    font-size:100%;
     overflow:hidden;
-
-    &>span{
-        width:30px;
-        text-align:center;
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-    }
-
-
+    text-align:center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
 `;
 
 const Back_cover = styled.div`
-    z-index:2;
-    margin-left:-6.3rem;
-    width: 39.3vh;
-    height:45vh;
-    background-color:${props => props.coverColor ? props.coverColor : "black"};
+    z-index:-1;
+    width:20vh;
+    height:40vh;
+    /* background-color:${props => props.coverColor ? props.coverColor : "black"}; */
+     background-image:url("https://cdn.pixabay.com/photo/2017/07/20/09/35/particles-2521732_960_720.jpg");  
+    /* background-image:url("https://cdn.pixabay.com/photo/2019/12/21/07/44/frame-4709861_960_720.png");  */
     color:white;
     text-overflow:hidden;
     overflow:hidden;
-    transform:rotateY(-90deg) translateX(-19.8vh) translateZ(-9.4vh); 
+    transform:rotateY(-90deg) translateX(-10.2vh) translateZ(2.5vh); 
     position:absolute;
 `;
 
 const Up_cover = styled.div`
-    /* background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAIVBMVEX///8AAADS0tI1NTVRUVEyMjJmZmYZGRlAQEDW1tbZ2dmAbgc1AAAAYElEQVR4nO3QgQ2AIAwAsCFOxf8P5otlmvaERgAAAAAAAAAAAAAAAAAAAAAAAADAb5w5O8ur4OAevT0FB+vo7S04AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCDNrBKA+vIaTt5AAAAAElFTkSuQmCC"); */
-    width: 2.7rem;
-    height:40vh;
-    background-color:${props => props.coverColor ? props.coverColor : "black"};    
-    background:black;
-    transform:rotateX(90deg)  translateX(-0.2vh) translateY(-20vh)   translateZ(-4.6vh) ; 
+    width: 5.25vh;
+    height:20vh;
+   /* background:black; */
+    transform:   translateY(-30vh) translateZ(-9.8vh)  rotateX(90deg); 
     position:absolute;
-    bottom:65%;
+    bottom:0;
+    z-index:2;
+    background: rgb(255,255,255);
+    background: linear-gradient(93deg, rgba(255,255,255,1) 0%, rgba(20,20,20,0.9626225490196079) 51%, rgba(255,255,255,1) 100%);
+
 
 `;
 
-
-const Image_box = styled.img`
-    width: 25px;
-    height:15rem;
-    margin-right:-5px;
-`;
 
 const Input = styled.input`
     position:absolute;
@@ -265,9 +209,8 @@ const A = styled.a`
     display:flex;
     align-items:center;
     justify-content:center;
-    width:50px;
     transform-style: preserve-3d;
-
+    margin:0 0.2vh;
 `;
 
 const Span = styled.span`
@@ -279,6 +222,21 @@ const H2 = styled.h2`
     position:absolute;
     top:0;
     margin-top:6rem;
+`;
+
+const Background_img = styled.img`
+    position:absolute;
+    width:100%;
+    height:100%;
+    z-index:-5;
+    background-image:url("\/images/wood.jpg");
+
+`;
+
+const Box = styled.div`
+    display:flex;
+    height:35.5vh;
+    align-items:center;
 `;
 
 class MyBookList extends React.Component {
@@ -295,31 +253,37 @@ class MyBookList extends React.Component {
                         님의 서재:
                     </H2>
                     <Grid_box className="list">
-                        {this.props.currentUser.favBooks.map(book => {
-                            return (
-                                <Div> 
-                                    <A href={`/${this.props.routes.bookDetail(book.id)}`}>
-                                        <ImageSize  src={`/${book.imageUrl}`} />
- 
-                                        <Side_cover>
-                                            <span>{book.title}</span>
-                                        </Side_cover>
-                                        {/* <h4>{book.author}</h4> */}
-                                        <Back_cover className="Back_cover">
-                                            <span>{book.description}</span>
-                                        </Back_cover>
-                                        <Up_cover></Up_cover>
-                                    </A>
-                                    <form action={routes.deleteFavBook(book.id)} method="post">
-                                        <Input type="submit" value="삭제" />
-                                    </form>
-                                </Div>
-                            )
-                        })}
+                        <Box>
+                            {this.props.currentUser.favBooks.map(book => {
+                                return (
+                                    <>
+                                        <Div>
+                                            <A href={`/${this.props.routes.bookDetail(book.id)}`}>
+                                                <ImageSize src={`/${book.imageUrl}`} />
+
+                                                <Side_cover>
+                                                    {book.title}
+                                                </Side_cover>
+                                                {/* <h4>{book.author}</h4> */}
+                                                <Back_cover className="Back_cover">
+                                                    <span>{book.description}</span>
+                                                </Back_cover>
+                                                <Up_cover></Up_cover>
+                                            </A>
+
+                                            <form action={routes.deleteFavBook(book.id)} method="post">
+                                                <Input type="submit" value="삭제" />
+                                            </form>
+                                        </Div>
+                                    </>
+                                )
+                            })}
+                        </Box>
                     </Grid_box>
                     <Bottom_nav>
                         <img src="../images/shelf.png" alt="" />
                     </Bottom_nav>
+                    <Background_img />
                 </Flex_box>
             </BaseLayout>
         )

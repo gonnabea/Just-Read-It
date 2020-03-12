@@ -48,9 +48,9 @@ class bookDetail extends React.Component {
             if (user) {
                 return (
                     <form action={routes.postReview(book.id)} method="post">
-                        <input type="text" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!" />
-                        <input type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={0} step={.1} />
-                        <input type="submit" value="등록" />
+                        <InputReview type="textarea" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!"  rows="1" />
+                        <InputRate type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={0} step={.1} />
+                        <ReviewSubmit type="submit" value="등록" />
                     </form>
                 )
             }
@@ -105,13 +105,13 @@ class bookDetail extends React.Component {
                                 <div></div>
                                 <div>
                                     <span>
-                            <h1>{book.title} {totalStar} ({this.props.totalRate})</h1>
-                            <h5>{book.author}</h5>
-                            <h4>{book.likeFigure}명이 서재에 보관 중</h4>
-                            <h3>{JSON.stringify(book.createdAt)}</h3>
-                            <h5>{book.description}</h5>
+                                        <h1>{book.title} {totalStar} ({this.props.totalRate} / 10)</h1>
+                                        <h5>{book.author}</h5>
+                                        <h4>{book.likeFigure}명이 서재에 보관 중</h4>
+                                        <h3>{JSON.stringify(book.createdAt)}</h3>
+                                        <h5>{book.description}</h5>
                                     </span>
-                            </div>
+                                </div>
                                 <div><span>{book.author}</span><span>{book.title}</span></div>
                                 <div></div>
                             </Book>
@@ -195,14 +195,14 @@ const Book = styled.div`
     animation-fill-mode: forwards;
     }
     transform-style: preserve-3d;
-    perspective: 100vw;
+    perspective: 200vw;
         @keyframes moveBook {
             0%{
                 
-                transform: translateX(0vw) translateZ(0px);
+                transform: translateX(0vw) translateZ(0);
             }100%{
                 
-                transform: translateX(40vw) translateZ(100px);
+                transform: translateX(40vw) translateZ(200px);
             }
         }
     
@@ -216,46 +216,48 @@ const Book = styled.div`
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         background-size: cover;
         background-position: center center;
-        perspective: 100vw;
+        
         transform: translateZ(2vw);
         transform-origin: 0 0;
-        :active {animation: openBook 0.5s ease-in-out;
+        
+        :active {
+            animation: openBook 0.5s ease-in-out;
             animation-fill-mode: forwards;
             transform-style: preserve-3d;
-            perspective:100px;
-        @keyframes openBook {
-            0%{
-                transform: rotateY(0deg);
-                box-shadow: 0px 0px 0px;
-                
-            }
-            100%{
-                transform: rotateY(-130deg);
-                box-shadow: 10px 10px 10px;
-            }
-        }
-    }
-    img:nth-child(1){
-        :active{
-        animation:fadeImage 0.5s;
-        animation-fill-mode:forwards;
-        @keyframes fadeImage {
-            0%{
-                opacity:1;
-            }
-            100%{
-                opacity:0;
+           
+            @keyframes openBook {
+                0%{
+                    transform: rotateY(0deg);
+                    box-shadow: 0px 0px 0px;
+                    
+                }
+                100%{
+                    transform: rotateY(-150deg);
+                    box-shadow: 10px 10px 10px;
+                }
             }
         }
-    }
-    }
+        img:nth-child(1){
+            :active{
+                animation:fadeImage 0.5s;
+                animation-fill-mode:forwards;
+                @keyframes fadeImage {
+                    0%{
+                        opacity:1;
+                    }
+                    100%{
+                        opacity:0;
+                    }
+                }
+            }
+        }
     }
     section:nth-child(2){
         margin-top:10px;
         position: absolute;
         width: 100%;
         height: 100%;
-        background-color:rgb(245, 219, 136);
+        background-color:white;
         text-overflow:hidden;
         z-index:-1;
         border-left:solid 2px black;
@@ -277,12 +279,13 @@ const Book = styled.div`
     }
     div:nth-child(4){
         position: absolute;
-        width: 200px;
-        height: 200px;
+        width: 4vh;
+        height: 38vh;
         background-color: yellow;
         background-size: cover;
         background-position: center center;
-        transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
+        transform: rotateY(90deg) rotateX(90deg) translateY(17vh)  translateZ(19vh) ;
+
         color:white;
     }
     div:nth-child(5){
@@ -422,6 +425,46 @@ align-items: center;
 color:black;
 margin-top:0.3rem;
 background-color: rgba(255,255,255,0.3);
+`
+
+const InputReview = styled.textarea`
+border: solid 2px black;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+width: 20vw;
+height:2.5vh;
+border-radius:15px;
+:focus{
+    
+    animation: focus 0.5s;
+    animation-fill-mode:forwards;
+    ::placeholder{
+            opacity:0;
+        }
+}
+
+@keyframes focus {
+    0%{
+        
+        height:0vh;
+       
+    }
+    100%{
+        height:20vh;
+        
+        
+    }
+}
+`
+const InputRate = styled.input`
+border: solid 2px black;
+text-align:center;
+`
+const ReviewSubmit = styled.input`
+border: solid 2px black;
+text-align:center;
 `
 
 const BookIntroduce = styled.section`

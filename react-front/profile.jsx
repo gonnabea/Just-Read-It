@@ -10,20 +10,76 @@ const Image = styled.img`
     height:100px;
     border-radius:100%;
     margin:1rem;
+    transform-style: preserve-3d;
+
 `;
 
 const Div = styled.div`
     width:100%;
-    height:80vh;
+    height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-
-`;
+    transform-style: preserve-3d;
+    perspective: 650px;
+    background:linear-gradient(180deg, rgba(0,36,25,0.5046393557422969) 0%, rgba(205,5,147,0.8575805322128851) 35%, rgba(3,25,29,0.8911939775910365) 100%);
+`; 
 
 const A = styled.a`
     margin:0.6rem;
+    color:${props=>props.color||"black"};
+    width:15vh;
+    overflow:hidden;
+    text-align:center;
+    transform-style: preserve-3d;
+    perspective: 650px;
+
+    &>h2:nth-child(2){
+        opacity:0.5;
+    }
+    &>h4:nth-child(3){
+        opacity:0.5;
+    }
+    &:hover{
+        &>h2:nth-child(2){
+        opacity:1;
+        }
+        &>h4:nth-child(3){
+        opacity:1;
+        }
+    }
+
+    &>img:first-child{
+        
+        &:hover{
+            animation: image_hover_turn 1.2s linear forwards
+
+        }
+        
+        @keyframes image_hover_turn{
+            0%{
+                transform: rotateX(0turn) ;
+            }
+            50%{
+                transform: rotateX(0.5turn) ;
+                
+            }
+            100%{
+                transform: rotateX(1turn)  translateZ(30vh);
+            }
+        }
+    }
+    @media screen and (max-width: 1300px)
+    { 
+        font-size:1.5vh;
+        
+    }
+    @media screen and (max-width: 600px)
+    {
+        font-size:1vh;
+        
+    }
 `;
 
 const Grid_area = styled.div`
@@ -36,8 +92,15 @@ const Grid_area = styled.div`
         grid-template-columns: repeat(3, 1fr);
 
     }
+  
 `;
+const Background= styled.div`
+    height:100vh;
+    /* background-image:url("https://cdn.pixabay.com/photo/2017/09/21/08/14/fantasy-2771073_960_720.jpg"); */
+    background-position:center center;
+    background-size:cover;
 
+`;
 
 class profile extends React.Component {
     render() {
@@ -46,25 +109,29 @@ class profile extends React.Component {
             <BaseLayout>
                 {Header(this.props)}
                 <GlobalStyle />
-                <div>
+                <Background>
                     <Div>
                         <Image src={this.props.currentUser.profilePhoto} />
-                        <A styled={{ color: "blue" }} href={this.props.routes.editUser(this.props.user.id)}>프로필 수정</A>
-                        <h2>{this.props.currentUser.username}님이 등록한 책 리스트:</h2>
+                        <A  href={this.props.routes.editUser(this.props.user.id)}>
+                            프로필 수정
+                        </A>
+                        <h2 >{this.props.currentUser.username}
+                            님이 등록한 책 리스트:
+                        </h2>
                         <Grid_area>
                             {this.props.currentUser.uploadedBooks.map(book => {
                                 return (
                                     <A href={`/${this.props.routes.bookDetail(book.id)}`}>
                                         <Image src={`/${book.imageUrl}`} alt="" />
-                                        <h1>{book.title}</h1>
-                                        <h3>{book.author}</h3>
-                                        <h4>{book.description}</h4>
+                                        <h2>{book.title}</h2>
+                                        <h4>{book.author}</h4>
+                                        {/* <h4 style={{height:"20vh"}}>{book.description}</h4> */}
                                     </A>
                                 )
                             })}
                         </Grid_area>
                     </Div>
-                </div>
+                </Background>
             </BaseLayout>
         )
     }
