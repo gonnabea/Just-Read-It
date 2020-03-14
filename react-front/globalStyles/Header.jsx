@@ -296,6 +296,13 @@ const Span_size = styled.span`
   }
   
 `;
+const Icon = {
+  zIndex:"2",
+  marginRight:"-2.5vh",
+}
+
+
+
 function Header(props) {
 
   function ProfileLink() {
@@ -400,7 +407,7 @@ function Header(props) {
 
         <Search_box>
           <Form action={routes.search} method="post">
-            <i class="fas fa-search"></i>
+            <i style={Icon} class="fas fa-search"></i>
             <Sinput  height="2.3rem" type="text" name="search" required={true} placeholder="제목,작가,소개글 ..." className="button" />
             <Binput margin_left="0.5rem" type="submit" value="검색" />
           </Form>

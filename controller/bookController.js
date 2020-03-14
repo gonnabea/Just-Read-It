@@ -38,8 +38,11 @@ export const bookDetail = async(req, res) => {
     const { params: {id} } = req;
     let rateFigure = 0;
     let booksFigure = 0;
+    try{
     const book = await Book.findById(id).populate("enrolledBy").populate("review");
-    if(book){
+    console.log(book)
+    
+    
     book.review.forEach( argument => {
         if(argument.rate!=0){
         rateFigure += argument.rate;
@@ -64,9 +67,10 @@ export const bookDetail = async(req, res) => {
       const coverColor = rgbToHex(R,G,B);
     const totalRate = (rateFigure/booksFigure).toPrecision(2);
     res.render("book-detail" , {book, totalRate, coverColor});
-}else{
+    }catch(err){
+    console.log(err);
     res.render("404");
-}
+    }
 }
 
 export const myBookList = async(req, res) => {

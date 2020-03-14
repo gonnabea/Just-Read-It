@@ -1,18 +1,19 @@
 const kakaoUpload = document.getElementById("kakaoBook");
 const bookTitle = document.getElementById("target");
 
+/*
 const client = async(e) =>{ 
     console.log(bookTitle.value)
     console.log(e);
     e.preventDefault();
     try {
-      await axios.get("https://dapi.kakao.com/v3/search/book?target=title",{
+      await axios.get("https://dapi.kakao.com/v3/search/book",{
         query: bookTitle.value}
         ,
         {headers: {
           'Content-Type': 'application/json; charset=utf-8',
           'Host': 'dapi.kakao.com',
-          'Authorization': 'KakaoAK 8efbd07fbb76bd00a26b6203eb5a57b6',
+          'Authorization': 'KakaoAK 2f0ccf520e86aab3f7366d1b04a1aadc'
         }
       }).then(function(msg){
         console.log(msg);})
@@ -21,6 +22,25 @@ const client = async(e) =>{
     }
   
 }  
+*/
+
+const client = async e => {
+  console.log(bookTitle.value)
+    console.log(e);
+    e.preventDefault();
+  try {
+    const a = await axios.get("https://dapi.kakao.com/v3/search/book", {
+      params: { query: bookTitle.value },
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        Authorization: "KakaoAK 8efbd07fbb76bd00a26b6203eb5a57b6"
+      }
+    });
+    console.log(a);
+  } catch (error) {
+    console.log(error.response);
+  }
+};
 
 
 /*

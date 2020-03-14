@@ -93,6 +93,8 @@ const Li = styled.li`
 
 const Button = styled.button`
     margin:0.6rem;
+    font-size:1rem;
+    width:6vh;
 `;
 
 const Image = styled.img`
@@ -241,6 +243,7 @@ function Home(props) {
                         return (
                             <Li className="reco_list">
                                 <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
+                                   
                                     <Image width="10rem" src={argument.imageUrl} />
                                     <Reco_span>
                                         제목:<br />
@@ -314,9 +317,7 @@ function Home(props) {
                         </Button>
                     </Ul>
                 </Recom_div>
-                <Button id="btn" >
-                    this button
-                </Button>
+               
                 {bookList}
 
             </Grid_box>
