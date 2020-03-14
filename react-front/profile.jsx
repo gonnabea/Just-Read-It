@@ -10,20 +10,18 @@ const Image = styled.img`
     height:100px;
     border-radius:100%;
     margin:1rem;
-    transform-style: preserve-3d;
 
 `;
 
 const Div = styled.div`
+    position:absolute;
     width:100%;
-    height:100vh;
+    height:100%;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    transform-style: preserve-3d;
-    perspective: 650px;
-    background:linear-gradient(180deg, rgba(0,36,25,0.5046393557422969) 0%, rgba(205,5,147,0.8575805322128851) 35%, rgba(3,25,29,0.8911939775910365) 100%);
+    
 `; 
 
 const A = styled.a`
@@ -92,24 +90,31 @@ const Grid_area = styled.div`
         grid-template-columns: repeat(3, 1fr);
 
     }
-  
+   
 `;
-const Background= styled.div`
-    height:100vh;
-    /* background-image:url("https://cdn.pixabay.com/photo/2017/09/21/08/14/fantasy-2771073_960_720.jpg"); */
+
+const Background_image = styled.div`
+    position:absolute;
+    z-index:-1;
+    top:0;
+    width:100%;
+    height:100%;
+    background-image:url("https://cdn.pixabay.com/photo/2017/07/26/17/41/watercolour-2542465_960_720.jpg");
+    background-repeat:repeat;
     background-position:center center;
-    background-size:cover;
-
+    background-size:100% auto;
+    @media screen and (min-height: 100vh)
+    {
+        height:150vh;
+    }
 `;
-
 class profile extends React.Component {
     render() {
 
         return (
             <BaseLayout>
-                {Header(this.props)}
                 <GlobalStyle />
-                <Background>
+                {Header(this.props)}
                     <Div>
                         <Image src={this.props.currentUser.profilePhoto} />
                         <A  href={this.props.routes.editUser(this.props.user.id)}>
@@ -131,7 +136,9 @@ class profile extends React.Component {
                             })}
                         </Grid_area>
                     </Div>
-                </Background>
+                    <Background_image>
+
+                    </Background_image>
             </BaseLayout>
         )
     }

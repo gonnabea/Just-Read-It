@@ -4,7 +4,7 @@ import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
-
+ 
 const Divs = styled.div`
     /* width:100%; */
     height:100vh;
@@ -96,7 +96,7 @@ class uploadBook extends React.Component {
 
 
     render() {
-
+ 
         return (
             <BaseLayout>
                 <GlobalStyle />
@@ -115,9 +115,9 @@ class uploadBook extends React.Component {
                         </form>
 
                         <div style={{marginTop:"0.3rem"}}>카카오 책에서 찾아보기</div>
-                        <form style={KaKao_form} action={this.props.routes.kakaoSearch} method="get">
-                            <input style={{width:"16vh"}} type="text" placeholder="책 제목을 입력하세요" />
-                            <input style={{ cursor: "pointer",margin:"0.2rem" }} id="kakaoBook" type="submit" value="검색" />
+                        <form style={KaKao_form}  id="kakaoBook" method="get">
+                            <input style={{width:"16vh"}} type="text" id="target"   placeholder="책 제목을 입력하세요" />
+                            <input style={{ cursor: "pointer",margin:"0.2rem" }}  type="submit" value="검색" />
                         </form>
 
                     </Box_img>
@@ -126,7 +126,8 @@ class uploadBook extends React.Component {
                         <Image src="https://cdn.pixabay.com/photo/2019/07/23/02/19/laurel-4356464_960_720.png" />
                     </Image_box>
                 </Divs>
-                <script src="/vanilla/uploadBook"></script>
+                <script src="/vanilla/uploadBook.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
             </BaseLayout>
         )
 

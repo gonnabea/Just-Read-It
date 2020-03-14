@@ -40,10 +40,9 @@ height:10vh;
 display:inline-block;
 /* filter: grayscale(20%); */
 color:blue;
-
+z-index:2;
 &:hover{
   animation: hover_turn 2s linear infinite forwards;
-  
 }
   @keyframes hover_turn{
     0%{
@@ -83,9 +82,11 @@ const A = styled.a`
   margin:0.7rem;
   text-decoration:none;
   color:${props => props.color || "white"};
+  font-size:${props => props.font_size || "15px"};
   :hover{
     color:#9ACD32;
   }
+  
 `;
 
 
@@ -94,32 +95,13 @@ const A = styled.a`
 const Search_box = styled.div`
   width:100%;
   position:absolute;
+  top:3%;
+  right:0;
   display:flex;
-  right:-30%;
-  &:hover{
-    
-    /* animation:search_width 1s linear;
-    animation-fill-mode: forwards;   */
-    
-  }
-
-  @keyframes search_width{
-    0%{
-      &>input:first-child{
-        
-        margin-left:0;
-        width:25vh;
-      }
-    }
-    100%{
-      &>input:first-child{
-      margin-left:-10vh;
-
-      width:60%;
-      }
-
-    }
-  }
+  justify-content: center;
+  
+  align-items:center;
+  /* right:-30%; */
   
 
 `;
@@ -147,20 +129,19 @@ border-radius: 20px;
 
 `;
 
-const handles = ()=>{
+const handles = () => {
   alert("nao deu erro");
 }
 
-const handleClick = ()=>{
+const handleClick = () => {
   const b = ReactDOM.document.querySelector(".button");
-  b.innerWidth="5vh";
-  a.addEventListener("click",handles);
+  b.innerWidth = "5vh";
+  a.addEventListener("click", handles);
 }
 
 
 const Sinput = styled.input`
   align-items:center;
-  margin:0.6rem auto;
   width:${props => props.width || "20vh"};
   height:${props => props.height || "3vh"};
   margin-left:${props => props.margin_left || "0px"}; 
@@ -190,21 +171,16 @@ const Sinput = styled.input`
   &:focus{
     outline:none;
     cursor: pointer;
-     animation: search_width 0.5s linear;
-      animation-fill-mode: forwards;   
-
+    animation: search_width 0.4s linear forwards;
   }
-
+ 
   @keyframes search_width{
     0%{
       margin-left:0;
-      width:25vh;
+      width:20vh;
     }
     100%{
-      margin-left:-10vh;
-
-    width:60%;
-
+      width:50%;
     }
   }
 
@@ -236,67 +212,46 @@ const Binput = styled.input`
   background-color: black;
   color:white;
   border:none;
+
   &:hover{
   cursor: pointer;
-}
+  } 
 
-@media screen and (max-width: 900px)
-{ 
- position:absolute;
- right:0;
- top:0;
- margin-right:-3rem;
- margin-top:1rem;
+  @media screen and (max-width: 900px)
+  { 
+  position:absolute;
+  right:0;
+  top:0;
+  margin-right:-3rem;
+  margin-top:1rem;
 
-}
+  }
 
 `;
 
 const Prifile_img = styled.img`
-  display:block;
-  width:40px;
-  height:40px;
+  width:7vh;
+  height:7vh;
+  position:absolute;
+  right:0;
+  top:0;
   border-radius:100%;
-  margin-top:0.3rem;
-  margin-left:0.3rem;
+  cursor:pointer;
 `;
 
 const Icon_box = styled.div`
     position:absolute;
     right:1.5%;
     top:5%;
-    opacity:1;
     width:35px;
     height:35px;
-
-    :hover
-    {
-      opacity:0.7;
-      cursor:pointer;
-      width:50vh;
-      height:40vh;
-      background:black;
-      background-color:black;
-      color:white;
-      ul:nth-child(2){
-        visibility:visible;
-        
-    }
-
-    img:first-child
-    {
+    border-radius:10px;
+    &>i{
       position:absolute;
       right:0;
       top:0;
     }
 
-    i:first-child
-    {
-      position:absolute;
-      right:0;
-      top:0;
-    }
-  }
 
   ul:nth-child(2)
   {
@@ -312,11 +267,11 @@ const Icon_box = styled.div`
 
 `;
 const Form = styled.form`
-     width:80%;
-     /* display:flex;
+     width:100%;
+     display:flex;
     justify-content:center;
-    align-items:center; */
-  margin-top:0.8rem;
+    align-items:center; 
+    margin-top:0.8rem;
 
 `;
 const User_none = styled.div`
@@ -327,13 +282,20 @@ const User_none = styled.div`
 
 const Menu_img = styled.img`
   display:block;
-  width:40px;
-  height:40px;
+  width:10vh;
+  height:10vh;
   border-radius:100%;
   margin-top:0.3rem;
   margin-left:0.3rem;
 `;
-
+const Span_size = styled.span`
+  font-size:2.6vh;
+  border-bottom: 1px solid white;
+  :hover{
+    color:#9ACD32;
+  }
+  
+`;
 function Header(props) {
 
   function ProfileLink() {
@@ -341,54 +303,73 @@ function Header(props) {
       return (
         <>
           <A href={`/${props.routes.profile(props.user.id)}`}>
-              <Prifile_img src={props.user.profilePhoto} />
-              <span>
-                프로필
-              </span>
+            <Prifile_img className="header_icon_img" src={props.user.profilePhoto} />
+            <Span_size>
+              프로필
+              </Span_size>
           </A>
         </>
 
       )
     } else {
       return (
-        <div>
-            <h4 style={{ color: "red" }}>로그인 된 유저가 없습니다.</h4>
-        </div>
+        <>
+          <span style={{ color: "red", fontSize: "1rem" }}>
+            로그인 된 유저가 없습니다.
+            </span>
+        </>
       )
     }
   }
   function ProfileImage() {
-    if(props.user)
-    {
+    if (props.user) {
 
-      return(
-        <Prifile_img src={props.user.profilePhoto} />  
+      return (
+        <Prifile_img src={props.user.profilePhoto} />
       )
     }
-    else{
-      return(
-        <i class="fas fa-bars fa-2x"></i>
+    else {
+      return (
+        <i style={{ cursor: "pointer" }} class="fas fa-bars fa-3x" id="header_icon_bars"></i>
       )
     }
   }
-  
+
   function CheckLogin() {
     if (props.user) {
       return (
         <>
-        <Prifile_img src={props.user.profilePhoto} /> 
-          <A href={routes.logout}> 로그아웃</A>
-          <A href={routes.addBook}>새로운 책 등록</A>
-          <A href={`/${routes.myBookList(props.user.id)}`}>내 서재</A>
+          <Prifile_img className="header_icon_img" src={props.user.profilePhoto} />
+          <A href={routes.logout}>
+            <Span_size>
+              로그아웃
+              </Span_size>
+          </A>
+          <A href={routes.addBook}>
+            <Span_size>
+              새로운 책 등록
+            </Span_size>
+          </A>
+          <A href={`/${routes.myBookList(props.user.id)}`}>
+            <Span_size>
+              내 서재
+            </Span_size>
+          </A>
         </>)
     } else {
       return (
         <>
           <A color="blue" href={routes.login}>
-            로그인
+            <Span_size>
+              로그인
+          </Span_size>
+
           </A>
           <A color="blue" href={routes.join}>
-            가입
+            <Span_size>
+              가입
+          </Span_size>
+
           </A>
         </>
       )
@@ -398,13 +379,13 @@ function Header(props) {
   return (
     <BaseLayout>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-     
+
       <GlobalStyle />
       <Div className="class_name_header" >
         <a href={routes.home}>
           {/* <Imag_styles src="/images/Long_Story.png" /> */}
           {/* <Imag_styles src="https://cdn.pixabay.com/photo/2017/07/28/20/14/ribbon-2549692_960_720.png" /> */}
-          
+
           {/* book↓*/}
           {/* <Imag_styles src="https://cdn.pixabay.com/photo/2017/05/27/13/33/logo-2348459_960_720.jpg" /> */}
 
@@ -418,27 +399,30 @@ function Header(props) {
         </a>
 
         <Search_box>
-          <Form  action={routes.search} method="post">
-            <Sinput margin_left="8rem" height="2.3rem"  type="text" name="search" required={true} placeholder="제목,작가,소개글 ..." className="button"/>
+          <Form action={routes.search} method="post">
+            <i class="fas fa-search"></i>
+            <Sinput  height="2.3rem" type="text" name="search" required={true} placeholder="제목,작가,소개글 ..." className="button" />
             <Binput margin_left="0.5rem" type="submit" value="검색" />
           </Form>
         </Search_box>
 
-          <Icon_box>
-          
-            <ProfileImage/>
-            <ul>
-              <li>
-                <ProfileLink />
-              </li>
-              <li>
-                <CheckLogin />
-              </li>
-            </ul>
+        <Icon_box id="header_icon_box">
 
-          </Icon_box>
+          <ProfileImage />
+          <ul id="header_icon_ul">
+            <li>
+              <ProfileLink />
+            </li>
+            <li>
+              <CheckLogin />
+            </li>
+          </ul>
+
+        </Icon_box>
 
       </Div>
+      <script src="/vanilla/header.js"></script>
+
     </BaseLayout>
 
   );

@@ -12,7 +12,7 @@ const Div = styled.div`
 `;
 
 const Recom_div = styled.div`
-    width:100%;
+    width:100%; 
     height:45vh;
     display:grid;
     overflow: auto;
@@ -32,10 +32,21 @@ const Recom_div = styled.div`
     }
 `;
 const Recom_a = styled.a`
+    width:100%;
     display:flex;
     text-align:center;
     align-items:center;
-    justify-content:center;
+    justify-content:space-between;
+
+    &>span{
+    width:10vh;
+    height:10vh;
+    }
+    span:nth-child(4){
+        width:30vh;
+        height:20vh;
+        color:white;
+    }
 `;
 
 let i = 1;
@@ -44,19 +55,12 @@ const Ul = styled.ul`
     display:block;
     margin-top:-5rem;
     
-    /* &>li:first-child>a>span:nth-child(2){
-        color:red;
-    }
-    &>li:nth-child(2)>a>span:nth-child(2){
-        color:red;
-    } */
     &>li{
         margin-top:6rem;
         display:flex;
         flex-direction:column;
     }
-   
-    &>li:nth-child(${i})>a>span:nth-child(2){
+    /* &>li:nth-child(${i})>a>span:nth-child(2){
         color:blue;
     }
     &>li:nth-child(${i})>a>span:nth-child(3){
@@ -72,11 +76,8 @@ const Ul = styled.ul`
 
     &>li:nth-child(${i})>a>span:nth-child(2){
         color:blue;
-        ${i=1}
-    }
-
-
-
+        ${i = 1}
+    } */
 `;
 
 const Li = styled.li`
@@ -95,8 +96,8 @@ const Button = styled.button`
 `;
 
 const Image = styled.img`
-    width:${props => props.width || "15rem"};
-    height:100%;
+    width:${props => props.width || "13.5rem"};
+    height:40vh;
     margin-top:1rem;
     margin-left:1rem;
 
@@ -104,37 +105,18 @@ const Image = styled.img`
     { 
         position:relative;
         width:10rem;
+        height:100%;
     }
-/* 
-    &:hover{
-     animation: Hover 0.2s 250ms linear forwards;
-    transform-style: preserve-3d; 
-
-
-        @keyframes Hover {
-            0%{
-                box-shadow: 0;
-                transform: translateY(0vh);
-            }
-        
-            100%{
-                box-shadow: 10px 10px 20px black;
-                transform: translateY(-4vh);
-                border-radius:5px;
-            }
-        } 
-
-    box-shadow: 10px 10px 20px black;
-        transform: translateY(-5vw);
-    } */
 
 `;
-const Span = styled.span`
-    display:block;
+const Reco_span = styled.span`
+    display:flex;
+    text-align:center;
+    justify-content:center;
+    align-items:center;
     text-overflow: hidden;    
     overflow: hidden;
-    width:100px;
-    height:100px;
+    flex-direction:column;
 `;
 
 const A = styled.a`
@@ -150,10 +132,14 @@ const Reflex = styled.div`
 
 const Grid_box = styled.div`
     display:grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(6,1fr);
     text-align:center;
-
      
+    @media screen and (max-width: 1450px)
+    { 
+        text-align:center;
+        grid-template-columns: repeat(5,1fr);
+    }
     @media screen and (max-width: 1300px)
     { 
         text-align:center;
@@ -204,33 +190,34 @@ animation-fill-mode: forwards;
 :hover{
 
 
-&>img:first-child{
-    animation: Hover 0.2s 250ms linear forwards;
-    transform-style: preserve-3d;
+img:first-child{
+    animation: Hover 0.3s linear forwards;
         @keyframes Hover {
             0%{
                 box-shadow: 0;
-                transform: translateY(0vh);
+                transform:translateY(0);
+
             }
-        
+            50%{
+
+                transform:translateY(-2vh);
+            }
             100%{
                 box-shadow: 10px 10px 20px black;
-                transform: translateY(-4vh);
+                transform:translateY(-5vh);
                 border-radius:5px;
             }
         } 
-
-    /*box-shadow: 10px 10px 20px black;
-        transform: translateY(-5vw);*/
     }
+   
 }
 
 `
 
 function Home(props) {
- 
 
-    
+
+
     function recommendList() {
         if (props.recomendBooks) {
             return (
@@ -240,31 +227,37 @@ function Home(props) {
             )
         }
     }
-    
+
     function recomSys() {
         // console.log(props.recomendBooks)
         if (props.recomendBooks) {
             // console.log(props.recomendBooks.length)
             return (
-                props.recomendBooks.map(argument =>
-                    {
-                        if (argument === null) 
-                        {
-                            return "";
-                        }
-                    else 
-                    {
+                props.recomendBooks.map(argument => {
+                    if (argument === null) {
+                        return "";
+                    }
+                    else {
                         return (
-                            <Li classNanme="reco_list">
+                            <Li className="reco_list">
                                 <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
                                     <Image width="10rem" src={argument.imageUrl} />
-                                    <Span>{argument.title}</Span>
-                                    <Span>{argument.author}</Span>
-                                    <Span>{argument.description}</Span>
+                                    <Reco_span>
+                                        제목:<br />
+                                        {argument.title}
+                                    </Reco_span>
+                                    <Reco_span>
+                                        작가:<br />
+                                        {argument.author}
+                                    </Reco_span>
+                                    <Reco_span>
+                                        본문:<br />
+                                        {argument.description}
+                                    </Reco_span>
                                 </Recom_a>
-                                
+
                             </Li>
-                            )
+                        )
                     }
                 })
             )
@@ -273,15 +266,15 @@ function Home(props) {
         }
     }
 
-    function example(){
+    function example() {
         console.log("xxx")
-       
+
     }
 
-    const handleClick = () =>{
+    const handleClick = () => {
         console.log("sdfasfgdgbxgdzgsdfbsfvbx")
-       }
-       
+    }
+
     const bookList =
         props.books.map(book => {
             return (
@@ -312,10 +305,10 @@ function Home(props) {
                     {recommendList()}
                     <Ul>
                         {recomSys()}
-                        <Button click="PrevPage">
+                        <Button id="btn_prev" >
                             Prev
-                            </Button>
-                        <Button onClick="nextPage">
+                        </Button>
+                        <Button id="btn_next">
                             Next
 
                         </Button>

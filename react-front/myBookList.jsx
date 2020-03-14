@@ -22,32 +22,33 @@ const Grid_box = styled.div`
     display:flex;
     justify-content:center;
     perspective:800px;  
-
-    width:80%;
-    height:60vh;
+    
+    flex-direction:column;
+    width:100%;
+    height:100%;
     align-items:center;
     margin:0 auto;
     bottom:0;
     transform-style: preserve-3d;
     animation-fill-mode: forwards;
 
-    &>div>div>a>img:nth-child(1){
+    &>div>div>div>a>img:nth-child(1){
         /*앞 */
         visibility: hidden; 
         /* opacity: 0; */
     }
-    &>div>div>a>div:nth-child(3){
+    &>div>div>div>a>div:nth-child(3){
         /*뒤 */
         visibility: hidden; 
          /* opacity: 0;  */
     }
-    &>div>div>a>div:nth-child(4){
+    &>div>div>div>a>div:nth-child(4){
         /*위 */
          visibility: hidden;  
         /* opacity: 0; */
     }
 
-    &>div>div:hover{
+    &>div>div>div:hover{
         &>a>img:nth-child(1){
         /*앞 */
         visibility: visible;
@@ -81,11 +82,11 @@ const Grid_box = styled.div`
 `;
 
 const Bottom_nav = styled.div`
-    position:absolute;
-    bottom:5%;
-    margin:0 auto;
-    z-index:-1;
+    position:relative;
+    margin-top:-3vh;
+    z-index:-2;
     &>img{
+        z-index:-2;
         width:120vh;
     }    
     @media screen and (max-width: 1300px)
@@ -99,7 +100,7 @@ const Bottom_nav = styled.div`
 
 const Div = styled.div`
   
-
+    display:grid;
     position: relative;
     bottom: 32%;
     margin-bottom: -22.5vh;
@@ -109,14 +110,21 @@ const Div = styled.div`
     
     &:hover{
         cursor: pointer;
-        animation: hover_book 0.4s linear forwards;
+        animation: hover_book 1s linear forwards;
+        z-index:10;
     }
             @keyframes hover_book {
                 0%{
 
                 } 
+                30%{
+                    transform:rotateX(-16.5deg) translateZ(10vh);
+                }
+                60%{
+                    transform:rotateX(0deg) translateZ(15vh);
+                }
                 100%{ 
-                    transform:rotateX(-30deg) translateZ(10vh);
+                    transform: translateZ(23vh) rotateY(-90deg);
                 }
             }
 
@@ -133,15 +141,12 @@ const Div = styled.div`
 
             }
         }
-      
-
-
 `;
 
 const ImageSize = styled.img`
-    width:20vh;
+    width:27vh;
     height:40vh;
-    transform: rotateY(90deg)   translateX(10.2vh)  translateZ(2.5vh)   ;
+    transform: rotateY(90deg)   translateX(13.7vh)  translateZ(2.5vh)   ;
     position:absolute;
     z-index:2;
 `;
@@ -168,7 +173,7 @@ const Side_cover = styled.div`
 
 const Back_cover = styled.div`
     z-index:-1;
-    width:20vh;
+    width:27vh;
     height:40vh;
     /* background-color:${props => props.coverColor ? props.coverColor : "black"}; */
      background-image:url("https://cdn.pixabay.com/photo/2017/07/20/09/35/particles-2521732_960_720.jpg");  
@@ -176,18 +181,18 @@ const Back_cover = styled.div`
     color:white;
     text-overflow:hidden;
     overflow:hidden;
-    transform:rotateY(-90deg) translateX(-10.2vh) translateZ(2.5vh); 
+    transform:rotateY(-90deg) translateX(-13.75vh) translateZ(2.5vh); 
     position:absolute;
 `;
 
 const Up_cover = styled.div`
     width: 5.25vh;
-    height:20vh;
+    height:27vh;
    /* background:black; */
-    transform:   translateY(-30vh) translateZ(-9.8vh)  rotateX(90deg); 
+    transform:   translateY(-26.5vh) translateZ(-13.7vh)  rotateX(90deg); 
     position:absolute;
     bottom:0;
-    z-index:2;
+    z-index:1;
     background: rgb(255,255,255);
     background: linear-gradient(93deg, rgba(255,255,255,1) 0%, rgba(20,20,20,0.9626225490196079) 51%, rgba(255,255,255,1) 100%);
 
@@ -224,19 +229,39 @@ const H2 = styled.h2`
     margin-top:6rem;
 `;
 
-const Background_img = styled.img`
+const Background_img = styled.div`
     position:absolute;
+    top:0; 
     width:100%;
     height:100%;
-    z-index:-5;
+    z-index:-2;
     background-image:url("\/images/wood.jpg");
-
+    background-repeat:repeat;
+    background-position:center center;
+    background-size:100% auto;
+    @media screen and (min-height: 100vh)
+    {
+        height:150vh;
+    }
 `;
 
 const Box = styled.div`
     display:flex;
     height:35.5vh;
     align-items:center;
+    flex-direction:column;
+
+`;
+const Grid_row = styled.div`
+    display:grid;
+    height:100%;
+    grid-template-columns:repeat( 10,5.8vh);
+    grid-row-gap:27vh;
+    @media screen and (max-width:600px)
+    {
+        grid-template-columns:repeat( 5,1fr);
+
+    }
 `;
 
 class MyBookList extends React.Component {
@@ -254,37 +279,48 @@ class MyBookList extends React.Component {
                     </H2>
                     <Grid_box className="list">
                         <Box>
-                            {this.props.currentUser.favBooks.map(book => {
-                                return (
-                                    <>
-                                        <Div>
-                                            <A href={`/${this.props.routes.bookDetail(book.id)}`}>
-                                                <ImageSize src={`/${book.imageUrl}`} />
+                            <Grid_row>
+                                {this.props.currentUser.favBooks.map(book => {
+                                    return (
+                                        <>
+                                            <Div>
+                                                <A href={`/${this.props.routes.bookDetail(book.id)}`}>
+                                                    <ImageSize src={`/${book.imageUrl}`} />
 
-                                                <Side_cover>
-                                                    {book.title}
-                                                </Side_cover>
-                                                {/* <h4>{book.author}</h4> */}
-                                                <Back_cover className="Back_cover">
-                                                    <span>{book.description}</span>
-                                                </Back_cover>
-                                                <Up_cover></Up_cover>
-                                            </A>
+                                                    <Side_cover>
+                                                        {book.title}
+                                                    </Side_cover>
+                                                    {/* <h4>{book.author}</h4> */}
+                                                    <Back_cover className="Back_cover">
+                                                        <span>{book.description}</span>
+                                                    </Back_cover>
+                                                    <Up_cover></Up_cover>
+                                                </A>
 
-                                            <form action={routes.deleteFavBook(book.id)} method="post">
-                                                <Input type="submit" value="삭제" />
-                                            </form>
-                                        </Div>
-                                    </>
-                                )
-                            })}
+                                                <form action={routes.deleteFavBook(book.id)} method="post">
+                                                    <Input type="submit" value="삭제" />
+                                                </form>
+                                            </Div>
+                                        </>
+                                    )
+                                })}
+                            </Grid_row>
                         </Box>
+
+
+
                     </Grid_box>
-                    <Bottom_nav>
+
+                </Flex_box>
+                    {/* <Bottom_nav>
                         <img src="../images/shelf.png" alt="" />
                     </Bottom_nav>
-                    <Background_img />
-                </Flex_box>
+                    <Bottom_nav>
+                        <img src="../images/shelf.png" alt="" />
+                    </Bottom_nav> */}
+                <Background_img >
+
+                </Background_img>
             </BaseLayout>
         )
     }
