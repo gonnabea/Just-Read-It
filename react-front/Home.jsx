@@ -16,7 +16,7 @@ const Recom_div = styled.div`
     height:45vh;
     display:grid;
     overflow: auto;
-    grid-area: span 1/ span 5;
+    grid-area: span 1/ span 6;
     background:   rgba(8, 177, 199, 0.767);
 
     /* display:fixed;
@@ -136,7 +136,7 @@ const Grid_box = styled.div`
     display:grid;
     grid-template-columns: repeat(6,1fr);
     text-align:center;
-     
+     background-color:rgba(243, 239, 177, 0.521);
     @media screen and (max-width: 1450px)
     { 
         text-align:center;

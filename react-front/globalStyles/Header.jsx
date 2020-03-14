@@ -408,7 +408,7 @@ function Header(props) {
         <Search_box>
           <Form action={routes.search} method="post">
             <i style={Icon} class="fas fa-search"></i>
-            <Sinput  height="2.3rem" type="text" name="search" required={true} placeholder="제목,작가,소개글 ..." className="button" />
+            <Sinput  height="2.3rem" type="text" name="search" required={true} placeholder="제목,작가,소개글 ..." autocomplete="nope" className="button" />
             <Binput margin_left="0.5rem" type="submit" value="검색" />
           </Form>
         </Search_box>

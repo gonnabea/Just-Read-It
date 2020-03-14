@@ -4,7 +4,7 @@ import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
- 
+
 const Divs = styled.div`
     /* width:100%; */
     height:100vh;
@@ -59,11 +59,11 @@ const Ainput = styled.textarea`
     width:20vh;
 
 `;
-const Form ={
-    display:"flex",
-    flexDirection:"column",
-    alignItems:"center",
-    textAlign:"center",
+const Form = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    textAlign: "center",
 }
 
 
@@ -78,25 +78,58 @@ const Image_box = styled.div`
 
 const Image = styled.img`
     position:relative;
-    widht:100%;
+    width:100%;
     z-index:1;
 `;
 
-const KaKao_form ={
-    marginTop:"0.4rem",
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"center",
+const KaKao_form = {
+    marginTop: "0.4rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
 
-}
+};
 
+const Kakao_list = styled.section`
+    position:absolute;
+    bottom:-30%;
+    display:grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-row-gap:15vh;
+    height:10vh;
+    background-position:center center;
+    background-size:100% 100%;
+    background-image:url("https://cdn.pixabay.com/photo/2020/02/24/18/09/background-4877012_960_720.jpg");
+    &>div{
+        display:block;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        width:100%;
+        height:45vh;
+        color:black;
+        overflow:hidden;
+        button{
+            z-index:4;
+            margin-bottom:1vh;
+            color:red;
+        }
+        a{
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+
+        }
+    }
+`;
 
 
 class uploadBook extends React.Component {
 
 
     render() {
- 
+
         return (
             <BaseLayout>
                 <GlobalStyle />
@@ -106,23 +139,22 @@ class uploadBook extends React.Component {
                 <Divs>
 
                     <Box_img>
-                        <form style={Form}  action={this.props.routes.addBook} method="post" enctype="multipart/form-data">
-                            <Input type="text" name="bookName" placeholder="책 제목" required="true" />
-                            <Ainput type="textarea" name="bookDescription" placeholder="책 상세설명" />
-                            <Input type="text" name="author" placeholder="작가 이름" />
+                        <form style={Form} action={this.props.routes.addBook} method="post" enctype="multipart/form-data">
+                            <Input type="text" id="bookTitle" name="bookName" placeholder="책 제목" autocomplete="off" required="true" />
+                            <Ainput type="textarea" id="bookDescription" name="bookDescription" autocomplete="off" placeholder="책 상세설명" />
+                            <Input type="text" name="author" id="bookAuthor" autocomplete="off" placeholder="작가 이름" />
                             <Input style={{ color: "red", cursor: "pointer" }} type="file" name="bookImage" accept="image/*" />
                             <Input style={{ cursor: "pointer" }} type="submit" value="등록하기" />
                         </form>
 
-                        <div style={{marginTop:"0.3rem"}}>카카오 책에서 찾아보기</div>
-                        <form style={KaKao_form}  id="kakaoBook" method="get">
-                            <input style={{width:"16vh"}} type="text" id="target"   placeholder="책 제목을 입력하세요" />
-                            <input style={{ cursor: "pointer",margin:"0.2rem" }}  type="submit" value="검색" />
+                        <div style={{ marginTop: "0.3rem" }}>카카오 책에서 찾아보기</div>
+                        <form style={KaKao_form} id="kakaoBook" method="get">
+                            <input style={{ width: "16vh" }} type="text" id="target" placeholder="책 제목을 입력하세요" autocomplete="off" />
+                            <input style={{ cursor: "pointer", margin: "0.2rem" }} type="submit" value="검색" />
                         </form>
-
                     </Box_img>
+                    <Kakao_list id="resultScreen"></Kakao_list>
                     <Image_box>
-
                         <Image src="https://cdn.pixabay.com/photo/2019/07/23/02/19/laurel-4356464_960_720.png" />
                     </Image_box>
                 </Divs>
