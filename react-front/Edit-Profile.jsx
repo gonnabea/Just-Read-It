@@ -60,7 +60,7 @@ const Change_img = styled.img`
 
 `;
 
-
+/** <Change_img id="text" src="https://cdn.pixabay.com/photo/2018/03/15/16/17/sign-3228713_960_720.png"/> */
 class editProfile extends React.Component {
     render() {
         return (
@@ -76,8 +76,9 @@ class editProfile extends React.Component {
                             <input type="password" name="password2" placeholder="비밀번호 확인" />
                             <input type="submit" value="프로필 수정" />
                         </form>
-                    <Change_img id="text" src="https://cdn.pixabay.com/photo/2018/03/15/16/17/sign-3228713_960_720.png"/>
+                   
                     </Back_ground>
+
                 </Div>
             </BaseLayout>
         )

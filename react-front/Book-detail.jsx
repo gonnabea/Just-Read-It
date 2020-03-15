@@ -109,7 +109,7 @@ class bookDetail extends React.Component {
                                         <h5>{book.author}</h5>
                                         <h4>{book.likeFigure}명이 서재에 보관 중</h4>
                                         <h3>{JSON.stringify(book.createdAt)}</h3>
-                                        <h5>{book.description}</h5>
+        
                                     </span>
                                 </div>
                                 <div><span>{book.author}</span><span>{book.title}</span></div>
@@ -178,9 +178,9 @@ padding-bottom: 20vh;
 `
 
 const Book = styled.div`
-    margin-top: 10vh;
-    padding-bottom: 60vh;
-    width: 30%;
+   
+    width: 25vw;
+        height: 35vw;
     box-shadow: 10px 10px 10px;
     :hover{
     animation: book-rotate 1s ;
@@ -208,8 +208,8 @@ const Book = styled.div`
     
     div:nth-child(1){
         position: absolute;
-        width: 100%;
-        height: 100%;
+        width: 25vw;
+        height: 35vw;
         border: solid 10px black;
         border-left:0;
         text-overflow:hidden;
@@ -255,8 +255,8 @@ const Book = styled.div`
     section:nth-child(2){
         margin-top:10px;
         position: absolute;
-        width: 100%;
-        height: 100%;
+        width: 25vw;
+        height: 35vw;
         background-color:white;
         text-overflow:hidden;
         z-index:-1;
@@ -265,18 +265,7 @@ const Book = styled.div`
             margin: 3vw;
         }
     }
-    div:nth-child(3){
-        position: absolute;
-        width: 3.5vw;
-        height: 100%;
-        background-color: white;
-        background-size: cover;
-        background-position: center center;
-        border: 0;
-        transform: rotateY(90deg) translateZ(27.5vw);
-        color:white;
-        
-    }
+
     div:nth-child(4){
         position: absolute;
         width: 4vh;
@@ -290,8 +279,8 @@ const Book = styled.div`
     }
     div:nth-child(5){
         position: absolute;
-        width: 100%;
-        height: 100%;
+        width: 25vw;
+        height: 35vw;
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         font-size: 2vh;
         display:flex;
@@ -313,12 +302,13 @@ const Book = styled.div`
     div:nth-child(6){
         position: absolute;
         width: 4vw;
-        height: 100%;
+        height: 35vw;
         border-top:solid 10px black;
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         background-size: cover;
         background-position: center center;
         transform: rotateY(-90deg) rotateZ(0deg) translateZ(2vw) ;
+        text-overflow: hidden;
         font-size: 3vh;
         display:flex;
         flex-direction:column;
@@ -340,17 +330,7 @@ const Book = styled.div`
             filter: invert(100%);
         }
     }
-    div:nth-child(7){
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        border: solid 2px black;
-        background-color: white;
-        background-size: cover;
-        background-position: center center;
-        transform: rotateX(-90deg) translateZ(100px);
-        color:white;
-    }
+    
 @keyframes book-rotate {
     from,to{
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
@@ -393,12 +373,12 @@ height: 70%;
 `
 
 const CommentSpace = styled.section`
-    margin-top: 10vh;
-    padding-bottom: 60vh;
+
     display: flex;
     flex-direction: column;
     box-shadow: 10px 5px 20px #00c8eb;
-    width: 30%;
+    width: 25vw;
+        height: 35vw;
     border-radius: 20px;
     align-items: center;
     background-color:black;

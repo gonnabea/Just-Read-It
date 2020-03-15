@@ -92,13 +92,14 @@ const KaKao_form = {
 
 const Kakao_list = styled.section`
     position:absolute;
-    bottom:-30%;
+    top:100%;
     display:grid;
     grid-template-columns: repeat(5,1fr);
     grid-row-gap:15vh;
-    height:10vh;
+    grid-column-gap:3vh;
     background-position:center center;
     background-size:100% 100%;
+    background-repeat:repeat;
     background-image:url("https://cdn.pixabay.com/photo/2020/02/24/18/09/background-4877012_960_720.jpg");
     &>div{
         display:block;
@@ -106,20 +107,35 @@ const Kakao_list = styled.section`
         justify-content:center;
         align-items:center;
         width:100%;
-        height:45vh;
         color:black;
-        overflow:hidden;
+        overflow:scroll;
+        text-overflow:scroll;
+        overflow-x: none;
+        height:43.5vh;
+
         button{
             z-index:4;
-            margin-bottom:1vh;
+            margin-bottom:2vh;
             color:red;
+            :hover{
+                cursor:pointer;
+            }
+            :active{
+            }
         }
         a{
+            margin-bottom:1vh;
+            opacity:0.85;
+            :hover{
+                opacity:1;
+                color:black;
+            }
+            color:rgb(255, 255, 255);
             display:flex;
             flex-direction:column;
             justify-content:center;
             align-items:center;
-
+         
         }
     }
 `;
@@ -143,7 +159,7 @@ class uploadBook extends React.Component {
                             <Input type="text" id="bookTitle" name="bookName" placeholder="책 제목" autocomplete="off" required="true" />
                             <Ainput type="textarea" id="bookDescription" name="bookDescription" autocomplete="off" placeholder="책 상세설명" />
                             <Input type="text" name="author" id="bookAuthor" autocomplete="off" placeholder="작가 이름" />
-                            <Input style={{ color: "red", cursor: "pointer" }} type="file" name="bookImage" accept="image/*" />
+                            <Input style={{ color: "red", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
                             <Input style={{ cursor: "pointer" }} type="submit" value="등록하기" />
                         </form>
 

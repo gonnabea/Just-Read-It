@@ -99,7 +99,7 @@ const Button = styled.button`
 
 const Image = styled.img`
     width:${props => props.width || "13.5rem"};
-    height:40vh;
+    height:${props => props.width || "40vh"};
     margin-top:1rem;
     margin-left:1rem;
 
@@ -188,20 +188,16 @@ const Header_line = styled.div`
 const Book = styled.a`
 transform-style: preserve-3d;
 animation-fill-mode: forwards;
-
+/* 
 :hover{
-
-
 img:first-child{
     animation: Hover 0.3s linear forwards;
         @keyframes Hover {
             0%{
                 box-shadow: 0;
                 transform:translateY(0);
-
             }
             50%{
-
                 transform:translateY(-2vh);
             }
             100%{
@@ -211,8 +207,7 @@ img:first-child{
             }
         } 
     }
-   
-}
+} */
 
 `
 
@@ -238,13 +233,13 @@ function Home(props) {
                 props.recomendBooks.map(argument => {
                     if (argument === null) {
                         return "";
-                    }
+                    } 
                     else {
                         return (
                             <Li className="reco_list">
                                 <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
                                    
-                                    <Image width="10rem" src={argument.imageUrl} />
+                                    <Image height="100%" width="10rem" src={argument.imageUrl} />
                                     <Reco_span>
                                         제목:<br />
                                         {argument.title}
@@ -269,22 +264,13 @@ function Home(props) {
         }
     }
 
-    function example() {
-        console.log("xxx")
-
-    }
-
-    const handleClick = () => {
-        console.log("sdfasfgdgbxgdzgsdfbsfvbx")
-    }
-
     const bookList =
         props.books.map(book => {
             return (
                 <Header_line>
                     <div>
                         <Book href={props.routes.bookDetail(book.id)}>
-                            <Image src={book.imageUrl} alt={book.imageUrl} />
+                            <Image className="home_main_img" src={book.imageUrl} alt={book.imageUrl} />
                             <Text_box className="text_box" >
                                 <H_one>{book.title}</H_one>
                                 <H_two>작가 : {book.author}</H_two>

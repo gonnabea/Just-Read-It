@@ -13,20 +13,47 @@ const Div = styled.div`
   position:fixed;
 
   display:flex;
-  background-color:rgba(255, 255, 255, 0.233);
+  background:linear-gradient(82deg, rgba(255,33,33,0.2) 0%, rgba(255,219,80,0.2) 51%, rgba(29,62,255,0.2) 100%);
   justify-content:space-between;
   /*position:fixed;*/
   z-index:5;
   scroll-behavior: smooth;
   :hover{
-    animation:hovers 0.5s;
+    animation:hovers 0.5s linear;
     animation-fill-mode:forwards;
     @keyframes hovers {
       0%{
-        background-color:rgba(255, 255, 255, 0.233);
+        background: linear-gradient(82deg, rgba(255,33,33,0) 0%, rgba(255,219,80,0) 51%, rgba(29,62,255,0) 100%);
+      }
+      10%{
+        background:linear-gradient(82deg, rgba(255,33,33,0.1) 0%, rgba(255,219,80,0.1) 51%, rgba(29,62,255,0.1) 100%);
+      }
+      20%{
+        background:linear-gradient(82deg, rgba(255,33,33,0.2) 0%, rgba(255,219,80,0.2) 51%, rgba(29,62,255,0.2) 100%);
+      }
+      30%{
+        background:linear-gradient(82deg, rgba(255,33,33,0.3) 0%, rgba(255,219,80,0.3) 51%, rgba(29,62,255,0.3) 100%);
+      }
+      40%{
+        background:linear-gradient(82deg, rgba(255,33,33,0.4) 0%, rgba(255,219,80,0.4) 51%, rgba(29,62,255,0.4) 100%);
+      }
+      50%{
+        background:linear-gradient(82deg, rgba(255,33,33,0.5) 0%, rgba(255,219,80,0.5) 51%, rgba(29,62,255,0.5) 100%);
+      }
+      60%{
+        background:linear-gradient(82deg, rgba(255,33,33,0.6) 0%, rgba(255,219,80,0.6) 51%, rgba(29,62,255,0.6) 100%);
+      }
+      70%{
+        background:linear-gradient(82deg, rgba(255,33,33,0.7) 0%, rgba(255,219,80,0.7) 51%, rgba(29,62,255,0.7) 100%);
+      }
+      80%{
+        background:linear-gradient(82deg, rgba(255,33,33,0.8) 0%, rgba(255,219,80,0.8) 51%, rgba(29,62,255,0.8) 100%);
+      }
+      90%{
+        background:linear-gradient(82deg, rgba(255,33,33,0.9) 0%, rgba(255,219,80,0.9) 51%, rgba(29,62,255,0.9) 100%);
       }
       100%{
-        background-color:rgba(255, 255, 255, 1);
+        background: linear-gradient(82deg, rgba(255,33,33,1) 0%, rgba(255,219,80,1) 51%, rgba(29,62,255,1) 100%);
       }
     }
   }
@@ -171,7 +198,8 @@ const Sinput = styled.input`
   &:focus{
     outline:none;
     cursor: pointer;
-    animation: search_width 0.4s linear forwards;
+    animation: search_width th 0.4s linear forwards;
+
   }
  
   @keyframes search_width{
@@ -337,7 +365,7 @@ function Header(props) {
     }
     else {
       return (
-        <i style={{ cursor: "pointer" }} class="fas fa-bars fa-3x" id="header_icon_bars"></i>
+        <i style={{ cursor: "pointer" }} className="fas fa-bars fa-3x" id="header_icon_bars"></i>
       )
     }
   }
@@ -406,9 +434,9 @@ function Header(props) {
         </a>
 
         <Search_box>
-          <Form action={routes.search} method="post">
-            <i style={Icon} class="fas fa-search"></i>
-            <Sinput  height="2.3rem" type="text" name="search" required={true} placeholder="제목,작가,소개글 ..." autocomplete="nope" className="button" />
+          <Form id="header_form" action={routes.search} method="post">
+            <i style={Icon} className="fas fa-search"></i>
+            <Sinput id="header_search_input" height="2.3rem" type="text" name="search" required={true} placeholder="제목,작가,소개글 ..." autocomplete="nope" className="button" />
             <Binput margin_left="0.5rem" type="submit" value="검색" />
           </Form>
         </Search_box>

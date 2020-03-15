@@ -48,11 +48,27 @@ export const login = (req, res) => {
     res.render("login");
 }
 
-export const postLogin =
-     passport.authenticate('local', {  
-    successRedirect: routes.home,
-    failureRedirect: routes.login,
-    failureFlash: true })
+export const postLogin = (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            return next(err);
+        }
+        
+        if(!user) {
+            return res.render("login" , {success : false, message : '인증에 실패하였습니다. 아이디나 비밀번호를 다시 확인해주세요!'})
+        }
+            req.login(user, function(err){
+                if(err){
+                    return next(err);
+            }
+            return res.redirect(routes.home);
+          });
+        })(req, res, next)
+        
+
+    }
+
+
    
 
 export const join = (req, res) => {
@@ -74,7 +90,7 @@ export const postJoin = async(req, res) => {
     )
     res.redirect(routes.home)
 }catch(error){
-    console.log(error);
+    console.log(`try-catch: ${error}`);
 }
 }else{
     res.render("join", {error:"비밀번호가 일치하지 않습니다."})
@@ -88,7 +104,7 @@ export const logout = (req, res) => {
 
 export const profile = async(req, res) => {
     const {
-        user: {id}
+        params: {id}
     } = req;
     const currentUser = await User.findById(id).populate("uploadedBooks").populate("reviews");
     res.render("profile", {currentUser})
@@ -113,7 +129,7 @@ export const editUser = (req, res) => {
 
 export const postEditUser = async(req, res) => {
     const {
-        user: {id},
+        params: {id},
         body: {username, password, password2, profilePhoto}
     } = req;
 
@@ -128,7 +144,8 @@ export const postEditUser = async(req, res) => {
             res.redirect(routes.home);
         }
     }else{
-        res.send("비밀번호가 일치하지 않습니다.")
+        
+        res.render("edit-profile",{msg:"비밀번호가 일치하지 않습니다."})
     }
     
 }

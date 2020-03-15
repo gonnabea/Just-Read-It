@@ -110,6 +110,7 @@ function Login(props) {
                             <Input type="password" name="password" placeholder="패스워드"></Input>
                             <Input type="submit" value="로그인"></Input>
                         </form>
+                        <p>{props.message}</p>
                         <div>
                             <input type="checkbox" name="user_check" />
                             <span style={{ color: "red" }}>Remember me</span>

@@ -4,6 +4,7 @@ const resultScreen = document.getElementById("resultScreen");
 const bookTitle2 = document.getElementById("bookTitle");
 const bookDescription = document.getElementById("bookDescription");
 const bookAuthor = document.getElementById("bookAuthor");
+const bookThumbnail = document.getElementById("bookThumbnail");
 
 /*
 const client = async(e) =>{ 

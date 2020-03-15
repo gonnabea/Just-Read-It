@@ -6,33 +6,34 @@ import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
 const Image = styled.img`
-    width:100px;
-    height:100px;
+    width:10vh;
+    height:10vh;
     border-radius:100%;
-    margin:1rem;
-
+    margin:auto auto;
 `;
 
 const Div = styled.div`
-    position:absolute;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     width:100%;
     height:100%;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    
-`; 
+    position:absolute;
+    top:15%;
+`;
 
 const A = styled.a`
-    margin:0.6rem;
-    color:${props=>props.color||"black"};
+    margin-top:0.6rem;
+    color:${props => props.color || "black"};
     width:15vh;
     overflow:hidden;
     text-align:center;
     transform-style: preserve-3d;
-    perspective: 650px;
-
+    perspective: 650vh;
     &>h2:nth-child(2){
         opacity:0.5;
     }
@@ -108,6 +109,7 @@ const Background_image = styled.div`
         height:150vh;
     }
 `;
+
 class profile extends React.Component {
     render() {
 
@@ -115,30 +117,30 @@ class profile extends React.Component {
             <BaseLayout>
                 <GlobalStyle />
                 {Header(this.props)}
-                    <Div>
-                        <Image src={this.props.currentUser.profilePhoto} />
-                        <A  href={this.props.routes.editUser(this.props.user.id)}>
-                            프로필 수정
+                <Div>
+                    <Image src={this.props.currentUser.profilePhoto} />
+                    <A href={this.props.routes.editUser(this.props.user.id)}>
+                        프로필 수정
                         </A>
-                        <h2 >{this.props.currentUser.username}
+                    <h2 >{this.props.currentUser.username}
                             님이 등록한 책 리스트:
                         </h2>
-                        <Grid_area>
-                            {this.props.currentUser.uploadedBooks.map(book => {
-                                return (
-                                    <A href={`/${this.props.routes.bookDetail(book.id)}`}>
-                                        <Image src={`/${book.imageUrl}`} alt="" />
-                                        <h2>{book.title}</h2>
-                                        <h4>{book.author}</h4>
-                                        {/* <h4 style={{height:"20vh"}}>{book.description}</h4> */}
-                                    </A>
-                                )
-                            })}
-                        </Grid_area>
-                    </Div>
-                    <Background_image>
+                    <Grid_area>
+                        {this.props.currentUser.uploadedBooks.map(book => {
+                            return (
+                                <A href={`/${this.props.routes.bookDetail(book.id)}`}>
+                                    <Image src={`/${book.imageUrl}`} alt="" />
+                                    <h2>{book.title}</h2>
+                                    <h4>{book.author}</h4>
+                                    {/* <h4 style={{height:"20vh"}}>{book.description}</h4> */}
+                                </A>
+                            )
+                        })}
+                    </Grid_area>
+                </Div>
+                <Background_image>
 
-                    </Background_image>
+                </Background_image>
             </BaseLayout>
         )
     }
