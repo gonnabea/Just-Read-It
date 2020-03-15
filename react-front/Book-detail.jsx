@@ -141,7 +141,9 @@ class bookDetail extends React.Component {
                                         starPoint();
                                         return (
                                             <Comment>
+                                                <a href={this.props.routes.profile(item.creator)}>
                                                 <img src={item.creatorPhoto} width="50vh" />
+                                                </a>
                                                 <h3>{item.creator}</h3>
                                                 <h3>{item.content}</h3>
                                                 <h3>{star}</h3>
@@ -181,7 +183,7 @@ const Book = styled.div`
    
     width: 25vw;
         height: 35vw;
-    box-shadow: 10px 10px 10px;
+    
     :hover{
     animation: book-rotate 1s ;
     animation-fill-mode: forwards;
@@ -193,16 +195,17 @@ const Book = styled.div`
     :active{
     animation: moveBook 0.5s ease-in-out;
     animation-fill-mode: forwards;
+    perspective: 130vw;
     }
     transform-style: preserve-3d;
-    perspective: 200vw;
+    
         @keyframes moveBook {
             0%{
                 
-                transform: translateX(0vw) translateZ(0);
+                transform: translateX(0vw) ;
             }100%{
                 
-                transform: translateX(40vw) translateZ(200px);
+                transform: translateX(40vw);
             }
         }
     
@@ -210,13 +213,13 @@ const Book = styled.div`
         position: absolute;
         width: 25vw;
         height: 35vw;
-        border: solid 10px black;
+        
         border-left:0;
         text-overflow:hidden;
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         background-size: cover;
         background-position: center center;
-        
+        box-shadow: 10px 10px 10px 0.5px;
         transform: translateZ(2vw);
         transform-origin: 0 0;
         
@@ -253,10 +256,11 @@ const Book = styled.div`
         }
     }
     section:nth-child(2){
-        margin-top:10px;
+        margin-top:1vw;
+        margin-left:0.2vw;
         position: absolute;
-        width: 25vw;
-        height: 35vw;
+        width: 23vw;
+        height: 33vw;
         background-color:white;
         text-overflow:hidden;
         z-index:-1;
@@ -266,21 +270,12 @@ const Book = styled.div`
         }
     }
 
-    div:nth-child(4){
-        position: absolute;
-        width: 4vh;
-        height: 38vh;
-        background-color: yellow;
-        background-size: cover;
-        background-position: center center;
-        transform: rotateY(90deg) rotateX(90deg) translateY(17vh)  translateZ(19vh) ;
-
-        color:white;
-    }
+ 
     div:nth-child(5){
         position: absolute;
         width: 25vw;
         height: 35vw;
+        
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         font-size: 2vh;
         display:flex;
@@ -288,7 +283,6 @@ const Book = styled.div`
         text-overflow:hidden;
         background-position: center center;
         transform: rotateY(180deg) rotateZ(0deg) translateZ(2vw);
-        border: solid 10px black;
         border-right: 0;
         span:nth-child(1){
             position:absolute;
@@ -303,13 +297,11 @@ const Book = styled.div`
         position: absolute;
         width: 4vw;
         height: 35vw;
-        border-top:solid 10px black;
+        
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         background-size: cover;
         background-position: center center;
         transform: rotateY(-90deg) rotateZ(0deg) translateZ(2vw) ;
-        text-overflow: hidden;
-        font-size: 3vh;
         display:flex;
         flex-direction:column;
         justify-content:space-around;
@@ -317,8 +309,8 @@ const Book = styled.div`
             transform:rotateZ(90deg);
             text-align:center;
             display:flex;
-            width:10em ;
-            font-size:1rem;
+            width:2vw;
+            font-size:1.5vw;
             color: ${props => props.coverColor ? props.coverColor : "black"};
             -webkit-filter: invert(100%);
             filter: invert(100%);
@@ -327,19 +319,21 @@ const Book = styled.div`
         span:nth-child(2){
             color: ${props => props.coverColor ? props.coverColor : "black"};
             -webkit-filter: invert(100%);
+            font-size:2vw;
             filter: invert(100%);
         }
     }
     
 @keyframes book-rotate {
-    from,to{
+    0%{
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-        box-shadow: 10px 10px 10px;
-        
+    }
+    70%{    
+        box-shadow: 0px 0px 0px;
     }
     100%{
         transform: rotateY(180deg);
-        box-shadow: 0px 0px 0px;
+        box-shadow: -10px 10px 10px;
     }
 }
 @keyframes book-rotate2 {
@@ -398,7 +392,7 @@ align-items: center;
 border-radius: 20px;
 `
 
-const Comment = styled.li`
+const Comment = styled.div`
 display:flex;
 flex-direction: column;
 align-items: center;

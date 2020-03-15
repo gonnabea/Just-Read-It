@@ -174,6 +174,7 @@ function Join(props) {
                         <Input type="password" name="password2" required={true} placeholder="비밀번호 확인" />
                         <Input type="submit" value="가입하기" />
                     </form>
+                    <div>{props.msg}</div>
                     <div style={{display:"flex"}}>
                         <A href={props.routes.googleAuth}>
                             <Image src="https://img.utdstc.com/icons/google-search-android.png:l" alt="" />

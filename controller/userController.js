@@ -55,7 +55,7 @@ export const postLogin = (req, res, next) => {
         }
         
         if(!user) {
-            return res.render("login" , {success : false, message : '인증에 실패하였습니다. 아이디나 비밀번호를 다시 확인해주세요!'})
+            return res.render("login" , {success : false, message : '인증에 실패하였습니다. 이메일과 비밀번호를 다시 확인해주세요!'})
         }
             req.login(user, function(err){
                 if(err){
@@ -79,6 +79,7 @@ export const postJoin = async(req, res) => {
     const {
         body: {username, email, password, password2}
     } = req;
+    if(password.length >= 8){
     if(password == password2){
     try{const user ={
         username,
@@ -88,13 +89,16 @@ export const postJoin = async(req, res) => {
         user,
         password
     )
-    res.redirect(routes.home)
+    res.redirect(routes.login);
 }catch(error){
     console.log(`try-catch: ${error}`);
 }
 }else{
-    res.render("join", {error:"비밀번호가 일치하지 않습니다."})
+    res.render("join", {msg:"비밀번호가 일치하지 않습니다."})
 }
+    }else{
+        res.render("join", {msg:"패스워드는 8글자 이상이어야 합니다"})
+    }
 }
 
 export const logout = (req, res) => {

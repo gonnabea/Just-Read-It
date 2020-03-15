@@ -5,7 +5,6 @@ const next = document.getElementById("btn_next");
 const home_main_img = document.querySelectorAll(".home_main_img");
 
 
-
 const Shuffle = async () => {
     let reco_list = await document.querySelectorAll(".reco_list");
 
