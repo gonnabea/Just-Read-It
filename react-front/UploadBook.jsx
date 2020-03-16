@@ -53,12 +53,16 @@ const Box_img = styled.div`
 const Input = styled.input`
     margin:0.4rem;
     width:20vh;
-    `;
+
+
+`;
+
 const Ainput = styled.textarea`
     margin:0.4rem;
     width:20vh;
 
 `;
+
 const Form = {
     display: "flex",
     flexDirection: "column",
@@ -108,9 +112,9 @@ const Kakao_list = styled.section`
         align-items:center;
         width:100%;
         color:black;
-        overflow:scroll;
+        overflow-y:auto;
         text-overflow:scroll;
-        overflow-x: none;
+        overflow-x: hidden;
         height:43.5vh;
 
         button{

@@ -6,13 +6,13 @@ import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
 const Divs = styled.div`
+    width:100%;
     height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
-    margin:1.4rem;
     background-size:cover;
     background-position:center center;
     background-image:url("https://cdn.pixabay.com/photo/2020/02/06/08/49/water-4823433_960_720.jpg");
@@ -74,6 +74,11 @@ const Input = styled.input`
     &:hover{
         cursor:pointer;
     }
+    :focus{
+    autocomplete:off;
+    background-color:#fffa65;
+    color:#2bcbba;
+    }
 `;
 const Bottom_box = styled.div`
     display:flex;
@@ -94,6 +99,8 @@ const Span_line = styled.span`
         text-decoration:underline;
     }
 `;
+const Label = styled.label`
+`;
 
 function Login(props) {
     const Auths = () => {
@@ -102,12 +109,17 @@ function Login(props) {
             <BaseLayout>
                 <GlobalStyle />
                 {Header(props)}
-
                 <Divs >
                     <Box_img>
-                        <form action={props.routes.login} method="post">
-                            <Input type="email" name="email" placeholder="이메일"></Input>
-                            <Input type="password" name="password" placeholder="패스워드"></Input>
+                        <form  style={{display:"flex",flexDirection:"column", alignItems:"space-around"}} action={props.routes.login}  method="post"  >
+                            <div style={{display:"flex", justifyContent:"space-between"}}>
+                            <Label className="email_label" for="login_email">Email:</Label>
+                            <Input autoComplete="false"  id="login_email" type="email" name="email" placeholder="이메일" ></Input>
+                            </div>
+                            <div>
+                            <Label className="email_label" for="login_password">password:</Label>
+                            <Input  autocomplete="new-password" id="login_password" type="password" name="password" placeholder="패스워드"></Input>
+                            </div>
                             <Input type="submit" value="로그인"></Input>
                         </form>
                         <p>{props.message}</p>

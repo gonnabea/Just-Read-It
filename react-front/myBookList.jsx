@@ -5,17 +5,17 @@ import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
-
-
 const Flex_box = styled.div`
+
     display:flex;
     width:100%;
     height:100%;
     align-items:center;
     justify-content:center;
     text-align:center;
+    font-family:Tahoma;
     
-`;
+    `;
 
 const Grid_box = styled.div`
     position:absolute;
@@ -80,7 +80,7 @@ const Grid_box = styled.div`
 `;
 
 const Bottom_nav = styled.div`
-    widht:100%;
+    width:100%;
     position:absolute;
     top:46%;
     z-index:-1;
@@ -106,6 +106,7 @@ const Div = styled.div`
     text-overflow: ellipsis;
     margin-top:7.5vh;
     height:45vh;
+  
     /* &:hover{
         cursor: pointer;
         animation: hover_book 1s linear forwards;
@@ -147,6 +148,7 @@ const ImageSize = styled.img`
     transform: rotateY(90deg)   translateX(13.58vh)  translateZ(2.5vh)   ;
     position:absolute;
     z-index:2;
+   
 `;
 
 const Side_cover = styled.div`
@@ -167,6 +169,8 @@ const Side_cover = styled.div`
     text-align:center;
     writing-mode: vertical-rl;
     text-orientation: mixed;
+
+  
 `;
 
 const Back_cover = styled.div`
@@ -187,7 +191,7 @@ const Up_cover = styled.div`
     width: 5.25vh;
     height:27vh;
    /* background:black; */
-    transform:   translateY(-29vh) translateZ(-13.7vh)  rotateX(90deg); 
+    transform:   translateY(-29.08vh) translateZ(-13.6vh)  rotateX(90deg); 
     position:absolute;
     bottom:0;
     z-index:1;
@@ -214,25 +218,42 @@ const A = styled.a`
     justify-content:center;
     transform-style: preserve-3d;
     margin:0 0.2vh;
+
+    @keyframes hover_shadow{
+        0%{
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75), 0px 0px 0px 0px rgba(0,0,0,0.75),0px 0px 0px 0px rgba(0,0,0,0.75);
+        }
+        100%{
+            box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75), -4px 7px 5px 0px rgba(0,0,0,0.75),0px 0px 21px -5px rgba(0,0,0,0.75);
+        }
+    }
+
     &:hover{
         cursor: pointer;
         animation: hover_book 1s linear forwards;
         z-index:10;
+        
+        &>div:nth-child(3){
+            box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75), -4px 7px 5px 0px rgba(0,0,0,0.75),0px 0px 21px -5px rgba(0,0,0,0.75);
+            animation: hover_shadow 1s ease-in-out forwards;
+        }
     }
-            @keyframes hover_book {
-                0%{
+   
+    @keyframes hover_book {
+        0%{
 
-                } 
-                30%{
-                    transform:rotateX(-16.5deg) translateZ(10vh);
-                }
-                60%{
-                    transform:rotateX(0deg) translateZ(15vh);
-                }
-                100%{ 
-                    transform: translateZ(23vh) rotateY(-90deg);
-                }
-            }
+        } 
+        30%{
+            transform:rotateX(-16.5deg) translateZ(10vh);
+        }
+        60%{
+            transform:rotateX(0deg) translateZ(15vh);
+        }
+        100%{ 
+            transform: translateZ(23vh) rotateY(-90deg);
+           
+        }
+    }
 
     &:active{
         animation: active_book 0.5s linear forwards;
@@ -314,9 +335,7 @@ class MyBookList extends React.Component {
         const routes = this.props.routes
         return (
             <BaseLayout>
-
                 <GlobalStyle />
-
                 {Header(this.props)}
                 <Flex_box>
                     <H2 >{this.props.currentUser.username}
@@ -347,7 +366,7 @@ class MyBookList extends React.Component {
                                         </>
                                     )
                                 })}
-                              
+
                             </Grid_row>
                         </Box>
                     </Grid_box>

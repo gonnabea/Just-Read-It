@@ -12,6 +12,7 @@ const Main_box = styled.div`
     flex-direction:column;
     justify-content:space-around;
     text-align:center;
+    align-items:center;
 `;
 const Bakcground = styled.div`
     position:absolute;
@@ -43,23 +44,27 @@ const Bakcground = styled.div`
 const Div = styled.div`
     display:flex;
     flex-direction:column;
-     color:red;
+    color:red;
+    margin-top:5vh;
 `;
 
-const btn_style = {
-    fontSize: "7rem",
-}
 
 const Change_img = styled.img`
     width:15rem;
-    display:flex;
     /* visibility: hidden;  */
-    position:absolute;
-    top:35%;
-    left:40%;
     z-index:2;
     border-bottom:3px solid red;
 
+`;
+const H_button = styled.button`
+    border-radius:10px;
+    font-size: 7rem;
+    outline:none;
+    box-shadow: 3px 10px 5px 0px rgba(0,0,0,0.75);
+    :active{
+        transform:translateY(1vh);
+        box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
+    }
 `;
 
 function ErrorPage(props) {
@@ -69,17 +74,18 @@ function ErrorPage(props) {
             {Header(props)}
             <Main_box>
                 <Div>
-                        <h1>404 Page error!</h1>
-                        <h3>찾으시는 책이 삭제되었거나 일시적으로 오류가 있을 수 있습니다.</h3>
+                    <h1>404 Can Not Found</h1>
+                    <h3>찾으시는 책이 삭제되었거나 일시적으로 오류가 있을 수 있습니다.</h3>
                 </Div>
-                    <div>
-                        <a href={props.routes.home} >
-                            <button style={btn_style}>
-                                HOME
-                       </button>
-                        </a>
-                    </div>
                 <Change_img id="text" src="https://cdn.pixabay.com/photo/2018/03/15/16/17/sign-3228713_960_720.png" />
+                <div>
+                    <a href={props.routes.home} >
+                        <H_button >
+                            HOME
+                       </H_button>
+                    </a>
+                </div>
+               
                 <Bakcground id="background_target"></Bakcground>
             </Main_box>
             <script src="/vanilla/home.js"></script>

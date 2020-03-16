@@ -41,8 +41,8 @@ export const bookDetail = async(req, res) => {
     try{
     const book = await Book.findById(id).populate("enrolledBy").populate("review");
     console.log(book)
-    
-    
+    book.viewsFigure +=1;
+    book.save();
     book.review.forEach( argument => {
         if(argument.rate!=0){
         rateFigure += argument.rate;

@@ -9,42 +9,55 @@ const Image = styled.img`
     width:10vh;
     height:10vh;
     border-radius:100%;
-    margin:auto auto;
+    
 `;
 
 const Div = styled.div`
-    display:flex;
-    justify-content:center;
-    align-items:center;
     width:100%;
     height:100%;
+    align-self: center;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    position:absolute;
-    top:15%;
+    background-repeat:repeat;
+    background-size:100% 100%;
+    background-image:url("https://cdn.pixabay.com/photo/2017/07/26/17/41/watercolour-2542465_960_720.jpg"); 
+    
 `;
 
 const A = styled.a`
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    justify-content:center;
+    align-items:center;
     margin-top:0.6rem;
     color:${props => props.color || "black"};
     width:15vh;
     overflow:hidden;
-    text-align:center;
+    text-overflow:ellipsis;
     transform-style: preserve-3d;
     perspective: 650vh;
-    &>h2:nth-child(2){
+    &>span:nth-child(2){
+        overflow:hidden;
+        text-overflow:ellipsis;
+        font-size: 2.5vh;
         opacity:0.5;
+        width:100%;
+        height:56px;
     }
-    &>h4:nth-child(3){
+    &>span:nth-child(3){
+        font-size: 2vh;
         opacity:0.5;
+        width:100%;
+        height:54.5px;
     }
     &:hover{
-        &>h2:nth-child(2){
+        &>span:nth-child(2){
         opacity:1;
         }
-        &>h4:nth-child(3){
+        &>span:nth-child(3){
         opacity:1;
         }
     }
@@ -61,11 +74,11 @@ const A = styled.a`
                 transform: rotateX(0turn) ;
             }
             50%{
-                transform: rotateX(0.5turn) ;
+                transform: rotateX(0.5turn); 
                 
             }
             100%{
-                transform: rotateX(1turn)  translateZ(30vh);
+                transform: rotateX(1turn)  translateZ(30vh) translateY(0.5vh) ;
             }
         }
     }
@@ -87,7 +100,7 @@ const Grid_area = styled.div`
     grid-gap: 1rem;
 
     @media screen and (max-width: 900px){
-   
+    
         grid-template-columns: repeat(3, 1fr);
 
     }
@@ -97,19 +110,24 @@ const Grid_area = styled.div`
 const Background_image = styled.div`
     position:absolute;
     z-index:-1;
-    top:0;
     width:100%;
     height:100%;
-    background-image:url("https://cdn.pixabay.com/photo/2017/07/26/17/41/watercolour-2542465_960_720.jpg");
     background-repeat:repeat;
-    background-position:center center;
-    background-size:100% auto;
+    background-size:100% 100%;
+    background-image:url("https://cdn.pixabay.com/photo/2017/07/26/17/41/watercolour-2542465_960_720.jpg");
     @media screen and (min-height: 100vh)
     {
         height:150vh;
     }
 `;
+const Flex_div = styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin-top:${props => props.marginTop || "0"};
 
+`;
 class profile extends React.Component {
     render() {
 
@@ -118,25 +136,27 @@ class profile extends React.Component {
                 <GlobalStyle />
                 {Header(this.props)}
                 <Div>
-                    <Image src={this.props.currentUser.profilePhoto} />
-                    <A href={this.props.routes.editUser(this.props.user.id)}>
-                        프로필 수정
+                    <Flex_div marginTop="10vh">
+                        <Image src={this.props.currentUser.profilePhoto} />
+                        <A href={this.props.routes.editUser(this.props.user.id)}>
+                            프로필 수정
                         </A>
-                    <h2 >{this.props.currentUser.username}
+                        <h2 >{this.props.currentUser.username}
                             님이 등록한 책 리스트:
                         </h2>
-                    <Grid_area>
-                        {this.props.currentUser.uploadedBooks.map(book => {
-                            return (
-                                <A href={`/${this.props.routes.bookDetail(book.id)}`}>
-                                    <Image src={`/${book.imageUrl}`} alt="" />
-                                    <h2>{book.title}</h2>
-                                    <h4>{book.author}</h4>
-                                    {/* <h4 style={{height:"20vh"}}>{book.description}</h4> */}
-                                </A>
-                            )
-                        })}
-                    </Grid_area>
+                        <Grid_area>
+                            {this.props.currentUser.uploadedBooks.map(book => {
+                                return (
+                                    <A href={`/${this.props.routes.bookDetail(book.id)}`}>
+                                        <Image src={`/${book.imageUrl}`} alt="" />
+                                        <span>{book.title}</span>
+                                        <span>{book.author}</span>
+                                        {/* <h4 style={{height:"20vh"}}>{book.description}</h4> */}
+                                    </A>
+                                )
+                            })}
+                        </Grid_area>
+                    </Flex_div>
                 </Div>
                 <Background_image>
 

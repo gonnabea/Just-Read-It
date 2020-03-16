@@ -18,6 +18,7 @@ const Div = styled.div`
   /*position:fixed;*/
   z-index:5;
   scroll-behavior: smooth;
+
   :hover{
     animation:hovers 0.5s linear;
     animation-fill-mode:forwards;
@@ -60,28 +61,28 @@ const Div = styled.div`
 `;
 
 const Imag_styles = styled.img`
-position: relative;
-width:8rem;
-height:10vh;
-/* 15% */
-display:inline-block;
-/* filter: grayscale(20%); */
-color:blue;
-z-index:2;
-&:hover{
-  animation: hover_turn 2s linear infinite forwards;
-}
-  @keyframes hover_turn{
-    0%{
-      transform: rotateY(0turn);
-    }
-    50%{
-      transform: rotateY(0.5turn);
-    }
-    100%{
-      transform: rotateY(1turn);
-    }
+  position: relative;
+  width:8rem;
+  height:10vh;
+  /* 15% */
+  display:inline-block;
+  /* filter: grayscale(20%); */
+  color:blue;
+  z-index:2;
+  &:hover{
+    animation: hover_turn 2s linear infinite forwards;
   }
+    @keyframes hover_turn{
+      0%{
+        transform: rotateY(0turn);
+      }
+      50%{
+        transform: rotateY(0.5turn);
+      }
+      100%{
+        transform: rotateY(1turn);
+      }
+    }
 `;
 
 const Logo_a = styled.a`
@@ -106,6 +107,8 @@ const Logo_a = styled.a`
 `;
 
 const A = styled.a`
+   display:flex;
+  align-items:center;
   margin:0.7rem;
   text-decoration:none;
   color:${props => props.color || "white"};
@@ -113,11 +116,19 @@ const A = styled.a`
   :hover{
     color:#9ACD32;
   }
-  
+  *>span:nth-child(2){
+    :hover{
+      color:#1e3799;
+    }
+  }
+  &>i:nth-child(1){
+    margin-right:1vw;
+    
+    &:hover{
+      color:#EA2027;
+    }
+  }
 `;
-
-
-
 
 const Search_box = styled.div`
   width:100%;
@@ -129,30 +140,28 @@ const Search_box = styled.div`
   
   align-items:center;
   /* right:-30%; */
-  
-
 `;
 
 const Input = styled.input`
-float:left;
-align-items:center;
-margin:0.6rem;
-width:${props => props.width || "35px"};
-height:${props => props.height || "25px"};
-margin-left:${props => props.margin_left || "0px"}; 
+  float:left;
+  align-items:center;
+  margin:0.6rem;
+  width:${props => props.width || "35px"};
+  height:${props => props.height || "25px"};
+  margin-left:${props => props.margin_left || "0px"}; 
 
-border-radius: 20px;
-&:hover{
-  cursor: pointer;
- 
-}
+  border-radius: 20px;
+  &:hover{
+    cursor: pointer;
+  
+  }
 
-@media screen and (max-width: 900px)
-{ 
-  width:15rem;
-  display:flex;
+  @media screen and (max-width: 900px)
+  { 
+    width:15rem;
+    display:flex;
 
-}
+  }
 
 `;
 
@@ -175,6 +184,7 @@ const Sinput = styled.input`
   border-radius: 20px;
   border: solid 2px black;
   text-align:center;
+  
    
   @keyframes hover_animation {
     0% {
@@ -191,26 +201,29 @@ const Sinput = styled.input`
     }
   }
 
-  :hover{
+  &:hover{
     animation: hover_animation 1.5s linear infinite forwards;
   } 
 
-  &:focus{
-    outline:none;
-    cursor: pointer;
-    animation: search_width th 0.4s linear forwards;
+    &:focus{
+      background-color:#b8e994;
+      color:#5352ed;
 
-  }
- 
-  @keyframes search_width{
-    0%{
-      margin-left:0;
-      width:20vh;
+      outline:none;
+      cursor: pointer;
+      animation: search_width th 0.4s linear forwards;
+
     }
-    100%{
-      width:50%;
+  
+    @keyframes search_width{
+      0%{
+        margin-left:0;
+        width:20vh;
+      }
+      100%{
+        width:50%;
+      }
     }
-  }
 
   @media screen and (max-width: 900px)
   { 
@@ -271,8 +284,8 @@ const Icon_box = styled.div`
     position:absolute;
     right:1.5%;
     top:5%;
-    width:35px;
-    height:35px;
+    display:flex;
+ 
     border-radius:10px;
     &>i{
       position:absolute;
@@ -318,15 +331,37 @@ const Menu_img = styled.img`
 `;
 const Span_size = styled.span`
   font-size:2.6vh;
-  border-bottom: 1px solid white;
+
   :hover{
-    color:#9ACD32;
-  }
-  
+    color:#1B9CFC;
+     &::after {
+      content: " ";
+      animation: hover_border 0.35s linear forwards;
+      }
+  } 
+
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+
+  @keyframes hover_border{
+    0%{
+        border-bottom: 1px solid white;
+        width: 0%;
+    }
+    100%{
+        border-bottom: 1px solid white;
+        width: 100%;
+    }
+  }  
 `;
+
 const Icon = {
-  zIndex:"2",
-  marginRight:"-2.5vh",
+  zIndex: "2",
+  marginRight: "-2.5vh",
 }
 
 
@@ -338,10 +373,11 @@ function Header(props) {
       return (
         <>
           <A href={`/${props.routes.profile(props.user.id)}`}>
-            <Prifile_img className="header_icon_img" src={props.user.profilePhoto} />
+            <i class="fas fa-user-lock fa-2x"></i>
             <Span_size>
               프로필
-              </Span_size>
+            </Span_size>
+            {/* <Prifile_img className="header_icon_img" src={props.user.profilePhoto} /> */}
           </A>
         </>
 
@@ -351,21 +387,20 @@ function Header(props) {
         <>
           <span style={{ color: "red", fontSize: "1rem" }}>
             로그인 된 유저가 없습니다.
-            </span>
+          </span>
         </>
       )
     }
   }
   function ProfileImage() {
     if (props.user) {
-
       return (
         <Prifile_img src={props.user.profilePhoto} />
       )
     }
     else {
       return (
-        <i style={{ cursor: "pointer" }} className="fas fa-bars fa-3x" id="header_icon_bars"></i>
+        <i style={{ cursor: "pointer", color: "black" }} className="fas fa-bars fa-3x" id="header_icon_bars"></i>
       )
     }
   }
@@ -376,16 +411,19 @@ function Header(props) {
         <>
           <Prifile_img className="header_icon_img" src={props.user.profilePhoto} />
           <A href={routes.logout}>
+            <i class="fas fa-key fa-2x"></i>
             <Span_size>
               로그아웃
-              </Span_size>
+            </Span_size>
           </A>
           <A href={routes.addBook}>
+            <i class="fas fa-book fa-2x"></i>
             <Span_size>
               새로운 책 등록
             </Span_size>
           </A>
           <A href={`/${routes.myBookList(props.user.id)}`}>
+            <i class="fas fa-bookmark fa-2x"></i>
             <Span_size>
               내 서재
             </Span_size>
@@ -394,17 +432,17 @@ function Header(props) {
     } else {
       return (
         <>
-          <A color="blue" href={routes.login}>
+          <A href={routes.login}>
+            <i className="fas fa-key fa-2x"></i>
             <Span_size>
               로그인
-          </Span_size>
-
+            </Span_size>
           </A>
-          <A color="blue" href={routes.join}>
+          <A href={routes.join}>
+            <i class="fas fa-sign-in-alt fa-2x"></i>
             <Span_size>
               가입
-          </Span_size>
-
+            </Span_size>
           </A>
         </>
       )

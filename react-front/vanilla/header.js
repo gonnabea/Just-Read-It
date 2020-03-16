@@ -17,39 +17,60 @@ const header_form = document.getElementById("header_form");
         incon_box.style.height = "30vh";
         incon_box.style.backgroundColor = "black";
         incon_box.style.color = "white";
-
+        
         if(incon_box.style.width === "30vh")
         {
             incon_box.style.width = "0"; 
             icon_ul.style.visibility = "hidden";
-            icon_bars.style.color = "black";
+            if(icon_bars)
+            {
+                icon_bars.style.color = "black";
+            }
         }  
         else{ 
-            incon_box.style.width="30vh";
-            icon_ul.style.visibility="visible";
-            icon_bars.style.color = "white";
+            incon_box.style.width = "30vh";
+            icon_ul.style.visibility = "visible";
+            if(icon_bars)
+            {
+
+                icon_bars.style.color = "white";
+            }
         } 
     }
 
 
    const handleSearch = ()=>{
-       let pos = 5;
-        if(header_search_input.style.width < "50%")
-        {
-                header_search_input.style.width = "50%";
+    let pos = 0;
+    let id = setInterval(frame, 10);
+    function frame() {
+        
+        if (pos == 50) {
+             clearInterval(id);
         }
-        else{
-            header_search_input.style.width = "20vh";
+        else {
+            pos += 1;
+           
+            header_search_input.style.width = `${pos}%`;
         }
-   }
-   
+     }
+     if(header_search_input.style.width >= "50%")
+     {
 
+         header_search_input.style.width = `20vh`
+     }
+   }
+  
  
  
 const headerInit = async ()=>{
     header_search_input.addEventListener("focus",handleSearch);
-    header_search_input.addEventListener("focusout",handleSearch);
-
+   
+    header_search_input.removeEventListener("focusout",handleSearch);
+    // header_search_input.addEventListener("mouseout",(e)=>{
+    //     e.target.parentNode.parentNode.parentNode.parentNode.addEventListener("click",(e)=>{
+    //         header_search_input.style.width = `20vh`
+    //     })
+    // }));
 
     // header_search_input.addEventListener("focusout", handleSearch);
 

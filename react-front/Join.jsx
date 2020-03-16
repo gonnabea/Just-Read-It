@@ -32,27 +32,29 @@ const Image = styled.img`
         border:0.5px solid rgba(21, 21, 22, 0.37); 
         background-color:white;
         opacity:1;
-        &:hover{
+        &:hover
+        {
         opacity:1;
 
         background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-    animation: gradient1 15s ease infinite;
-        
-    @keyframes gradient1 {
-        0% {
-            background-position: 0% 50%;
-            opacity:0.9;
+        background-size: 400% 400%;
+        animation: gradient1 15s ease infinite;
+            
+            @keyframes gradient1 
+            {
+                0% {
+                    background-position: 0% 50%;
+                    opacity:0.9;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    opacity:1;
+                    background-position: 0% 50%;
+                }
+            }
         }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            opacity:1;
-            background-position: 0% 50%;
-        }
-    }
-    }
     }
 `;
 
@@ -69,7 +71,7 @@ const Div = styled.div`
     background-color: #55efc4;
     box-shadow: 0px 0px 17px 4px rgba(0,0,0,0.75);
     padding:2rem;
-   
+
     &:hover{
         animation: box_hover 1s linear forwards;
         opacity:1;
@@ -110,35 +112,33 @@ const A = styled.a`
 display:flex;
 flex-direction:column;
 
-&>img{
-}
-&>span{
-    display:none;
-    /* color:black; */
-   
-    
-
-    
-}
+    &>img{
+    }
+    &>span{
+        display:none;
+        /* color:black; */
+    }
 `;
 
-
+const Form = styled.form`
+    display:flex;
+    flex-direction:column;
+`;
 const Input = styled.input`
-    margin: 0.4rem;
-    font-size:0.8rem;
-    @media screen and (max-width: 1000px)
-    { 
-        display:flex;
-        justify-content:center;
-        text-align:center;
+    margin: 1.2vh;
+    font-size: 1.2vh;
+    :focus{
+
+        background-color:#fffa65;
+        color:#2bcbba;
     }
 `;
 
 const Span_line = styled.span`
     width:100%;
-    margin: 0 2rem;
+    margin: 0 2vh;
     color:white;
-    font-size:1rem;
+    font-size:1vh;
     font-weight:300;
     :hover{
         font-weight:500;
@@ -153,6 +153,8 @@ const Bottom_box = styled.div`
     }
 
 `;
+
+
 const Check_span = styled.span`
 color:white;
 font-size:14px;
@@ -164,18 +166,19 @@ function Join(props) {
         <BaseLayout>
             <GlobalStyle />
             <Header />
-            <Main_box  >
+            <Main_box >
                 <Div>
                     {/* {Header(this.props)} */}
-                    <form action={props.routes.join} method="post" >
-                        <Input type="text" name="username" required={true} placeholder="닉네임" />
-                        <Input type="text" name="email" required={true} placeholder="이메일" />
-                        <Input type="password" name="password" required={true} placeholder="비밀번호" />
-                        <Input type="password" name="password2" required={true} placeholder="비밀번호 확인" />
+                    <Form action={props.routes.join}  method="post" >
+                        
+                        <Input  type="text" name="username" required={true} placeholder="닉네임" />
+                        <Input  type="text" name="email" required={true} placeholder="이메일" />                
+                        <Input  type="password" name="password" required={true} placeholder="비밀번호" />
+                        <Input  type="password" name="password2" required={true} placeholder="비밀번호 확인" />
                         <Input type="submit" value="가입하기" />
-                    </form>
+                    </Form>
                     <div>{props.msg}</div>
-                    <div style={{display:"flex"}}>
+                    <div style={{ display: "flex" }}>
                         <A href={props.routes.googleAuth}>
                             <Image src="https://img.utdstc.com/icons/google-search-android.png:l" alt="" />
                             <span>구글 로그인</span>

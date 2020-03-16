@@ -109,7 +109,7 @@ class bookDetail extends React.Component {
                                         <h5>{book.author}</h5>
                                         <h4>{book.likeFigure}명이 서재에 보관 중</h4>
                                         <h3>{JSON.stringify(book.createdAt)}</h3>
-        
+                                        <h3> 조회수 {book.viewsFigure}회 </h3>
                                     </span>
                                 </div>
                                 <div><span>{book.author}</span><span>{book.title}</span></div>
