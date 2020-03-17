@@ -114,7 +114,7 @@ const Background_image = styled.div`
     height:100%;
     background-repeat:repeat;
     background-size:100% 100%;
-    background-image:url("https://cdn.pixabay.com/photo/2017/07/26/17/41/watercolour-2542465_960_720.jpg");
+    background-image:url("https://cdn.pixabay.com/photo/2019/02/23/17/30/book-4016109_1280.jpg");
     @media screen and (min-height: 100vh)
     {
         height:150vh;

@@ -22,13 +22,13 @@ const Grid_box = styled.div`
     width:100%;
     height:100%;
     display:grid;
-    grid-template-columns: repeat(auto-fill,auto,1fr);
+    grid-template-columns: repeat(5,1fr);
     text-align:center;
     grid-gap: 10px;
    
-    @media screen and (max-width: 600px)
+    @media screen and (max-width: 700px)
     {
-        grid-template-columns: repeat(auto-fill,3,1fr);
+        grid-template-columns: repeat(3,1fr);
         
     }
      
@@ -50,7 +50,6 @@ const Image = styled.img`
     {
         text-align:center;
         width:6.5vh;
-        
     }
 `;
 
@@ -74,8 +73,8 @@ const H_one = styled.h1`
     margin-bottom:5vh;
     grid-area: span 1 /span 5;
     text-align:center;
-
 `;
+
 const Span = styled.span`
     margin-top:0.4vh;
     text-overflow:ellipsis;
@@ -103,7 +102,7 @@ const Background_img = styled.div`
     background-image:url("https://cdn.pixabay.com/photo/2015/07/27/20/16/book-863418_1280.jpg");
     background-repeat:repeat;
     background-position:center center;
-    background-size:100% auto;
+    background-size: auto auto;
     @media screen and (min-height: 100vh)
     {
         height:150vh;

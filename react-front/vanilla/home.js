@@ -27,61 +27,53 @@ const Shuffle = async () => {
 
 //page list
 const Imglength = async () => {
-    if(home_main_img.length >= 60)
-    {
+    if (home_main_img.length >= 60) {
         let count = 0;
         const page_btn = document.createElement("button");
-        const ul =document.createElement("ul");
-        const li =document.createElement("li");
+        const ul = document.createElement("ul");
+        const li = document.createElement("li");
         ul.appendChild(li);
-        ul.style.display="flex";
-        ul.style.width="100%";
-        ul.style.justifyContent="center";
-        ul.style.alignItems="center";
+        ul.style.display = "flex";
+        ul.style.width = "100%";
+        ul.style.justifyContent = "center";
+        ul.style.alignItems = "center";
 
-        li.style.cursor="pointer";
-        li.style.width="30px";
-        li.style.height="30px";
-        count = parseFloat(home_main_img.length/60);
-        if(count > parseInt(count))
-        {
+        li.style.cursor = "pointer";
+        li.style.width = "30px";
+        li.style.height = "30px";
+        count = parseFloat(home_main_img.length / 60);
+        if (count > parseInt(count)) {
             count += 1;
         }
-        li.innerText=  parseInt(count);
-        li.className="li_list";
-    
+        li.innerText = parseInt(count);
+        li.className = "li_list";
+
         home_main_img[0].parentNode.parentNode.parentNode.parentNode.appendChild(ul);
-    
-        for(i = 0; i <= home_main_img.length; i++)
-        {
-            if(i >= 60)
-            {
+
+        for (i = 0; i <= home_main_img.length; i++) {
+            if (i >= 60) {
                 home_main_img[i].parentNode.parentNode.parentNode.style.display = "none";
             }
         }
     }
     const li_list = await document.querySelectorAll(".li_list");
- 
-    for(i = 0; i < li_list.length; i++)
-    {
-        li_list[i].addEventListener("click",(e)=>{
+
+    for (i = 0; i < li_list.length; i++) {
+        li_list[i].addEventListener("click", (e) => {
             console.log(e.target)
-          
-            for(i = 0; i <= home_main_img.length; i++)
-            {
-                if(i === 1)
-                {
-                    for(j = 60; j <= home_main_img.length; j++)
-                    {
+
+            for (i = 0; i <= home_main_img.length; i++) {
+                if (i === 1) {
+                    for (j = 60; j <= home_main_img.length; j++) {
                         home_main_img[j].parentNode.parentNode.parentNode.style.display = "block";
                     }
                 }
-                else{
+                else {
                     return;
                 }
             }
         });
-        
+
     }
 }
 
@@ -105,7 +97,7 @@ const homeInit = async () => {
 
     console.log(home_main_img.length);
 
-    Imglength();
+    // Imglength();
     Shuffle();
     prev.addEventListener("click", async (e) => {
         // console.log("Prev"); 
@@ -122,7 +114,7 @@ const homeInit = async () => {
     for (i = 0; i < home_main_img.length; i++) {
 
         home_main_img[i].addEventListener("mouseover", async (e) => {
-           
+
             let pos = 0;
             let id = setInterval(frame, 10);
             function frame() {
@@ -133,18 +125,17 @@ const homeInit = async () => {
                     pos += 0.5;
                     e.target.style.transform = `translateY(-${pos}vh)`;
                 }
-                console.log("this is mouseover");
-
-                // for (j = 0; j < 6; j++) {
-                //     e.target.style.transform = `translateY(-${j}vh)`;
-                // }
-              
-
-                e.target.addEventListener("mouseout", (e) => {
-                    e.target.style.transform = `translateY(0vh)`;
-                });
+               
             };
         });
+        home_main_img[i].addEventListener("mouseout", async (e) => {
+            e.target.style.transform = `translateY(0vh)`;
+            setTimeout(() => {
+                e.target.style.transform = `translateY(0vh)`;
+
+            }, 500);
+        })
+
     }
 }
 

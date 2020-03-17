@@ -49,6 +49,7 @@ export const bookDetail = async(req, res) => {
         booksFigure += 1;
         }
     })
+    /*
     const pickedColor = ColorThief.getColor(book.imageUrl,3)
             .then(color => {return color})
             .catch(err => {console.log(err)})
@@ -65,8 +66,9 @@ export const bookDetail = async(req, res) => {
         return hex.length === 1 ? '0' + hex : hex
       }).join('')
       const coverColor = rgbToHex(R,G,B);
+      */
     const totalRate = (rateFigure/booksFigure).toPrecision(2);
-    res.render("book-detail" , {book, totalRate, coverColor});
+    res.render("book-detail" , {book, totalRate});
     }catch(err){
     console.log(err);
     res.render("404");

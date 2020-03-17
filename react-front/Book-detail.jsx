@@ -174,7 +174,7 @@ class bookDetail extends React.Component {
 }
 
 const Background = styled.section`
-background-image: url("https://wallpaperset.com/w/full/d/d/8/488615.jpg");
+background-image: url("https://cdn.pixabay.com/photo/2017/10/16/02/49/teddy-bear-2855982_1280.jpg");
 background-size: cover;
 padding-bottom: 20vh;
 `

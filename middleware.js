@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
 
 /*https://github.com/expressjs/multer/issues/170*/
 
-const upload = multer({ storage })
+const upload = multer({ dest: 'uploads/books/' })
 
 const bookImageUpload = upload.single("bookImage");
 

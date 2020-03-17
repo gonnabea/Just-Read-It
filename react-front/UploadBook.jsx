@@ -15,7 +15,7 @@ const Divs = styled.div`
     text-align:center;
     background-position:center center;
     background-size:100% 100%;
-    background-image:url("https://cdn.pixabay.com/photo/2020/02/24/18/09/background-4877012_960_720.jpg");
+    background-image:url("https://cdn.pixabay.com/photo/2015/04/12/17/22/once-upon-a-time-719174_1280.jpg");
 `;
 
 const Box_img = styled.div`
@@ -25,8 +25,8 @@ const Box_img = styled.div`
     justify-content:center;
     align-items:center;
     text-align:center;
-    width:35rem;
-    height:20rem;
+    width:30vw;
+    height:20vw;
     margin:1rem;
     top:25%;
     border-radius:5px;
@@ -36,7 +36,7 @@ const Box_img = styled.div`
     z-index:2;
 
     &:hover{
-        animation: box_hover 1s linear forwards;
+        animation: box_hover 0.5s linear forwards;
     }
 
     @keyframes box_hover{
@@ -51,16 +51,75 @@ const Box_img = styled.div`
 `;
 
 const Input = styled.input`
-    margin:0.4rem;
-    width:20vh;
-
-
+    margin:0.5vw;
+    width:20vw; 
+    height: 2vw;
+    /*background: linear-gradient(21deg, #10abff, #1beabd);*//*https://codepen.io/rikschennink/pen/rpNGyy*/
+    background:none;
+    border: solid 0px;
+    font-size:1vw;
+    border-bottom: solid 0.15vw white;
+    
+    ::placeholder{
+        color: white;
+        text-align:center;
+    }
+    :focus{
+        color:#F6B93B;
+        outline: none;
+        animation: makeBorder 0.4s linear forwards;
+        ::placeholder{
+        color:#F6B93B;
+        text-align:center;
+        
+    }
+        
+        @keyframes makeBorder {
+            0%{
+                background:none;
+            }
+            100%{
+                border-bottom: solid 0.2vw #F6B93B;
+                background-color:white;
+            }
+        }
+    }
 `;
 
 const Ainput = styled.textarea`
-    margin:0.4rem;
-    width:20vh;
-
+     margin:0.5rem;
+    width:20vw; 
+    height: 2vw;
+    /*background: linear-gradient(21deg, #10abff, #1beabd);*//*https://codepen.io/rikschennink/pen/rpNGyy*/
+    background:none;
+    border: solid 0px;
+    font-size:1vw;
+    border-bottom: solid 0.15vw white;
+    
+    ::placeholder{
+        color: white;
+        text-align:center;
+    }
+    :focus{
+        color:#F6B93B;
+        outline: none;
+        animation: makeBorder 0.4s linear forwards;
+        ::placeholder{
+        color:#F6B93B;
+        text-align:center;
+        
+    }
+        
+        @keyframes makeBorder {
+            0%{
+                background:none;
+            }
+            100%{
+                border-bottom: solid 0.2vw #F6B93B;
+                background-color:white;
+            }
+        }
+    }
 `;
 
 const Form = {
@@ -144,6 +203,31 @@ const Kakao_list = styled.section`
     }
 `;
 
+const Submit = styled.input`
+    width:7vw;
+    height:3vw;
+    background-color:white;
+    text-align: center;
+    font-weight:700;
+    font-size:2vh;
+    border: solid .3vh black;
+    
+    :hover{
+    
+        color:white;
+        border:none;
+        animation: button-color 0.3s linear forwards;
+        @keyframes button-color {
+            0%{
+                background-color: white;
+            }
+            100%{
+                background-color:#F6B93B;
+            }
+        }
+    }
+`
+
 
 class uploadBook extends React.Component {
 
@@ -159,19 +243,20 @@ class uploadBook extends React.Component {
                 <Divs>
 
                     <Box_img>
-                        <form style={Form} action={this.props.routes.addBook} method="post" enctype="multipart/form-data">
-                            <Input type="text" id="bookTitle" name="bookName" placeholder="책 제목" autocomplete="off" required="true" />
+                        <form autocomplete="off" style={Form} action={this.props.routes.addBook} method="post" enctype="multipart/form-data">
+                            <Input  autocomplete="off" type="text" id="bookTitle" name="bookName" placeholder="책 제목" required="true" />
                             <Ainput type="textarea" id="bookDescription" name="bookDescription" autocomplete="off" placeholder="책 상세설명" />
                             <Input type="text" name="author" id="bookAuthor" autocomplete="off" placeholder="작가 이름" />
                             <Input style={{ color: "red", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
-                            <Input style={{ cursor: "pointer" }} type="submit" value="등록하기" />
+                            <Submit style={{ cursor: "pointer" }} type="submit" value="등록하기" />
                         </form>
 
-                        <div style={{ marginTop: "0.3rem" }}>카카오 책에서 찾아보기</div>
-                        <form style={KaKao_form} id="kakaoBook" method="get">
-                            <input style={{ width: "16vh" }} type="text" id="target" placeholder="책 제목을 입력하세요" autocomplete="off" />
-                            <input style={{ cursor: "pointer", margin: "0.2rem" }} type="submit" value="검색" />
+                        <div style={{ marginTop: "0.3rem" }}>카카오 책에서 찾아보기
+                        <form autocomplete="off" style={KaKao_form} id="kakaoBook" method="get">
+                            <Input  type="text" id="target" placeholder="책 제목을 입력하세요" autocomplete="off" />
+                            <Submit style={{ cursor: "pointer", margin: "0.2rem" }} type="submit" value="검색" />
                         </form>
+                        </div>
                     </Box_img>
                     <Kakao_list id="resultScreen"></Kakao_list>
                     <Image_box>

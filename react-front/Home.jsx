@@ -17,8 +17,8 @@ const Recom_div = styled.div`
     display:grid;
     overflow: auto;
     grid-area: span 1/ span 6;
-    background:   rgba(8, 177, 199, 0.767);
-
+    /*background: rgba(8, 177, 199, 0.767);*/
+    background-image:url("https://cdn.pixabay.com/photo/2013/03/02/02/40/portrayal-89193_1280.jpg");
     /* display:fixed;
     position:absolute;
     right:0;
@@ -251,6 +251,20 @@ const Button_Next = styled.button`
     justify-self:center;
 `;
 
+const Background_img = styled.div`
+    position:absolute;
+    top:0; 
+    width:100%;
+    height:100vh;
+    z-index:-2;
+    background-color:rgba(243, 239, 177, 0.521);
+    background-repeat:repeat;
+    background-position:center center;
+    background-size:100% 100%;
+   
+`;
+
+
 function Home(props) {
 
 
@@ -323,7 +337,7 @@ function Home(props) {
                                 <H_two>
                                     작가 : {book.author}
                                 </H_two>
-                               <div> 조회수 {book.viewsFigure}회 </div>
+                                <div> 조회수 {book.viewsFigure}회 </div>
                             </Text_box>
                         </Book>
                         <Spantwo>({book.enrolledBy[0].username}님이 등록)</Spantwo>
@@ -357,6 +371,8 @@ function Home(props) {
                 {bookList}
                 {/* <Button_Next>lalalal</Button_Next> */}
             </Grid_box>
+            {/* <Background_img >
+            </Background_img> */}
             <script src="/vanilla/home.js"></script>
         </BaseLayout>
     );

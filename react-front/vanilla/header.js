@@ -74,7 +74,12 @@ const headerInit = async ()=>{
 
     // header_search_input.addEventListener("focusout", handleSearch);
 
-
+    document.addEventListener("click",()=>{
+            if(header_search_input.style.width > `20vh`)
+            {
+                header_search_input.style.width = `20vh`
+            }
+        })
     incon_box.addEventListener("click", handleClick);
     incon_box.addEventListener("mouseleave",handleClick);
 
