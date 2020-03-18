@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-
 import routes from "../../routes"
 import Title from "../title";
 import { BaseLayout } from "./layout";
@@ -13,16 +12,28 @@ const Div = styled.div`
   position:fixed;
 
   display:flex;
-  background:linear-gradient(82deg, rgba(255,33,33,0.2) 0%, rgba(255,219,80,0.2) 51%, rgba(29,62,255,0.2) 100%);
+  /* background:linear-gradient(180deg, rgba(27,234,100,0.25) 0%, rgba(0,255,192,0.25) 50%, rgba(16,193,255,0.25) 100%); */
+  background: linear-gradient(180deg, rgba(246,154,59,0.25) 0%, rgba(246,186,59,0.25) 50%, rgba(246,185,59,1) 100%);
   justify-content:space-between;
   /*position:fixed;*/
   z-index:5;
   scroll-behavior: smooth;
 
   :hover{
-    animation:hovers 0.5s linear;
+    animation:hovers1 0.5s linear;
     animation-fill-mode:forwards;
-    @keyframes hovers {
+    /* #10abff, #1beabd */
+    @keyframes hovers1 {
+      0%{
+        background-color:rgba(255, 255, 255, 0.103);
+      }
+      100%{
+        background-color:white;
+
+      }
+    }
+
+    @keyframes hovers2 {
       0%{
         background: linear-gradient(82deg, rgba(255,33,33,0) 0%, rgba(255,219,80,0) 51%, rgba(29,62,255,0) 100%);
       }
@@ -54,7 +65,7 @@ const Div = styled.div`
         background:linear-gradient(82deg, rgba(255,33,33,0.9) 0%, rgba(255,219,80,0.9) 51%, rgba(29,62,255,0.9) 100%);
       }
       100%{
-        background: linear-gradient(82deg, rgba(255,33,33,1) 0%, rgba(255,219,80,1) 51%, rgba(29,62,255,1) 100%);
+        background:linear-gradient(82deg, rgba(255,33,33,0.9) 0%, rgba(255,219,80,0.9) 51%, rgba(29,62,255,0.9) 100%);
       }
     }
   }
@@ -113,19 +124,31 @@ const A = styled.a`
   text-decoration:none;
   color:${props => props.color || "white"};
   font-size:${props => props.font_size || "15px"};
+
   :hover{
-    color:#9ACD32;
+    /* color:#9ACD32; */
+    &>i:nth-child(1){
+      /* color:#1B9CFC; */
+      color:#1B9CFC;
+    }
+
+    &>span:nth-child(2){
+      /* color:black; */
+    }
   }
+
   *>span:nth-child(2){
     :hover{
-      color:#1e3799;
+      /* color:#1e3799; */
+     
     }
   }
   &>i:nth-child(1){
     margin-right:1vw;
     
     &:hover{
-      color:#EA2027;
+      /* color:#EA2027; */
+      color:#1B9CFC;
     }
   }
 `;
@@ -297,11 +320,15 @@ const Icon_box = styled.div`
   ul:nth-child(2)
   {
     visibility:hidden;
-   
     &>li{
     display:flex;
     flex-direction:column;
     /* align-items: flex-end; */
+    }
+    
+    @media screen and (max-width: 700px)
+    { 
+      width:15vh;
     }
   }
 
@@ -329,14 +356,16 @@ const Menu_img = styled.img`
   margin-top:0.3rem;
   margin-left:0.3rem;
 `;
+
 const Span_size = styled.span`
   font-size:2.6vh;
-
   :hover{
-    color:#1B9CFC;
+    /* color:#1B9CFC; */
+    color:white;
      &::after {
       content: " ";
       animation: hover_border 0.35s linear forwards;
+      /* color:#1B9CFC; */
       }
   } 
 
@@ -349,14 +378,16 @@ const Span_size = styled.span`
 
   @keyframes hover_border{
     0%{
-        border-bottom: 1px solid white;
+        border-bottom: 2.5px solid #1B9CFC;
         width: 0%;
+        
     }
     100%{
-        border-bottom: 1px solid white;
+        border-bottom: 2.5px solid #1B9CFC;
         width: 100%;
     }
   }  
+
 `;
 
 const Icon = {

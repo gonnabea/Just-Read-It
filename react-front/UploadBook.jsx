@@ -30,7 +30,7 @@ const Box_img = styled.div`
     margin:1rem;
     top:25%;
     border-radius:5px;
-    background-color:rgba(229, 224, 149, 0.582);
+    background-color:rgba(229, 224, 149, 0.7);
     align-items:center;
     justify-content:center;
     z-index:2;
@@ -163,7 +163,7 @@ const Kakao_list = styled.section`
     background-position:center center;
     background-size:100% 100%;
     background-repeat:repeat;
-    background-image:url("https://cdn.pixabay.com/photo/2020/02/24/18/09/background-4877012_960_720.jpg");
+    background-image:url("https://cdn.pixabay.com/photo/2016/11/21/00/25/philatelist-1844078_1280.jpg");
     &>div{
         display:block;
         flex-direction:column;
@@ -228,7 +228,11 @@ const Submit = styled.input`
     }
 `
 
-
+const InputFile = styled.input`
+[type="file"] {
+    display: none;
+}
+`
 class uploadBook extends React.Component {
 
 
@@ -244,17 +248,17 @@ class uploadBook extends React.Component {
 
                     <Box_img>
                         <form autocomplete="off" style={Form} action={this.props.routes.addBook} method="post" enctype="multipart/form-data">
-                            <Input  autocomplete="off" type="text" id="bookTitle" name="bookName" placeholder="책 제목" required="true" />
-                            <Ainput type="textarea" id="bookDescription" name="bookDescription" autocomplete="off" placeholder="책 상세설명" />
-                            <Input type="text" name="author" id="bookAuthor" autocomplete="off" placeholder="작가 이름" />
-                            <Input style={{ color: "red", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
+                            <Input type="text" id="bookTitle" name="bookName" placeholder="책 제목" required="true" />
+                            <Ainput type="textarea" id="bookDescription" name="bookDescription"  placeholder="책 상세설명" />
+                            <Input type="text" name="author" id="bookAuthor"  placeholder="작가 이름" />
+                            <InputFile style={{ color: "#EF6C00", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
                             <Submit style={{ cursor: "pointer" }} type="submit" value="등록하기" />
                         </form>
 
                         <div style={{ marginTop: "0.3rem" }}>카카오 책에서 찾아보기
                         <form autocomplete="off" style={KaKao_form} id="kakaoBook" method="get">
                             <Input  type="text" id="target" placeholder="책 제목을 입력하세요" autocomplete="off" />
-                            <Submit style={{ cursor: "pointer", margin: "0.2rem" }} type="submit" value="검색" />
+                            <Submit  style={{ cursor: "pointer", margin: "0.2rem" }} type="submit" value="검색" />
                         </form>
                         </div>
                     </Box_img>

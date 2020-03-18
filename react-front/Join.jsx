@@ -16,8 +16,9 @@ const Main_box = styled.div`
     align-items:center;
     z-index:1;
     position:absolute;
-    background-image:url("https://cdn.pixabay.com/photo/2020/03/09/15/52/nature-4916153__340.jpg");
-    background-size:cover;
+    background-image:url("https://cdn.pixabay.com/photo/2020/03/12/13/27/rose-4925102_1280.jpg"); 
+    background-color:#ede9b2;
+    background-size:100% 100%;
     background-position:center center;
     
 `;
@@ -65,10 +66,11 @@ const Div = styled.div`
     justify-content:center;
     text-align:center;
     position:absolute;
-    top:40%;
+    top:30%;
     border: 1px solid red;
     border-radius:7px;
-    background-color: #55efc4;
+    /* background-color: #55efc4; */
+    background-color:rgba(229, 224, 149, 0.7);
     box-shadow: 0px 0px 17px 4px rgba(0,0,0,0.75);
     padding:2rem;
 
@@ -77,10 +79,10 @@ const Div = styled.div`
         opacity:1;
     }
 
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
 	background-size: 400% 400%;
-    animation: gradient1 15s ease infinite;
-        
+    /* animation: gradient1 15s ease infinite; */
+
     @keyframes gradient1 {
         0% {
             background-position: 0% 50%;
@@ -124,13 +126,66 @@ const Form = styled.form`
     display:flex;
     flex-direction:column;
 `;
+
 const Input = styled.input`
     margin: 1.2vh;
-    font-size: 1.2vh;
-    :focus{
+    font-size: 2vh;
+    width:100%;
+    /* :focus{
 
         background-color:#fffa65;
         color:#2bcbba;
+    } */
+    background:none;
+    border: solid 0px;
+    border-bottom: solid 0.15vh white;
+    
+    ::placeholder{
+        color: white;
+        text-align:center;
+    }
+    :focus{
+        color:#F6B93B;
+        outline: none;
+        animation: makeBorder 0.4s linear forwards;
+        ::placeholder{
+        color:#F6B93B;
+        text-align:center;
+        
+    }
+        
+        @keyframes makeBorder {
+            0%{
+                background:none;
+            }
+            100%{
+                border-bottom: solid 0.2vh #F6B93B;
+                background-color:white;
+            }
+        }
+    }
+
+    &:nth-child(5)
+    {
+        background-color:white;
+        text-align: center;
+        font-weight:700;
+        font-size:2vh;
+        border: solid .3vh black;
+        :hover{
+        
+            color:white;
+            border:none;
+            animation: button-color 0.3s linear forwards;
+            @keyframes button-color {
+                0%{
+                    background-color: white;
+                }
+                100%{
+                    background-color:#F6B93B;
+                }
+            }
+        }
     }
 `;
 
@@ -169,9 +224,8 @@ function Join(props) {
             <Main_box >
                 <Div>
                     {/* {Header(this.props)} */}
-                    <Form action={props.routes.join}  method="post" >
-                        
-                        <Input  type="text" name="username" required={true} placeholder="닉네임" />
+                    <Form action={props.routes.join} autocomplete="off"  method="post" >
+                        <Input  type="text" autocomplete="off" name="username" required={true} placeholder="닉네임" />
                         <Input  type="text" name="email" required={true} placeholder="이메일" />                
                         <Input  type="password" name="password" required={true} placeholder="비밀번호" />
                         <Input  type="password" name="password2" required={true} placeholder="비밀번호 확인" />

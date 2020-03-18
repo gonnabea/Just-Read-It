@@ -39,12 +39,14 @@ const Recom_a = styled.a`
     text-align:center;
     align-items:center;
     justify-content:space-between;
-
+    color:white;
    
   
     &>span{
-    width:10vh;
-    height:10vh;
+        width:10vh;
+        height:11.5vh;
+        overflow: hidden;
+        text-overflow: hidden;    
     }
     span:nth-child(4){
         width:30vh;
@@ -87,11 +89,11 @@ const Li = styled.li`
     /* text-overflow: auto; */
     margin-right:1rem;
     
-    animation: slide 1s;
+    animation: slide 1.5s;
 
     @keyframes slide{
         0%{
-            transform:translateX(25vh);
+            transform:translateX(35vh);
         }
         100%{
         }
@@ -272,14 +274,14 @@ function Home(props) {
     function recommendList() {
         if (props.recomendBooks) {
             return (
-                <h4 style={{ marginTop: "6rem" }}>
+                <h4 style={{ marginTop: "6rem",color:"white" }}>
                     {props.user.username}님만을 위한 추천 리스트 :
                 </h4>
             )
         }
         else {
             return (
-                <h1 style={{ marginTop: "6rem" }}>로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다</h1>
+                <h1 style={{ marginTop: "6rem",color:"white" }}>로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다</h1>
             )
         }
     }
@@ -297,7 +299,6 @@ function Home(props) {
                         return (
                             <Li className="reco_list">
                                 <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
-
                                     <Image height="100%" width="20vh" src={argument.imageUrl} />
                                     <Reco_span>
                                         제목:<br />
@@ -312,7 +313,6 @@ function Home(props) {
                                         {argument.description}
                                     </Reco_span>
                                 </Recom_a>
-
                             </Li>
                         )
                     }

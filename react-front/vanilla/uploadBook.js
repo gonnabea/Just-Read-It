@@ -6,6 +6,7 @@ const bookDescription = document.getElementById("bookDescription");
 const bookAuthor = document.getElementById("bookAuthor");
 const bookThumbnail = document.getElementById("bookThumbnail");
 
+
 /*
 const client = async(e) =>{ 
     console.log(bookTitle.value)
@@ -76,7 +77,10 @@ const findBooks = async e => {
       )
     })
     console.log(result)
-    
+    window.scrollTo({  
+      top:400,
+      behavior: "smooth"
+    });
   } catch (error) {
     console.log(error.response);
   }
@@ -182,6 +186,8 @@ function uploadBookApi(e){
     console.log(bookTitle.value);
     
 }
+
+
 function init(){
 kakaoUpload.addEventListener("submit", findBooks);
 };
