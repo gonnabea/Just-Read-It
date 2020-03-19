@@ -13,9 +13,10 @@ const Div = styled.div`
 
 const Recom_div = styled.div`
     width:100%; 
-    height:45vh;
+    height:55vh;
     display:grid;
-    overflow: auto;
+    overflow:auto;
+    overflow-x:hidden;
     grid-area: span 1/ span 6;
     /*background: rgba(8, 177, 199, 0.767);*/
     background-image:url("https://cdn.pixabay.com/photo/2013/03/02/02/40/portrayal-89193_1280.jpg");
@@ -34,8 +35,8 @@ const Recom_div = styled.div`
 `;
 const Recom_a = styled.a`
     width:100%;
-    height:100%;
     display:flex;
+    flex-direction:column;
     text-align:center;
     align-items:center;
     justify-content:space-between;
@@ -43,15 +44,13 @@ const Recom_a = styled.a`
    
   
     &>span{
-        width:10vh;
-        height:11.5vh;
         overflow: hidden;
-        text-overflow: hidden;    
+        text-overflow: ellipsis;    
     }
     span:nth-child(4){
-        width:30vh;
-        height:20vh;
         color:white;
+        overflow: hidden;
+        text-overflow: ellipsis;    
     }
 
 `;
@@ -60,19 +59,15 @@ const Recom_a = styled.a`
 
 
 const Ul = styled.ul`
-    display:block;
-    margin-top:-5rem;
-    flex-direction:column;
+    display:flex;
+    /* flex-direction:column; */
     justify-content:center;
     align-items:center;
     width:100%;
+    height:100vh;
+    overflow:hidden;
     overflow-x:hidden;
-    /* overflow:hidden; */
-    &>li{
-        margin-top:6rem;
-        display:flex;
-        flex-direction:column;
-    }
+    
     @media screen and (max-width: 1000px)
     { 
         height:20vh;
@@ -86,18 +81,23 @@ const Li = styled.li`
     align-items:center;
     height:100%;
     /* flex-direction:column; */
-    /* text-overflow: auto; */
-    margin-right:1rem;
-    
-    animation: slide 1.5s;
-
+    /* text-overflow: ellipsis; */
+    margin:0 1rem 0 0;
+    border:1px solid red;
+    animation: slide 1s;
+    width:40vh;
     @keyframes slide{
         0%{
-            transform:translateX(35vh);
+            transform:translateX(100vh);
         }
         100%{
         }
     }
+/* 
+    @media screen and (max-width: 700px)
+    { 
+      transform:translateX(-30vh);
+    } */
 `;
 
 const Button = styled.button`
@@ -137,16 +137,17 @@ const Reco_span = styled.span`
     text-align:center;
     justify-content:center;
     align-items:center;
-    text-overflow: hidden;    
     overflow: hidden;
+    text-overflow: ellipsis;    
     flex-direction:column;
+    margin-top:1vh;
 `;
 
 const A = styled.a`
     margin-right:1rem; 
     display:flex;
     flex-direction:column;
-    text-overflow: hidden;
+    text-overflow: ellipsis;
 `;
 const Reflex = styled.div`
     display:flex;
@@ -187,8 +188,8 @@ const Text_box = styled.div`
 
 const Spantwo = styled.span`
     width:100%;
-    text-overflow: hidden;    
     overflow: hidden;
+    text-overflow: ellipsis;    
 `;
 
 const H_one = styled.h1`
@@ -265,7 +266,19 @@ const Background_img = styled.div`
     background-size:100% 100%;
    
 `;
-
+const Re_book_pos = styled.div`
+    display:flex;
+    color:#74b9ff;
+    font-size:3px;
+    &>i{
+        font-size:3px;
+        margin:1vh;
+    }
+    &>i:hover{
+        font-size:15px;
+        cursor:pointer;
+    }
+`;
 
 function Home(props) {
 
@@ -274,14 +287,14 @@ function Home(props) {
     function recommendList() {
         if (props.recomendBooks) {
             return (
-                <h4 style={{ marginTop: "6rem",color:"white" }}>
+                <h4 style={{ marginTop: "6rem", color: "white",display:"flex",justifyself:"flex-start" }}>
                     {props.user.username}님만을 위한 추천 리스트 :
                 </h4>
             )
         }
         else {
             return (
-                <h1 style={{ marginTop: "6rem",color:"white" }}>로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다</h1>
+                <h1 style={{ marginTop: "6rem", color: "white",display:"flex",justifyself:"flex-start" }}>로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다</h1>
             )
         }
     }
@@ -299,7 +312,7 @@ function Home(props) {
                         return (
                             <Li className="reco_list">
                                 <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
-                                    <Image height="100%" width="20vh" src={argument.imageUrl} />
+                                    <Image height="40vh" width="30vh" src={argument.imageUrl} />
                                     <Reco_span>
                                         제목:<br />
                                         {argument.title}
@@ -350,22 +363,30 @@ function Home(props) {
 
     return (
         <BaseLayout>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
             <GlobalStyle />
             {Header(props)}
             <Grid_box>
 
                 <Recom_div>
                     {recommendList()}
-                    <Ul>
-                        {recomSys()}
+                    <div style={{ display: "flex", justifyContent: "flex-start" }}>
                         <Button id="btn_prev" >
                             Prev
                         </Button>
+                        <Re_book_pos>
+                            <i id="icon_1" className="fas fa-circle"></i>
+                            <i id="icon_2" className="fas fa-circle"></i>
+                            <i id="icon_3" className="fas fa-circle"></i>
+                        </Re_book_pos>
                         <Button id="btn_next">
                             Next
-
                         </Button>
+                    </div>
+                    <Ul>
+                        {recomSys()}
                     </Ul>
+
                 </Recom_div>
 
                 {bookList}

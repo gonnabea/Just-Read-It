@@ -2,27 +2,47 @@
 
 const prev = document.getElementById("btn_prev");
 const next = document.getElementById("btn_next");
-const home_main_img = document.querySelectorAll(".home_main_img");
 
+const icon_1 = document.getElementById("icon_1");
+const icon_2 = document.getElementById("icon_2");
+const icon_3 = document.getElementById("icon_3");
+
+const home_main_img = document.querySelectorAll(".home_main_img");
+ 
+let num = [];
 
 const Shuffle = async () => {
     let reco_list = await document.querySelectorAll(".reco_list");
-    let rand = [3];
+
+    let rand = [];
     for (j = 0; j < 3; j++) {
         rand[j] = Math.floor(Math.random() * reco_list.length);
         // console.log(rand[j])
-    }
+    } 
+
+    let pos = 50;
 
     for (i = 0; reco_list.length; i++) {
-        // console.log(reco_list[0]);
-        if (i != rand[0] && i != rand[1] && i != rand[2]) {
-            reco_list[i].style.display = "none";
+        // console.log(reco_list[0]); 
+        //&& i != rand[1] && i != rand[2]
+     
+        if  (i != rand[0] && i != rand[1] && i != rand[2])  {
+
+              reco_list[i].style.display = "none";
         }
         else {
-
             reco_list[i].style.display = "block";
+            reco_list[i].style.marginTop = "1rem";
+            reco_list[i].style.transform = `translateX(${pos}vh)`;
+            pos += 100;
+
+            num = i;
+                
+            console.log(num)
         }
     }
+
+
 }
 
 //page list
@@ -32,6 +52,7 @@ const Imglength = async () => {
         const page_btn = document.createElement("button");
         const ul = document.createElement("ul");
         const li = document.createElement("li");
+
         ul.appendChild(li);
         ul.style.display = "flex";
         ul.style.width = "100%";
@@ -60,7 +81,7 @@ const Imglength = async () => {
 
     for (i = 0; i < li_list.length; i++) {
         li_list[i].addEventListener("click", (e) => {
-            console.log(e.target)
+            // console.log(e.target)
 
             for (i = 0; i <= home_main_img.length; i++) {
                 if (i === 1) {
@@ -93,23 +114,41 @@ const opacity = (e) => {
     }
 }
 
+const nextBook = async () =>{
+    let reco_list = await document.querySelectorAll(".reco_list");
+    console.log("wow "+num);
+    console.log("wow "+num[1]);
+    console.log("wow "+num[2]);
+    for(i = 0; i < num.length; i++)
+    {
+        reco_list[num[i]].style.transform = `translateX(-30vh)`;
+
+    }
+
+}
+
 const homeInit = async () => {
 
-    console.log(home_main_img.length);
+    // console.log(home_main_img.length);
 
     // Imglength();
-    Shuffle();
+     Shuffle();
+
     prev.addEventListener("click", async (e) => {
         // console.log("Prev"); 
+        // console.log(e.target); 
         await opacity(e);
-        await Shuffle();
+        // await Shuffle();
     });
 
     next.addEventListener("click", async (e) => {
         // console.log("Next");
         await opacity(e);
-        await Shuffle();
+        // await Shuffle();
+        await nextBook();
+
     });
+    
 
     for (i = 0; i < home_main_img.length; i++) {
 
@@ -128,6 +167,7 @@ const homeInit = async () => {
                
             };
         });
+
         home_main_img[i].addEventListener("mouseout", async (e) => {
             e.target.style.transform = `translateY(0vh)`;
             setTimeout(() => {

@@ -224,7 +224,7 @@ function Join(props) {
             <Main_box >
                 <Div>
                     {/* {Header(this.props)} */}
-                    <Form action={props.routes.join} autocomplete="off"  method="post" >
+                    <Form action={props.routes.join} autoComplete="off"  method="post" >
                         <Input  type="text" autocomplete="off" name="username" required={true} placeholder="닉네임" />
                         <Input  type="text" name="email" required={true} placeholder="이메일" />                
                         <Input  type="password" name="password" required={true} placeholder="비밀번호" />

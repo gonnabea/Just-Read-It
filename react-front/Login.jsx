@@ -111,14 +111,14 @@ function Login(props) {
                 {Header(props)}
                 <Divs >
                     <Box_img>
-                        <form  style={{display:"flex",flexDirection:"column", alignItems:"space-around"}} action={props.routes.login}  method="post"  >
+                        <form autoComplete="off" style={{display:"flex",flexDirection:"column", alignItems:"space-around"}} action={props.routes.login}  method="post"  >
                             <div style={{display:"flex", justifyContent:"space-between"}}>
                             <Label className="email_label" for="login_email">Email:</Label>
-                            <Input autoComplete="false"  id="login_email" type="email" name="email" placeholder="이메일" ></Input>
+                            <Input id="login_email" type="email" name="email" placeholder="이메일" ></Input>
                             </div>
                             <div>
                             <Label className="email_label" for="login_password">password:</Label>
-                            <Input  autocomplete="new-password" id="login_password" type="password" name="password" placeholder="패스워드"></Input>
+                            <Input id="login_password" type="password" name="password" placeholder="패스워드"></Input>
                             </div>
                             <Input type="submit" value="로그인"></Input>
                         </form>

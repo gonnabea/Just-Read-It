@@ -229,8 +229,8 @@ const Sinput = styled.input`
   } 
 
     &:focus{
-      background-color:#b8e994;
-      color:#5352ed;
+      /*background-color:#b8e994;*/
+      color:#F6B93B;
 
       outline:none;
       cursor: pointer;
@@ -325,7 +325,7 @@ const Icon_box = styled.div`
     flex-direction:column;
     /* align-items: flex-end; */
     }
-    
+
     @media screen and (max-width: 700px)
     { 
       width:15vh;
@@ -503,7 +503,7 @@ function Header(props) {
         </a>
 
         <Search_box>
-          <Form id="header_form" action={routes.search} method="post">
+          <Form id="header_form" action={routes.search} autoComplete="off" method="post">
             <i style={Icon} className="fas fa-search"></i>
             <Sinput id="header_search_input" height="2.3rem" type="text" name="search" required={true} placeholder="제목,작가,소개글 ..." autocomplete="nope" className="button" />
             <Binput margin_left="0.5rem" type="submit" value="검색" />
