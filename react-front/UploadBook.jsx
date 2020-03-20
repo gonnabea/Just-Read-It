@@ -251,7 +251,19 @@ class uploadBook extends React.Component {
                             <Input type="text" id="bookTitle" name="bookName" placeholder="책 제목" required="true" />
                             <Ainput type="textarea" id="bookDescription" name="bookDescription"  placeholder="책 상세설명" />
                             <Input type="text" name="author" id="bookAuthor"  placeholder="작가 이름" />
+                            <section>
                             <InputFile style={{ color: "#EF6C00", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
+                            <select id="genres" name="genre"required="true">
+                                <option value="">장르를 선택하세요</option>
+                                <option value="소설">소설</option>
+                                <option value="자기계발서">자기계발서</option>
+                                <option value="개발관련서적">개발관련서적</option>
+                                <option value="자서전">자서전</option>
+                                <option value="해외서적">해외서적</option>
+                                <option value="기타">기타</option>
+                            </select>
+                            <h5>{this.props.msg}</h5>
+                            </section>
                             <Submit style={{ cursor: "pointer" }} type="submit" value="등록하기" />
                         </form>
 

@@ -20,7 +20,7 @@ const Div = styled.div`
   scroll-behavior: smooth;
 
   :hover{
-    animation:hovers1 0.5s linear;
+    animation:hovers1 0.3s linear;
     animation-fill-mode:forwards;
     /* #10abff, #1beabd */
     @keyframes hovers1 {

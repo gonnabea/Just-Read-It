@@ -13,17 +13,21 @@ export const getAddBook = (req, res) => {
 
 export const postAddBook = async(req, res) => {
     const {
-        body: {bookName,bookDescription,author}, file:{path}
+        body: {bookName, bookDescription, author, genre}, file:{path}
     } = req;
+    if(genre == ""){
+        res.render(routes.addBook, {msg:"장르를 선택하세요!"})
+    }
     try{
     const newBook = await Book.create({
         title:bookName,
         author,
         description:bookDescription,
         imageUrl:path,
-        enrolledBy: req.user.id
+        enrolledBy: req.user.id,
+        genre
     })
-    
+    console.log(newBook.genre)
     const currentUser = req.user;
     currentUser.uploadedBooks.push(newBook.id);
     currentUser.save();
