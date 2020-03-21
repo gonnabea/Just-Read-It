@@ -289,7 +289,23 @@ const GenreSort = styled.nav`
     display: flex;
     flex-direction: column;
     justify-content:space-around;
+
     align-items:center;
+    display:none;
+`
+
+const SlideNav  = styled.section`
+    position:fixed;
+    z-index:200;
+    display:flex;
+    align-items:center;
+    height:100%;
+    width:30vh;
+    
+    i:nth-child(1){
+        color:#1B9CFC;
+        z-index:200;
+    }
 `
 
 function Home(props) {
@@ -379,7 +395,10 @@ function Home(props) {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
             <GlobalStyle />
             {Header(props)}
-            <GenreSort>
+            
+            <SlideNav id="sortNav">
+            <i id="sortBtn" class="far fa-caret-square-right fa-3x"></i>
+            <GenreSort id="sortContent">
             <form action={props.routes.sortBooks("novel")} method="post">
                 <input type="submit" value="소설"/>
             </form>
@@ -399,6 +418,7 @@ function Home(props) {
                 <input type="submit" value="기타"/>
             </form>
             </GenreSort>
+            </SlideNav>
             <Grid_box>
 
                 <Recom_div>

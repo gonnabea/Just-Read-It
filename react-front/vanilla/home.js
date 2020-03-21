@@ -8,6 +8,10 @@ const icon_2 = document.getElementById("icon_2");
 const icon_3 = document.getElementById("icon_3");
 
 const home_main_img = document.querySelectorAll(".home_main_img");
+
+const sortNav = document.getElementById("sortNav");
+const sortBtn = document.getElementById("sortBtn");
+const sortContent = document.getElementById("sortContent");
  
 let num = [];
 
@@ -124,11 +128,24 @@ const nextBook = async () =>{
         reco_list[num[i]].style.transform = `translateX(-30vh)`;
 
     }
+}
 
+function handleSortBtn(){
+    console.log("It's working!")
+    sortBtn.className = 'far fa-caret-square-left fa-3x';
+    sortContent.style.display="flex";
+    sortBtn.removeEventListener("click", handleSortBtn);
+    sortBtn.addEventListener("click", function revertSlide(){
+        sortContent.style.display="none";
+        sortBtn.className = 'far fa-caret-square-right fa-3x';
+        sortBtn.removeEventListener("click",revertSlide);
+        sortBtn.addEventListener("click", handleSortBtn);
+    });
 }
 
 const homeInit = async () => {
-
+    sortBtn.addEventListener("click", handleSortBtn);
+    
     // console.log(home_main_img.length);
 
     // Imglength();
