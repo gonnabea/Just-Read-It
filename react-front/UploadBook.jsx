@@ -255,12 +255,12 @@ class uploadBook extends React.Component {
                             <InputFile style={{ color: "#EF6C00", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
                             <select id="genres" name="genre"required="true">
                                 <option value="">장르를 선택하세요</option>
-                                <option value="소설">소설</option>
-                                <option value="자기계발서">자기계발서</option>
-                                <option value="개발관련서적">개발관련서적</option>
-                                <option value="자서전">자서전</option>
-                                <option value="해외서적">해외서적</option>
-                                <option value="기타">기타</option>
+                                <option value="novel">소설</option>
+                                <option value="self-development">자기계발서</option>
+                                <option value="programming">개발관련서적</option>
+                                <option value="autobiography">자서전</option>
+                                <option value="overseas">해외서적</option>
+                                <option value="etc">기타</option>
                             </select>
                             <h5>{this.props.msg}</h5>
                             </section>

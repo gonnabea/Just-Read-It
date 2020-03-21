@@ -1,6 +1,6 @@
 import express from "express";
 import routes from "../routes";
-import {home, login, join, postJoin, postLogin, logout, getKakaoSearch} from "../controller/userController";
+import {home, login, join, postJoin, postLogin, logout, getKakaoSearch, sortBooks} from "../controller/userController";
 import passport from "passport";
 import { bookDetail } from "../controller/bookController";
 import { onlyLoggedOut } from "../middleware";
@@ -53,6 +53,8 @@ globalRouter.post(routes.join, postJoin);
 globalRouter.get(routes.bookDetail(), bookDetail);
 
 globalRouter.get(routes.kakaoSearch, getKakaoSearch);
+
+globalRouter.post(routes.sortBooks(), sortBooks);
 
 
 export default globalRouter;

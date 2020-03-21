@@ -26,6 +26,8 @@ const POSTREVIEW = "/book-review/:id";
 const SEARCH = "/book-search";
 const KAKAOSEARCH = "https://dapi.kakao.com/v3/search/book?target=title";
 
+const SORTBOOKS = "/sort-books/:id";
+
 const routes = {
     home: HOME,
     bookDetail: function(id) {
@@ -106,7 +108,15 @@ const routes = {
             return DELETE_RATE
         }
     },
-    kakaoSearch: KAKAOSEARCH
+    kakaoSearch: KAKAOSEARCH,
+    
+    sortBooks: (id) => {
+        if(id){
+            return `/sort-books/${id}`
+        }else{
+            return SORTBOOKS
+        }
+    }
     
     
 }

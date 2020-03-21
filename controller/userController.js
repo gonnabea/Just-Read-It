@@ -158,3 +158,38 @@ export const getKakaoSearch = (req, res) => {
     
    
 }
+
+export const sortBooks = async(req, res) => {
+    const {
+       params : {id} 
+    } = req;
+
+    console.log(id);
+    const books = await Book.find();
+    const filteredBooks = books.filter(
+        book => book.genre == id
+    )
+    let sortedBy
+    if(id == "novel"){
+        sortedBy = "소설"
+    }
+    else if(id == "self-development"){
+        sortedBy = "자기계발서"
+    }
+    else if(id == "programming"){
+        sortedBy = "개발관련서적"
+    }
+    else if(id == "autobiography"){
+        sortedBy = "자서전"
+    }
+    else if(id == "overseas"){
+        sortedBy = "해외서적"
+    }
+    else if(id == "etc"){
+        sortedBy = "기타"
+    }
+
+    console.log(books)
+    res.render("sortBooks", {sortedBy, books:filteredBooks})
+    
+}

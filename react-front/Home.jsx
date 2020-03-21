@@ -280,6 +280,18 @@ const Re_book_pos = styled.div`
     }
 `;
 
+const GenreSort = styled.nav`
+    background-color:rgba(15, 15, 15, 0.425);
+    width: 10%;
+    height: 100vh;
+    z-index: 100;
+    position:fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items:center;
+`
+
 function Home(props) {
 
 
@@ -351,6 +363,7 @@ function Home(props) {
                                     작가 : {book.author}
                                 </H_two>
                                 <div> 조회수 {book.viewsFigure}회 </div>
+                                <div>분류 : {book.genre}</div>
                             </Text_box>
                         </Book>
                         <Spantwo>({book.enrolledBy[0].username}님이 등록)</Spantwo>
@@ -366,6 +379,26 @@ function Home(props) {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
             <GlobalStyle />
             {Header(props)}
+            <GenreSort>
+            <form action={props.routes.sortBooks("novel")} method="post">
+                <input type="submit" value="소설"/>
+            </form>
+            <form action={props.routes.sortBooks("self-development")} method="post">
+                <input type="submit" value="자기계발서"/>
+            </form>
+            <form action={props.routes.sortBooks("programming")} method="post">
+                <input type="submit" value="개발관련서적"/>
+            </form>
+            <form action={props.routes.sortBooks("autobiography")} method="post">
+                <input type="submit" value="자서전"/>
+            </form>
+            <form action={props.routes.sortBooks("overseas")} method="post">
+                <input type="submit" value="해외서적"/>
+            </form>
+            <form action={props.routes.sortBooks("etc")} method="post">
+                <input type="submit" value="기타"/>
+            </form>
+            </GenreSort>
             <Grid_box>
 
                 <Recom_div>
@@ -400,3 +433,12 @@ function Home(props) {
 }
 
 export default Home;
+
+/*
+<option value="소설">소설</option>
+                                <option value="자기계발서">자기계발서</option>
+                                <option value="개발관련서적">개발관련서적</option>
+                                <option value="자서전">자서전</option>
+                                <option value="해외서적">해외서적</option>
+                                <option value="기타">기타</option>
+*/
