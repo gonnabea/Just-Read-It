@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./globalStyles/Header";
 import ReactDOM from "react-dom";
 import { BaseLayout } from "./globalStyles/layout";
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
 const Div = styled.div`
@@ -280,6 +280,11 @@ const Re_book_pos = styled.div`
     }
 `;
 
+const SlideContainer = styled.section`
+
+
+`
+
 const GenreSort = styled.nav`
     background-color:rgba(15, 15, 15, 0.425);
     width: 10%;
@@ -288,23 +293,77 @@ const GenreSort = styled.nav`
     position:fixed;
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
-
+    justify-content:center;
     align-items:center;
     display:none;
-`
+    color: white;
+    `
 
 const SlideNav  = styled.section`
     position:fixed;
     z-index:200;
     display:flex;
     align-items:center;
-    height:100%;
+    height:80%;
     width:30vh;
+    cursor:pointer;
+    color:#F6B93B;
+    margin-top:20vh;
+
+    @keyframes slide {
+        0%{
+            width:0;
+        }100%{
+            width:10%;
+        }
+    }
     
-    i:nth-child(1){
-        color:#1B9CFC;
-        z-index:200;
+    @keyframes revertSlide {
+        0%{
+            width:10%;
+            display:block;
+        }100%{
+            width:0;
+            display:none;
+        }
+    }
+
+    @keyframes slideBtn {
+        0%{
+            margin-left: 0;
+        }
+        100%{
+            margin-left: 20vh;
+        }
+    }
+    @keyframes revertSlideBtn {
+        0%{
+            margin-left: 20vh;
+        }
+        100%{
+            margin-left: 0;
+        }
+
+    }
+`
+
+
+const animations = keyframes`
+
+`
+const Genre = styled.input`
+    width:10vw;
+    height:3vw;
+    border:none;
+    text-align: center;
+    font-weight:700;
+    font-size:2vh;
+    background-color:rgba(15, 15, 15, 0.425);
+    color:white;
+    cursor: pointer;
+    :hover{
+        color:black;
+        background-color:#F6B93B;
     }
 `
 
@@ -395,30 +454,31 @@ function Home(props) {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
             <GlobalStyle />
             {Header(props)}
-            
+            <SlideContainer>
             <SlideNav id="sortNav">
-            <i id="sortBtn" class="far fa-caret-square-right fa-3x"></i>
+            <slideBtn id="sortBtn" class="far fa-caret-square-right fa-3x"></slideBtn>
             <GenreSort id="sortContent">
             <form action={props.routes.sortBooks("novel")} method="post">
-                <input type="submit" value="소설"/>
+                <Genre id="genreMenus" type="submit" value="소설"/>
             </form>
             <form action={props.routes.sortBooks("self-development")} method="post">
-                <input type="submit" value="자기계발서"/>
+                <Genre id="genreMenus" type="submit" value="자기계발서"/>
             </form>
             <form action={props.routes.sortBooks("programming")} method="post">
-                <input type="submit" value="개발관련서적"/>
+                <Genre id="genreMenus" type="submit" value="개발관련서적"/>
             </form>
             <form action={props.routes.sortBooks("autobiography")} method="post">
-                <input type="submit" value="자서전"/>
+                <Genre id="genreMenus" type="submit" value="자서전"/>
             </form>
             <form action={props.routes.sortBooks("overseas")} method="post">
-                <input type="submit" value="해외서적"/>
+                <Genre id="genreMenus" type="submit" value="해외서적"/>
             </form>
             <form action={props.routes.sortBooks("etc")} method="post">
-                <input type="submit" value="기타"/>
+                <Genre id="genreMenus" type="submit" value="기타"/>
             </form>
             </GenreSort>
             </SlideNav>
+            </SlideContainer>
             <Grid_box>
 
                 <Recom_div>
