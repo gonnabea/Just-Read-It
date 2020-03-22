@@ -139,7 +139,7 @@ function handleSortBtn(){
     sortContent.style.animation="slide .5s";
     sortContent.style.animationFillMode="forwards";
     sortBtn.style.animation="slideBtn .5s forwards";
-    
+    sortNav.style.width="30vh";
     sortBtn.removeEventListener("click", handleSortBtn);
     
     sortBtn.addEventListener("click", function revertSlide(){

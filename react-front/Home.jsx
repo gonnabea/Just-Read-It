@@ -305,7 +305,7 @@ const SlideNav  = styled.section`
     display:flex;
     align-items:center;
     height:80%;
-    width:30vh;
+    width:0;
     cursor:pointer;
     color:#F6B93B;
     margin-top:20vh;

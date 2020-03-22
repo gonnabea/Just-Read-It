@@ -112,7 +112,7 @@ class bookDetail extends React.Component {
                                         <h3> 조회수 {book.viewsFigure}회 </h3>
                                     </span>
                                 </div>
-                                <div><bdi>{book.author}</bdi><bdi>{book.title}</bdi></div>
+                                <div ><bdi id="bookSpine1">{book.author}</bdi><bdi id="bookSpine2">{book.title}</bdi></div>
                                 <div></div>
                             </Book>
                             
@@ -308,6 +308,20 @@ const Book = styled.section`
         
     }
 }
+
+@keyframes revert-rotate2{
+    0%{
+        transform: rotateY(30deg);
+    }
+    70%{    
+        box-shadow: 0px 0px 0px;
+    }
+    100%{
+        transform: rotateY(0deg);
+        
+    }
+}
+
 @keyframes book-rotate2 {
     from,to{
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg)
