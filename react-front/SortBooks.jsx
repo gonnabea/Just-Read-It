@@ -5,6 +5,15 @@ import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
+const Body = styled.div`
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+width:100vw;
+height:100vh;
+`
+
 class sortBooks extends React.Component{
     render(){
         const sortedBy = this.props.sortedBy;
@@ -30,8 +39,10 @@ class sortBooks extends React.Component{
             <BaseLayout>
             <GlobalStyle />
             {Header(this.props)}
+            <Body>
             <h1>you're in {sortedBy}</h1>
             <h2>{books}</h2>
+            </Body>
             </BaseLayout>
 
         )

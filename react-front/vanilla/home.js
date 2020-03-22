@@ -139,8 +139,11 @@ function handleSortBtn(){
     sortContent.style.animation="slide .5s";
     sortContent.style.animationFillMode="forwards";
     sortBtn.style.animation="slideBtn .5s forwards";
+    
     sortBtn.removeEventListener("click", handleSortBtn);
+    
     sortBtn.addEventListener("click", function revertSlide(){
+        sortNav.style.width="0";
         sortBtn.className = 'far fa-caret-square-right fa-3x';
         sortBtn.style.animation="revertSlideBtn .5s forwards";
         sortBtn.removeEventListener("click",revertSlide);

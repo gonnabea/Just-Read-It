@@ -10,7 +10,7 @@ const Div = styled.div`
   width:100%;
   height:10vh;
   position:fixed;
-
+  border-radius:20px;
   display:flex;
   /* background:linear-gradient(180deg, rgba(27,234,100,0.25) 0%, rgba(0,255,192,0.25) 50%, rgba(16,193,255,0.25) 100%); */
   background: linear-gradient(180deg, rgba(246,154,59,0.25) 0%, rgba(246,186,59,0.25) 50%, rgba(246,185,59,1) 100%);

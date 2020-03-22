@@ -96,9 +96,9 @@ class bookDetail extends React.Component {
                { Header(this.props)}
                     <BookInfos>
                         <Middle>
-                            <Book coverColor={this.props.coverColor}>
-                                <div>
-                                    <img src={`/${book.imageUrl}`} width="100%" height="100%" />
+                            <Book id="book" coverColor={this.props.coverColor}>
+                                <div id="frontCover">
+                                    <img id="coverImg"src={`/${book.imageUrl}`} width="100%" height="100%" />
                                     </div>
                                     <section><p>{book.description}</p></section>
                                 <div></div>
@@ -112,10 +112,10 @@ class bookDetail extends React.Component {
                                         <h3> 조회수 {book.viewsFigure}회 </h3>
                                     </span>
                                 </div>
-                                <div><span>{book.author}</span><span>{book.title}</span></div>
+                                <div><bdi>{book.author}</bdi><bdi>{book.title}</bdi></div>
                                 <div></div>
                             </Book>
-
+                            
                             <CommentSpace>
                                 <Comments>
                                     {book.review.map((item) => {
@@ -166,12 +166,19 @@ class bookDetail extends React.Component {
                         </BookIntroduce>
                      */}
                     </BookInfos>
+                    <ControlBook>
+                            <ControlBtn id="rotateBtn">책 돌리기</ControlBtn>
+                            <ControlBtn id="openBtn">책 펼치기</ControlBtn>
+                            </ControlBook>
                     <CheckUser />
                 </Background>
+                <script src="/vanilla/bookDetail.js"></script>
             </BaseLayout>
         )
     }
 }
+
+
 
 const Background = styled.section`
 background-image: url("https://cdn.pixabay.com/photo/2017/10/16/02/49/teddy-bear-2855982_1280.jpg");
@@ -179,40 +186,31 @@ background-size: cover;
 padding-bottom: 20vh;
 `
 
-const Book = styled.div`
+const Book = styled.section`
    
     width: 25vw;
-        height: 35vw;
+    height: 70vh;
     
     :hover{
-    animation: book-rotate 1s ;
+    animation: book-rotate 0.5s ;
     animation-fill-mode: forwards;
 }
     /*:active{
     animation: book-rotate2 .5s ;
     animation-fill-mode: forwards;
     }*/
-    :active{
+    /*:active{
     animation: moveBook 0.5s ease-in-out;
     animation-fill-mode: forwards;
     perspective: 130vw;
-    }
+    }*/
     transform-style: preserve-3d;
-    
-        @keyframes moveBook {
-            0%{
-                
-                transform: translateX(0vw) ;
-            }100%{
-                
-                transform: translateX(40vw);
-            }
-        }
+
     
     div:nth-child(1){
         position: absolute;
         width: 25vw;
-        height: 35vw;
+        height: 70vh;
         
         border-left:0;
         text-overflow:hidden;
@@ -223,44 +221,15 @@ const Book = styled.div`
         transform: translateZ(2vw);
         transform-origin: 0 0;
         
-        :active {
-            animation: openBook 0.5s ease-in-out;
-            animation-fill-mode: forwards;
-            transform-style: preserve-3d;
-           
-            @keyframes openBook {
-                0%{
-                    transform: rotateY(0deg);
-                    box-shadow: 0px 0px 0px;
-                    
-                }
-                100%{
-                    transform: rotateY(-150deg);
-                    box-shadow: 10px 10px 10px;
-                }
-            }
-        }
-        img:nth-child(1){
-            :active{
-                animation:fadeImage 0.5s;
-                animation-fill-mode:forwards;
-                @keyframes fadeImage {
-                    0%{
-                        opacity:1;
-                    }
-                    100%{
-                        opacity:0;
-                    }
-                }
-            }
-        }
+        
+        
     }
     section:nth-child(2){
         margin-top:1vw;
         margin-left:0.2vw;
         position: absolute;
         width: 23vw;
-        height: 33vw;
+        height: 66vh;
         background-color:white;
         text-overflow:hidden;
         z-index:-1;
@@ -274,7 +243,7 @@ const Book = styled.div`
     div:nth-child(5){
         position: absolute;
         width: 25vw;
-        height: 35vw;
+        height: 70vh;
         
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         font-size: 2vh;
@@ -296,7 +265,7 @@ const Book = styled.div`
     div:nth-child(6){
         position: absolute;
         width: 4vw;
-        height: 35vw;
+        height: 70vh;
         
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         background-size: cover;
@@ -304,36 +273,39 @@ const Book = styled.div`
         transform: rotateY(-90deg) rotateZ(0deg) translateZ(2vw) ;
         display:flex;
         flex-direction:column;
-        justify-content:space-around;
-        span:nth-child(1){
-            transform:rotateZ(90deg);
-            text-align:center;
-            display:flex;
+        align-items:center;
+        writing-mode: tb-rl ;
+
+        bdi:nth-child(1){
+            
             width:2vw;
             font-size:1.5vw;
             color: ${props => props.coverColor ? props.coverColor : "black"};
             -webkit-filter: invert(100%);
             filter: invert(100%);
-            
+            overflow:hidden;
         }
-        span:nth-child(2){
+        bdi:nth-child(2){
+            
             color: ${props => props.coverColor ? props.coverColor : "black"};
             -webkit-filter: invert(100%);
-            font-size:2vw;
+            font-size:1.5vw;
             filter: invert(100%);
+            font-weight:700;
+            overflow:hidden;
         }
     }
     
 @keyframes book-rotate {
     0%{
-        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+        transform: rotateY(0deg);
     }
     70%{    
         box-shadow: 0px 0px 0px;
     }
     100%{
-        transform: rotateY(180deg);
-        box-shadow: -10px 10px 10px;
+        transform: rotateY(30deg);
+        
     }
 }
 @keyframes book-rotate2 {
@@ -342,8 +314,79 @@ const Book = styled.div`
         
     }
     100%{
-        transform: rotateY(90deg)
+        transform: rotateY(180deg)
         
+    }
+}
+
+@keyframes revert-rotate {
+    from,to{
+        transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg)
+        
+    }
+    100%{
+        transform: rotateY(0deg)
+        
+    }
+}
+
+@keyframes moveBook {
+            0%{
+                
+                transform: translateX(0vw) ;
+            }100%{
+                
+                transform: translateX(40vw);
+            }
+        }
+
+@keyframes openBook {
+        0%{
+            transform: rotateY(0deg);
+            box-shadow: 0px 0px 0px;
+            
+        }
+        100%{
+            transform: rotateY(-150deg);
+            box-shadow: 10px 10px 10px;
+        }
+    }
+@keyframes fadeImage {
+                0%{
+                    opacity:1;
+                }
+                100%{
+                    opacity:0;
+                }
+            }      
+@keyframes revertBook {
+    0%{  
+        transform: translateX(40vw) ;
+    }100%{
+        
+        transform: translateX(0vw);
+    }
+}
+
+@keyframes closeBook {
+    0%{
+        transform: rotateY(-150deg);
+            box-shadow: 0px 0px 0px;
+    }
+    100%{
+        transform: rotateY(0);
+            box-shadow: 10px 10px 10px;
+    }
+}  
+@keyframes showImage {
+    0%{
+        opacity:0;
+    }
+    50%{
+        opacity:0;
+    }
+    100%{
+        opacity:1;
     }
 }
 
@@ -353,17 +396,17 @@ const Book = styled.div`
 
 const BookInfos = styled.div`
 width: 100%;
-height: 90vh;
-display: flex;
-flex-direction: column;
-justify-content: space-around;
+height: 100vh;
+
 `
 const Middle = styled.div`
 
 display: flex;
 justify-content: space-between;
+align-items:center;
 width: 100%;
-height: 70%;
+height: 100%;
+
 `
 
 const CommentSpace = styled.section`
@@ -372,14 +415,14 @@ const CommentSpace = styled.section`
     flex-direction: column;
     box-shadow: 10px 5px 20px #00c8eb;
     width: 25vw;
-        height: 35vw;
+        height: 70vh;
     border-radius: 20px;
     align-items: center;
     background-color:black;
     `
 const Comments = styled.ul`
     
-    padding-bottom: 60vh;
+    
 overflow: auto;
 width: 100%;
 height:100%;
@@ -449,5 +492,13 @@ background-color:rgba(255,255,255,0.3);
 const User_img = styled.img`
     border-radius:100%;
 `;
+
+const ControlBook = styled.div`
+
+`
+
+const ControlBtn = styled.button`
+
+`
 
 export default bookDetail
