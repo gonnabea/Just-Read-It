@@ -185,6 +185,30 @@ export const sortBooks = async(req, res) => {
     else if(id == "overseas"){
         sortedBy = "해외서적"
     }
+    else if(id == "essay"){
+        sortedBy = "시/에세이"
+    }
+    else if(id == "business"){
+        sortedBy = "경제/경영"
+    }
+    else if(id == "history"){
+        sortedBy = "역사/문화"
+    }
+    else if(id == "religion"){
+        sortedBy = "종교"
+    }
+    else if(id == "society"){
+        sortedBy = "정치/사회"
+    }
+    else if(id == "culture"){
+        sortedBy = "예술/대중문화"
+    }
+    else if(id == "science"){
+        sortedBy = "과학"
+    }
+    else if(id == "tech"){
+        sortedBy = "기술/공학"
+    }
     else if(id == "etc"){
         sortedBy = "기타"
     }

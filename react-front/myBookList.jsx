@@ -15,7 +15,7 @@ const Flex_box = styled.div`
     text-align:center;
     font-family:Tahoma;
     
-    `;
+`;
 
 const Grid_box = styled.div`
     position:absolute;
@@ -101,45 +101,10 @@ const Div = styled.div`
   
     display:flex;
     position: relative;
-    /* margin-right:0.2rem; */
     transform-style: preserve-3d;
     text-overflow: ellipsis;
     margin-top:7.5vh;
     height:45vh;
-  
-    /* &:hover{
-        cursor: pointer;
-        animation: hover_book 1s linear forwards;
-        z-index:10;
-    }
-            @keyframes hover_book {
-                0%{
-
-                } 
-                30%{
-                    transform:rotateX(-16.5deg) translateZ(10vh);
-                }
-                60%{
-                    transform:rotateX(0deg) translateZ(15vh);
-                }
-                100%{ 
-                    transform: translateZ(23vh) rotateY(-90deg);
-                }
-            }
-
-    &:active{
-        animation: active_book 0.5s linear forwards;
-    }
-        @keyframes active_book{
-            0%{
-                transform:rotateX(-30deg) translateZ(10vh);
-            }
-           
-            100%{
-                transform:  translateZ(20vh) ;
-
-            }
-        } */
 `;
 
 const ImageSize = styled.img`
@@ -154,26 +119,24 @@ const ImageSize = styled.img`
 const Side_cover = styled.div`
     width: 5.7vh;
     height:40vh;
-    text-align:center;
     display:flex;
     flex-direction:column;
+    align-items:center;
     justify-content:center;
-    text-align:center;
     background-color:${props => props.coverColor ? props.coverColor : "pink"};
     color:white;
     z-index:3;
-    
     color:red;
     font-size:100%;
     overflow:hidden;
-    text-align:center;
     writing-mode: vertical-rl;
     text-orientation: mixed;
-
-  
+    text-align:center;
+   
 `;
 
 const Back_cover = styled.div`
+    position:absolute;
     z-index:-1;
     width:27vh;
     height:40vh;
@@ -181,10 +144,11 @@ const Back_cover = styled.div`
      background-image:url("https://cdn.pixabay.com/photo/2017/07/20/09/35/particles-2521732_960_720.jpg");  
     /* background-image:url("https://cdn.pixabay.com/photo/2019/12/21/07/44/frame-4709861_960_720.png");  */
     color:white;
-    text-overflow:hidden;
-    overflow:hidden;
     transform:rotateY(-90deg) translateX(-13.75vh) translateZ(2.5vh); 
-    position:absolute;
+    overflow:hidden;
+    text-overflow:hidden;
+    text-transform: capitalize;
+    white-space : pre-wrap;
 `;
 
 const Up_cover = styled.div`
@@ -206,6 +170,7 @@ const Input = styled.input`
     position:absolute;
     bottom:2%;
     left:20%;
+    font-size:2vh;
     &:hover{
         cursor: pointer;
     }
@@ -219,26 +184,25 @@ const A = styled.a`
     transform-style: preserve-3d;
     margin:0 0.2vh;
 
+    &:hover{
+   
+        cursor: pointer;
+        animation: hover_book 1s linear forwards;
+        z-index:10;
+        
+        &>div:nth-child(3){
+            /* animation: hover_shadow 1s linear forwards; */
+        }
+    }
     @keyframes hover_shadow{
         0%{
-            box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75), 0px 0px 0px 0px rgba(0,0,0,0.75),0px 0px 0px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.0), 0px 0px 0px 0px rgba(0,0,0,0.0),0px 0px 0px 0px rgba(0,0,0,0.0);
         }
         100%{
             box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75), -4px 7px 5px 0px rgba(0,0,0,0.75),0px 0px 21px -5px rgba(0,0,0,0.75);
         }
     }
 
-    &:hover{
-        cursor: pointer;
-        animation: hover_book 1s linear forwards;
-        z-index:10;
-        
-        &>div:nth-child(3){
-            box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75), -4px 7px 5px 0px rgba(0,0,0,0.75),0px 0px 21px -5px rgba(0,0,0,0.75);
-            animation: hover_shadow 1s ease-in-out forwards;
-        }
-    }
-   
     @keyframes hover_book {
         0%{
 
@@ -317,6 +281,16 @@ const Grid_row = styled.div`
     {
         grid-template-columns:repeat( 5,1fr);
     } */
+    img:nth-last-child(2){
+            width:100vh;
+    }
+    @media screen and (max-width: 1000px) and (min-width: 300px)
+    {
+        img:nth-last-child(2){
+            width:100%;
+        }
+        width:40vh;
+    }
 `;
 
 const Delete_form = styled.form`
@@ -351,7 +325,7 @@ class MyBookList extends React.Component {
                                                 <ImageSize src={`/${book.imageUrl}`} />
 
                                                 <Side_cover className="my_book_list_side_cover">
-                                                    {book.title}
+                                                   {book.title}
                                                 </Side_cover>
                                                 {/* <h4>{book.author}</h4> */}
                                                 <Back_cover className="Back_cover">

@@ -22,14 +22,15 @@ const Grid_box = styled.div`
     width:100%;
     height:100%;
     display:grid;
-    grid-template-columns: repeat(5,1fr);
     text-align:center;
     grid-gap: 10px;
-   
+    grid-template-columns: repeat(5,1fr);
+    position:relative;
+    top:150px;
     @media screen and (max-width: 700px)
     {
+        top:8rem;
         grid-template-columns: repeat(3,1fr);
-        
     }
      
 `;
@@ -68,11 +69,13 @@ const A = styled.a`
 `;
 
 const H_one = styled.h1`
-    display:grid;
-    margin-top:10vh;
+    /* display:grid; */
     margin-bottom:5vh;
-    grid-area: span 1 /span 5;
+    width:100%;
+    /* grid-area: span 1 /span 6;  */
+    position:absolute;
     text-align:center;
+    top:-50px;
 `;
 
 const Span = styled.span`
@@ -103,6 +106,7 @@ const Background_img = styled.div`
     background-repeat:repeat;
     background-position:center center;
     background-size: auto auto;
+    
     @media screen and (min-height: 100vh)
     {
         height:150vh;
@@ -123,7 +127,7 @@ class search extends React.Component {
                         <H_one  >
                             {searchingBy} 검색결과 :
                         </H_one>
-                        {resultScreen}
+                            {resultScreen}
 
                     </>
 
@@ -161,7 +165,6 @@ class search extends React.Component {
                     {Header(this.props)}
 
                 <Grid_box>
-
                     <CheckSearchResult />
                 </Grid_box>
             <Background_img>

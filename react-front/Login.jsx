@@ -45,15 +45,15 @@ const Image = styled.img`
 
 const Box_img = styled.div`
     display:flex;
-    width:30rem;
-    height:20rem;
     align-items:center;
     justify-content:center;
     flex-direction:column;
-    border-bottom-right-radius:10px;
-    background-color:#4983ca;
+    text-align:center;
+    background-color:rgba(229, 224, 149, 0.7);
+    padding:2rem;
     box-shadow: -1px 0px 21px 0px rgba(0,0,0,0.75);
     border-radius:10px;
+
     &:hover{
         animation: box_hover 1s linear forwards;
     }
@@ -70,16 +70,61 @@ const Box_img = styled.div`
 `;
 
 const Input = styled.input`
-    margin:0.4rem;
-    &:hover{
-        cursor:pointer;
+    margin: 1.2vh;
+    font-size: 2vh;
+    width:100%;
+  
+    background:none;
+    border: solid 0px;
+    border-bottom: solid 0.15vh white;
+    
+    ::placeholder{
+        color: white;
+        text-align:center;
     }
     :focus{
-    autocomplete:off;
-    background-color:#fffa65;
-    color:#2bcbba;
+        color:#F6B93B;
+        outline: none;
+        animation: makeBorder 0.4s linear forwards;
+        ::placeholder{
+        color:#F6B93B;
+        text-align:center;
+    }
+        
+        @keyframes makeBorder {
+            0%{
+                background:none;
+            }
+            100%{
+                border-bottom: solid 0.2vh #F6B93B;
+                background-color:white;
+            }
+        }
+    }
+
+    &:nth-child(3)
+    {
+        background-color:white;
+        text-align: center;
+        font-weight:700;
+        font-size:2vh;
+        border: solid .3vh black;
+        :hover{
+            color:white;
+            border:none;
+            animation: button-color 0.3s linear forwards;
+            @keyframes button-color {
+                0%{
+                    background-color: white;
+                }
+                100%{
+                    background-color:#F6B93B;
+                }
+            }
+        }
     }
 `;
+
 const Bottom_box = styled.div`
     display:flex;
     justify-content:space-between;
@@ -101,25 +146,20 @@ const Span_line = styled.span`
 `;
 const Label = styled.label`
 `;
-
+ 
 function Login(props) {
     const Auths = () => {
-
         return (
             <BaseLayout>
                 <GlobalStyle />
                 {Header(props)}
                 <Divs >
                     <Box_img>
-                        <form autoComplete="off" style={{display:"flex",flexDirection:"column", alignItems:"space-around"}} action={props.routes.login}  method="post"  >
-                            <div style={{display:"flex", justifyContent:"space-between"}}>
-                            <Label className="email_label" for="login_email">Email:</Label>
-                            <Input id="login_email" type="email" name="email" placeholder="이메일" ></Input>
-                            </div>
-                            <div>
-                            <Label className="email_label" for="login_password">password:</Label>
-                            <Input id="login_password" type="password" name="password" placeholder="패스워드"></Input>
-                            </div>
+                        <form autoComplete="off" style={{ display: "flex", flexDirection: "column", alignItems: "space-around" }} action={props.routes.login} method="post"  >
+                            {/* <Label className="email_label" for="login_email">Email:</Label> */}
+                            <Input id="login_email" autoComplete="off" type="email" name="email" placeholder="이메일" ></Input>
+                            {/* <Label className="email_label" for="login_password">password:</Label> */}
+                            <Input id="login_password" autoComplete="off" type="password" name="password" placeholder="패스워드"></Input>
                             <Input type="submit" value="로그인"></Input>
                         </form>
                         <p>{props.message}</p>
@@ -127,7 +167,7 @@ function Login(props) {
                             <input type="checkbox" name="user_check" />
                             <span style={{ color: "red" }}>Remember me</span>
                         </div>
-                        <div>
+                        <div style={{ display: "flex" }}>
                             <Asns href={props.routes.googleAuth}>
                                 <span>구글 로그인</span>
                                 <Image src="https://p7.hiclipart.com/preview/249/19/631/google-logo-g-suite-google-guava-google-plus.jpg" alt="" />

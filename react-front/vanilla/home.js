@@ -176,11 +176,9 @@ const homeInit = async () => {
 
     });
     
-
     for (i = 0; i < home_main_img.length; i++) {
 
         home_main_img[i].addEventListener("mouseover", async (e) => {
-
             let pos = 0;
             let id = setInterval(frame, 10);
             function frame() {
@@ -191,7 +189,6 @@ const homeInit = async () => {
                     pos += 0.5;
                     e.target.style.transform = `translateY(-${pos}vh)`;
                 }
-               
             };
         });
 
@@ -200,7 +197,7 @@ const homeInit = async () => {
             setTimeout(() => {
                 e.target.style.transform = `translateY(0vh)`;
 
-            }, 500);
+            }, 100);
         })
 
     }

@@ -286,9 +286,10 @@ const SlideContainer = styled.section`
 `
 
 const GenreSort = styled.nav`
+    margin-top:-5vh;
     background-color:rgba(15, 15, 15, 0.425);
     width: 10%;
-    height: 100vh;
+    height: 90vh;
     z-index: 100;
     position:fixed;
     display: flex;
@@ -299,14 +300,14 @@ const GenreSort = styled.nav`
     color: white;
     `
 
-const SlideNav  = styled.section`
+const SlideNav = styled.section`
     position:fixed;
     z-index:200;
     display:flex;
     align-items:center;
     height:80%;
     width:0;
-    cursor:pointer;
+    
     color:#F6B93B;
     margin-top:20vh;
 
@@ -367,6 +368,11 @@ const Genre = styled.input`
     }
 `
 
+const SlideBtn = styled.span`
+cursor:pointer;
+`
+
+
 function Home(props) {
 
 
@@ -374,14 +380,14 @@ function Home(props) {
     function recommendList() {
         if (props.recomendBooks) {
             return (
-                <h4 style={{ marginTop: "6rem", color: "white",display:"flex",justifyself:"flex-start" }}>
+                <h4 style={{ marginTop: "6rem", color: "white", display: "flex", justifyself: "flex-start" }}>
                     {props.user.username}님만을 위한 추천 리스트 :
                 </h4>
             )
         }
         else {
             return (
-                <h1 style={{ marginTop: "6rem", color: "white",display:"flex",justifyself:"flex-start" }}>로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다</h1>
+                <h1 style={{ marginTop: "6rem", color: "white", display: "flex", justifyself: "flex-start" }}>로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다</h1>
             )
         }
     }
@@ -455,29 +461,54 @@ function Home(props) {
             <GlobalStyle />
             {Header(props)}
             <SlideContainer>
-            <SlideNav id="sortNav">
-            <slideBtn id="sortBtn" class="far fa-caret-square-right fa-3x"></slideBtn>
-            <GenreSort id="sortContent">
-            <form action={props.routes.sortBooks("novel")} method="post">
-                <Genre id="genreMenus" type="submit" value="소설"/>
-            </form>
-            <form action={props.routes.sortBooks("self-development")} method="post">
-                <Genre id="genreMenus" type="submit" value="자기계발서"/>
-            </form>
-            <form action={props.routes.sortBooks("programming")} method="post">
-                <Genre id="genreMenus" type="submit" value="개발관련서적"/>
-            </form>
-            <form action={props.routes.sortBooks("autobiography")} method="post">
-                <Genre id="genreMenus" type="submit" value="자서전"/>
-            </form>
-            <form action={props.routes.sortBooks("overseas")} method="post">
-                <Genre id="genreMenus" type="submit" value="해외서적"/>
-            </form>
-            <form action={props.routes.sortBooks("etc")} method="post">
-                <Genre id="genreMenus" type="submit" value="기타"/>
-            </form>
-            </GenreSort>
-            </SlideNav>
+                <SlideNav id="sortNav">
+                    <SlideBtn id="sortBtn" class="far fa-caret-square-right fa-3x"></SlideBtn>
+                    <GenreSort id="sortContent">
+                        <form action={props.routes.sortBooks("novel")} method="post">
+                            <Genre id="genreMenus" type="submit" value="소설" />
+                        </form>
+                        <form action={props.routes.sortBooks("self-development")} method="post">
+                            <Genre id="genreMenus" type="submit" value="자기계발서" />
+                        </form>
+                        <form action={props.routes.sortBooks("programming")} method="post">
+                            <Genre id="genreMenus" type="submit" value="개발관련서적" />
+                        </form>
+                        <form action={props.routes.sortBooks("autobiography")} method="post">
+                            <Genre id="genreMenus" type="submit" value="자서전" />
+                        </form>
+                        <form action={props.routes.sortBooks("overseas")} method="post">
+                            <Genre id="genreMenus" type="submit" value="해외서적" />
+                        </form>
+                        <form action={props.routes.sortBooks("essay")} method="post">
+                            <Genre id="genreMenus" type="submit" value="시/에세이" />
+                        </form>
+                        {/**/}
+                        <form action={props.routes.sortBooks("business")} method="post">
+                            <Genre id="genreMenus" type="submit" value="경제/경영" />
+                        </form>
+                        <form action={props.routes.sortBooks("history")} method="post">
+                            <Genre id="genreMenus" type="submit" value="역사/문화" />
+                        </form>
+                        <form action={props.routes.sortBooks("religion")} method="post">
+                            <Genre id="genreMenus" type="submit" value="종교" />
+                        </form>
+                        <form action={props.routes.sortBooks("society")} method="post">
+                            <Genre id="genreMenus" type="submit" value="정치/사회" />
+                        </form>
+                        <form action={props.routes.sortBooks("culture")} method="post">
+                            <Genre id="genreMenus" type="submit" value="예술/대중문화" />
+                        </form>
+                        <form action={props.routes.sortBooks("science")} method="post">
+                            <Genre id="genreMenus" type="submit" value="과학" />
+                        </form>
+                        <form action={props.routes.sortBooks("tech")} method="post">
+                            <Genre id="genreMenus" type="submit" value="기술/공학" />
+                        </form>
+                        <form action={props.routes.sortBooks("etc")} method="post">
+                            <Genre id="genreMenus" type="submit" value="기타" />
+                        </form>
+                    </GenreSort>
+                </SlideNav>
             </SlideContainer>
             <Grid_box>
 

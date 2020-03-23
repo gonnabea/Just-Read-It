@@ -8,6 +8,7 @@ const bookSpine2 = document.getElementById("bookSpine2");
 
 
 
+
 function rotate(){
     book.style.animation="book-rotate2 1s forwards";
     coverImg.style.animation="showImage  forwards";
@@ -27,6 +28,8 @@ function revertRotate(){
     frontCover.style.animation="closeBook forwards";
     coverImg.style.animation="showImage 0.5s forwards";
     book.style.perspective= "none";
+    frontCover.addEventListener("mouseover", rotate2);
+
     rotateBtn.removeEventListener("click", revertRotate);
     rotateBtn.addEventListener("click", rotate);
 }
@@ -76,7 +79,7 @@ function open(){
 function bookInit(){
     rotateBtn.addEventListener("click", rotate);
     openBtn.addEventListener("click", open);
-    
+    frontCover.addEventListener("mouseover", rotate2);
 }
 
 bookInit();

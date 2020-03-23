@@ -34,19 +34,27 @@ const Box_img = styled.div`
     align-items:center;
     justify-content:center;
     z-index:2;
-
     &:hover{
         animation: box_hover 0.5s linear forwards;
     }
-
     @keyframes box_hover{
         0%{
-
         }
         100%{
             box-shadow: 0px 10px 5px 1px rgba(0,0,0,0.75);
-
         }
+    }
+
+    @media screen and (min-width: 300px)
+    {
+        width:35%;
+        height:50%;
+    }
+
+    @media screen and (max-width: 1000px)
+    {
+        width:50%;
+        height:45%;
     }
 `;
 
@@ -84,6 +92,20 @@ const Input = styled.input`
             }
         }
     }
+/*     
+    @media screen and (min-width: 300px)
+    {
+        width:20vw; 
+        height: 2vw;
+    } */
+
+    @media screen and (max-width: 1400px)
+    {
+        width:70%;
+        height: 100%;
+        font-size:100%;
+    }
+
 `;
 
 const Ainput = styled.textarea`
@@ -109,7 +131,6 @@ const Ainput = styled.textarea`
         text-align:center;
         
     }
-        
         @keyframes makeBorder {
             0%{
                 background:none;
@@ -120,6 +141,15 @@ const Ainput = styled.textarea`
             }
         }
     }
+
+    
+    @media screen and (max-width: 1400px)
+    {
+        width:70%;
+        height: 100%;
+        font-size:100%;
+    }
+   
 `;
 
 const Form = {
@@ -175,7 +205,6 @@ const Kakao_list = styled.section`
         text-overflow:scroll;
         overflow-x: hidden;
         height:43.5vh;
-
         button{
             z-index:4;
             margin-bottom:2vh;
@@ -211,9 +240,10 @@ const Submit = styled.input`
     font-weight:700;
     font-size:2vh;
     border: solid .3vh black;
-    
+    margin-top:0.2rem;
     :hover{
-    
+        cursor:pointer;
+
         color:white;
         border:none;
         animation: button-color 0.3s linear forwards;
@@ -226,13 +256,60 @@ const Submit = styled.input`
             }
         }
     }
+
+    @media screen and (max-width: 1100px)
+    {
+        width:20%;
+        height:100%;
+        font-size:100%;
+    }
+
+    @media screen and (max-width: 700px)
+    {
+        width:50%;
+        height:100%;
+        font-size:100%;
+    }
 `
 
 const InputFile = styled.input`
-[type="file"] {
-    display: none;
-}
-`
+    [type="file"] {
+        display: none;
+    }
+
+    @media screen and (max-width: 1400px)
+    {
+        width:80%;
+        height: 100%;
+    }
+`;
+
+const Section = styled.section`
+    width:100%;
+    display:flex;
+
+  @media  screen and (max-width: 500px)
+    {
+        width:80%;
+        font-size:100%;
+        flex-direction:column;
+    }
+`;
+
+const Formdiv = styled.div`
+    margin-top:0.3rem;
+    width:100%;
+
+    @media screen and (min-width: 300px) and (max-width: 800px) {
+        font-size:100%;
+        &>form{
+            display:flex;
+            flex-direction:column;
+        }
+    }
+
+`;
+
 class uploadBook extends React.Component {
 
 
@@ -249,30 +326,31 @@ class uploadBook extends React.Component {
                     <Box_img>
                         <form autocomplete="off" style={Form} action={this.props.routes.addBook} method="post" enctype="multipart/form-data">
                             <Input type="text" id="bookTitle" name="bookName" placeholder="책 제목" required="true" />
-                            <Ainput type="textarea" id="bookDescription" name="bookDescription"  placeholder="책 상세설명" />
-                            <Input type="text" name="author" id="bookAuthor"  placeholder="작가 이름" />
-                            <section>
-                            <InputFile style={{ color: "#EF6C00", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
-                            <select id="genres" name="genre"required="true">
-                                <option value="">장르를 선택하세요</option>
-                                <option value="novel">소설</option>
-                                <option value="self-development">자기계발서</option>
-                                <option value="programming">개발관련서적</option>
-                                <option value="autobiography">자서전</option>
-                                <option value="overseas">해외서적</option>
-                                <option value="etc">기타</option>
-                            </select>
-                            <h5>{this.props.msg}</h5>
-                            </section>
-                            <Submit style={{ cursor: "pointer" }} type="submit" value="등록하기" />
+                            <Ainput type="textarea" id="bookDescription" name="bookDescription" placeholder="책 상세설명" />
+                            <Input type="text" name="author" id="bookAuthor" placeholder="작가 이름" />
+                            <Section>
+                                <InputFile style={{ color: "#EF6C00", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
+                                <select id="genres" name="genre" required="true">
+                                    <option value="">장르를 선택하세요</option>
+                                    <option value="novel">소설</option>
+                                    <option value="self-development">자기계발서</option>
+                                    <option value="programming">개발관련서적</option>
+                                    <option value="autobiography">자서전</option>
+                                    <option value="overseas">해외서적</option>
+                                    <option value="etc">기타</option>
+                                </select>
+                                <h5>{this.props.msg}</h5>
+                            </Section>
+                            <Submit type="submit" value="등록하기" />
                         </form>
 
-                        <div style={{ marginTop: "0.3rem" }}>카카오 책에서 찾아보기
-                        <form autocomplete="off" style={KaKao_form} id="kakaoBook" method="get">
-                            <Input  type="text" id="target" placeholder="책 제목을 입력하세요" autocomplete="off" />
-                            <Submit  style={{ cursor: "pointer", margin: "0.2rem" }} type="submit" value="검색" />
-                        </form>
-                        </div>
+                        <Formdiv>
+                            카카오 책에서 찾아보기
+                            <form autocomplete="off" style={KaKao_form} id="kakaoBook" method="get">
+                                    <Input type="text" id="target" placeholder="책 제목을 입력하세요" autocomplete="off" />
+                                    <Submit style={{ cursor: "pointer", margin: "0.2rem" }} type="submit" value="검색" />
+                            </form>
+                        </Formdiv>
                     </Box_img>
                     <Kakao_list id="resultScreen"></Kakao_list>
                     <Image_box>

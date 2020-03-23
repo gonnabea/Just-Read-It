@@ -167,8 +167,8 @@ class bookDetail extends React.Component {
                      */}
                     </BookInfos>
                     <ControlBook>
-                            <ControlBtn id="rotateBtn">책 돌리기</ControlBtn>
-                            <ControlBtn id="openBtn">책 펼치기</ControlBtn>
+                            <ControlBtn id="rotateBtn"><i class="fas fa-undo"></i>책 돌리기</ControlBtn>
+                            <ControlBtn id="openBtn"><i class="fas fa-book-open"></i>책 펼치기</ControlBtn>
                             </ControlBook>
                     <CheckUser />
                 </Background>

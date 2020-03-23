@@ -4,7 +4,7 @@ import Header from "./globalStyles/Header";
 import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
-
+ 
 
 const Main_box = styled.div`
     width:100%;
