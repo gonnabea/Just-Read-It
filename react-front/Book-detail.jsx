@@ -141,15 +141,17 @@ class bookDetail extends React.Component {
                                         starPoint();
                                         return (
                                             <Comment>
-                                                <a href={this.props.routes.profile(item.creator)}>
+                                                <Avatar>
                                                 <img src={item.creatorPhoto} width="50vh" />
-                                                </a>
                                                 <h3>{item.creator}</h3>
-                                                <h3>{item.content}</h3>
-                                                <h3>{star}</h3>
-                                                <h3>{item.rate}점</h3>
+                                                </Avatar>
+                                                <Review>
+                                                <Content>{item.content}</Content>
+                                                <Star>{star}({item.rate})</Star>
+                                                
                                                 <h3>{JSON.stringify(item.createdAt)}</h3>
                                                 {UserWhoRated(item)}
+                                                </Review>
                                             </Comment>
                                         )
                                     })}
@@ -178,7 +180,28 @@ class bookDetail extends React.Component {
     }
 }
 
+const Avatar = styled.section`
+display:flex;
+flex-direction:column;
+`
+const Content = styled.span`
+font-weight:700;
+width:15vw;
+overflow:hidden;
+`
 
+const Review = styled.section`
+display:flex;
+flex-direction:column;
+background-color:#F6B93B;
+border-radius:15px;
+text-align:center;
+`
+const Star = styled.span`
+color:blue;
+display:flex;
+justify-content:center;
+`
 
 const Background = styled.section`
 background-image: url("https://cdn.pixabay.com/photo/2017/10/16/02/49/teddy-bear-2855982_1280.jpg");
@@ -451,11 +474,13 @@ border-radius: 20px;
 
 const Comment = styled.div`
 display:flex;
-flex-direction: column;
+flex-direction: row;
+justify-content: space-between;
 align-items: center;
 color:black;
 margin-top:0.3rem;
 background-color: rgba(255,255,255,0.3);
+width:25vw;
 `
 
 const InputReview = styled.textarea`
