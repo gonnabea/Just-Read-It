@@ -138,7 +138,7 @@ class profile extends React.Component {
                 <Div>
                     <Flex_div marginTop="10vh">
                         <Image src={this.props.currentUser.profilePhoto} />
-                        <A href={this.props.routes.editUser(this.props.user.id)}>
+                        <A href={this.props.routes.editUser}>
                             프로필 수정
                         </A>
                         <h2 >{this.props.currentUser.username}

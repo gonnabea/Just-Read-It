@@ -94,13 +94,7 @@ const routes = {
         }
     },
     search: SEARCH,
-    editUser: (id) => {
-        if(id){
-            return `/edit-user/${id}`
-        }else{
-            return EDIT_USER
-        }
-    },
+    editUser: EDIT_USER,
     deleteRate: (id) => {
         if(id){
             return `/delete-rate/${id}`

@@ -337,6 +337,14 @@ class uploadBook extends React.Component {
                                     <option value="programming">개발관련서적</option>
                                     <option value="autobiography">자서전</option>
                                     <option value="overseas">해외서적</option>
+                                    <option value="essay">시/에세이</option>
+                                    <option value="business">경제/경영</option>
+                                    <option value="history">역사/문화</option>
+                                    <option value="religion">종교</option>
+                                    <option value="society">정치/사회</option>
+                                    <option value="culture">예술/대중문화</option>
+                                    <option value="science">과학</option>
+                                    <option value="tech">기술/공학</option>
                                     <option value="etc">기타</option>
                                 </select>
                                 <h5>{this.props.msg}</h5>

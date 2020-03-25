@@ -34,7 +34,7 @@ async function (accessToken, refreshToken, profile, cb) {
         const user = await User.findOne({ email })
         if (user) {
             user.googleId = id;
-            user.profilePhoto = picture;
+            
             user.save();
             return cb(null, user)
         }
@@ -66,7 +66,7 @@ async function(accessToken, refreshToken, profile, cb){
         const user = await User.findOne({email})
         if (user) {
             user.naverId = id;
-            user.profilePhoto = profile_image;
+            
             user.save();
             return cb(null, user)
         }
@@ -96,7 +96,7 @@ passport.use(new SlackStrategy.Strategy({
         const user = await User.findOne({email})
         if (user) {
             user.slackId = id;
-            user.profilePhoto = image_512;
+           
             user.save();
             return cb(null, user)
         }

@@ -149,7 +149,7 @@ class bookDetail extends React.Component {
                                                 <Content>{item.content}</Content>
                                                 <Star>{star}({item.rate})</Star>
                                                 
-                                                <h3>{JSON.stringify(item.createdAt)}</h3>
+                                                <h3 id="commentedAt">{JSON.stringify(item.createdAt)}</h3>
                                                 {UserWhoRated(item)}
                                                 </Review>
                                             </Comment>

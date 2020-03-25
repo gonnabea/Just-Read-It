@@ -23,9 +23,11 @@ const storage = multer.diskStorage({
 
 /*https://github.com/expressjs/multer/issues/170*/
 
-const upload = multer({ dest: 'uploads/books/' })
+export const upload = multer({ dest: 'uploads/books/' })
+export const avatarUpload = multer({ dest: 'uploads/avatars/'})
 
-const bookImageUpload = upload.single("bookImage");
+export const bookImageUpload = upload.single("bookImage");
+export const userAvatarUpload = avatarUpload.single("profilePhoto");
 
 export const checkUserExist = (req, res, next) => {
     if(req.user){
@@ -43,4 +45,4 @@ export const onlyLoggedOut = (req, res, next) => {
     }
 }
 
-export default bookImageUpload;
+

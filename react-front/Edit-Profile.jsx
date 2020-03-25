@@ -69,11 +69,9 @@ class editProfile extends React.Component {
                     {Header(this.props)}
                 <Div className="user_edit proile">
                     <Back_ground>
-                        <form action={this.props.routes.editUser(this.props.user.id)}>
-                            <input type="text" name="username" placeholder="닉네임" />
-                            <input style={{color:"red"}} type="file" name="profilePhoto" placeholder="프로필 사진" />
-                            <input type="password" name="password" placeholder="변경할 비밀번호" />
-                            <input type="password" name="password2" placeholder="비밀번호 확인" />
+                        <form action={this.props.routes.editUser} method="post" enctype="multipart/form-data">
+                            <input type="text" name="username" placeholder="변경하실 닉네임" />
+                            <input type="file" name="profilePhoto"  />
                             <input type="submit" value="프로필 수정" />
                         </form>
                    

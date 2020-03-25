@@ -534,22 +534,12 @@ function Home(props) {
                 </Recom_div>
 
                 {bookList}
-                {/* <Button_Next>lalalal</Button_Next> */}
+              
             </Grid_box>
-            {/* <Background_img >
-            </Background_img> */}
+         
             <script src="/vanilla/home.js"></script>
         </BaseLayout>
     );
 }
 
 export default Home;
-
-/*
-<option value="소설">소설</option>
-                                <option value="자기계발서">자기계발서</option>
-                                <option value="개발관련서적">개발관련서적</option>
-                                <option value="자서전">자서전</option>
-                                <option value="해외서적">해외서적</option>
-                                <option value="기타">기타</option>
-*/

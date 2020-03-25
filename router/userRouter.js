@@ -1,7 +1,7 @@
 import express from "express";
 import routes from "../routes";
 import { getAddBook, postAddBook, myBookList, postMyBookList, postReview, editBook, deleteBook, deleteFavBook, deleteRate } from "../controller/bookController";
-import bookImageUpload, { checkUserExist } from "../middleware";
+import {bookImageUpload, checkUserExist, userAvatarUpload } from "../middleware";
 import { profile, search, editUser, postEditUser } from "../controller/userController";
 
 const userRouter = express.Router();
@@ -21,8 +21,8 @@ userRouter.post(routes.search, search);
 userRouter.post(routes.editBook(),checkUserExist, editBook);
 userRouter.post(routes.deleteBook(),checkUserExist, deleteBook);
 
-userRouter.get(routes.editUser(),checkUserExist, editUser);
-userRouter.post(routes.editUser(),checkUserExist, postEditUser);
+userRouter.get(routes.editUser,checkUserExist, editUser);
+userRouter.post(routes.editUser,checkUserExist, userAvatarUpload, postEditUser);
 
 userRouter.post(routes.deleteFavBook(), checkUserExist, deleteFavBook);
 

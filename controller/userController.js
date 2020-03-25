@@ -133,24 +133,24 @@ export const editUser = (req, res) => {
 
 export const postEditUser = async(req, res) => {
     const {
-        params: {id},
-        body: {username, password, password2, profilePhoto}
+       
+        body: {username},
+        file
     } = req;
-
-    if(password == password2){
+    console.log(username, file)
+    
         try{
-            const newUser = await User.findByIdAndUpdate({_id:id},
-                {username, profilePhoto}
+        await User.findByIdAndUpdate(req.user.id,
+                {username,
+                profilePhoto: file ? `/${file.path}` : req.user.profilePhoto
+                }
                 );
-            
+            res.redirect(`/${routes.profile(req.user.id)}`)
         }catch(error){
             console.log(error)
             res.redirect(routes.home);
         }
-    }else{
-        
-        res.render("edit-profile",{msg:"비밀번호가 일치하지 않습니다."})
-    }
+    
     
 }
 

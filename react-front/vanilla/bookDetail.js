@@ -5,6 +5,7 @@ const frontCover = document.getElementById("frontCover");
 const coverImg = document.getElementById("coverImg");
 const bookSpine1 = document.getElementById("bookSpine1");
 const bookSpine2 = document.getElementById("bookSpine2");
+const commentedAt = document.getElementById("commentedAt");
 
 
 
@@ -76,11 +77,15 @@ function open(){
     rotateBtn.addEventListener("click", rotate);
 }
 
+function handleComment(){
+    console.log(commentedAt);
+}
+
 function bookInit(){
     rotateBtn.addEventListener("click", rotate);
     openBtn.addEventListener("click", open);
     frontCover.addEventListener("mouseover", rotate2);
 }
-
+handleComment()
 bookInit();
 
