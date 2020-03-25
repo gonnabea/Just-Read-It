@@ -48,7 +48,7 @@ class sortBooks extends React.Component {
                         작가 : {book.author}
                     </div>
                     <div> 조회수 {book.viewsFigure}회 </div>
-                    <div>분류 : {book.genre}</div>
+                    <div>분류 : {sortedBy}</div>
 
                     <div>({book.enrolledBy[0].username}님이 등록)</div>
                     <div>{JSON.stringify(book.createdAt)}</div>

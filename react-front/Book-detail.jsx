@@ -47,10 +47,10 @@ class bookDetail extends React.Component {
         function ActivateReview() {
             if (user) {
                 return (
-                    <form action={routes.postReview(book.id)} method="post">
-                        <InputReview type="textarea" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!"  rows="1" />
+                    <form action={routes.postReview(book.id)} id="postReview" method="post">
+                        <InputReview type="textarea" autoComplete="off" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!"  rows="1" />
                         <InputRate type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={0} step={.1} />
-                        <ReviewSubmit type="submit" value="등록" />
+                        <ReviewSubmit id="postReviewBtn" type="submit" value="등록" />
                     </form>
                 )
             }
@@ -175,6 +175,7 @@ class bookDetail extends React.Component {
                     <CheckUser />
                 </Background>
                 <script src="/vanilla/bookDetail.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
             </BaseLayout>
         )
     }

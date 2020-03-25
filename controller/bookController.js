@@ -75,7 +75,7 @@ export const bookDetail = async(req, res) => {
     await fs.renameSync(`${book.imageUrl}.jpeg`,book.imageUrl);
 
     const totalRate = (rateFigure/booksFigure).toPrecision(2);
-    res.render("book-detail" , {book, totalRate, coverColor});
+    res.render("book-detail" , {book, totalRate, coverColor, pageTitle:book.title});
     }catch(err){
     console.log(err);
     res.render("404");

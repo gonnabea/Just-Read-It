@@ -429,8 +429,55 @@ function Home(props) {
         }
     }
 
+    let sortedBy
+    function genre(book){
+      if(book.genre == "novel"){
+          sortedBy = "소설"
+      }
+      else if(book.genre == "self-development"){
+          sortedBy = "자기계발서"
+      }
+      else if(book.genre == "programming"){
+          sortedBy = "개발관련서적"
+      }
+      else if(book.genre == "autobiography"){
+          sortedBy = "자서전"
+      }
+      else if(book.genre == "overseas"){
+          sortedBy = "해외서적"
+      }
+      else if(book.genre == "essay"){
+          sortedBy = "시/에세이"
+      }
+      else if(book.genre == "business"){
+          sortedBy = "경제/경영"
+      }
+      else if(book.genre == "history"){
+          sortedBy = "역사/문화"
+      }
+      else if(book.genre == "religion"){
+          sortedBy = "종교"
+      }
+      else if(book.genre == "society"){
+          sortedBy = "정치/사회"
+      }
+      else if(book.genre == "culture"){
+          sortedBy = "예술/대중문화"
+      }
+      else if(book.genre == "science"){
+          sortedBy = "과학"
+      }
+      else if(book.genre == "tech"){
+          sortedBy = "기술/공학"
+      }
+      else if(book.genre == "etc"){
+          sortedBy = "기타"
+      }
+    }
+
     const bookList =
         props.books.map(book => {
+            genre(book)
             return (
                 <Header_line>
                     <div style={{ marginTop: "1vh" }}>
@@ -444,7 +491,7 @@ function Home(props) {
                                     작가 : {book.author}
                                 </H_two>
                                 <div> 조회수 {book.viewsFigure}회 </div>
-                                <div>분류 : {book.genre}</div>
+                                <div>분류 : {sortedBy}</div>
                             </Text_box>
                         </Book>
                         <Spantwo>({book.enrolledBy[0].username}님이 등록)</Spantwo>

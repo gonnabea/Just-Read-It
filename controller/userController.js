@@ -29,7 +29,7 @@ export const home = async(req, res) => {
           const book = await Book.findById(argument);
           return(book)
       }))
-    //console.log(`recommendation:${recommendation}`)
+      
     res.render("home", {books, recomendBooks})
       }else{
         res.render("home", {books})
