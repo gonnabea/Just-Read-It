@@ -178,6 +178,9 @@ export const deleteBook = async(req, res) => {
 
     
     try {
+        const book = await Book.findById(id);
+        console.log(book.imageUrl)
+        fs.unlinkSync(book.imageUrl)
         await Book.findByIdAndRemove({_id:id})
         res.redirect(routes.home);
     }catch(error){
