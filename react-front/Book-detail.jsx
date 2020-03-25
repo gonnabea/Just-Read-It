@@ -194,7 +194,7 @@ const Review = styled.section`
 display:flex;
 flex-direction:column;
 background-color:#F6B93B;
-border-radius:15px;
+border-radius:0px 20px 20px 20px;
 text-align:center;
 `
 const Star = styled.span`
@@ -469,13 +469,13 @@ background-position: center center;
 display: flex;
 flex-direction: column;
 align-items: center;
-border-radius: 20px;
+border-radius: 20px 20px 20px 20px;
 `
 
 const Comment = styled.div`
 display:flex;
 flex-direction: row;
-justify-content: space-between;
+justify-content: space-around;
 align-items: center;
 color:black;
 margin-top:0.3rem;

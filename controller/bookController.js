@@ -4,6 +4,7 @@ import User from "../model/user";
 import Review from "../model/review";
 import akin from "@asymmetrik/akin";
 import ColorThief from "colorthief";
+import fs from "fs";
 
 
 export const getAddBook = (req, res) => {
@@ -44,7 +45,8 @@ export const bookDetail = async(req, res) => {
     let booksFigure = 0;
     try{
     const book = await Book.findById(id).populate("enrolledBy").populate("review");
-    console.log(book)
+    fs.renameSync(book.imageUrl,`${book.imageUrl}.jpeg`);
+    
     book.viewsFigure +=1;
     book.save();
     book.review.forEach( argument => {
@@ -53,8 +55,8 @@ export const bookDetail = async(req, res) => {
         booksFigure += 1;
         }
     })
-    /*
-    const pickedColor = ColorThief.getColor(book.imageUrl,3)
+    
+    const pickedColor = ColorThief.getColor(`${book.imageUrl}.jpeg`,3)
             .then(color => {return color})
             .catch(err => {console.log(err)})
     
@@ -70,9 +72,10 @@ export const bookDetail = async(req, res) => {
         return hex.length === 1 ? '0' + hex : hex
       }).join('')
       const coverColor = rgbToHex(R,G,B);
-      */
+    await fs.renameSync(`${book.imageUrl}.jpeg`,book.imageUrl);
+
     const totalRate = (rateFigure/booksFigure).toPrecision(2);
-    res.render("book-detail" , {book, totalRate});
+    res.render("book-detail" , {book, totalRate, coverColor});
     }catch(err){
     console.log(err);
     res.render("404");
