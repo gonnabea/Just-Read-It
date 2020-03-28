@@ -200,5 +200,7 @@ const homeInit = async () => {
 
     }
 }
-
-homeInit();
+if(prev)
+{
+    homeInit();
+}

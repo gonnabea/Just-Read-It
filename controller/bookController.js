@@ -45,7 +45,7 @@ export const bookDetail = async(req, res) => {
     let booksFigure = 0;
     try{
     const book = await Book.findById(id).populate("enrolledBy").populate("review");
-    fs.renameSync(book.imageUrl,`${book.imageUrl}.jpeg`);
+    
     
     book.viewsFigure +=1;
     book.save();
@@ -72,10 +72,10 @@ export const bookDetail = async(req, res) => {
         return hex.length === 1 ? '0' + hex : hex
       }).join('')
       const coverColor = rgbToHex(R,G,B);
-    await fs.renameSync(`${book.imageUrl}.jpeg`,book.imageUrl);
+    
 
     const totalRate = (rateFigure/booksFigure).toPrecision(2);
-        res.render("book-detail" , {book, totalRate, coverColor, pageTitle:book.title});
+        res.render("book-detail" , {book, totalRate, pageTitle:book.title});
     }catch(err){
         console.log(err);
         res.render("404",{pageTitle:"Can Not Found"});
