@@ -81,8 +81,8 @@ const Box_img = styled.div`
     box-shadow: -1px 0px 21px 0px rgba(0,0,0,0.75);
     border-radius:10px;
     border: 1px solid red;
-    width: 340px;
-    height:350px;
+    /* width: 340px; */
+    /* height:350px; */
     
     @media screen and (max-width: 600px)
     {
@@ -172,7 +172,6 @@ const Span_line = styled.span`
     color:white;
     font-size:1rem;
     font-weight:300;
-    
     :hover{
         font-weight:500;
         text-decoration:underline;
