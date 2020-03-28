@@ -13,7 +13,7 @@ const Image = styled.img`
 `;
 
 const Div = styled.div`
-    position:absolute;
+    position:relative;
     width:100%;
     height:100%;
     align-self: center;
@@ -23,7 +23,7 @@ const Div = styled.div`
     align-items:center;
     background-repeat:repeat;
     background-size:cover;
-    
+    background-image:url("https://cdn.pixabay.com/photo/2017/07/26/17/41/watercolour-2542465_960_720.jpg"); 
 `;
 
 const A = styled.a`
@@ -106,21 +106,22 @@ const Grid_area = styled.div`
 `;
 
 const Background_image = styled.div`
-    position:absolute;
+    position:relative;
     z-index:-1;
     width:100%;
     height:100%;
-    background-repeat:repeat;
-    background-size:100% 100%;
+    top:10;
+    background-size:cover;
     background-image:url("https://cdn.pixabay.com/photo/2017/07/26/17/41/watercolour-2542465_960_720.jpg"); 
 
     @media screen and (min-height: 100vh)
     {
-        height:150vh;
+        height:100vh;
     }
 `;
 const Flex_div = styled.div`
     width:100%;
+    height:100%;
     display:flex;
     flex-direction:column;
     justify-content:center;

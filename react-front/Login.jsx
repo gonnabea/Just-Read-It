@@ -9,41 +9,68 @@ const Divs = styled.div`
     width:100%;
     height:100vh;
     display:flex;
-    flex-direction:column;
+    flex-direction:column; 
     justify-content:center;
     align-items:center;
     text-align:center;
-    background-size:cover;
+    background-image:url("https://cdn.pixabay.com/photo/2020/03/12/13/27/rose-4925102_1280.jpg"); 
+    background-color:#ede9b2;
+    background-size:100% 100%;
     background-position:center center;
-    background-image:url("https://cdn.pixabay.com/photo/2020/02/06/08/49/water-4823433_960_720.jpg");
     &>*>span{
         color:yellow;
     }
 `;
 const Asns = styled.a`
-    margin:0.7rem;
-
+    display:flex;
+    flex-direction:column;
+    &>img{
+    }
     &>span{
         display:none;
+        /* color:black; */
     }
-
 `;
 
 const Image = styled.img`
-    margin:1.5rem;
+     margin:1.5rem;
     width:4rem;
     border-radius:100%;
-    padding:0.1rem;
     opacity:0.7;
     background-color: rgba(151, 150, 150, 0.164); 
     &:hover{
         border:0.5px solid rgba(21, 21, 22, 0.37); 
         background-color:white;
         opacity:1;
+        &:hover
+        {
+        opacity:1;
+
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient1 15s ease infinite;
+            
+            @keyframes gradient1 
+            {
+                0% {
+                    background-position: 0% 50%;
+                    opacity:0.9;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    opacity:1;
+                    background-position: 0% 50%;
+                }
+            }
+        }
     }
 `;
 
 const Box_img = styled.div`
+    position:absolute;
+    top:30%;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -53,7 +80,13 @@ const Box_img = styled.div`
     padding:2rem;
     box-shadow: -1px 0px 21px 0px rgba(0,0,0,0.75);
     border-radius:10px;
-
+    border: 1px solid red;
+    width: 340px;
+    height:350px;
+    
+    @media screen and (max-width: 600px)
+    {
+    }
     &:hover{
         animation: box_hover 1s linear forwards;
     }
@@ -77,7 +110,8 @@ const Input = styled.input`
     background:none;
     border: solid 0px;
     border-bottom: solid 0.15vh white;
-    
+
+
     ::placeholder{
         color: white;
         text-align:center;
@@ -155,7 +189,7 @@ function Login(props) {
                 {Header(props)}
                 <Divs >
                     <Box_img>
-                        <form autoComplete="off" style={{ display: "flex", flexDirection: "column", alignItems: "space-around" }} action={props.routes.login} method="post"  >
+                        <form autoComplete="off" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent:"cneter" }} action={props.routes.login} method="post"  >
                             {/* <Label className="email_label" for="login_email">Email:</Label> */}
                             <Input id="login_email" autoComplete="off" type="email" name="email" placeholder="이메일" ></Input>
                             {/* <Label className="email_label" for="login_password">password:</Label> */}

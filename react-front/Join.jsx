@@ -80,7 +80,7 @@ const Div = styled.div`
     }
 
     /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
-	background-size: 400% 400%;
+	/* background-size: 400% 400%; */
     /* animation: gradient1 15s ease infinite; */
 
     @keyframes gradient1 {
@@ -111,8 +111,8 @@ const Div = styled.div`
 
 
 const A = styled.a`
-display:flex;
-flex-direction:column;
+    display:flex;
+    flex-direction:column;
 
     &>img{
     }
@@ -125,6 +125,8 @@ flex-direction:column;
 const Form = styled.form`
     display:flex;
     flex-direction:column;
+    justify-content:center;
+    align-items:center;
 `;
 
 const Input = styled.input`
@@ -138,7 +140,7 @@ const Input = styled.input`
     } */
     background:none;
     border: solid 0px;
-    border-bottom: solid 0.15vh white;
+    border-bottom: solid 0.15vh white; 
     
     ::placeholder{
         color: white;
@@ -193,7 +195,7 @@ const Span_line = styled.span`
     width:100%;
     margin: 0 2vh;
     color:white;
-    font-size:1vh;
+    font-size:0.8rem;;
     font-weight:300;
     :hover{
         font-weight:500;

@@ -187,6 +187,7 @@ const Kakao_list = styled.section`
     position:absolute;
     top:100%;
     display:grid;
+    width:100%;
     grid-template-columns: repeat(5,1fr);
     grid-row-gap:15vh;
     grid-column-gap:3vh;

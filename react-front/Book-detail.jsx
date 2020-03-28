@@ -48,8 +48,10 @@ class bookDetail extends React.Component {
             if (user) {
                 return (
                     <form action={routes.postReview(book.id)} id="postReview" method="post">
-                        <InputReview type="textarea" autoComplete="off" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!"  rows="1" />
-                        <InputRate type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={0} step={.1} />
+                        <input type="text" id="yourName" name={user.username} style={{display:"none"}}/>
+                        <input type="text" id="profileUrl" name={user.profilePhoto} style={{display:"none"}}/>
+                        <InputReview type="textarea" autoComplete="off" name="reviewContent" id="reviewContent" placeholder="책에 대한 평가를 남겨주세요!"  rows="1" />
+                        <InputRate type="number" name="rate" placeholder="평점을 남겨주세요" id="reviewRate" min={0} max={10} value={0} step={.1} />
                         <ReviewSubmit id="postReviewBtn" type="submit" value="등록" />
                     </form>
                 )
@@ -86,8 +88,12 @@ class bookDetail extends React.Component {
             }
         }
         totalPoint();
-
-
+        let translated
+        
+        function translateTime(createdAt){
+            translated = `${createdAt.getYear()+1900}년 ${createdAt.getMonth()+1}월 ${createdAt.getDate()}일`;
+        }
+        translateTime(book.createdAt)
         return (
             <BaseLayout>
             {console.log(this.props.coverColor)}
@@ -108,7 +114,7 @@ class bookDetail extends React.Component {
                                         <h1>{book.title} {totalStar} ({this.props.totalRate} / 10)</h1>
                                         <h5>{book.author}</h5>
                                         <h4>{book.likeFigure}명이 서재에 보관 중</h4>
-                                        <h3>{JSON.stringify(book.createdAt)}</h3>
+                                        <h3>{translated}</h3>
                                         <h3> 조회수 {book.viewsFigure}회 </h3>
                                     </span>
                                 </div>
@@ -117,12 +123,12 @@ class bookDetail extends React.Component {
                             </Book>
                             
                             <CommentSpace>
-                                <Comments>
+                                <Comments id="commentList">
                                     {book.review.map((item) => {
-
+                                        
                                         let star = "";
-
-
+                                        let vacantStar=0;
+                                        translateTime(item.createdAt)
                                         const starPoint = () => {
 
                                             if (item.rate) {
@@ -137,9 +143,13 @@ class bookDetail extends React.Component {
                                                     }
                                                 }
                                             }
+                                            vacantStar = 5-star.length;
+                                                   for(let j=0; j<vacantStar; j++){
+                                                        star+="☆"} 
                                         }
                                         starPoint();
                                         return (
+                                            
                                             <Comment>
                                                 <Avatar>
                                                 <img src={item.creatorPhoto} width="50vh" />
@@ -149,9 +159,10 @@ class bookDetail extends React.Component {
                                                 <Content>{item.content}</Content>
                                                 <Star>{star}({item.rate})</Star>
                                                 
-                                                <h3 id="commentedAt">{JSON.stringify(item.createdAt)}</h3>
+                                                <h3>{translated}</h3>
                                                 {UserWhoRated(item)}
                                                 </Review>
+                                                
                                             </Comment>
                                         )
                                     })}
@@ -174,7 +185,8 @@ class bookDetail extends React.Component {
                             </ControlBook>
                     <CheckUser />
                 </Background>
-                <script src="/vanilla/bookDetail.js"></script>
+                    <script src="/vanilla/bookDetail.js"></script>
+                    
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
             </BaseLayout>
         )
@@ -464,13 +476,53 @@ const Comments = styled.ul`
 overflow: auto;
 width: 100%;
 height:100%;
-background-image: url('https://neilpatel.com/wp-content/uploads/2015/03/comments.jpg');
+background-color:#B3E7FF;
 background-size: cover;
 background-position: center center;
 display: flex;
 flex-direction: column;
 align-items: center;
 border-radius: 20px 20px 20px 20px;
+>newcomment{
+    display:flex;
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+color:black;
+margin-top:0.3rem;
+background-color: rgba(255,255,255,0.3);
+width:25vw;
+>newavatar{
+    display:flex;
+flex-direction:column;
+    >profileimg{
+
+    }
+    >username{
+
+    }
+}
+>newreview{
+    display:flex;
+flex-direction:column;
+background-color:#F6B93B;
+border-radius:0px 20px 20px 20px;
+text-align:center;
+>newcontent{
+    font-weight:700;
+width:15vw;
+overflow:hidden;
+}
+>newstar{
+    color:blue;
+display:flex;
+justify-content:center;
+}
+>newDate{
+
+}
+}
+}
 `
 
 const Comment = styled.div`
@@ -482,6 +534,8 @@ color:black;
 margin-top:0.3rem;
 background-color: rgba(255,255,255,0.3);
 width:25vw;
+
+
 `
 
 const InputReview = styled.textarea`

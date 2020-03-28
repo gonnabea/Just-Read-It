@@ -19,11 +19,23 @@ let num = [];
 const Shuffle = async () => {
     let reco_list = await document.querySelectorAll(".reco_list");
 
-    let rand = [];
-    for (j = 0; j < 3; j++) {
+
+    // if(reco_list)
+    // {
+     
+    //     for (j = 0; j < 3; j++) {
+    //         rand[j] = Math.floor(Math.random() * reco_list.length);
+    //     }
+    // }
+        let rand = [];
+
+    for (j = 0; j < 3; j++) 
+    {
         rand[j] = Math.floor(Math.random() * reco_list.length);
-        // console.log(rand[j])
-    } 
+    }
+    console.log(Array.from(new Set(rand)));
+
+   
 
     let pos = 50;
 
@@ -40,10 +52,6 @@ const Shuffle = async () => {
             reco_list[i].style.marginTop = "1rem";
             reco_list[i].style.transform = `translateX(${pos}vh)`;
             pos += 100;
-
-            num = i;
-                
-            console.log(num)
         }
     }
 
@@ -119,14 +127,18 @@ const opacity = (e) => {
     }
 }
 
+const prevBook = ()=>{
+
+}
+
 const nextBook = async () =>{
     let reco_list = await document.querySelectorAll(".reco_list");
-    console.log("wow "+num);
-    console.log("wow "+num[1]);
-    console.log("wow "+num[2]);
+    opacity();
     for(i = 0; i < num.length; i++)
     {
         reco_list[num[i]].style.transform = `translateX(-30vh)`;
+        reco_list[num[i]].style.animation = ``;
+
 
     }
 }
@@ -156,25 +168,11 @@ function handleSortBtn(){
 const homeInit = async () => {
     sortBtn.addEventListener("click", handleSortBtn);
     
-    // console.log(home_main_img.length);
-
-    // Imglength();
      Shuffle();
 
-    prev.addEventListener("click", async (e) => {
-        // console.log("Prev"); 
-        // console.log(e.target); 
-        await opacity(e);
-        // await Shuffle();
-    });
+    prev.addEventListener("click", prevBook);
 
-    next.addEventListener("click", async (e) => {
-        // console.log("Next");
-        await opacity(e);
-        // await Shuffle();
-        await nextBook();
-
-    });
+    next.addEventListener("click",nextBook);
     
     for (i = 0; i < home_main_img.length; i++) {
 

@@ -1,5 +1,3 @@
-
-
 const book = document.getElementById("book");
 const rotateBtn = document.getElementById("rotateBtn");
 const openBtn = document.getElementById("openBtn");
@@ -10,6 +8,9 @@ const bookSpine2 = document.getElementById("bookSpine2");
 const commentedAt = document.getElementById("commentedAt");
 const postReview = document.getElementById("postReview");
 const postReviewBtn = document.getElementById("postReviewBtn");
+const reviewContent = document.getElementById("reviewContent");
+const reviewRate = document.getElementById("reviewRate");
+const commentList = document.getElementById("commentList");
 
 
 
@@ -81,17 +82,98 @@ function open(){
     rotateBtn.addEventListener("click", rotate);
 }
 
-function postReviewApi(){
-    
+let star="";
+let vacantStar=0;
+const starPoint = (starValue) => {
 
+    if (starValue) {
+        if (starValue / parseInt(starValue) >= 1.1) {
+            for (let i = 0; i < starValue; i += 2) {
+                star += "★";
+            }
+        }
+        else {
+            for (let i = 0; i < parseInt(starValue); i += 2) {
+                star += "★";
+            }
+        }
+    }
+    vacantStar = 5-star.length;
+    for(let j=0; j<vacantStar; j++){
+        star+="☆"
+    }
+}
+async function postReviewApi(e){
+    e.preventDefault();
+    const yourName = document.getElementById("yourName");
+    const profileUrl = document.getElementById("profileUrl");
+    await axios({
+        method:"post",
+        url:postReview.action,
+        data:{
+            reviewContent: reviewContent.value,
+            rate:reviewRate.value 
+        }
+    })
+   console.log(yourName.name,profileUrl.name)
+    function currentTime(){
+        const date = new Date()
+        currentTime = `${date.getFullYear()}년 ${date.getMonth()+1}월 ${date.getDate()}일`
+        return currentTime;
+    }
+    
+    starPoint(reviewRate.value);
+    const newReview = document.createElement("newreview");
+    const newComment = document.createElement("newcomment");
+    const newContent = document.createElement("newcontent");
+    const newStar = document.createElement("newstar");
+    const newDate = document.createElement("newdate");
+    const newAvatar = document.createElement("newavatar");
+    const profileImg = document.createElement("img");
+    const username = document.createElement("username");
+
+    newContent.innerHTML=reviewContent.value;
+    newStar.innerHTML=`${star}(${reviewRate.value})`;
+    newDate.innerHTML=currentTime();
+    
+    username.innerHTML=yourName.name; 
+    profileImg.src=profileUrl.name;
+    newReview.appendChild(newContent);
+    newReview.appendChild(newStar);
+    newReview.appendChild(newDate);
+    newAvatar.appendChild(profileImg);
+    newAvatar.appendChild(username)
+    newComment.appendChild(newAvatar);
+    newComment.appendChild(newReview);
+    commentList.appendChild(newComment);
+    star="";
+
+    profileImg.style.width="50px";
 }
 
 
+
+/*   <InputReview type="textarea" autoComplete="off" name="reviewContent" placeholder="책에 대한 평가를 남겨주세요!"  rows="1" />
+<InputRate type="number" name="rate" placeholder="평점을 남겨주세요" min={0} max={10} value={0} step={.1} />
+<ReviewSubmit id="postReviewBtn" type="submit" value="등록" />
+*/
+
+/*
+display:flex;
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+color:black;
+margin-top:0.3rem;
+background-color: rgba(255,255,255,0.3);
+width:25vw;
+*/
 function bookInit(){
     rotateBtn.addEventListener("click", rotate);
     openBtn.addEventListener("click", open);
     frontCover.addEventListener("mouseover", rotate2);
-    postReviewBtn.addEventListener("click", postReviewApi);
+    postReview.addEventListener("submit", postReviewApi);
+    
 }
 
 bookInit();

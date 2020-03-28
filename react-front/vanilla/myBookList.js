@@ -39,26 +39,9 @@ const handle = async () => {
         img1.style.top = "47%";
         img1.style.zIndex = "-2";
         img1.style.height = "8%";
-        // if(window.screen.width > 900)
-        // {
-        //     img1.style.width = "100vh";
-        // }
-        // else{
-
-        //     img1.style.top = "48%";
-        //     img1.style.width = "100%";
-        //     img1.style.height = "5%";
-        // } 
-        // if (matchMedia("screen and (max-width: 900px)").matches) {
-        //     img1.style.top = "48%";
-        //     img1.style.width = "100%";
-        //     img1.style.height = "5%";
-
-        //   } else {
-        //     img1.style.width = "100vh";
-        //   }
+       
         for (i = 0; i < my_book_list_book.length; i++) {
-            if (1 === i * 0.1) {
+            if (1 === i * 0.1 || i === 11) {
                 let img = document.createElement("img");
                 img.className = "book_list_img";
                 img.src = "/images/shelf.png";
@@ -73,14 +56,3 @@ const handle = async () => {
 }
 
 handle();
-
-
-// for (i = 0; i < my_book_list_book.length; i++) {
-//     my_book_list_book[i].addEventListener("mouseover", async(x) =>{
-//         let Back_cover = await document.querySelectorAll("Back_cover");
-//         console.log(x.target.parentNode);
-//         x.target.style.animation = "hover_shadow 1s linear forwards"
-//         x.target.removeEventListener("mouseover", hover)
-//         x.target.addEventListener("mouseover", hover)
-//     });
-// };

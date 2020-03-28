@@ -10,7 +10,7 @@ const Div = styled.div`
     justify-content:center;
     align-items:center;
 `;
-
+ 
 const Recom_div = styled.div`
     width:100%; 
     height:55vh;

@@ -129,7 +129,7 @@ const A = styled.a`
     /* color:#9ACD32; */
     &>i:nth-child(1){
       /* color:#1B9CFC; */
-      color:#1B9CFC;
+      color:#F6B93B;
     }
 
     &>span:nth-child(2){
@@ -145,10 +145,12 @@ const A = styled.a`
   }
   &>i:nth-child(1){
     margin-right:1vw;
+    color:black;
     
     &:hover{
       /* color:#EA2027; */
-      color:#1B9CFC;
+      color:#F6B93B;
+
     }
   }
 `;
@@ -207,7 +209,10 @@ const Sinput = styled.input`
   border-radius: 20px;
   border: solid 2px black;
   text-align:center;
-  
+  ::placeholder{
+    font-weight:normal;
+  }
+  font-weight:700 ;
    
   @keyframes hover_animation {
     0% {
@@ -308,12 +313,13 @@ const Icon_box = styled.div`
     right:1.5%;
     top:5%;
     display:flex;
- 
     border-radius:10px;
+    color:black;
     &>i{
       position:absolute;
       right:0;
       top:0;
+      color:black;
     }
 
 
@@ -321,10 +327,16 @@ const Icon_box = styled.div`
   {
     visibility:hidden;
     &>li{
-    display:flex;
-    flex-direction:column;
+      display:flex;
+      flex-direction:column;
     /* align-items: flex-end; */
-    }
+      &>span{
+        color: red;
+        fontSize: 1rem
+        position:relative;
+      }
+  }
+
 
     @media screen and (max-width: 700px)
     { 
@@ -359,9 +371,10 @@ const Menu_img = styled.img`
 
 const Span_size = styled.span`
   font-size:2.6vh;
+  color:black;
   :hover{
     /* color:#1B9CFC; */
-    color:white;
+    color:black;
      &::after {
       content: " ";
       animation: hover_border 0.35s linear forwards;
@@ -378,12 +391,12 @@ const Span_size = styled.span`
 
   @keyframes hover_border{
     0%{
-        border-bottom: 2.5px solid #1B9CFC;
+        border-bottom: 2.5px solid #F6B93B;
         width: 0%;
         
     }
     100%{
-        border-bottom: 2.5px solid #1B9CFC;
+        border-bottom: 2.5px solid #F6B93B;
         width: 100%;
     }
   }  
@@ -393,6 +406,7 @@ const Span_size = styled.span`
 const Icon = {
   zIndex: "2",
   marginRight: "-2.5vh",
+  
 }
 
 
@@ -416,7 +430,7 @@ function Header(props) {
     } else {
       return (
         <>
-          <span style={{ color: "red", fontSize: "1rem" }}>
+          <span >
             로그인 된 유저가 없습니다.
           </span>
         </>
@@ -526,7 +540,6 @@ function Header(props) {
 
       </Div>
       <script src="/vanilla/header.js"></script>
-
     </BaseLayout>
 
   );
