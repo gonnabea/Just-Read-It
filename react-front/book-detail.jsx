@@ -104,7 +104,7 @@ class bookDetail extends React.Component {
                         <Middle>
                             <Book id="book" coverColor={this.props.coverColor}>
                                 <div id="frontCover">
-                                    <img id="coverImg"src={`/${book.imageUrl}`} width="100%" height="100%" />
+                                    <img id="coverImg"src={`${book.imageUrl}`} width="100%" height="100%" />
                                     </div>
                                     <section><p>{book.description}</p></section>
                                 <div></div>
