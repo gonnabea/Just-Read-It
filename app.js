@@ -40,7 +40,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/images',express.static("images"));
 app.set("view engine","jsx");
 app.set("views", path.join(__dirname, '/react-front'));
-app.use(express.static("react-front"));
+app.use(express.static(path.join(__dirname,"react-front")));
 app.engine('jsx', expressReactViews.createEngine());
 export default app;
 
