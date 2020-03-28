@@ -34,12 +34,12 @@ const storage = multer.diskStorage({
 export const upload = multer({storage: multerS3({
   s3,
   acl: "public-read",
-  bucket: "2020nomadhackathon/book"
+  bucket: "/2020nomadhackathon/book"
 })})
 export const avatarUpload = multer({ storage: multerS3({
   s3,
   acl: "public-read",
-  bucket: "2020nomadhackathon/avatar"
+  bucket: "/2020nomadhackathon/avatar"
 })})
 
 export const bookImageUpload = upload.single("bookImage");
