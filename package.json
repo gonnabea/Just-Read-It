@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "babel-plugin-emotion": "^10.0.28",
+    "babel-plugin-emotion": "^10.0.29",
     "babel-plugin-styled-components": "^1.10.7",
     "install": "^0.13.0",
     "npm": "^6.14.1"
