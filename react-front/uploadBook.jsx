@@ -325,6 +325,7 @@ class uploadBook extends React.Component {
                 <Divs>
 
                     <Box_img>
+                        {console.log(this.props.routes.addBook)}
                         <form autocomplete="off" style={Form} action={this.props.routes.addBook} method="post" enctype="multipart/form-data">
                             <Input type="text" id="bookTitle" name="bookName" placeholder="책 제목" required="true" />
                             <Ainput type="textarea" id="bookDescription" name="bookDescription" placeholder="책 상세설명" />

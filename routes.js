@@ -32,7 +32,7 @@ const routes = {
     home: HOME,
     bookDetail: function(id) {
         if(id){
-            return `/book-detail/${id}`
+            return `book-detail/${id}`
         }else{
             return BOOK_DETAIL
         }

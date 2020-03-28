@@ -142,7 +142,7 @@ export const postEditUser = async(req, res) => {
         try{
         await User.findByIdAndUpdate(req.user.id,
                 {username,
-                profilePhoto: file ? `/${file.location}` : req.user.profilePhoto
+                profilePhoto: file ? `${file.location}` : req.user.profilePhoto
                 }
                 );
             res.redirect(`/${routes.profile(req.user.id)}`)
