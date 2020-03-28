@@ -4,7 +4,6 @@ import { localsMiddleware } from "./middleware";
 import userRouter from "./router/userRouter";
 import bodyParser from "body-parser";
 import session from "express-session";
-import path from "path"
 import passport from "passport";
 import "./passport";
 import cookieParser from "cookie-parser";
@@ -13,6 +12,7 @@ import expressReactViews from "express-react-views";
 import helmet from "helmet";
 import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
+import path from "path";
 
 const app = express();
 const CokieStore = MongoStore(session);
@@ -40,6 +40,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/images',express.static("images"));
 app.use(express.static("react-front"));
 app.set("view engine","jsx");
-app.set("views", __dirname + '/react-front');
+app.set("views", path.join(__dirname, '/react-front'));
 app.engine('jsx', expressReactViews.createEngine());
 export default app;
+
