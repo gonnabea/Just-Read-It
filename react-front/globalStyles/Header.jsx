@@ -332,7 +332,7 @@ const Icon_box = styled.div`
     /* align-items: flex-end; */
       &>span{
         color: red;
-        fontSize: 1rem
+        font-size: 1rem;
         position:relative;
       }
   }

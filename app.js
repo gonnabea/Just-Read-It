@@ -12,6 +12,7 @@ import expressReactViews from "express-react-views";
 import helmet from "helmet";
 import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
+import path from "path";
 
 const app = express();
 const CokieStore = MongoStore(session);
@@ -37,7 +38,7 @@ app.use(userRouter);
 app.use(globalRouter);
 app.use('/uploads', express.static('uploads'));
 app.use('/images',express.static("images"));
-app.use(express.static("react-front"));
+app.use('/react-front', express.static(path.join(__dirname,"react-front")));
 app.set("view engine","jsx");
 app.set("views", __dirname + '/react-front');
 app.engine('jsx', expressReactViews.createEngine());
