@@ -10,6 +10,22 @@ const s3 = new aws.S3({
   region: "ap-northeast-2"
 })
 
+export const upload = multer({
+  storage: multerS3({
+    s3,
+    acl: "public-read",
+    bucket: "2020nomadhackathon/book"
+})
+
+ })
+export const avatarUpload = multer({ 
+  storage: multerS3({
+    s3,
+    acl: "public-read",
+    bucket: "2020nomadhackathon/avatar"
+}) 
+
+})
 export const localsMiddleware = (req, res, next) => {
     res.locals.routes = routes;
     res.locals.user = req.user;
@@ -30,40 +46,24 @@ export const localsMiddleware = (req, res, next) => {
 */
 /*https://github.com/expressjs/multer/issues/170*/
 
-export const upload = multer({
-  storage: multerS3({
-    s3,
-    acl: "public-read",
-    bucket: "2020nomadhackathon/book"
-})
-
- })
-export const avatarUpload = multer({ 
-  storage: multerS3({
-    s3,
-    acl: "public-read",
-    bucket: "2020nomadhackathon/avatar"
-}) 
-
-})
-
-export const bookImageUpload = upload.single("bookImage");
-export const userAvatarUpload = avatarUpload.single("profilePhoto");
 
 export const checkUserExist = (req, res, next) => {
-    if(req.user){
-        next()
-    }else{
-        res.redirect(routes.home)
-    }
+  if(req.user){
+    next()
+  }else{
+    res.redirect(routes.home)
+  }
 }
 
 export const onlyLoggedOut = (req, res, next) => {
-    if(req.user){
-       res.redirect(routes.home) 
-    }else{
-        next()
-    }
+  if(req.user){
+    res.redirect(routes.home) 
+  }else{
+    next()
+  }
 }
+
+export const bookImageUpload = upload.single("bookImage");
+export const userAvatarUpload = avatarUpload.single("profilePhoto");
 
 
