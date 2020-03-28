@@ -14,7 +14,7 @@ export const getAddBook = (req, res) => {
 
 export const postAddBook = async(req, res) => {
     const {
-        body: {bookName, bookDescription, author, genre}, file:{path}
+        body: {bookName, bookDescription, author, genre}, file:{location}
     } = req;
     if(genre == ""){
         res.render(routes.addBook, {msg:"장르를 선택하세요!"})
@@ -24,7 +24,7 @@ export const postAddBook = async(req, res) => {
         title:bookName,
         author,
         description:bookDescription,
-        imageUrl:path,
+        imageUrl:location,
         enrolledBy: req.user.id,
         genre
     })

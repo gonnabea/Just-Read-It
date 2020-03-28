@@ -1,7 +1,14 @@
 import routes from "./routes";
-import multer from "multer";
+import multerS3 from "multer-s3";
+import aws from "aws-sdk";
 import crypto from "crypto";
 import mime from "mime-types";
+
+const s3 = new aws.S3({
+  accessKeyId: process.env.AWS_KEY,
+  secretAccessKey: process.env.AWS_PRIVATE_KEY,
+  region: "ap-northeast-2"
+})
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.routes = routes;
@@ -23,8 +30,22 @@ const storage = multer.diskStorage({
 
 /*https://github.com/expressjs/multer/issues/170*/
 
-export const upload = multer({ dest: 'uploads/books/' })
-export const avatarUpload = multer({ dest: 'uploads/avatars/'})
+export const upload = multer({
+  storage: multerS3({
+    s3,
+    acl: "public-read",
+    bucket: "2020nomadhackathon/book"
+})
+
+ })
+export const avatarUpload = multer({ 
+  storage: multerS3({
+    s3,
+    acl: "public-read",
+    bucket: "2020nomadhackathon/avatar"
+}) 
+
+})
 
 export const bookImageUpload = upload.single("bookImage");
 export const userAvatarUpload = avatarUpload.single("profilePhoto");

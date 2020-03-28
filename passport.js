@@ -14,7 +14,7 @@ passport.use(User.createStrategy());
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: `http://localhost:4000${routes.googleAuthCallback}`
+    callbackURL: `https://just-read-it.herokuapp.com${routes.googleAuthCallback}`
 },
 async function (accessToken, refreshToken, profile, cb) {
    /* console.log(profile, cb)
@@ -56,7 +56,7 @@ async function (accessToken, refreshToken, profile, cb) {
 passport.use(new NaverStrategy({
     clientID: process.env.NAVER_CLIENT_ID,
     clientSecret: process.env.NAVER_CLIENT_SECRET,
-    callbackURL: `http://localhost:4000${routes.naverAuthCallback}`
+    callbackURL: `https://just-read-it.herokuapp.com${routes.naverAuthCallback}`
 },
 async function(accessToken, refreshToken, profile, cb){
         
