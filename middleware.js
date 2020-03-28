@@ -17,7 +17,7 @@ export const localsMiddleware = (req, res, next) => {
 }
 
 
-const storage = multer.diskStorage({
+/*const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'uploads/books/')
     },
@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
       });
     }
   });
-
+*/
 /*https://github.com/expressjs/multer/issues/170*/
 
 export const upload = multer({
