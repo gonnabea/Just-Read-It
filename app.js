@@ -38,7 +38,7 @@ app.use(userRouter);
 app.use(globalRouter);
 app.use('/uploads', express.static('uploads'));
 app.use('/images',express.static("images"));
-app.use(express.static(path.join(__dirname,"react-front")));
+app.use('/react-front',express.static(path.join(__dirname,"react-front")));
 app.set("view engine","jsx");
 app.set("views", path.join(__dirname, '/react-front'));
 app.engine('jsx', expressReactViews.createEngine());
