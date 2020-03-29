@@ -32,7 +32,7 @@ const Div = styled.div`
 `;
 
 const Book = styled.a`
-    display:flex;
+    display:block;
     flex-direction:column;
     text-align:center;
     justify-content:center;
@@ -113,9 +113,10 @@ const Book = styled.a`
 `
 
 const BookList = styled.div`
-    display: flex;
+    display: none;
     flex-wrap:wrap;
     justify-content:center;
+    
 `;
 
 const Background_image = styled.div`
@@ -148,7 +149,7 @@ const Review_box = styled.div`
     position:relative;
     bottom:0;
     width:100%;
-    display:flex;
+    display:none;
     text-align:center;
     flex-wrap:wrap;
     margin:0 auto;
@@ -217,16 +218,50 @@ const Email = styled.span`
 
 
 const UploadedBookTitle = styled.span`
-
+    cursor:pointer;
 `
 const ProfileArea = styled.div`
     display: flex;
     flex-direction:column;
     justify-content:space-between;
     align-items:center;
-    height:60vh;
+    height:30vh;
 `;
 
+const BookTitle = styled.div`
+
+`
+
+const BookAuthor = styled.div`
+
+`
+const UserInfoArea = styled.section`
+    display : flex;
+
+`
+
+const ReviewArea = styled.section`
+display:flex;
+flex-direction:column;
+`
+
+const ReviewBtn = styled.span`
+cursor:pointer;
+`
+const ReviewdNum = styled.div`
+width:20px;
+height:20px;
+background-color:white;
+border-radius:100%;
+color:yellowgreen;
+display:flex;
+justify-content:center;
+align-items:center;
+`
+
+const ReviewHeader = styled.div`
+display:flex;
+`
 class profile extends React.Component {
     render() {
         let translated
@@ -247,32 +282,38 @@ class profile extends React.Component {
                         <EditProfileBtn href={this.props.routes.editUser}>
                             프로필 수정
                         </EditProfileBtn>
+                    </ProfileArea>
+                    <UserInfoArea>
                         <UploadedBookInfo>
-                        <UploadedBookTitle>
+                        <UploadedBookTitle id="uploadedBooksBtn">
                             등록하신 책 
                         </UploadedBookTitle>
                         <UploadedNum>
                             {this.props.currentUser.uploadedBooks.length}
                         </UploadedNum>
                         </UploadedBookInfo>
-                        <BookList>
+                        <BookList id="bookList">
                             {this.props.currentUser.uploadedBooks.map(book => {
                                 return (
-                                    <Book href={`/${this.props.routes.bookDetail(book.id)}`}>
+                                    <Book id="book" href={`/${this.props.routes.bookDetail(book.id)}`}>
                                         <BookImage src={book.imageUrl} />
-                                        <span>{book.title}</span>
-                                        <span>{book.author}</span>
+                                        <BookTitle>{book.title}</BookTitle>
+                                        <BookAuthor>{book.author}</BookAuthor>
                                         {/* <h4 style={{height:"20vh"}}>{book.description}</h4> */}
                                     </Book>
                                 )
                             })}
                         </BookList>
-                    </ProfileArea>
-                        <h1>
-                            {this.props.currentUser.username}
-                            님이 작성하신 리뷰
-                        </h1>
-                        <Review_box>
+                        <ReviewArea>
+                        <ReviewHeader>
+                        <ReviewBtn id="reviewBtn">
+                           리뷰
+                        </ReviewBtn >
+                        <ReviewdNum>
+                            {this.props.currentUser.reviews.length}
+                        </ReviewdNum>
+                        </ReviewHeader>
+                        <Review_box id="reviewList">
                             {this.props.currentUser.reviews.map(review => {
                                 return (
                                         <MyComments className="MyComments">
@@ -290,6 +331,8 @@ class profile extends React.Component {
                                         )
                             })}
                         </Review_box>
+                        </ReviewArea>
+                    </UserInfoArea>
                     </Flex_div>
                 </Div>
                 

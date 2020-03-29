@@ -20,12 +20,11 @@ const Recom_div = styled.div`
     { 
         height:100%;
         grid-area: span 1/ span 3;
-        font-size:1rem;
     }
 `;
 
 const Recom_a = styled.a`
-    width:1600px;
+    width:100%;
     display:flex;
     color:white;
     /* justify-content:space-between; */
@@ -45,10 +44,6 @@ const Recom_a = styled.a`
 `;
 const Ul = styled.ul`
     display:flex;
-    justify-content:center;
-    /* align-items:center; */
-    /* overflow:hidden; */
-    /* overflow-x:hidden; */
     background-color: rgba(255,255,255,0.3);
     width:1000%;
 `;
@@ -56,8 +51,24 @@ const Ul = styled.ul`
 const Li = styled.li`
     display:flex;
     border:1px solid red;
-    width:100%;
+    width:100vw;
+    @keyframes recomment_slid{
+        0%{
 
+        }
+        100%{
+           transform: translateX(-100%);
+        }
+    }
+    @keyframes revers_recomment_slid{
+        0%{
+           transform: translateX(-100%);
+
+        }
+        100%{
+           transform: translateX(0%);
+        }
+    }
 `;
 
 const Button = styled.button`
@@ -92,7 +103,8 @@ const Reco_span = styled.span`
     text-overflow: ellipsis;    
     flex-direction:column;
     margin-top:1rem;
-    width:300px;
+    margin-right:5rem;
+    width:500px;
 `;
 
 const A = styled.a`
@@ -126,16 +138,31 @@ const Grid_box = styled.div`
 `;
 
 const Text_box = styled.div`
-    width:15vw;
+    width:100%;
     display:flex;
     flex-direction:column;
     justify-content:center;
     text-align:center;
     overflow:hidden;
     text-overflow:ellipsis;
-   &>h1:first-child:hover, &>h2:nth-child(2):hover{
+
+    &>h1:first-child:hover, &>h2:nth-child(2):hover{
         text-decoration:underline;
+       
     }
+    @media screen and (max-device-width: 420px)
+    {
+        &>*{
+            margin:0.1rem;
+        }
+        &>h1, h2{
+         font-size:1.5rem;
+        }
+        &>div{
+         font-size:1.2rem;
+        }
+    }
+
 `;
 
 const Spantwo = styled.span`
@@ -146,21 +173,12 @@ const Spantwo = styled.span`
 
 const H_one = styled.h1`
     font-size: 1rem;
-    text-align:center;
-     @media screen and (max-width: 1300px)
-    { 
-        font-size: 0.7rem;
-    }
+  
 `;
 
 const H_two = styled.h2`
-        font-size: 0.7rem;
+    font-size: 0.7rem;
 
- @media screen and (max-width: 1300px)
-    {
-        font-size: 0.5rem;
-
-    }
 `;
 
 const Header_line = styled.div`
@@ -507,7 +525,7 @@ function Home(props) {
                         <Re_book_pos>
                             <i id="icon_1" className="fas fa-circle"></i>
                             <i id="icon_2" className="fas fa-circle"></i>
-                            <i id="icon_3" className="fas fa-circle"></i>
+                            {/* <i id="icon_3" className="fas fa-circle"></i> */}
                         </Re_book_pos>
                         <Button id="btn_next">
                             Next

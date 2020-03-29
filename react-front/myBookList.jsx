@@ -186,7 +186,7 @@ const A = styled.a`
     &:hover{
    
         cursor: pointer;
-        animation: hover_book 1.2s linear forwards;
+        animation: hover_book 0.7s linear forwards;
         z-index:10;
         
         &>div:nth-child(3){
@@ -207,29 +207,29 @@ const A = styled.a`
 
         } 
         15%{
-            transform:rotateX(-20deg) translateZ(15vh);
+            transform:rotateX(-0deg) translateZ(15vh);
         }
-        70%{
+        50%{
             transform:rotateX(0deg) translateZ(40vh);
         }
         100%{ 
-            transform: translateZ(23vh) rotateY(-90deg);
+            transform: translateX(-7vh) translateZ(23vh) rotateY(-90deg);
         }
     }
 
     &:active{
-        animation: active_book 0.5s linear forwards;
+        /* animation: active_book 0.5s linear forwards; */
     }
-        @keyframes active_book{
-            0%{
-                transform:rotateX(-30deg) translateZ(10vh);
-            }
-           
-            100%{
-                transform:  translateZ(20vh) ;
-
-            }
+    @keyframes active_book{
+        0%{
+            transform:rotateX(-30deg) translateZ(10vh);
         }
+        
+        100%{
+            transform:  translateZ(20vh) ;
+
+        }
+    }
 `;
 
 const Span = styled.span`

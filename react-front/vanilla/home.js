@@ -15,38 +15,39 @@ const sortContent = document.getElementById("sortContent");
 const genreMenus = document.querySelectorAll("#genreMenus");
 
 let num = [];
+let rand = [];
 
 const Shuffle = async () => {
     let reco_list = await document.querySelectorAll(".reco_list");
 
-    let rand = [];
 
-    for (j = 0; j < 3; j++) 
+    for (j = 0; j < 2; j++) 
     {
         rand[j] = Math.floor(Math.random() * reco_list.length);
     }
-    
+    rand = Array.from(new Set(rand))
     console.log(Array.from(new Set(rand)));
 
-    // let pos = 50;
-
-    // for (i = 0; reco_list.length; i++) {
-    //     // console.log(reco_list[0]); 
-    //     //&& i != rand[1] && i != rand[2]
+    for (i = 0; reco_list.length; i++) {
      
-    //     if  (i != rand[0] && i != rand[1] && i != rand[2])  {
-
-    //           reco_list[i].style.display = "none";
-    //     }
-    //     else {
-    //         reco_list[i].style.display = "block";
-    //         reco_list[i].style.marginTop = "1rem";
-    //         reco_list[i].style.transform = `translateX(${pos}vh)`;
-    //         pos += 100;
-    //     }
-    // }
-
-
+        reco_list[i].style.display = "none";
+        if(rand.length<3)
+        {
+            for(j = 0; j< rand.length; j++)
+            {
+                reco_list[rand[j]].style.display = "block";
+            }
+        }
+        else
+        {
+            for (j = 0; j < 2; j++) 
+            {
+                rand[j] = Math.floor(Math.random() * reco_list.length);
+            }
+            rand = Array.from(new Set(rand))
+        }
+    }
+   
 }
 
 //page list
@@ -119,20 +120,23 @@ const opacity = (e) => {
     }
 }
 
-const prevBook = ()=>{
-
+const prevBook = async(e)=>{
+    let reco_list = await document.querySelectorAll(".reco_list");
+    opacity(e);
+    for(i = 0; i < reco_list.length; i++)
+    {
+        reco_list[i].style.animation = `revers_recomment_slid 0.5s ease-in-out forwards`;
+    }
 }
 
-const nextBook = async () =>{
+const nextBook = async (e) =>{
     let reco_list = await document.querySelectorAll(".reco_list");
-    opacity();
-    for(i = 0; i < num.length; i++)
+    opacity(e);
+    for(i = 0; i < reco_list.length; i++)
     {
-        reco_list[num[i]].style.transform = `translateX(-30vh)`;
-        reco_list[num[i]].style.animation = ``;
-
-
+        reco_list[i].style.animation = `recomment_slid 0.5s ease-in-out forwards`;
     }
+   
 }
 
 function handleSortBtn(){
@@ -160,12 +164,13 @@ function handleSortBtn(){
 const homeInit = async () => {
     sortBtn.addEventListener("click", handleSortBtn);
     
-    //  Shuffle();
+    Shuffle();
 
     prev.addEventListener("click", prevBook);
-
     next.addEventListener("click",nextBook);
-    
+    icon_1.addEventListener("click",prevBook);
+    icon_2.addEventListener("click",nextBook);
+
     for (i = 0; i < home_main_img.length; i++) {
 
         home_main_img[i].addEventListener("mouseover", async (e) => {
