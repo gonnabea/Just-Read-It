@@ -156,6 +156,23 @@ const Review_box = styled.div`
 
 const MyComments = styled.div`
     margin:15px;
+    border:1px solid #F6B93B;
+    box-shadow: 0px 3.5px 7px 5px rgba(0,0,0,0.75);
+    border-radius:5px;
+
+    :hover{
+        cursor:pointer;
+
+    }
+
+    @keyframes myComment{
+        0%{
+
+        }
+        100%{
+            transform:translateZ(100px);
+        }
+    }
 `;
 
 class profile extends React.Component {
@@ -194,7 +211,7 @@ class profile extends React.Component {
                         <Review_box>
                             {this.props.currentUser.reviews.map(review => {
                                 return (
-                                        <MyComments>
+                                        <MyComments className="MyComments">
                                             <h3>
                                                 {review.content}
                                             </h3>
@@ -213,6 +230,8 @@ class profile extends React.Component {
                 <Background_image>
 
                 </Background_image>
+                <script src="/vanilla/profile.js"></script>
+
             </BaseLayout>
         )
     }

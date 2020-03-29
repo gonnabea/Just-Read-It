@@ -25,11 +25,14 @@ const Box_img = styled.div`
     justify-content:center;
     align-items:center;
     text-align:center;
-    width:30vw;
+    
     height:20vw;
+    box-shadow: -1px 0px 21px 0px rgba(0,0,0,0.75);
+    border-radius:10px;
+    border: 1px solid red;
     margin:1rem;
     top:25%;
-    border-radius:5px;
+    
     background-color:rgba(229, 224, 149, 0.7);
     align-items:center;
     justify-content:center;

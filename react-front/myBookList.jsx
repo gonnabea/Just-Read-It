@@ -99,7 +99,6 @@ const Bottom_nav = styled.div`
 `;
 
 const Div = styled.div`
-  
     display:flex;
     position: relative;
     transform-style: preserve-3d;
@@ -109,16 +108,16 @@ const Div = styled.div`
 `;
 
 const ImageSize = styled.img`
-    width:27vh;
-    height:43.5vh;
+    width: 295px;
+    height: 400px;
     transform: rotateY(90deg) translateX(13.5vh) translateZ(2vh) translateY(-1.5vh);
     position:absolute;
     z-index:2;
 `;
 
 const Side_cover = styled.div`
-    width: 4.4vh;
-    height:43.5vh;
+    width:40px;
+    height: 400px;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -138,8 +137,8 @@ const Side_cover = styled.div`
 const Back_cover = styled.div`
     position:absolute;
     z-index:-1;
-    width:27vh;
-    height:43.5vh;
+    width: 295px;
+    height: 400px;
     /* background-color:${props => props.coverColor ? props.coverColor : "black"}; */
      background-image:url("https://cdn.pixabay.com/photo/2017/07/20/09/35/particles-2521732_960_720.jpg");  
     /* background-image:url("https://cdn.pixabay.com/photo/2019/12/21/07/44/frame-4709861_960_720.png");  */
@@ -152,8 +151,8 @@ const Back_cover = styled.div`
 `;
 
 const Up_cover = styled.div`
-    width: 4.4vh;
-    height: 27vh;
+    width: 40px;
+    height: 295px;
    /* background:black; */
     transform:   translateY(-32.25vh) translateZ(-13.6vh)  rotateX(90deg); 
     position:absolute;

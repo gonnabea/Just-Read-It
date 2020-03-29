@@ -533,7 +533,7 @@ const CommentSpace = styled.section`
     @media screen and (max-device-width: 450px) 
     {
         position:absolute;
-        bottom:-10rem;
+        bottom:0rem;
         width:100%;
         height:20rem;
     }
