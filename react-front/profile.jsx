@@ -39,6 +39,7 @@ const A = styled.a`
     text-overflow:ellipsis;
     transform-style: preserve-3d;
     perspective: 650vh;
+    font-size:1.5rem
     &>span:nth-child(2){
         overflow:hidden;
         text-overflow:ellipsis;
@@ -82,14 +83,25 @@ const A = styled.a`
             }
         }
     }
-    @media screen and (max-width: 1300px)
+
+    @media screen and (max-width: 700px)
     { 
-        font-size:1.5vh;
-        
+        &>span:nth-child(2){
+            font-size:1rem;
+        }
+        &>span:nth-child(3){
+            font-size:1rem;
+        }
     }
-    @media screen and (max-width: 600px)
+
+    @media screen and (max-device-width: 420px)
     {
-        font-size:1vh;
+        &>span:nth-child(2){
+            font-size:1.5rem;
+        }
+        &>span:nth-child(3){
+            font-size:1.5rem;
+        }
     }
 `;
 
@@ -129,6 +141,23 @@ const Flex_div = styled.div`
     margin-top:${props => props.marginTop || "0"};
 
 `;
+
+const Review_box = styled.div`
+    position:relative;
+    bottom:0;
+    width:100%;
+    display:flex;
+    text-align:center;
+    flex-wrap:wrap;
+    margin:0 auto;
+    justify-content:center;
+    align-items:center;
+`;
+
+const MyComments = styled.div`
+    margin:15px;
+`;
+
 class profile extends React.Component {
     render() {
 
@@ -143,13 +172,14 @@ class profile extends React.Component {
                             프로필 수정
                         </A>
                         <h2 >{this.props.currentUser.username}
-                            님이 등록한 책 리스트:
+                            님이 등록한 책 리스트
                         </h2>
+                       
                         <Grid_area>
                             {this.props.currentUser.uploadedBooks.map(book => {
                                 return (
                                     <A href={`/${this.props.routes.bookDetail(book.id)}`}>
-                                        <Image src={`/${book.imageUrl}`} alt="" />
+                                        <Image src={book.imageUrl} />
                                         <span>{book.title}</span>
                                         <span>{book.author}</span>
                                         {/* <h4 style={{height:"20vh"}}>{book.description}</h4> */}
@@ -157,6 +187,27 @@ class profile extends React.Component {
                                 )
                             })}
                         </Grid_area>
+                        <h1 style={{marginTop:"10rem"}}>
+                            {this.props.currentUser.username}
+                            님이 작성하신 리뷰
+                        </h1>
+                        <Review_box>
+                            {this.props.currentUser.reviews.map(review => {
+                                return (
+                                        <MyComments>
+                                            <h3>
+                                                {review.content}
+                                            </h3>
+                                            <h3>
+                                                {review.rate}
+                                            </h3>
+                                            <h3>
+                                                {JSON.stringify(review.createdAt)}
+                                            </h3>
+                                        </MyComments>
+                                        )
+                            })}
+                        </Review_box>
                     </Flex_div>
                 </Div>
                 <Background_image>

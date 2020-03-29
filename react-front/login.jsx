@@ -176,6 +176,14 @@ const Span_line = styled.span`
         font-weight:500;
         text-decoration:underline;
     }
+    @media screen and (max-width: 700px)
+    {
+        font-size:1.5rem;
+    } 
+    @media screen and (max-device-width: 420px)
+    {
+        font-size:2rem;
+    }
 `;
 const Label = styled.label`
 `;
@@ -215,7 +223,7 @@ function Login(props) {
                             </Asns>
                         </div>
                         <Bottom_box>
-                            <a href={props.routes.home}>
+                            <a href={props.routes.join}>
                                 <Span_line>
                                     비밀번호를 잊으셨나요?
                                 </Span_line>

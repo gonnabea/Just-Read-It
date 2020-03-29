@@ -129,6 +129,7 @@ const A = styled.a`
     /* color:#9ACD32; */
     &>i:nth-child(1){
       /* color:#1B9CFC; */
+      /* color:#F6B93B; */
       color:#F6B93B;
     }
 
@@ -143,13 +144,13 @@ const A = styled.a`
      
     }
   }
+
   &>i:nth-child(1){
     margin-right:1vw;
-    color:black;
-    
+    color:#f6b93b;
     &:hover{
       /* color:#EA2027; */
-      color:#F6B93B;
+      color:black;
 
     }
   }
@@ -283,17 +284,16 @@ const Binput = styled.input`
   border:none;
 
   &:hover{
-  cursor: pointer;
+    cursor: pointer;
   } 
 
   @media screen and (max-width: 900px)
   { 
-  position:absolute;
-  right:0;
-  top:0;
-  margin-right:-3rem;
-  margin-top:1rem;
-
+    position:absolute;
+    right:0;
+    top:0;
+    margin-right:-3rem;
+    margin-top:1rem;
   }
 
 `;
@@ -306,22 +306,25 @@ const Prifile_img = styled.img`
   top:0;
   border-radius:100%;
   cursor:pointer;
-`;
-
+`; 
+ 
 const Icon_box = styled.div`
+  position:absolute;
+  right:1.5%;
+  top:5%;
+  display:flex;
+  border-radius:10px;
+  color:black;
+  height:30vh;
+    /* background-color:rgba(255,255,255,1); */
+    /* box-shadow: 0px 3.5px 5px 3.5px rgba(0,0,0,0.75); */
+  
+  &>i{
     position:absolute;
-    right:1.5%;
-    top:5%;
-    display:flex;
-    border-radius:10px;
-    color:black;
-    &>i{
-      position:absolute;
-      right:0;
-      top:0;
-      color:black;
-    }
-
+    right:0;
+    top:0;
+    color:#F6B93B;
+  }
 
   ul:nth-child(2)
   {
@@ -331,21 +334,19 @@ const Icon_box = styled.div`
       flex-direction:column;
     /* align-items: flex-end; */
       &>span{
-        color: red;
+        color: #F6B93B;
         font-size: 1rem;
         position:relative;
       }
-  }
-
-
-    @media screen and (max-width: 700px)
-    { 
-      width:15vh;
     }
   }
 
-
+  @media screen and (max-device-width: 420px)
+  { 
+    width:150px;
+  }
 `;
+
 const Form = styled.form`
      width:100%;
      display:flex;
@@ -354,6 +355,7 @@ const Form = styled.form`
     margin-top:0.8rem;
 
 `;
+
 const User_none = styled.div`
     position:absolute;
     top:0;
@@ -371,15 +373,15 @@ const Menu_img = styled.img`
 
 const Span_size = styled.span`
   font-size:2.6vh;
-  color:black;
+  color:#F6B93B;
   :hover{
     /* color:#1B9CFC; */
-    color:black;
+    color:#F6B93B;
      &::after {
       content: " ";
       animation: hover_border 0.35s linear forwards;
       /* color:#1B9CFC; */
-      }
+    }
   } 
 
   z-index:2;
@@ -391,12 +393,12 @@ const Span_size = styled.span`
 
   @keyframes hover_border{
     0%{
-        border-bottom: 2.5px solid #F6B93B;
+        border-bottom: 2.5px solid black;
         width: 0%;
         
     }
     100%{
-        border-bottom: 2.5px solid #F6B93B;
+        border-bottom: 2.5px solid black;
         width: 100%;
     }
   }  
@@ -418,7 +420,7 @@ function Header(props) {
       return (
         <>
           <A href={`/${props.routes.profile(props.user.id)}`}>
-            <i class="fas fa-user-lock fa-2x"></i>
+            
             <Span_size>
               프로필
             </Span_size>
@@ -456,19 +458,19 @@ function Header(props) {
         <>
           <Prifile_img className="header_icon_img" src={props.user.profilePhoto} />
           <A href={routes.logout}>
-            <i class="fas fa-key fa-2x"></i>
+            
             <Span_size>
               로그아웃
             </Span_size>
           </A>
           <A href={routes.addBook}>
-            <i class="fas fa-book fa-2x"></i>
+            
             <Span_size>
               새로운 책 등록
             </Span_size>
           </A>
           <A href={`/${routes.myBookList(props.user.id)}`}>
-            <i class="fas fa-bookmark fa-2x"></i>
+            
             <Span_size>
               내 서재
             </Span_size>
@@ -513,7 +515,7 @@ function Header(props) {
           {/* 오리↓*/}
           {/* <Imag_styles src="https://cdn.pixabay.com/photo/2017/02/01/09/57/animal-2029283_960_720.png" /> */}
 
-          <Imag_styles src="https://cdn.pixabay.com/photo/2016/12/08/15/45/panda-1892023_960_720.png" />
+          <Imag_styles src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTKN4UJ5OtVmqJKkhARClcCZO5Btt3rNI5trOE1pHvVbX78g2m-" />
         </a>
 
         <Search_box>

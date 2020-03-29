@@ -4,38 +4,31 @@ import Header from "./globalStyles/Header";
 import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
-
-
-const Box = styled.div`
-    /* font-family: 'Gugi', cursive; */
-    width:100%;
-    height:100vh;
-    display:flex; 
-    justify-content:center;
-    text-align:center;
-    font-size:1rem;
-    position:absolute;
-
-`;
+import MetaTags from 'react-meta-tags';
 
 const Grid_box = styled.div`
     width:100%;
-    height:100%;
+    height:100vh;
     display:grid;
     text-align:center;
     grid-gap: 10px;
     grid-template-columns: repeat(5,1fr);
     position:relative;
-    top:150px;
-    @media screen and (max-width: 700px)
+    top:10rem;
+    background-image:url("https://cdn.pixabay.com/photo/2015/07/27/20/16/book-863418_1280.jpg");
+    background-repeat:repeat;
+    background-position:center center;
+    background-size: 100% 100%;
+    @media screan and (max-width: 600px) and (min-width: 300px)
     {
-        top:8rem;
+        top:14rem;
+        grid-template-columns: repeat(1,1fr);
+    }
+    @media screen and (max-device-width: 450px)
+    {
+        top:15rem;
         grid-template-columns: repeat(3,1fr);
     }
-     
-`;
-const Div = styled.div`
-    display:grid;
 `;
 
 const Image = styled.img`
@@ -76,6 +69,11 @@ const H_one = styled.h1`
     position:absolute;
     text-align:center;
     top:-50px;
+    box-shadow: 0px 3.5px 5px 3.5px #F7BC43;
+    @media screen and (max-width: 400px)
+    {
+        font-size:1rem;
+    }
 `;
 
 const Span = styled.span`
@@ -91,13 +89,11 @@ const Span = styled.span`
     @media screen and (max-width: 600px)
     {
         font-size:1vh;
-        
     }
-
 `;
 
 const Background_img = styled.div`
-    position:absolute;
+    position:relative;
     z-index:-1;
     top:0;
     width:100%;
@@ -105,12 +101,8 @@ const Background_img = styled.div`
     background-image:url("https://cdn.pixabay.com/photo/2015/07/27/20/16/book-863418_1280.jpg");
     background-repeat:repeat;
     background-position:center center;
-    background-size: auto auto;
+    background-size: 100% 100%;
     
-    @media screen and (min-height: 100vh)
-    {
-        height:150vh;
-    }
 `;
 
 class search extends React.Component {
@@ -121,22 +113,17 @@ class search extends React.Component {
         function CheckSearchResult() {
             if (results[0]) {
                 return (
-
                     <>
-
-                        <H_one  >
-                            {searchingBy} 검색결과 :
+                        <H_one>
+                            "{searchingBy}" 검색 결과
                         </H_one>
                             {resultScreen}
-
                     </>
-
                 )
             } else {
                 return (
                     <>
-
-                        <H_one >
+                        <H_one color="red">
                             검색결과가 없습니다.
                         </H_one>
                     </>
@@ -153,24 +140,16 @@ class search extends React.Component {
                         {/* <Span>{books.description}</Span> */}
                     </A>
                 </div>
-
-
             )
         })
-
         return (
-            //console.log(resultScreen),
             <BaseLayout>
                 <GlobalStyle />
                     {Header(this.props)}
-
-                <Grid_box>
-                    <CheckSearchResult />
-                </Grid_box>
-            <Background_img>
-                </Background_img>
+                    <Grid_box>
+                            <CheckSearchResult />
+                    </Grid_box>
             </BaseLayout>
-
         );
     }
 }

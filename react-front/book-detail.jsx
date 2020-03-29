@@ -105,8 +105,8 @@ class bookDetail extends React.Component {
                             <Book id="book" coverColor={this.props.coverColor}>
                                 <div id="frontCover">
                                     <img id="coverImg"src={`${book.imageUrl}`} width="100%" height="100%" />
-                                    </div>
-                                    <section><p>{book.description}</p></section>
+                                </div>
+                                <section><p>{book.description}</p></section>
                                 <div></div>
                                 <div></div>
                                 <div>
@@ -118,7 +118,8 @@ class bookDetail extends React.Component {
                                         <h3> 조회수 {book.viewsFigure}회 </h3>
                                     </span>
                                 </div>
-                                <div ><bdi id="bookSpine1">{book.author}</bdi><bdi id="bookSpine2">{book.title}</bdi></div>
+                                <div ><bdi id="bookSpine1">{book.author}</bdi>
+                                <bdi id="bookSpine2">{book.title}</bdi></div>
                                 <div></div>
                             </Book>
                             
@@ -178,12 +179,18 @@ class bookDetail extends React.Component {
                             <h5>{book.description}</h5>
                         </BookIntroduce>
                      */}
+                        <ControlBook>
+                            <ControlBtn id="rotateBtn">
+                                <i class="fas fa-undo"></i>
+                                책 돌리기
+                            </ControlBtn>
+                            <ControlBtn id="openBtn">
+                                <i class="fas fa-book-open"></i>
+                                책 펼치기
+                            </ControlBtn>
+                            <CheckUser />
+                        </ControlBook>
                     </BookInfos>
-                    <ControlBook>
-                            <ControlBtn id="rotateBtn"><i class="fas fa-undo"></i>책 돌리기</ControlBtn>
-                            <ControlBtn id="openBtn"><i class="fas fa-book-open"></i>책 펼치기</ControlBtn>
-                            </ControlBook>
-                    <CheckUser />
                 </Background>
                     <script src="/vanilla/bookDetail.js"></script>
                     
@@ -226,11 +233,11 @@ const Book = styled.section`
    
     width: 25vw;
     height: 70vh;
-    
+    transform-style: preserve-3d;
     :hover{
-    animation: book-rotate 0.5s ;
-    animation-fill-mode: forwards;
-}
+        animation: book-rotate 0.5s ;
+        animation-fill-mode: forwards;
+    }
     /*:active{
     animation: book-rotate2 .5s ;
     animation-fill-mode: forwards;
@@ -240,8 +247,13 @@ const Book = styled.section`
     animation-fill-mode: forwards;
     perspective: 130vw;
     }*/
-    transform-style: preserve-3d;
-
+    @media screen and (max-device-width: 420px) 
+    {
+        position:relative;
+        width: 100%;
+        height:100%;
+        top:15vh;
+    } 
     
     div:nth-child(1){
         position: absolute;
@@ -256,11 +268,24 @@ const Book = styled.section`
         box-shadow: 10px 10px 10px 0.5px;
         transform: translateZ(2vw);
         transform-origin: 0 0;
-        
-        
-        
+            
+        @media screen and (max-width: 1200px){
+            width: 33vw;
+        }
+
+        @media screen and (max-width: 700px){
+            width: 55vw;
+        }
+     
+        @media screen and (max-device-width: 420px) 
+        {
+            width: 500px;
+            height: 700px;
+        }
     }
+
     section:nth-child(2){
+        justify-content:center;
         margin-top:1vw;
         margin-left:0.2vw;
         position: absolute;
@@ -273,6 +298,20 @@ const Book = styled.section`
         p:nth-child(1){
             margin: 3vw;
         }
+            
+        @media screen and (max-width: 1200px){
+            width: 30vw;
+        }
+
+        @media screen and (max-width: 700px){
+            width: 52vw;
+        }
+     
+        @media screen and (max-device-width: 420px) 
+        {
+            width: 500px;
+            height: 700px
+        }
     }
 
  
@@ -280,7 +319,7 @@ const Book = styled.section`
         position: absolute;
         width: 25vw;
         height: 70vh;
-        
+   
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
         font-size: 2vh;
         display:flex;
@@ -289,6 +328,7 @@ const Book = styled.section`
         background-position: center center;
         transform: rotateY(180deg) rotateZ(0deg) translateZ(2vw);
         border-right: 0;
+
         span:nth-child(1){
             position:absolute;
             font-family: 'Gugi', cursive;
@@ -296,6 +336,20 @@ const Book = styled.section`
             color: ${props => props.coverColor ? props.coverColor : "black"};
             -webkit-filter: invert(100%);
             filter: invert(100%);
+        }
+            
+        @media screen and (max-width: 1200px){
+            width: 33vw;
+        }
+
+        @media screen and (max-width: 700px){
+            width: 56vw;
+        }
+     
+        @media screen and (max-device-width: 420px) 
+        {
+            width: 500px;
+            height: 700px
         }
     }
     div:nth-child(6){
@@ -329,10 +383,17 @@ const Book = styled.section`
             filter: invert(100%);
             font-weight:700;
             overflow:hidden;
+          
+        }
+      
+        @media screen and (max-device-width: 420px) 
+        {
+            width: 4vw;
+            height: 700px
         }
     }
-    
-@keyframes book-rotate {
+        
+    @keyframes book-rotate {
     0%{
         transform: rotateY(0deg);
     }
@@ -345,18 +406,18 @@ const Book = styled.section`
     }
 }
 
-@keyframes revert-rotate2{
-    0%{
-        transform: rotateY(30deg);
+    @keyframes revert-rotate2{
+        0%{
+            transform: rotateY(30deg);
+        }
+        70%{    
+            box-shadow: 0px 0px 0px;
+        }
+        100%{
+            transform: rotateY(0deg);
+            
+        }
     }
-    70%{    
-        box-shadow: 0px 0px 0px;
-    }
-    100%{
-        transform: rotateY(0deg);
-        
-    }
-}
 
 @keyframes book-rotate2 {
     from,to{
@@ -440,14 +501,14 @@ const Book = styled.section`
     }
 }
 
-`
+`;
 
 
 
 const BookInfos = styled.div`
-width: 100%;
-height: 100vh;
-
+    width: 100%;
+    height: 100vh;
+;
 `
 const Middle = styled.div`
 
@@ -457,19 +518,32 @@ align-items:center;
 width: 100%;
 height: 100%;
 
-`
+`;
 
 const CommentSpace = styled.section`
-
     display: flex;
     flex-direction: column;
     box-shadow: 10px 5px 20px #00c8eb;
     width: 25vw;
-        height: 70vh;
+    height: 70vh;
     border-radius: 20px;
     align-items: center;
     background-color:black;
-    `
+
+    @media screen and (max-device-width: 450px) 
+    {
+        position:absolute;
+        bottom:-10rem;
+        width:100%;
+        height:20rem;
+    }
+    @media screen and (max-width: 700px){
+        position:absolute;
+        bottom:-30rem;
+        width:100%;
+        height:20rem;  
+    }
+`;
 const Comments = styled.ul`
     
     
@@ -534,9 +608,7 @@ color:black;
 margin-top:0.3rem;
 background-color: rgba(255,255,255,0.3);
 width:25vw;
-
-
-`
+`;
 
 const InputReview = styled.textarea`
 border: solid 2px black;
@@ -588,7 +660,12 @@ const User_img = styled.img`
 `;
 
 const ControlBook = styled.div`
-
+    position:relative;
+    bottom:90px;
+    @media screen and (max-device-width: 420px)
+    {
+        bottom:50%;
+    }
 `
 
 const ControlBtn = styled.button`

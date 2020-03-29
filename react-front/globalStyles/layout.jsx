@@ -21,7 +21,7 @@ export class BaseLayout extends React.Component {
     return (
       <html lang='en'>
         <head>
-    <title>{this.props.pageTitle} 책좀 읽자.</title>
+    <title>{this.props.pageTitle}Just Read It</title>
           {this.prerenderStyles()}</head>
 
         <body className={bodyClass}>{this.getBodyElements()}</body>

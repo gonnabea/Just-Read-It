@@ -14,60 +14,41 @@ const Div = styled.div`
 const Recom_div = styled.div`
     width:100%; 
     height:55vh;
-    display:grid;
     overflow:auto;
     overflow-x:hidden;
     grid-area: span 1/ span 6;
-    /*background: rgba(8, 177, 199, 0.767);*/
     background-image:url("https://cdn.pixabay.com/photo/2013/03/02/02/40/portrayal-89193_1280.jpg");
-    /* display:fixed;
-    position:absolute;
-    right:0;
-    top:0; */
-    /* margin-right:1rem;
-    margin-top:10.5vh; */
-    
     @media screen and (max-width: 1300px)
     { 
         height:100%;
         grid-area: span 1/ span 3;
     }
 `;
+
 const Recom_a = styled.a`
-    width:100%;
+    width:100vh;
     display:flex;
-    flex-direction:column;
-    text-align:center;
-    align-items:center;
-    justify-content:space-between;
     color:white;
-   
-  
     &>span{
         overflow: hidden;
-        text-overflow: ellipsis;    
+        text-overflow: ellipsis;   
     }
     span:nth-child(4){
         color:white;
         overflow: hidden;
         text-overflow: ellipsis;    
     }
-
 `;
-
-
-
-
 const Ul = styled.ul`
     display:flex;
     /* flex-direction:column; */
     justify-content:center;
     align-items:center;
-    width:100%;
     height:100vh;
     overflow:hidden;
     overflow-x:hidden;
-    
+    width:300%;
+    background-color: rgba(255,255,255,0.3);
     @media screen and (max-width: 1000px)
     { 
         height:20vh;
@@ -77,15 +58,11 @@ const Ul = styled.ul`
 
 const Li = styled.li`
     display:flex;
-    text-align:center;
-    align-items:center;
-    height:100%;
-    /* flex-direction:column; */
-    /* text-overflow: ellipsis; */
+    height:30%;
     margin:0 1rem 0 0;
     border:1px solid red;
     animation: slide 1s;
-    width:40vh;
+    width:100%;
     @keyframes slide{
         0%{
             transform:translateX(100vh);
@@ -133,10 +110,8 @@ const Image = styled.img`
 
 `;
 const Reco_span = styled.span`
-    display:flex;
+    display:block;
     text-align:center;
-    justify-content:center;
-    align-items:center;
     overflow: hidden;
     text-overflow: ellipsis;    
     flex-direction:column;
@@ -283,12 +258,12 @@ const Re_book_pos = styled.div`
 const SlideContainer = styled.section`
 
 
-`
+`;
 
 const GenreSort = styled.nav`
     margin-top:-5vh;
-    background-color:rgba(15, 15, 15, 0.425);
-    width: 10%;
+    background-color:rgba(0,0,0,0.3);
+    width: 10rem;
     height: 90vh;
     z-index: 100;
     position:fixed;
@@ -298,7 +273,7 @@ const GenreSort = styled.nav`
     align-items:center;
     display:none;
     color: white;
-    `
+`;
 
 const SlideNav = styled.section`
     position:fixed;
@@ -306,8 +281,6 @@ const SlideNav = styled.section`
     display:flex;
     align-items:center;
     height:80%;
-    width:0;
-    
     color:#F6B93B;
     margin-top:20vh;
 
@@ -315,7 +288,7 @@ const SlideNav = styled.section`
         0%{
             width:0;
         }100%{
-            width:10%;
+            width:9.5rem;
         }
     }
     
@@ -334,12 +307,12 @@ const SlideNav = styled.section`
             margin-left: 0;
         }
         100%{
-            margin-left: 20vh;
+            margin-left: 10rem;
         }
     }
     @keyframes revertSlideBtn {
         0%{
-            margin-left: 20vh;
+            margin-left: 10rem;
         }
         100%{
             margin-left: 0;
@@ -351,26 +324,29 @@ const SlideNav = styled.section`
 
 const animations = keyframes`
 
-`
+`;
 const Genre = styled.input`
-    width:10vw;
-    height:3vw;
+    width:9.5rem;
+    height:2.9rem;
     border:none;
     text-align: center;
     font-weight:700;
     font-size:2vh;
-    background-color:rgba(15, 15, 15, 0.425);
+    /* background-color:rgba(15, 15, 15, 0.425); */
+    background-color:rgba(0,0,0,0.3);
     color:white;
     cursor: pointer;
     :hover{
         color:black;
         background-color:#F6B93B;
     }
-`
+   
+
+`;
 
 const SlideBtn = styled.span`
-cursor:pointer;
-`
+    cursor:pointer;
+`;
 
 
 function Home(props) {
@@ -406,18 +382,20 @@ function Home(props) {
                             <Li className="reco_list">
                                 <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
                                     <Image height="40vh" width="30vh" src={argument.imageUrl} />
-                                    <Reco_span>
-                                        제목:<br />
-                                        {argument.title}
-                                    </Reco_span>
-                                    <Reco_span>
-                                        작가:<br />
-                                        {argument.author}
-                                    </Reco_span>
-                                    <Reco_span>
-                                        본문:<br />
-                                        {argument.description}
-                                    </Reco_span>
+                                    <div>
+                                        <Reco_span>
+                                            제목:<br />
+                                            {argument.title}
+                                        </Reco_span>
+                                        <Reco_span>
+                                            작가:<br />
+                                            {argument.author}
+                                        </Reco_span>
+                                        <Reco_span>
+                                            본문:<br />
+                                            {argument.description}
+                                        </Reco_span>
+                                    </div>
                                 </Recom_a>
                             </Li>
                         )
@@ -494,8 +472,8 @@ function Home(props) {
                                 <div>분류 : {sortedBy}</div>
                             </Text_box>
                         </Book>
-                        <Spantwo>({book.enrolledBy[0].username}님이 등록)</Spantwo>
-                        <Spantwo>{JSON.stringify(book.createdAt)}</Spantwo>
+                        <Spantwo></Spantwo>
+                        <Spantwo></Spantwo>
                         {/* <Spantwo>{book.description}</Spantwo> */}
                     </div>
                 </Header_line>

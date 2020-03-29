@@ -107,6 +107,7 @@ const Div = styled.div`
 
         }
     }
+
 `;
 
 
@@ -133,11 +134,6 @@ const Input = styled.input`
     margin: 1.2vh;
     font-size: 2vh;
     width:100%;
-    /* :focus{
-
-        background-color:#fffa65;
-        color:#2bcbba;
-    } */
     background:none;
     border: solid 0px;
     border-bottom: solid 0.15vh white; 
@@ -201,6 +197,15 @@ const Span_line = styled.span`
         font-weight:500;
         text-decoration:underline;
     }
+    
+    @media screen and (max-width: 700px)
+    {
+        font-size:1.5rem;
+    } 
+    @media screen and (max-device-width: 420px)
+    {
+        font-size:2rem;
+    }
 `;
 const Bottom_box = styled.div`
     display:flex;
@@ -250,12 +255,8 @@ function Join(props) {
                     </div>
                     <Bottom_box>
                         <div>
-                            <input type="checkbox" name="news_check" />
-                            <Check_span >최신 소식을 이메일로 받겠습니다.</Check_span>
-                        </div>
-                        <div>
                             <Span_line>
-                                계정이 이미 있으신가요
+                                계정이 이미 있으신가요?
                             </Span_line>
                             <a href={props.routes.login}>
                                 <Span_line>

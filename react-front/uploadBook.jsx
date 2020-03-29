@@ -274,15 +274,20 @@ const Submit = styled.input`
 `
 
 const InputFile = styled.input`
-    [type="file"] {
-        display: none;
-    }
-
+    
+    background-color:#F6B93B;
     @media screen and (max-width: 1400px)
     {
         width:80%;
         height: 100%;
     }
+    button:nth-child(1){
+    border: none;
+    background-color: #3498db;
+    color: white;
+    
+  }
+
 `;
 
 const Section = styled.section`
@@ -311,6 +316,45 @@ const Formdiv = styled.div`
 
 `;
 
+const GenreSelect = styled.select`
+
+color:#F5BA40;
+border:solid 2px #F5BA40;
+`
+
+const UploaderCover = styled.div`
+    input[type="file"] {
+    background: #F6B93B;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-weight:700;
+  width: 100%;
+  height: 35px;
+  border-color: transparent;
+  box-shadow: 0px;
+  outline: none;
+  transition: 0.15s;
+  text-align: center;
+}
+    
+
+    input[type='submit']:active {
+  background-color: #f1ac15;
+}
+button{
+    border: none;
+    background-color: #3498db;
+    color: white;
+    
+  }
+
+    
+`
+
+
+
 class uploadBook extends React.Component {
 
 
@@ -331,8 +375,11 @@ class uploadBook extends React.Component {
                             <Ainput type="textarea" id="bookDescription" name="bookDescription" placeholder="책 상세설명" />
                             <Input type="text" name="author" id="bookAuthor" placeholder="작가 이름" />
                             <Section>
-                                <InputFile style={{ color: "#EF6C00", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
-                                <select id="genres" name="genre" required="true">
+                                <UploaderCover>
+                                <InputFile id="inputFile"style={{ color: "white", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
+                                
+                                </UploaderCover>
+                                <GenreSelect id="genres" name="genre" required="true">
                                     <option value="">장르를 선택하세요</option>
                                     <option value="novel">소설</option>
                                     <option value="self-development">자기계발서</option>
@@ -348,7 +395,7 @@ class uploadBook extends React.Component {
                                     <option value="science">과학</option>
                                     <option value="tech">기술/공학</option>
                                     <option value="etc">기타</option>
-                                </select>
+                                </GenreSelect>
                                 <h5>{this.props.msg}</h5>
                             </Section>
                             <Submit type="submit" value="등록하기" />

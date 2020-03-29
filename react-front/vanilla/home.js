@@ -19,41 +19,32 @@ let num = [];
 const Shuffle = async () => {
     let reco_list = await document.querySelectorAll(".reco_list");
 
-
-    // if(reco_list)
-    // {
-     
-    //     for (j = 0; j < 3; j++) {
-    //         rand[j] = Math.floor(Math.random() * reco_list.length);
-    //     }
-    // }
-        let rand = [];
+    let rand = [];
 
     for (j = 0; j < 3; j++) 
     {
         rand[j] = Math.floor(Math.random() * reco_list.length);
     }
+    
     console.log(Array.from(new Set(rand)));
 
-   
+    // let pos = 50;
 
-    let pos = 50;
-
-    for (i = 0; reco_list.length; i++) {
-        // console.log(reco_list[0]); 
-        //&& i != rand[1] && i != rand[2]
+    // for (i = 0; reco_list.length; i++) {
+    //     // console.log(reco_list[0]); 
+    //     //&& i != rand[1] && i != rand[2]
      
-        if  (i != rand[0] && i != rand[1] && i != rand[2])  {
+    //     if  (i != rand[0] && i != rand[1] && i != rand[2])  {
 
-              reco_list[i].style.display = "none";
-        }
-        else {
-            reco_list[i].style.display = "block";
-            reco_list[i].style.marginTop = "1rem";
-            reco_list[i].style.transform = `translateX(${pos}vh)`;
-            pos += 100;
-        }
-    }
+    //           reco_list[i].style.display = "none";
+    //     }
+    //     else {
+    //         reco_list[i].style.display = "block";
+    //         reco_list[i].style.marginTop = "1rem";
+    //         reco_list[i].style.transform = `translateX(${pos}vh)`;
+    //         pos += 100;
+    //     }
+    // }
 
 
 }
@@ -68,6 +59,7 @@ const Imglength = async () => {
 
         ul.appendChild(li);
         ul.style.display = "flex";
+        ul.style.flexDirection = "column";
         ul.style.width = "100%";
         ul.style.justifyContent = "center";
         ul.style.alignItems = "center";
@@ -168,7 +160,7 @@ function handleSortBtn(){
 const homeInit = async () => {
     sortBtn.addEventListener("click", handleSortBtn);
     
-     Shuffle();
+    //  Shuffle();
 
     prev.addEventListener("click", prevBook);
 

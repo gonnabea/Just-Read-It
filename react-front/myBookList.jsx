@@ -6,7 +6,6 @@ import styled, { createGlobalStyle, keyframes } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 
 const Flex_box = styled.div`
-
     display:flex;
     width:100%;
     height:100%;
@@ -14,14 +13,16 @@ const Flex_box = styled.div`
     justify-content:center;
     text-align:center;
     font-family:Tahoma;
-    
 `;
 
 const Grid_box = styled.div`
     position:absolute;
     display:flex;
     justify-content:center;
-    perspective:800px;  
+    -webkit-perspective: 1800px;
+	perspective: 1800px;
+	-webkit-perspective-origin: 50% 15%;
+	perspective-origin: 50% 15%;
     top:20%;
     flex-direction:column;
     width:100%;
@@ -51,7 +52,7 @@ const Grid_box = styled.div`
     &>div>div>div:hover{
         &>a>img:nth-child(1){
         /*앞 */
-        visibility: visible;
+            visibility: visible;
             animation: fade_in_out 0.5s linear;
             animation-fill-mode: forwards;
         }
@@ -109,16 +110,15 @@ const Div = styled.div`
 
 const ImageSize = styled.img`
     width:27vh;
-    height:40vh;
-    transform: rotateY(90deg)   translateX(13.58vh)  translateZ(2.5vh)   ;
+    height:43.5vh;
+    transform: rotateY(90deg) translateX(13.5vh) translateZ(2vh) translateY(-1.5vh);
     position:absolute;
     z-index:2;
-   
 `;
 
 const Side_cover = styled.div`
-    width: 5.7vh;
-    height:40vh;
+    width: 4.4vh;
+    height:43.5vh;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -132,19 +132,19 @@ const Side_cover = styled.div`
     writing-mode: vertical-rl;
     text-orientation: mixed;
     text-align:center;
-   
+    transform: translateY(-1.5vh);
 `;
 
 const Back_cover = styled.div`
     position:absolute;
     z-index:-1;
     width:27vh;
-    height:40vh;
+    height:43.5vh;
     /* background-color:${props => props.coverColor ? props.coverColor : "black"}; */
      background-image:url("https://cdn.pixabay.com/photo/2017/07/20/09/35/particles-2521732_960_720.jpg");  
     /* background-image:url("https://cdn.pixabay.com/photo/2019/12/21/07/44/frame-4709861_960_720.png");  */
     color:white;
-    transform:rotateY(-90deg) translateX(-13.75vh) translateZ(2.5vh); 
+    transform:rotateY(-90deg) translateX(-13.73vh) translateZ(2vh) translateY(-1.5vh); 
     overflow:hidden;
     text-overflow:hidden;
     text-transform: capitalize;
@@ -152,10 +152,10 @@ const Back_cover = styled.div`
 `;
 
 const Up_cover = styled.div`
-    width: 5.25vh;
-    height:27vh;
+    width: 4.4vh;
+    height: 27vh;
    /* background:black; */
-    transform:   translateY(-29.08vh) translateZ(-13.6vh)  rotateX(90deg); 
+    transform:   translateY(-32.25vh) translateZ(-13.6vh)  rotateX(90deg); 
     position:absolute;
     bottom:0;
     z-index:1;
@@ -182,7 +182,7 @@ const A = styled.a`
     align-items:center;
     justify-content:center;
     transform-style: preserve-3d;
-    margin:0 0.2vh;
+    margin:0 0.05rem;
 
     &:hover{
    
@@ -207,15 +207,15 @@ const A = styled.a`
         0%{
 
         } 
+      
         30%{
-            transform:rotateX(-16.5deg) translateZ(10vh);
+            transform:rotateX(-20deg) translateZ(15vh);
         }
-        60%{
+        80%{
             transform:rotateX(0deg) translateZ(15vh);
         }
         100%{ 
             transform: translateZ(23vh) rotateY(-90deg);
-           
         }
     }
 
@@ -296,7 +296,7 @@ const Grid_row = styled.div`
 const Delete_form = styled.form`
     position:relative;
     &>input{
-        transform:translateX(-5vh)translateY(2vh);
+        transform:translateX(-4.5vh)translateY(3vh);
         z-index:2        
     }
 `;
@@ -313,7 +313,7 @@ class MyBookList extends React.Component {
                 {Header(this.props)}
                 <Flex_box>
                     <H2 >{this.props.currentUser.username}
-                        님의 서재:
+                        님의 서재
                     </H2>
                     <Grid_box className="list">
                         <Box>
@@ -322,7 +322,7 @@ class MyBookList extends React.Component {
                                     return (
                                         <>
                                             <Div className="my_book_list_book">                                                      <A href={`/${this.props.routes.bookDetail(book.id)}`}>
-                                                <ImageSize src={`/${book.imageUrl}`} />
+                                                <ImageSize src={book.imageUrl} />
 
                                                 <Side_cover className="my_book_list_side_cover">
                                                    {book.title}

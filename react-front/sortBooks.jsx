@@ -9,7 +9,6 @@ const Body = styled.div`
     width:100%;
     height:100vh;
     position:absolute;
-    
 `;
 
 const Bookdiv = styled.a`
@@ -23,6 +22,7 @@ const Bookdiv = styled.a`
     width:250px;
     height:400px;
     font-size:1rem;
+    margin:0.7rem;
     img:first-child{
         width:200px;
         height:250px;
@@ -42,18 +42,19 @@ const Div_box = styled.div`
     top:10rem;
     width:100%;
     height:100%;
-    @media screan and (max-width: 600px) and (min-width: 300px)
+    @media screen and (max-device-width: 420px) 
     {
-        top:250px;
+        top:13rem;
     }
 `;
 const Div_flex = styled.div`
     display:flex;
+    flex-wrap: wrap;
     justify-content:center;
     align-items:center;
+    text-align:center;
     width:100%;
     height:100%;
-    flex-wrap: wrap;
 `;
 const H_one = styled.h1`
     margin:1rem;
@@ -64,7 +65,7 @@ class sortBooks extends React.Component {
         const books = this.props.books.map((book) => {
             return (
                 <Bookdiv href={`/${this.props.routes.bookDetail(book.id)}`}>
-                    <img src={`/${book.imageUrl}`} />
+                    <img src={book.imageUrl} />
                     <div>
                         {book.title}
                     </div>
@@ -87,7 +88,6 @@ class sortBooks extends React.Component {
             <BaseLayout>
                 <GlobalStyle />
                 {Header(this.props)}
-                <Body>
                     <Div_box>
                         <H_one>
                             {sortedBy}
@@ -96,7 +96,6 @@ class sortBooks extends React.Component {
                             {books}
                         </Div_flex>
                     </Div_box>
-                </Body>
             </BaseLayout>
 
         )

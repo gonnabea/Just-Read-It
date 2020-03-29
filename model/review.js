@@ -12,7 +12,11 @@ const reviewSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    email: String
+    email: String,
+    connectedBook: [{
+        type: Schema.Types.ObjectId,
+        ref: "Book"
+        }]
 })
 
 const model = mongoose.model("Review", reviewSchema);
