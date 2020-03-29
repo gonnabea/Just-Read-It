@@ -8,22 +8,20 @@ import GlobalStyle from "./globalStyles/ResetCss";
 const Flex_box = styled.div`
     display:flex;
     width:100%;
-    height:100%;
+    height:100vh;
     align-items:center;
     justify-content:center;
     text-align:center;
-    font-family:Tahoma;
+    flex-direction:column;
 `;
-
+ 
 const Grid_box = styled.div`
-    position:absolute;
     display:flex;
     justify-content:center;
     -webkit-perspective: 1800px;
 	perspective: 1800px;
 	-webkit-perspective-origin: 50% 15%;
 	perspective-origin: 50% 15%;
-    top:20%;
     flex-direction:column;
     width:100%;
     height:100%;
@@ -100,23 +98,24 @@ const Bottom_nav = styled.div`
 
 const Div = styled.div`
     display:flex;
+    flex-direction:column;
     position: relative;
     transform-style: preserve-3d;
     text-overflow: ellipsis;
-    margin-top:7.5vh;
-    height:45vh;
+    height: 400px;
+    width:40px;
 `;
 
 const ImageSize = styled.img`
     width: 295px;
-    height: 400px;
-    transform: rotateY(90deg) translateX(13.5vh) translateZ(2vh) translateY(-1.5vh);
+	height: 400px;
+    transform: rotateY(90deg) translateX(147.5px) translateZ(20px);
     position:absolute;
     z-index:2;
 `;
 
 const Side_cover = styled.div`
-    width:40px;
+    width: 40px;
     height: 400px;
     display:flex;
     flex-direction:column;
@@ -131,19 +130,18 @@ const Side_cover = styled.div`
     writing-mode: vertical-rl;
     text-orientation: mixed;
     text-align:center;
-    transform: translateY(-1.5vh);
 `;
 
 const Back_cover = styled.div`
     position:absolute;
     z-index:-1;
     width: 295px;
-    height: 400px;
+	height: 400px;
     /* background-color:${props => props.coverColor ? props.coverColor : "black"}; */
      background-image:url("https://cdn.pixabay.com/photo/2017/07/20/09/35/particles-2521732_960_720.jpg");  
     /* background-image:url("https://cdn.pixabay.com/photo/2019/12/21/07/44/frame-4709861_960_720.png");  */
     color:white;
-    transform:rotateY(-90deg) translateX(-13.73vh) translateZ(2vh) translateY(-1.5vh); 
+    transform: rotateY(-90deg) translateX(-147.5px) translateZ(20px);
     overflow:hidden;
     text-overflow:hidden;
     text-transform: capitalize;
@@ -151,10 +149,10 @@ const Back_cover = styled.div`
 `;
 
 const Up_cover = styled.div`
-    width: 40px;
+    width: 39px;
     height: 295px;
-   /* background:black; */
-    transform:   translateY(-32.25vh) translateZ(-13.6vh)  rotateX(90deg); 
+    /* background:black; */
+    transform:translateY(-251px) translateZ(-155px) rotateX(90deg); 
     position:absolute;
     bottom:0;
     z-index:1;
@@ -166,12 +164,15 @@ const Up_cover = styled.div`
 
 
 const Input = styled.input`
-    position:absolute;
-    bottom:2%;
-    left:20%;
-    font-size:2vh;
+    font-size:1rem;
     &:hover{
         cursor: pointer;
+    }
+    z-index:1;
+    margin-top:10px;
+    @media screen and (max-device-width: 420px)
+    {
+        font-size:1.3rem;
     }
 `;
 
@@ -181,12 +182,11 @@ const A = styled.a`
     align-items:center;
     justify-content:center;
     transform-style: preserve-3d;
-    margin:0 0.05rem;
 
     &:hover{
    
         cursor: pointer;
-        animation: hover_book 1s linear forwards;
+        animation: hover_book 1.2s linear forwards;
         z-index:10;
         
         &>div:nth-child(3){
@@ -206,12 +206,11 @@ const A = styled.a`
         0%{
 
         } 
-      
-        30%{
+        15%{
             transform:rotateX(-20deg) translateZ(15vh);
         }
-        80%{
-            transform:rotateX(0deg) translateZ(15vh);
+        70%{
+            transform:rotateX(0deg) translateZ(40vh);
         }
         100%{ 
             transform: translateZ(23vh) rotateY(-90deg);
@@ -239,9 +238,9 @@ const Span = styled.span`
 `;
 
 const H2 = styled.h2`
-    position:absolute;
-    top:0;
-    margin-top:6rem;
+    margin-top:12vh;
+    margin-bottom:3rem;
+
 `;
 
 const Background_img = styled.div`
@@ -266,39 +265,37 @@ const Box = styled.div`
     align-items:center;
     flex-direction:column;
     align-items:center;
-
 `;
-const Grid_row = styled.div`
+
+const Books_box = styled.div`
     display:flex;
+    width:650px;
     height:100%;
     flex-wrap:wrap;
-    width:65vh;
     justify-content:center;
-    /* grid-template-columns:repeat( 10,5.8vh);
-    grid-row-gap:27vh;
-    @media screen and (max-width:600px)
-    {
-        grid-template-columns:repeat( 5,1fr);
-    } */
-    img:nth-last-child(2){
-            width:100vh;
+   
+    img:last-child{
+        position:relative;
+        top:-22%;
+        width:100%;
+        height:100px;
+        z-index:-1;
+        @media screen and (max-device-width: 420px)
+        {
+            top:-38%;
+        }
+        
     }
-    @media screen and (max-width: 1000px) and (min-width: 300px)
+
+    /* @media screen and (max-width: 1000px) and (min-width: 300px)
     {
         img:nth-last-child(2){
             width:100%;
         }
         width:40vh;
-    }
+    } */
 `;
 
-const Delete_form = styled.form`
-    position:relative;
-    &>input{
-        transform:translateX(-4.5vh)translateY(3vh);
-        z-index:2        
-    }
-`;
 
 
 class MyBookList extends React.Component {
@@ -316,7 +313,7 @@ class MyBookList extends React.Component {
                     </H2>
                     <Grid_box className="list">
                         <Box>
-                            <Grid_row>
+                            <Books_box>
                                 {this.props.currentUser.favBooks.map(book => {
                                     return (
                                         <>
@@ -332,15 +329,15 @@ class MyBookList extends React.Component {
                                                 </Back_cover>
                                                 <Up_cover></Up_cover>
                                             </A>
-                                                <Delete_form className="My_book_list_form" action={routes.deleteFavBook(book.id)} method="post">
+                                                <form className="My_book_list_form" action={routes.deleteFavBook(book.id)} method="post">
                                                     <Input type="submit" value="삭제" />
-                                                </Delete_form>
+                                                </form>
                                             </Div>
                                         </>
                                     )
                                 })}
 
-                            </Grid_row>
+                            </Books_box>
                         </Box>
                     </Grid_box>
                 </Flex_box>

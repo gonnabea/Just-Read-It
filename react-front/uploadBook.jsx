@@ -26,13 +26,11 @@ const Box_img = styled.div`
     align-items:center;
     text-align:center;
     
-    height:20vw;
     box-shadow: -1px 0px 21px 0px rgba(0,0,0,0.75);
     border-radius:10px;
     border: 1px solid red;
-    margin:1rem;
     top:25%;
-    
+    padding:2rem;
     background-color:rgba(229, 224, 149, 0.7);
     align-items:center;
     justify-content:center;
@@ -48,28 +46,15 @@ const Box_img = styled.div`
         }
     }
 
-    @media screen and (min-width: 300px)
-    {
-        width:35%;
-        height:50%;
-    }
-
-    @media screen and (max-width: 1000px)
-    {
-        width:50%;
-        height:45%;
-    }
 `;
 
 const Input = styled.input`
-    margin:0.5vw;
-    width:20vw; 
-    height: 2vw;
-    /*background: linear-gradient(21deg, #10abff, #1beabd);*//*https://codepen.io/rikschennink/pen/rpNGyy*/
+    margin: 1.2vh;
+    font-size: 2vh;
+    width:70%;
     background:none;
     border: solid 0px;
-    font-size:1vw;
-    border-bottom: solid 0.15vw white;
+    border-bottom: solid 0.15vh white; 
     
     ::placeholder{
         color: white;
@@ -84,7 +69,6 @@ const Input = styled.input`
         text-align:center;
         
     }
-        
         @keyframes makeBorder {
             0%{
                 background:none;
@@ -95,31 +79,15 @@ const Input = styled.input`
             }
         }
     }
-/*     
-    @media screen and (min-width: 300px)
-    {
-        width:20vw; 
-        height: 2vw;
-    } */
-
-    @media screen and (max-width: 1400px)
-    {
-        width:70%;
-        height: 100%;
-        font-size:100%;
-    }
-
 `;
 
 const Ainput = styled.textarea`
-     margin:0.5rem;
-    width:20vw; 
-    height: 2vw;
-    /*background: linear-gradient(21deg, #10abff, #1beabd);*//*https://codepen.io/rikschennink/pen/rpNGyy*/
+    margin: 1.2vh;
+    font-size: 2vh;
+    width:70%;
     background:none;
     border: solid 0px;
-    font-size:1vw;
-    border-bottom: solid 0.15vw white;
+    border-bottom: solid 0.15vh white; 
     
     ::placeholder{
         color: white;
@@ -144,15 +112,6 @@ const Ainput = styled.textarea`
             }
         }
     }
-
-    
-    @media screen and (max-width: 1400px)
-    {
-        width:70%;
-        height: 100%;
-        font-size:100%;
-    }
-   
 `;
 
 const Form = {
@@ -237,12 +196,12 @@ const Kakao_list = styled.section`
 `;
 
 const Submit = styled.input`
-    width:7vw;
-    height:3vw;
+    width:100px;
+    height:40px;
     background-color:white;
     text-align: center;
     font-weight:700;
-    font-size:2vh;
+    font-size: 2vh;
     border: solid .3vh black;
     margin-top:0.2rem;
     :hover{
@@ -260,44 +219,40 @@ const Submit = styled.input`
             }
         }
     }
-
-    @media screen and (max-width: 1100px)
+    @media screen and (max-device-width: 420px)
     {
-        width:20%;
-        height:100%;
-        font-size:100%;
-    }
-
-    @media screen and (max-width: 700px)
-    {
-        width:50%;
-        height:100%;
-        font-size:100%;
+        width: 70%;
+        height: 100%;
     }
 `
 
 const InputFile = styled.input`
     
-    background-color:#F6B93B;
-    @media screen and (max-width: 1400px)
-    {
-        width:80%;
+    button:nth-child(1){
+        border: none;
+        background-color: #3498db;
+        color: white;
         height: 100%;
     }
-    button:nth-child(1){
-    border: none;
-    background-color: #3498db;
-    color: white;
-    
-  }
-
+    @media screen and (max-device-width: 420px)
+    {
+        font-size:2rem;
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 const Section = styled.section`
     width:100%;
     display:flex;
-
-  @media  screen and (max-width: 500px)
+    
+    @media screen and (max-device-width: 420px)
+    {
+        font-size:2rem;
+        width:80%;
+        flex-direction:column;
+    }
+    @media  screen and (max-width: 500px) 
     {
         width:80%;
         font-size:100%;
@@ -321,13 +276,18 @@ const Formdiv = styled.div`
 
 const GenreSelect = styled.select`
 
-color:#F5BA40;
-border:solid 2px #F5BA40;
+    color:#F5BA40;
+    border:solid 2px #F5BA40;
+    @media screen and (max-device-width: 420px)
+    {
+        width: 100%;
+        height: 3rem;
+    }
 `
 
 const UploaderCover = styled.div`
     input[type="file"] {
-    background: #F6B93B;
+    
   color: #fff;
   cursor: pointer;
   margin-bottom: 0;
@@ -356,8 +316,6 @@ button{
     
 `
 
-
-
 class uploadBook extends React.Component {
 
 
@@ -372,15 +330,14 @@ class uploadBook extends React.Component {
                 <Divs>
 
                     <Box_img>
-                        {console.log(this.props.routes.addBook)}
+                        {/* {console.log(this.props.routes.addBook)} */}
                         <form autocomplete="off" style={Form} action={this.props.routes.addBook} method="post" enctype="multipart/form-data">
                             <Input type="text" id="bookTitle" name="bookName" placeholder="책 제목" required="true" />
                             <Ainput type="textarea" id="bookDescription" name="bookDescription" placeholder="책 상세설명" />
                             <Input type="text" name="author" id="bookAuthor" placeholder="작가 이름" />
                             <Section>
                                 <UploaderCover>
-                                <InputFile id="inputFile"style={{ color: "white", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
-                                
+                                    <InputFile id="inputFile"style={{ color: "white", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
                                 </UploaderCover>
                                 <GenreSelect id="genres" name="genre" required="true">
                                     <option value="">장르를 선택하세요</option>

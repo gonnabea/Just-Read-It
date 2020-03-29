@@ -33,6 +33,7 @@
     "express-react-views": "^0.11.0",
     "express-session": "^1.17.0",
     "fs": "0.0.1-security",
+    "fs-copy-file": "^2.1.2",
     "gitignore": "^0.6.0",
     "helmet": "^3.21.3",
     "imagemagick": "^0.1.3",

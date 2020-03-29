@@ -192,6 +192,7 @@ const homeInit = async () => {
 
     }
 }
+
 if(prev)
 {
     homeInit();

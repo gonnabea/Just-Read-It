@@ -150,8 +150,7 @@ const Input = styled.input`
         color:#F6B93B;
         text-align:center;
         
-    }
-        
+        }
         @keyframes makeBorder {
             0%{
                 background:none;

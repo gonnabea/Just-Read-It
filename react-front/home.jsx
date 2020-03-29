@@ -12,8 +12,6 @@ const Div = styled.div`
 `;
   
 const Recom_div = styled.div`
-    width:100%; 
-    height:55vh;
     overflow:auto;
     overflow-x:hidden;
     grid-area: span 1/ span 6;
@@ -22,13 +20,19 @@ const Recom_div = styled.div`
     { 
         height:100%;
         grid-area: span 1/ span 3;
+        font-size:1rem;
     }
 `;
 
 const Recom_a = styled.a`
-    width:100vh;
+    width:1600px;
     display:flex;
     color:white;
+    /* justify-content:space-between; */
+    &>img{
+        width:350px;
+        height:450px;
+    }
     &>span{
         overflow: hidden;
         text-overflow: ellipsis;   
@@ -41,40 +45,19 @@ const Recom_a = styled.a`
 `;
 const Ul = styled.ul`
     display:flex;
-    /* flex-direction:column; */
     justify-content:center;
-    align-items:center;
-    height:100vh;
-    overflow:hidden;
-    overflow-x:hidden;
-    width:300%;
+    /* align-items:center; */
+    /* overflow:hidden; */
+    /* overflow-x:hidden; */
     background-color: rgba(255,255,255,0.3);
-    @media screen and (max-width: 1000px)
-    { 
-        height:20vh;
-    }
-   
+    width:1000%;
 `;
 
 const Li = styled.li`
     display:flex;
-    height:30%;
-    margin:0 1rem 0 0;
     border:1px solid red;
-    animation: slide 1s;
     width:100%;
-    @keyframes slide{
-        0%{
-            transform:translateX(100vh);
-        }
-        100%{
-        }
-    }
-/* 
-    @media screen and (max-width: 700px)
-    { 
-      transform:translateX(-30vh);
-    } */
+
 `;
 
 const Button = styled.button`
@@ -100,22 +83,16 @@ const Image = styled.img`
             box-shadow: 0px 13px 21px 3px rgba(0,0,0,0.75);
         }
     }
-    
-    @media screen and (max-width: 1300px)
-    { 
-        position:relative;
-        width:10rem;
-        height:100%;
-    }
-
+   
 `;
 const Reco_span = styled.span`
-    display:block;
+    display:flex;
     text-align:center;
     overflow: hidden;
     text-overflow: ellipsis;    
     flex-direction:column;
-    margin-top:1vh;
+    margin-top:1rem;
+    width:300px;
 `;
 
 const A = styled.a`
@@ -199,25 +176,6 @@ const Book = styled.a`
     justify-content:center;
     align-items:center;
     text-align:center;
-/* :hover{
-        img:first-child{
-            animation: Hover_img 0.3s linear forwards;
-            @keyframes Hover_img {
-                0%{
-                    box-shadow: 0;
-                    transform:translateY(0);
-                }
-                50%{
-                    transform:translateY(-2vh);
-                }
-                100%{
-                    box-shadow: 10px 10px 20px black;
-                    transform:translateY(-5vh);
-                    border-radius:5px;
-                }
-            } 
-    }
-} */
 
 `;
 const Button_Next = styled.button`
@@ -356,14 +314,14 @@ function Home(props) {
     function recommendList() {
         if (props.recomendBooks) {
             return (
-                <h4 style={{ marginTop: "6rem", color: "white", display: "flex", justifyself: "flex-start" }}>
+                <h4 style={{ marginTop: "6rem", color: "white", display: "flex", justifySelf: "flex-start" }}>
                     {props.user.username}님만을 위한 추천 리스트 :
                 </h4>
             )
         }
         else {
             return (
-                <h1 style={{ marginTop: "6rem", color: "white", display: "flex", justifyself: "flex-start" }}>로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다</h1>
+                <h1 style={{ marginTop: "6rem", color: "white", display: "flex", justifySelf: "flex-start" }}>로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다</h1>
             )
         }
     }
@@ -382,17 +340,20 @@ function Home(props) {
                             <Li className="reco_list">
                                 <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
                                     <Image height="40vh" width="30vh" src={argument.imageUrl} />
-                                    <div>
+                                    <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"flex-end"}}>
                                         <Reco_span>
-                                            제목:<br />
+                                            제목: 
+                                            {/* <br /> */}
                                             {argument.title}
                                         </Reco_span>
                                         <Reco_span>
-                                            작가:<br />
+                                            작가: 
+                                            {/* <br /> */}
                                             {argument.author}
                                         </Reco_span>
                                         <Reco_span>
-                                            본문:<br />
+                                            본문: 
+                                            {/* <br /> */}
                                             {argument.description}
                                         </Reco_span>
                                     </div>

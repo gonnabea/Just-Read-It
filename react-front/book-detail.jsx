@@ -224,9 +224,10 @@ justify-content:center;
 `
 
 const Background = styled.section`
-background-image: url("https://cdn.pixabay.com/photo/2017/10/16/02/49/teddy-bear-2855982_1280.jpg");
-background-size: cover;
-padding-bottom: 20vh;
+    background-image: url("https://cdn.pixabay.com/photo/2017/10/16/02/49/teddy-bear-2855982_1280.jpg");
+    background-size: cover;
+    height:100%;
+
 `
 
 const Book = styled.section`
@@ -533,126 +534,199 @@ const CommentSpace = styled.section`
     @media screen and (max-device-width: 450px) 
     {
         position:absolute;
-        bottom:0rem;
+        bottom:-15vh;
         width:100%;
-        height:20rem;
+        height:30rem;
+        &>form:nth-child(2){
+            justify-self:center;
+            display:flex;
+            input{
+                width:50%;
+                font-size:2rem;
+            }
+        }
     }
     @media screen and (max-width: 700px){
         position:absolute;
-        bottom:-30rem;
+        bottom:-35rem;
         width:100%;
         height:20rem;  
+        &>form:nth-child(2){
+            justify-self:center;
+            display:flex;
+            input{
+                width:50%;
+                font-size:2rem;
+            }
+        }
     }
 `;
 const Comments = styled.ul`
-    
-    
-overflow: auto;
-width: 100%;
-height:100%;
-background-color:#B3E7FF;
-background-size: cover;
-background-position: center center;
-display: flex;
-flex-direction: column;
-align-items: center;
-border-radius: 20px 20px 20px 20px;
->newcomment{
+    overflow: auto;
+    width: 100%;
+    height:100%;
+    background-color:#B3E7FF;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px 20px 20px 20px;
+    >newcomment{
+        display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color:black;
+    margin-top:0.3rem;
+    background-color: rgba(255,255,255,0.3);
+    width:25vw;
+    >newavatar{
+        display:flex;
+    flex-direction:column;
+        >profileimg{
+
+        }
+        >username{
+
+        }
+    }
+    >newreview{
+        display:flex;
+    flex-direction:column;
+    background-color:#F6B93B;
+    border-radius:0px 20px 20px 20px;
+    text-align:center;
+    >newcontent{
+        font-weight:700;
+    width:15vw;
+    overflow:hidden;
+    }
+    >newstar{
+        color:blue;
     display:flex;
-flex-direction: row;
-justify-content: space-around;
-align-items: center;
-color:black;
-margin-top:0.3rem;
-background-color: rgba(255,255,255,0.3);
-width:25vw;
->newavatar{
-    display:flex;
-flex-direction:column;
-    >profileimg{
+    justify-content:center;
+    }
+    >newDate{
 
     }
-    >username{
-
     }
-}
->newreview{
-    display:flex;
-flex-direction:column;
-background-color:#F6B93B;
-border-radius:0px 20px 20px 20px;
-text-align:center;
->newcontent{
-    font-weight:700;
-width:15vw;
-overflow:hidden;
-}
->newstar{
-    color:blue;
-display:flex;
-justify-content:center;
-}
->newDate{
+    }
 
-}
-}
-}
+
+
 `
 
 const Comment = styled.div`
-display:flex;
-flex-direction: row;
-justify-content: space-around;
-align-items: center;
-color:black;
-margin-top:0.3rem;
-background-color: rgba(255,255,255,0.3);
-width:25vw;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color:black;
+    margin-top:0.3rem;
+    background-color: rgba(255,255,255,0.3);
+    width:25vw;
+    text-align:center;
+
+    @media screen and (max-device-width: 450px) 
+    {
+      width:100%;
+      justify-content:space-between;
+      &>section:first-child{
+          &>img{
+              width:10rem;
+          }
+          font-size:2rem;
+          justify-content:center;
+          padding:10px;
+      }
+      &>section:last-child{
+          width:100%;
+          &>*{
+              font-size:2rem;
+            }
+            &>form>input{
+                font-size:2rem;
+          }
+      }
+    }
+    
+    @media screen and (max-width: 700px){
+        width:100%;
+        justify-content:space-between;
+        &>section:first-child{
+            &>img{
+                width:10rem;
+            }
+            font-size:1.25rem;
+            justify-content:center;
+            padding:10px;
+        }
+        &>section:last-child{
+            width:100%;
+            &>*{
+                font-size:1.25rem;
+                }
+                &>form>input{
+                    font-size:1.25rem;
+            }
+        }
+    }
+
 `;
 
 const InputReview = styled.textarea`
-border: solid 2px black;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-width: 20vw;
-height:2.5vh;
-border-radius:15px;
-:focus{
-    
-    animation: focus 0.5s;
-    animation-fill-mode:forwards;
-    ::placeholder{
-            opacity:0;
-        }
-}
+    border: solid 2px black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    width: 20vw;
+    height:2.5vh;
+    border-radius:15px;
+    :focus{
+        
+        animation: focus 0.5s;
+        animation-fill-mode:forwards;
+        ::placeholder{
+                opacity:0;
+            }
+    }
 
-@keyframes focus {
-    0%{
-        
-        height:0vh;
-       
+    @keyframes focus {
+        0%{
+            height:0vh;
+        }
+        100%{
+            height:20vh;
+        }
     }
-    100%{
-        height:20vh;
-        
-        
+
+    @media screen and (max-device-width: 450px) 
+    {
+        width: 500px;
+        height:5vh;
+        font-size:2rem;
     }
-}
+    
+    @media screen and (max-width: 700px){
+        width: 500px;
+        height:5vh;
+        font-size:1.25rem;
+    }
 `
 const InputRate = styled.input`
-border: solid 2px black;
-text-align:center;
+    border: solid 2px black;
+    text-align:center;
 `
 const ReviewSubmit = styled.input`
-border: solid 2px black;
-text-align:center;
+    border: solid 2px black;
+    text-align:center;
 `
 
 const BookIntroduce = styled.section`
-margin-bottom: -15vw;
-background-color:rgba(255,255,255,0.3);
+    margin-bottom: -15vw;
+    background-color:rgba(255,255,255,0.3);
 `
 
 const User_img = styled.img`
@@ -664,12 +738,51 @@ const ControlBook = styled.div`
     bottom:90px;
     @media screen and (max-device-width: 420px)
     {
-        bottom:50%;
+        bottom:43vh;
+        &>*{
+            font-size:2rem;
+            margin:0.3rem;
+        }
+        &>form>*{
+            display:flex;
+            flex-wrap:wrap;
+            font-size:2rem;
+            margin:0.3rem;
+            float:left;
+        }
+        &>form:nth-child(3){
+            &>textarea:nth-child(2){
+                width:100%;
+                height:15rem;
+                font-size:2rem;
+            }
+        }
+    }
+    @media screen and (max-width: 700px)
+    {
+        &>*{
+            font-size:1.25rem;
+            margin:0.3rem;
+        }
+        &>form>*{
+            display:flex;
+            flex-wrap:wrap;
+            font-size:1.25rem;
+            margin:0.3rem;
+            float:left;
+        }
+        &>form:nth-child(3){
+            &>textarea:nth-child(2){
+                width:100%;
+                height:10rem;
+                font-size:1.25rem;
+            }
+        }
     }
 `
 
 const ControlBtn = styled.button`
-
+ 
 `
 
 export default bookDetail
