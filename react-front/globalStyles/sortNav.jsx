@@ -85,7 +85,7 @@ const Genre = styled.input`
         color:black;
         background-color:#F6B93B;
         transition: all 0.5s ease;
-        animation: Genre_select 0.2s linear forwards;
+        /* animation: Genre_select 0.2s linear forwards; */
     }
   
     @keyframes Genre_select{

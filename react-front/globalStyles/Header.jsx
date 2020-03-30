@@ -142,7 +142,6 @@ const A = styled.a`
     margin-right:1vw;
     color:#f6b93b;
     position:relative;
-    top:-15px;
     &:hover{
       /* color:#EA2027; */
       color:black;
@@ -373,7 +372,6 @@ const Span_size = styled.span`
     }
   } 
   position:relative;
-  top:-15px;
   z-index:2;
   display:flex;
   flex-direction:column;
