@@ -362,6 +362,7 @@ class uploadBook extends React.Component {
                         </form>
 
                         <Formdiv>
+                            <img src="/images/kakaotalk.png" width="30px"/>
                             카카오 책에서 찾아보기
                             <form autocomplete="off" style={KaKao_form} id="kakaoBook" method="get">
                                     <Input type="text" id="target" placeholder="책 제목을 입력하세요" autocomplete="off" />

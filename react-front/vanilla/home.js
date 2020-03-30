@@ -117,7 +117,7 @@ const opacity = (e) => {
 
 const prevBook = async(e)=>{
     let reco_list = await document.querySelectorAll(".reco_list");
-    opacity(e);
+    // opacity(e);
     for(i = 0; i < reco_list.length; i++)
     {
         reco_list[i].style.animation = `revers_recomment_slid 0.5s ease-in-out forwards`;
@@ -127,7 +127,7 @@ const prevBook = async(e)=>{
 
 const nextBook = async (e) =>{
     let reco_list = await document.querySelectorAll(".reco_list");
-    opacity(e);
+    // opacity(e);
     for(i = 0; i < reco_list.length; i++)
     {
         reco_list[i].style.animation = `recomment_slid 0.5s ease-in-out forwards`;

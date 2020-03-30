@@ -93,7 +93,16 @@ class bookDetail extends React.Component {
         function translateTime(createdAt){
             translated = `${createdAt.getYear()+1900}년 ${createdAt.getMonth()+1}월 ${createdAt.getDate()}일`;
         }
-        translateTime(book.createdAt)
+        translateTime(book.createdAt);
+        
+        function handleNaN(totalRate){
+            if(totalRate == "NaN"){
+                return 0;
+            }
+            else{
+                return totalRate
+            }
+        }
         return (
             <BaseLayout>
             {console.log(this.props.coverColor)}
@@ -106,17 +115,25 @@ class bookDetail extends React.Component {
                                 <div id="frontCover">
                                     <img id="coverImg"src={`${book.imageUrl}`} width="100%" height="100%" />
                                 </div>
-                                <section><p>{book.description}</p></section>
+                                <BookContent><BookContentP>{book.description}</BookContentP>
+                                <PageController>
+                                <BackPage>{`<`}</BackPage>
+                                <NextPage>></NextPage>
+                                </PageController>
+                                
+                                </BookContent>
                                 <div></div>
                                 <div></div>
                                 <div>
-                                    <span>
-                                        <h1>{book.title} {totalStar} ({this.props.totalRate} / 10)</h1>
+                                    <BackCoverContent>
+                                        <h1>{book.title}</h1>
+                                        <h3>{totalStar} ({handleNaN(this.props.totalRate)} / 10)</h3>
                                         <h5>{book.author}</h5>
                                         <h4>{book.likeFigure}명이 서재에 보관 중</h4>
                                         <h3>{translated}</h3>
                                         <h3> 조회수 {book.viewsFigure}회 </h3>
-                                    </span>
+                                    </BackCoverContent>
+                                        <LogoImage src="https://library.kissclipart.com/20190305/pee/kissclipart-journey-to-the-west-romance-novel-book-c51c5e00eb418a5e.png"></LogoImage>
                                 </div>
                                 <div ><bdi id="bookSpine1">{book.author}</bdi>
                                 <bdi id="bookSpine2">{book.title}</bdi></div>
@@ -181,12 +198,10 @@ class bookDetail extends React.Component {
                      */}
                         <ControlBook>
                             <ControlBtn id="rotateBtn">
-                                <i class="fas fa-undo"></i>
-                                책 돌리기
+                                <i class="fas fa-undo"></i>  책 돌리기
                             </ControlBtn>
                             <ControlBtn id="openBtn">
-                                <i class="fas fa-book-open"></i>
-                                책 펼치기
+                                <i class="fas fa-book-open"></i>  책 펼치기
                             </ControlBtn>
                             <CheckUser />
                         </ControlBook>
@@ -199,6 +214,46 @@ class bookDetail extends React.Component {
         )
     }
 }
+
+const PageController = styled.div`
+
+`
+
+const NextPage = styled.button`
+
+`
+const BackPage = styled.button`
+
+`
+
+const BookContent = styled.section`
+
+`
+
+const BookContentP  = styled.p`
+
+
+`
+
+const LogoImage = styled.img`
+
+  width:8rem;
+  height:63px;
+  position:absolute;
+  top:80%;
+  left:50%;
+  display:inline-block;
+ 
+
+  z-index:2;
+`
+
+const BackCoverContent = styled.span`
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+height:40%;
+`
 
 const Avatar = styled.section`
 display:flex;
@@ -421,23 +476,23 @@ const Book = styled.section`
     }
 
 @keyframes book-rotate2 {
-    from,to{
-        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+    0%{
+        transform: rotateY(0deg);
         
     }
     100%{
-        transform: rotateY(180deg)
+        transform: rotateY(180deg);
         
     }
 }
 
 @keyframes revert-rotate {
-    from,to{
-        transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg)
+    0%{
+        transform: rotateY(180deg); 
         
     }
     100%{
-        transform: rotateY(0deg)
+        transform: rotateY(0deg);
         
     }
 }
@@ -779,7 +834,20 @@ const ControlBook = styled.div`
 `
 
 const ControlBtn = styled.button`
- 
+
+ background-color:white;
+ font-weight:700;
+ color:black;
+ margin-left:20px;
+ width:100px;
+ height:50px;
+ border-radius:20px;
+ font-size:15px;
+ border: solid 2px black;
+ :hover{
+     background-color:#F6B93B;
+     color:white;
+ }
 `
 
 export default bookDetail

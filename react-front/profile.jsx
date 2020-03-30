@@ -8,6 +8,23 @@ import GlobalStyle from "./globalStyles/ResetCss";
 const BookImage = styled.img`
     width:10vh;
     height:10vh;
+    &:hover{
+        animation:hover_img 1s linear infinite forwards;
+        transition-delay:1s;
+    }
+    /* box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.75); */
+
+    @keyframes hover_img{
+        0%{
+            box-shadow: 0px 0px 10px 2px #F6B93B;
+        }
+        20%{
+            box-shadow: 0px 0px 20px 5px #F6B93B;
+        }
+        100%{
+            box-shadow: 0px 0px 29px 0px #F6B93B;
+        }
+    }
 `;
 
 const ProfileImage = styled.img`
@@ -45,7 +62,7 @@ const Book = styled.a`
     transform-style: preserve-3d;
     perspective: 650vh;
     font-size:1rem;
-    color:blue;
+    
     &>span:nth-child(2){
         overflow:hidden;
         text-overflow:ellipsis;
@@ -116,6 +133,7 @@ const BookList = styled.div`
     display: none;
     flex-wrap:wrap;
     justify-content:center;
+    width:500px;
     
 `;
 
@@ -138,17 +156,17 @@ const Flex_div = styled.div`
     height:100%;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
     margin-top:${props => props.marginTop || "0"};
     color:grey;
-    
+    overflow:auto;
 `;
 
 const Review_box = styled.div`
     position:relative;
     bottom:0;
-    width:100%;
+    width:500px;
     display:none;
     text-align:center;
     flex-wrap:wrap;
@@ -180,6 +198,8 @@ const MyComments = styled.div`
 
 const UploadedBookInfo = styled.div`
 display:flex;
+height:25px;
+width: 120px;
 `
 
 const UploadedNum = styled.div`
@@ -219,6 +239,7 @@ const Email = styled.span`
 
 const UploadedBookTitle = styled.span`
     cursor:pointer;
+    height:25px;
 `
 const ProfileArea = styled.div`
     display: flex;
@@ -229,15 +250,16 @@ const ProfileArea = styled.div`
 `;
 
 const BookTitle = styled.div`
-
+    font-weight:700;
+    margin-top:10px;
 `
 
 const BookAuthor = styled.div`
-
+margin-top:10px;
 `
 const UserInfoArea = styled.section`
     display : flex;
-
+    padding-top:10px;
 `
 
 const ReviewArea = styled.section`
@@ -247,6 +269,7 @@ flex-direction:column;
 
 const ReviewBtn = styled.span`
 cursor:pointer;
+height:25px;
 `
 const ReviewdNum = styled.div`
 width:20px;
@@ -261,6 +284,11 @@ align-items:center;
 
 const ReviewHeader = styled.div`
 display:flex;
+`
+
+const BookArea = styled.div`
+display:flex;
+flex-direction:column;
 `
 class profile extends React.Component {
     render() {
@@ -284,6 +312,7 @@ class profile extends React.Component {
                         </EditProfileBtn>
                     </ProfileArea>
                     <UserInfoArea>
+                        <BookArea>
                         <UploadedBookInfo>
                         <UploadedBookTitle id="uploadedBooksBtn">
                             등록하신 책 
@@ -304,6 +333,7 @@ class profile extends React.Component {
                                 )
                             })}
                         </BookList>
+                        </BookArea>
                         <ReviewArea>
                         <ReviewHeader>
                         <ReviewBtn id="reviewBtn">

@@ -79,6 +79,7 @@ const Button = styled.button`
     font-size:2vh;
     width:6vh;
     justify-self:center;
+    cursor:pointer;
 `;
 
 const Image = styled.img`
@@ -126,7 +127,7 @@ const Grid_box = styled.div`
     height:100%;
     grid-template-columns: repeat(6,1fr);
     text-align:center;
-     background-color:rgba(243, 239, 177, 0.521);
+     background-color:#F6F6F6;
     @media screen and (max-width: 1450px)
     { 
         text-align:center;
@@ -208,6 +209,8 @@ const Button_Next = styled.button`
     font-size:2vh;
     width:6vh;
     justify-self:center;
+    cursor:pointer;
+
 `;
 
 const Background_img = styled.div`

@@ -163,7 +163,7 @@ const Up_cover = styled.div`
 `;
 
 const Input = styled.button`
-   
+
     box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.75);
     font-size:1rem;
     margin: 1rem auto;
@@ -220,9 +220,7 @@ const A = styled.a`
     align-items:center;
     justify-content:center;
     transform-style: preserve-3d;
-
     &:hover{
-   
         cursor: pointer;
         animation: hover_book 0.7s linear forwards;
         z-index:10;
@@ -245,13 +243,13 @@ const A = styled.a`
 
         } 
         15%{
-            transform:rotateX(-0deg) translateZ(15vh);
+            transform:rotateX(-0deg) translateZ(150px);
         }
         50%{
-            transform:rotateX(0deg) translateZ(40vh);
+            transform:rotateX(0deg) translateZ(500px);
         }
         100%{ 
-            transform: translateX(-7vh) translateZ(23vh) rotateY(-90deg);
+            transform: translateX(-100px) translateZ(300px) rotateY(-90deg);
         }
     }
 

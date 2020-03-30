@@ -42,11 +42,11 @@ const Image = styled.img`
 
     @keyframes img_hover{
         0%{
-            box-shadow: 0px 0px 20px 5px #5f27cd;
+            box-shadow: 0px 0px 20px 5px #F6B93B;
 
         }
         100%{
-            box-shadow: 0px 0px 29px 0px #5f27cd;
+            box-shadow: 0px 0px 29px 0px #F6B93B;
         }
     }
     @keyframes transform{

@@ -46,6 +46,7 @@ function close(){
     frontCover.style.transformStyle="preserve-3d";
     coverImg.style.animation = "showImage 0.5s forwards";
     book.style.perspective= "130vw";
+    
     frontCover.addEventListener("mouseover", rotate2)
     
     
@@ -71,6 +72,7 @@ function open(){
     frontCover.style.animation="openBook 0.5s ease-in-out forwards";
     frontCover.style.transformStyle="preserve-3d";
     coverImg.style.animation = "fadeImage 0.5s forwards";
+    frontCover.style.transfrom="translateZ(2vw)"
     book.style.perspective= "130vw";
     bookSpine1.style.opacity="0";
     bookSpine2.style.opacity="0";

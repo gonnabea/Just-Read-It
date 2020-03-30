@@ -7,10 +7,10 @@ const SlideContainer = styled.section`
 `;
 
 const GenreSort = styled.nav`
-    margin-top:-5vh;
+    margin-top:-4vh;
     background-color:rgba(0,0,0,0.3);
     width: 10rem;
-    height: 90vh;
+    height: 100vh;
     z-index: 100;
     position:fixed;
     display: flex;
@@ -71,7 +71,7 @@ const SlideNav = styled.section`
 
 const Genre = styled.input`
     width:9.5rem;
-    height:2.9rem;
+    height:3rem;
     border:none;
     text-align: center;
     font-weight:700;
@@ -84,8 +84,8 @@ const Genre = styled.input`
     &:hover{
         color:black;
         background-color:#F6B93B;
-        transition: all 0.5s ease;
-        /* animation: Genre_select 0.2s linear forwards; */
+        /*transition: all 0.5s ease;
+         animation: Genre_select 0.2s linear forwards; */
     }
   
     @keyframes Genre_select{
@@ -112,6 +112,7 @@ const Genre = styled.input`
 const SlideBtn = styled.span`
         cursor:pointer;
 `;
+
 let sortedBy;
 function genre(book){
     if(book.genre == "novel"){
