@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
+import sortNav from "./globalStyles/sortNav";
 
 const Div = styled.div`
     display:flex;
@@ -16,6 +17,8 @@ const Recom_div = styled.div`
     overflow-x:hidden;
     grid-area: span 1/ span 6;
     background-image:url("https://cdn.pixabay.com/photo/2013/03/02/02/40/portrayal-89193_1280.jpg");
+    grid-gap: 10px;
+
     @media screen and (max-width: 1300px)
     { 
         height:100%;
@@ -182,7 +185,9 @@ const H_two = styled.h2`
 `;
 
 const Header_line = styled.div`
- 
+    display:flex;
+    flex-direction:column;
+    align-items:space-between;
 `;
 
 const Book = styled.a`
@@ -249,6 +254,8 @@ const GenreSort = styled.nav`
     align-items:center;
     display:none;
     color: white;
+
+  
 `;
 
 const SlideNav = styled.section`
@@ -316,30 +323,44 @@ const Genre = styled.input`
         color:black;
         background-color:#F6B93B;
     }
-   
+    @media screen and (max-device-width: 420px)
+    {
+        height:100%;
+        font-size:1.8rem;
+        margin-top:3.75rem;
+    }
 
 `;
 
 const SlideBtn = styled.span`
-    cursor:pointer;
+        cursor:pointer;
+`;
+ 
+const Recommen = styled.h1`
+    margin-top:6rem;
+    color:white;
+    display:flex;
+    justify-content:flex-start;
+    @media screen and (max-device-width: 420px)
+    {
+        margin-top:10rem;
+    }
 `;
 
-
 function Home(props) {
-
-
-
     function recommendList() {
         if (props.recomendBooks) {
             return (
-                <h4 style={{ marginTop: "6rem", color: "white", display: "flex", justifySelf: "flex-start" }}>
+                <Recommen>
                     {props.user.username}님만을 위한 추천 리스트 :
-                </h4>
+                </Recommen>
             )
         }
         else {
             return (
-                <h1 style={{ marginTop: "6rem", color: "white", display: "flex", justifySelf: "flex-start" }}>로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다</h1>
+                 <Recommen>
+                    로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다
+                </Recommen>
             )
         }
     }
@@ -360,19 +381,13 @@ function Home(props) {
                                     <Image height="40vh" width="30vh" src={argument.imageUrl} />
                                     <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"flex-end"}}>
                                         <Reco_span>
-                                            제목: 
-                                            {/* <br /> */}
-                                            {argument.title}
+                                            제목: {/* <br /> */} {argument.title}
                                         </Reco_span>
                                         <Reco_span>
-                                            작가: 
-                                            {/* <br /> */}
-                                            {argument.author}
+                                            작가: {/* <br /> */} {argument.author}
                                         </Reco_span>
                                         <Reco_span>
-                                            본문: 
-                                            {/* <br /> */}
-                                            {argument.description}
+                                            본문: {/* <br /> */} {argument.description}
                                         </Reco_span>
                                     </div>
                                 </Recom_a>
@@ -437,7 +452,7 @@ function Home(props) {
             genre(book)
             return (
                 <Header_line>
-                    <div style={{ marginTop: "1vh" }}>
+                    <div>
                         <Book href={props.routes.bookDetail(book.id)}>
                             <Image className="home_main_img" src={book.imageUrl} alt={book.imageUrl} />
                             <Text_box className="text_box" >
@@ -464,56 +479,7 @@ function Home(props) {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
             <GlobalStyle />
             {Header(props)}
-            <SlideContainer>
-                <SlideNav id="sortNav">
-                    <SlideBtn id="sortBtn" class="far fa-caret-square-right fa-3x"></SlideBtn>
-                    <GenreSort id="sortContent">
-                        <form action={props.routes.sortBooks("novel")} method="post">
-                            <Genre id="genreMenus" type="submit" value="소설" />
-                        </form>
-                        <form action={props.routes.sortBooks("self-development")} method="post">
-                            <Genre id="genreMenus" type="submit" value="자기계발서" />
-                        </form>
-                        <form action={props.routes.sortBooks("programming")} method="post">
-                            <Genre id="genreMenus" type="submit" value="개발관련서적" />
-                        </form>
-                        <form action={props.routes.sortBooks("autobiography")} method="post">
-                            <Genre id="genreMenus" type="submit" value="자서전" />
-                        </form>
-                        <form action={props.routes.sortBooks("overseas")} method="post">
-                            <Genre id="genreMenus" type="submit" value="해외서적" />
-                        </form>
-                        <form action={props.routes.sortBooks("essay")} method="post">
-                            <Genre id="genreMenus" type="submit" value="시/에세이" />
-                        </form>
-                        {/**/}
-                        <form action={props.routes.sortBooks("business")} method="post">
-                            <Genre id="genreMenus" type="submit" value="경제/경영" />
-                        </form>
-                        <form action={props.routes.sortBooks("history")} method="post">
-                            <Genre id="genreMenus" type="submit" value="역사/문화" />
-                        </form>
-                        <form action={props.routes.sortBooks("religion")} method="post">
-                            <Genre id="genreMenus" type="submit" value="종교" />
-                        </form>
-                        <form action={props.routes.sortBooks("society")} method="post">
-                            <Genre id="genreMenus" type="submit" value="정치/사회" />
-                        </form>
-                        <form action={props.routes.sortBooks("culture")} method="post">
-                            <Genre id="genreMenus" type="submit" value="예술/대중문화" />
-                        </form>
-                        <form action={props.routes.sortBooks("science")} method="post">
-                            <Genre id="genreMenus" type="submit" value="과학" />
-                        </form>
-                        <form action={props.routes.sortBooks("tech")} method="post">
-                            <Genre id="genreMenus" type="submit" value="기술/공학" />
-                        </form>
-                        <form action={props.routes.sortBooks("etc")} method="post">
-                            <Genre id="genreMenus" type="submit" value="기타" />
-                        </form>
-                    </GenreSort>
-                </SlideNav>
-            </SlideContainer>
+            {sortNav(props)}
             <Grid_box>
 
                 <Recom_div>
@@ -542,6 +508,7 @@ function Home(props) {
             </Grid_box>
          
             <script src="/vanilla/home.js"></script>
+            <script src="/vanilla/sortNav.js"></script>
         </BaseLayout>
     );
 }

@@ -152,7 +152,7 @@ const Up_cover = styled.div`
     width: 39px;
     height: 295px;
     /* background:black; */
-    transform:translateY(-251px) translateZ(-155px) rotateX(90deg); 
+    transform:translateY(-252px) translateZ(-148px) rotateX(90deg); 
     position:absolute;
     bottom:0;
     z-index:1;
@@ -162,18 +162,56 @@ const Up_cover = styled.div`
 
 `;
 
-
-const Input = styled.input`
+const Input = styled.button`
+   
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.75);
     font-size:1rem;
-    &:hover{
-        cursor: pointer;
+    margin: 1rem auto;
+    padding:2px;
+    border-radius:5px;
+    
+    background:#1AAB8A;
+    color:#fff;
+    border:none;
+    position:relative;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    &:active{
+        margin-top:20px;
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+
     }
-    z-index:1;
-    margin-top:10px;
+    &:hover{
+        background:#fff;
+        color:#1AAB8A;
+    }
+    &:before,&:after{
+        content:'';
+        position:absolute;
+        top:0;
+        right:0;
+        height:2px;
+        width:0;
+        background: #1AAB8A;
+        transition:400ms ease all;
+    }
+
+    &:after{
+        right:inherit;
+        top:inherit;
+        left:0;
+        bottom:0;
+    }
+    &:hover:before,&:hover:after{
+        width:100%;
+        transition:800ms ease all;
+    }
+
     @media screen and (max-device-width: 420px)
     {
         font-size:1.3rem;
-    }
+    } 
 `;
 
 const A = styled.a`
@@ -269,7 +307,7 @@ const Box = styled.div`
 
 const Books_box = styled.div`
     display:flex;
-    width:650px;
+    width:400px;
     height:100%;
     flex-wrap:wrap;
     justify-content:center;
@@ -277,16 +315,24 @@ const Books_box = styled.div`
     img:last-child{
         position:relative;
         top:-22%;
-        width:100%;
+        width:140%;
         height:100px;
         z-index:-1;
         @media screen and (max-device-width: 420px)
         {
-            top:-38%;
+            top:-22vh;
         }
-        
     }
-
+    img:nth-last-child(2)
+    {
+        z-index:-1;
+        @media screen and (max-device-width: 420px)
+        {
+            background-clor:red;
+            position:absolute;
+            top:100%;
+        }
+    }
     /* @media screen and (max-width: 1000px) and (min-width: 300px)
     {
         img:nth-last-child(2){
@@ -330,7 +376,7 @@ class MyBookList extends React.Component {
                                                 <Up_cover></Up_cover>
                                             </A>
                                                 <form className="My_book_list_form" action={routes.deleteFavBook(book.id)} method="post">
-                                                    <Input type="submit" value="삭제" />
+                                                    <Input value="삭제" >삭제</Input>
                                                 </form>
                                             </Div>
                                         </>

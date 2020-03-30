@@ -5,10 +5,11 @@ import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
 import MetaTags from 'react-meta-tags';
+import sortNav from "./globalStyles/sortNav";
 
 const Grid_box = styled.div`
     width:100%;
-    height:100vh;
+    height:100%;
     display:grid;
     text-align:center;
     grid-gap: 10px;
@@ -19,10 +20,10 @@ const Grid_box = styled.div`
     background-repeat:repeat;
     background-position:center center;
     background-size: 100% 100%;
-    @media screan and (max-width: 600px) and (min-width: 300px)
+    @media screan and (max-width: 720px) and (min-width: 300px)
     {
         top:14rem;
-        grid-template-columns: repeat(1,1fr);
+        grid-template-columns: repeat(3,1fr);
     }
     @media screen and (max-device-width: 450px)
     {
@@ -35,6 +36,27 @@ const Image = styled.img`
     width:20vh;
     height:100%;
     text-align:center;
+    &:hover{
+        animation: img_hover 1s linear infinite forwards;
+    }
+
+    @keyframes img_hover{
+        0%{
+            box-shadow: 0px 0px 20px 5px #5f27cd;
+
+        }
+        100%{
+            box-shadow: 0px 0px 29px 0px #5f27cd;
+        }
+    }
+    @keyframes transform{
+        0%{
+
+        }
+        100%{
+
+        }
+    }
     @media screen and (max-width: 1300px)
     { 
         text-align:center;
@@ -81,10 +103,10 @@ const Span = styled.span`
     text-overflow:ellipsis;
     font-size:2vh;
     color:white;
+
     @media screen and (max-width: 1300px)
     { 
         font-size:1.5vh;
-        
     }
     @media screen and (max-width: 600px)
     {
@@ -146,6 +168,7 @@ class search extends React.Component {
             <BaseLayout>
                 <GlobalStyle />
                     {Header(this.props)}
+                    {/* {sortNav(this.props)} */}
                     <Grid_box>
                             <CheckSearchResult />
                     </Grid_box>

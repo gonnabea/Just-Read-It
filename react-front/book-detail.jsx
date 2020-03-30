@@ -478,7 +478,7 @@ const Book = styled.section`
         
         transform: translateX(0vw);
     }
-}
+    }
 
 @keyframes closeBook {
     0%{
@@ -530,7 +530,7 @@ const CommentSpace = styled.section`
     border-radius: 20px;
     align-items: center;
     background-color:black;
-
+    z-index:3;
     @media screen and (max-device-width: 450px) 
     {
         position:absolute;
@@ -612,10 +612,7 @@ const Comments = styled.ul`
     }
     }
     }
-
-
-
-`
+`;
 
 const Comment = styled.div`
     display:flex;

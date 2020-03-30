@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
+import sortNav from "./globalStyles/sortNav";
 
 const Body = styled.div`
     width:100%;
@@ -59,11 +60,14 @@ const Div_flex = styled.div`
 const H_one = styled.h1`
     margin:1rem;
 `;
+
 class sortBooks extends React.Component {
     render() {
         const sortedBy = this.props.sortedBy;
+        
         const books = this.props.books.map((book) => {
             return (
+
                 <Bookdiv href={`/${this.props.routes.bookDetail(book.id)}`}>
                     <img src={book.imageUrl} />
                     <div>
@@ -78,7 +82,6 @@ class sortBooks extends React.Component {
                     <div>
                         분류 : {sortedBy}
                     </div>
-
                     {/* <div>({book.enrolledBy[0].username}님이 등록)</div>
                     <div>{JSON.stringify(book.createdAt)}</div> */}
                 </Bookdiv>
@@ -87,7 +90,8 @@ class sortBooks extends React.Component {
         return (
             <BaseLayout>
                 <GlobalStyle />
-                {Header(this.props)}
+                    {Header(this.props)}
+                    {sortNav(this.props)}
                     <Div_box>
                         <H_one>
                             {sortedBy}
@@ -96,6 +100,7 @@ class sortBooks extends React.Component {
                             {books}
                         </Div_flex>
                     </Div_box>
+                <script src="/vanilla/sortNav.js"></script>
             </BaseLayout>
 
         )

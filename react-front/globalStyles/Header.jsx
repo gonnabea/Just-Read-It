@@ -18,7 +18,7 @@ const Div = styled.div`
   /*position:fixed;*/
   z-index:5;
   scroll-behavior: smooth;
-
+  align-items:center;
   :hover{
     animation:hovers1 0.3s linear;
     animation-fill-mode:forwards;
@@ -118,8 +118,8 @@ const Logo_a = styled.a`
 `;
 
 const A = styled.a`
-   display:flex;
-  align-items:center;
+  display:flex;
+  align-items:space-between;
   margin:0.7rem;
   text-decoration:none;
   color:${props => props.color || "white"};
@@ -138,16 +138,11 @@ const A = styled.a`
     }
   }
 
-  *>span:nth-child(2){
-    :hover{
-      /* color:#1e3799; */
-     
-    }
-  }
-
   &>i:nth-child(1){
     margin-right:1vw;
     color:#f6b93b;
+    position:relative;
+    top:-15px;
     &:hover{
       /* color:#EA2027; */
       color:black;
@@ -158,14 +153,9 @@ const A = styled.a`
 
 const Search_box = styled.div`
   width:100%;
-  position:absolute;
-  top:3%;
-  right:0;
   display:flex;
   justify-content: center;
-  
   align-items:center;
-  /* right:-30%; */
 `;
 
 const Input = styled.input`
@@ -343,16 +333,15 @@ const Icon_box = styled.div`
 
   @media screen and (max-device-width: 420px)
   { 
-    width:150px;
+    width:100px;
   }
 `;
 
 const Form = styled.form`
-     width:100%;
-     display:flex;
+    width:100%;
+    display:flex;
     justify-content:center;
     align-items:center; 
-    margin-top:0.8rem;
 
 `;
 
@@ -383,7 +372,8 @@ const Span_size = styled.span`
       /* color:#1B9CFC; */
     }
   } 
-
+  position:relative;
+  top:-15px;
   z-index:2;
   display:flex;
   flex-direction:column;
@@ -407,11 +397,16 @@ const Span_size = styled.span`
 
 const Icon = {
   zIndex: "2",
-  marginRight: "-2.5vh",
-  
+  marginRight: "-2.5vh"
 }
 
-
+const Log_text = styled.span`
+  position:relative; 
+  top:25vh;
+  height:100%;
+  width:100%;
+  font-size:1rem;
+`;
 
 function Header(props) {
 
@@ -420,7 +415,6 @@ function Header(props) {
       return (
         <>
           <A href={`/${props.routes.profile(props.user.id)}`}>
-            
             <Span_size>
               프로필
             </Span_size>
@@ -432,9 +426,9 @@ function Header(props) {
     } else {
       return (
         <>
-          <span >
+          <Log_text>
             로그인 된 유저가 없습니다.
-          </span>
+          </Log_text>
         </>
       )
     }
@@ -458,7 +452,6 @@ function Header(props) {
         <>
           <Prifile_img className="header_icon_img" src={props.user.profilePhoto} />
           <A href={routes.logout}>
-            
             <Span_size>
               로그아웃
             </Span_size>
@@ -470,7 +463,6 @@ function Header(props) {
             </Span_size>
           </A>
           <A href={`/${routes.myBookList(props.user.id)}`}>
-            
             <Span_size>
               내 서재
             </Span_size>

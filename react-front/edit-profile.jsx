@@ -59,6 +59,9 @@ const Change_img = styled.img`
     border-bottom:3px solid red;
 
 `;
+const Inut = styled.input`
+   
+`;
 
 /** <Change_img id="text" src="https://cdn.pixabay.com/photo/2018/03/15/16/17/sign-3228713_960_720.png"/> */
 class editProfile extends React.Component {
@@ -69,8 +72,8 @@ class editProfile extends React.Component {
                     {Header(this.props)}
                 <Div className="user_edit proile">
                     <Back_ground>
-                        <form action={this.props.routes.editUser} method="post" enctype="multipart/form-data">
-                            <input type="text" name="username" placeholder="변경하실 닉네임" />
+                        <form autoComplete="off" action={this.props.routes.editUser} method="post" enctype="multipart/form-data">
+                            <input autoComplete="off" type="text" name="username" placeholder="변경하실 닉네임" />
                             <input type="file" name="profilePhoto"  />
                             <input type="submit" value="프로필 수정" />
                         </form>

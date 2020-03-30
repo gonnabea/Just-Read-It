@@ -24,31 +24,34 @@ const handle = async () => {
         img.src = "/images/shelf.png";
         my_book_list_book[0].parentNode.appendChild(img);
         // img.style.position = "relative";
-        // img.style.top = "-10vh";
+        // img.style.top = "-10%";
         // img.style.zIndex = "-2";
-        // img.style.width = "45vw";
+        // img.style.width = "450px";
         // img.style.height = "10vh";
+        if(screen.width <= 420)
+        {
+            img.style.top = "-46.5%";
+        }
     }
     else {
         let img1 = document.createElement("img");
         img1.src = "/images/shelf.png";
 
         my_book_list_book[0].parentNode.appendChild(img1);
-        // img1.style.position = "absolute";
-        // img1.style.top = "47%";
-        // img1.style.zIndex = "-2";
-        // img1.style.height = "8%";
-       
+        img1.style.position = "relative";
+        img1.style.zIndex = "-2";
+        img1.style.height = "100px";
+        img1.style.top = "-55%";
         for (i = 0; i < my_book_list_book.length; i++) {
-            if (1 === i * 0.1 || i === 11) {
+            if (1 <= i * 0.1 || i === 11) {
                 let img = document.createElement("img");
-                // img.className = "book_list_img";
+                img.className = "book_list_img";
                 img.src = "/images/shelf.png";
                 my_book_list_book[i].parentNode.appendChild(img);
-                // img.style.width = "100%";
-                // img.style.marginTop = "-4vh";
+                img.style.marginTop = "15%";
+                img.style.width= "45vw";
                 my_book_list_book[i].style.boxShadow = " -1px 10px 37px -10px rgba(0,0,0,0.75)";
-
+                my_book_list_book[i].style.marginTop = "60px"
             }
         }
     }
