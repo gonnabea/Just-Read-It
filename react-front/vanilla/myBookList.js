@@ -30,18 +30,22 @@ const handle = async () => {
         // img.style.height = "10vh";
         if(screen.width <= 420)
         {
-            img.style.top = "-46.5%";
+            img.style.top = "-525px";
         }
     }
     else {
         let img1 = document.createElement("img");
         img1.src = "/images/shelf.png";
-
         my_book_list_book[0].parentNode.appendChild(img1);
         img1.style.position = "relative";
         img1.style.zIndex = "-2";
         img1.style.height = "100px";
         img1.style.top = "-55%";
+        if(screen.width <= 420)
+        {
+
+            img1.style.top = "-680px";
+        }
         for (i = 0; i < my_book_list_book.length; i++) {
             if (1 <= i * 0.1 || i === 11) {
                 let img = document.createElement("img");
@@ -52,6 +56,10 @@ const handle = async () => {
                 img.style.width= "45vw";
                 my_book_list_book[i].style.boxShadow = " -1px 10px 37px -10px rgba(0,0,0,0.75)";
                 my_book_list_book[i].style.marginTop = "60px"
+                if(screen.width <= 420)
+                {
+                    img.style.top = "-385px";
+                }
             }
         }
     }

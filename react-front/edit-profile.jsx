@@ -31,7 +31,7 @@ const Div = styled.div`
 
 `;
 
-const Back_ground = styled.div`
+const Center_box = styled.div`
     display:flex;
     width:30rem;
     height:20rem;
@@ -41,29 +41,87 @@ const Back_ground = styled.div`
     align-items:center;
     border-radius:6px;
     box-shadow: 0px 10px 5px 1px rgba(0,0,0,0.75);
-
     &>form>*{
         display:flex;
-         flex-direction:column;
-        margin:0.4rem;
+        flex-direction:column;
+        align-items:center;
     }
 `;
 
-const Change_img = styled.img`
-    width:15rem;
-    display:flex;
-    /* visibility: hidden;  */
-    position:absolute;
-    margin:0 auto;
-    z-index:2;
-    border-bottom:3px solid red;
+const File_box =styled.div`
+    margin:0.8rem;
+     &>label{
+        cursor:pointer;
+        overflow: hidden;
+        transition: all 0.3s;
+        background: none;
+        border: 3px solid #F8C152;
+        border-radius: 5px;
+        color: #fff;
+        display: block;
+        font-size: 1em;
+        font-weight: bold;
+        position: relative;
+        text-transform: uppercase;
+
+        &::before,
+        &::after {
+            background: #fff;
+            content: '';
+            position: absolute;
+            z-index: -1;
+        }
+        :hover {
+            color: #F8C152;
+        }
+        ::after {
+            height: 100%;
+            left: -20%;
+            top: 0;
+            transform: skew(-50deg);
+            transition-duration: 0.6s;
+            transform-origin: top left;
+            width: 0;
+        }
+        :hover:after {
+            height: 100%;
+            width: 135%;
+        }
+    }
+
+    input[type=file]
+    {
+        cursor:pointer;
+        color:red;
+        position: absolute;
+        width: 0;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+    }
 
 `;
-const Inut = styled.input`
-   
+
+
+const Edit_button = styled.button`
+    width:100%;
+    font-size:1rem;
+    border-radius: 4px;
+    background-color: #F6BF4C;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.5s;
+    cursor: pointer;
+    &:hover{
+        background-color: #FFFFFF;
+        color: #F6BF4C;
+    }
 `;
 
-/** <Change_img id="text" src="https://cdn.pixabay.com/photo/2018/03/15/16/17/sign-3228713_960_720.png"/> */
+
+
 class editProfile extends React.Component {
     render() {
         return (
@@ -71,15 +129,16 @@ class editProfile extends React.Component {
                 <GlobalStyle />
                     {Header(this.props)}
                 <Div className="user_edit proile">
-                    <Back_ground>
+                    <Center_box>
                         <form autoComplete="off" action={this.props.routes.editUser} method="post" enctype="multipart/form-data">
                             <input autoComplete="off" type="text" name="username" placeholder="변경하실 닉네임" />
-                            <input type="file" name="profilePhoto"  />
-                            <input type="submit" value="프로필 수정" />
+                            <File_box>
+                                <label for="profilePhoto">Profile Photo</label> 
+                                <input type="file" name="profilePhoto" id="profilePhoto" />
+                            </File_box>
+                            <Edit_button>프로필 수정</Edit_button>
                         </form>
-                   
-                    </Back_ground>
-
+                    </Center_box>
                 </Div>
             </BaseLayout>
         )

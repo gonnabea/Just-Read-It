@@ -4,6 +4,8 @@ import Header from "./globalStyles/Header";
 import { BaseLayout } from "./globalStyles/layout";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import GlobalStyle from "./globalStyles/ResetCss";
+import sortNav from "./globalStyles/sortNav";
+
 
 const Flex_box = styled.div`
     display:flex;
@@ -130,6 +132,7 @@ const Side_cover = styled.div`
     writing-mode: vertical-rl;
     text-orientation: mixed;
     text-align:center;
+    border-radius:5px;
 `;
 
 const Back_cover = styled.div`
@@ -170,21 +173,23 @@ const Input = styled.button`
     padding:2px;
     border-radius:5px;
     
-    background:#1AAB8A;
+    background:#F6BD47;
     color:#fff;
     border:none;
     position:relative;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
+    &>i{
+        font-size:2rem;
+    }
     &:active{
         margin-top:20px;
         box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
-
     }
     &:hover{
         background:#fff;
-        color:#1AAB8A;
+        color:#F6BD47;
     }
     &:before,&:after{
         content:'';
@@ -193,7 +198,7 @@ const Input = styled.button`
         right:0;
         height:2px;
         width:0;
-        background: #1AAB8A;
+        background: #F6BD47;
         transition:400ms ease all;
     }
 
@@ -318,15 +323,14 @@ const Books_box = styled.div`
         z-index:-1;
         @media screen and (max-device-width: 420px)
         {
-            top:-22vh;
         }
     }
+    
     img:nth-last-child(2)
     {
         z-index:-1;
         @media screen and (max-device-width: 420px)
         {
-            background-clor:red;
             position:absolute;
             top:100%;
         }
@@ -374,7 +378,7 @@ class MyBookList extends React.Component {
                                                 <Up_cover></Up_cover>
                                             </A>
                                                 <form className="My_book_list_form" action={routes.deleteFavBook(book.id)} method="post">
-                                                    <Input value="삭제" >삭제</Input>
+                                                    <Input value="삭제" ><i className="fas fa-trash-alt"></i></Input>
                                                 </form>
                                             </Div>
                                         </>

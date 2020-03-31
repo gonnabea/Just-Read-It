@@ -28,24 +28,29 @@ const BookImage = styled.img`
 `;
 
 const ProfileImage = styled.img`
-width:10vh;
+    width:10vh;
     height:10vh;
     border-radius: 100%;
 `
 
 const Div = styled.div`
-    position:relative;
+    position:absolute;
     width:100%;
-    height:100vh;
-    align-self: center;
+    top:60px;
+    height:93.35%;
+    /* align-self: center; */
     display:flex;
     flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    /* justify-content:center; */
+    /* align-items:center; */
     background-repeat:repeat;
     background-size:cover;
     background-color:#F9F7D6;
-    /*background-image:url("https://cdn.pixabay.com/photo/2017/07/26/17/41/watercolour-2542465_960_720.jpg"); */
+    
+    &>div{
+        align-self:center;
+    }
+    overflow:auto;
 `;
 
 const Book = styled.a`
@@ -137,30 +142,14 @@ const BookList = styled.div`
     
 `;
 
-const Background_image = styled.div`
-    position:relative;
-    z-index:-1;
-    width:100%;
-    height:100%;
-    top:10;
-    background-size:cover;
-    background-image:url("https://cdn.pixabay.com/photo/2017/07/26/17/41/watercolour-2542465_960_720.jpg"); 
-    
-    @media screen and (min-height: 100vh)
-    {
-        height:100vh;
-    }
-`;
 const Flex_div = styled.div`
     width:100%;
-    height:100%;
     display:flex;
     flex-direction:column;
-    justify-content:flex-start;
+    justify-content:center;
     align-items:center;
     margin-top:${props => props.marginTop || "0"};
     color:grey;
-    overflow:auto;
 `;
 
 const Review_box = styled.div`
@@ -197,10 +186,11 @@ const MyComments = styled.div`
 `;
 
 const UploadedBookInfo = styled.div`
-display:flex;
-height:25px;
-width: 120px;
-`
+    display:flex;
+    height:25px;
+    width: 120px;
+    align-self:center;
+`;
 
 const UploadedNum = styled.div`
 width:20px;
@@ -259,7 +249,7 @@ margin-top:10px;
 `
 const UserInfoArea = styled.section`
     display : flex;
-    padding-top:10px;
+    margin-top:1rem;
 `
 
 const ReviewArea = styled.section`
@@ -283,7 +273,8 @@ align-items:center;
 `
 
 const ReviewHeader = styled.div`
-display:flex;
+    display:flex;
+    align-self:center;
 `
 
 const BookArea = styled.div`
@@ -301,66 +292,68 @@ class profile extends React.Component {
             <BaseLayout>
                 <GlobalStyle />
                 {Header(this.props)}
+                <div style={{height:"60px"}}>
+                </div>
                 <Div>
-                    <Flex_div marginTop="10vh">
+                    <Flex_div>
                         <ProfileArea>
-                        <ProfileImage src={this.props.currentUser.profilePhoto} />
-                        <Username>{this.props.currentUser.username}</Username>
-                        <Email>{this.props.currentUser.email}</Email>
+                            <ProfileImage src={this.props.currentUser.profilePhoto} />
+                            <Username>{this.props.currentUser.username}</Username>
+                            <Email>{this.props.currentUser.email}</Email>
                         <EditProfileBtn href={this.props.routes.editUser}>
                             프로필 수정
                         </EditProfileBtn>
                     </ProfileArea>
                     <UserInfoArea>
                         <BookArea>
-                        <UploadedBookInfo>
-                        <UploadedBookTitle id="uploadedBooksBtn">
-                            등록하신 책 
-                        </UploadedBookTitle>
-                        <UploadedNum>
-                            {this.props.currentUser.uploadedBooks.length}
-                        </UploadedNum>
-                        </UploadedBookInfo>
-                        <BookList id="bookList">
-                            {this.props.currentUser.uploadedBooks.map(book => {
-                                return (
-                                    <Book id="book" href={`/${this.props.routes.bookDetail(book.id)}`}>
-                                        <BookImage src={book.imageUrl} />
-                                        <BookTitle>{book.title}</BookTitle>
-                                        <BookAuthor>{book.author}</BookAuthor>
-                                        {/* <h4 style={{height:"20vh"}}>{book.description}</h4> */}
-                                    </Book>
-                                )
-                            })}
-                        </BookList>
+                            <UploadedBookInfo>
+                                <UploadedBookTitle id="uploadedBooksBtn">
+                                    등록하신 책 
+                                </UploadedBookTitle>
+                                <UploadedNum>
+                                    {this.props.currentUser.uploadedBooks.length}
+                                </UploadedNum>
+                            </UploadedBookInfo>
+                            <BookList id="bookList">
+                                {this.props.currentUser.uploadedBooks.map(book => {
+                                    return (
+                                        <Book id="book" href={`/${this.props.routes.bookDetail(book.id)}`}>
+                                            <BookImage src={book.imageUrl} />
+                                            <BookTitle>{book.title}</BookTitle>
+                                            <BookAuthor>{book.author}</BookAuthor>
+                                            {/* <h4 style={{height:"20vh"}}>{book.description}</h4> */}
+                                        </Book>
+                                    )
+                                })}
+                            </BookList>
                         </BookArea>
                         <ReviewArea>
-                        <ReviewHeader>
-                        <ReviewBtn id="reviewBtn">
-                           리뷰
-                        </ReviewBtn >
-                        <ReviewdNum>
-                            {this.props.currentUser.reviews.length}
-                        </ReviewdNum>
-                        </ReviewHeader>
-                        <Review_box id="reviewList">
-                            {this.props.currentUser.reviews.map(review => {
-                                return (
-                                        <MyComments className="MyComments">
-                                            <h3>
-                                                {review.content}
-                                            </h3>
-                                            <h3>
-                                                {review.rate}
-                                            </h3>
-                                            <h3>
-                                                {translateTime(review.createdAt)}
-                                                {translated}
-                                            </h3>
-                                        </MyComments>
-                                        )
-                            })}
-                        </Review_box>
+                            <ReviewHeader>
+                                <ReviewBtn id="reviewBtn">
+                                    리뷰
+                                </ReviewBtn >
+                                <ReviewdNum>
+                                    {this.props.currentUser.reviews.length}
+                                </ReviewdNum>
+                            </ReviewHeader>
+                            <Review_box id="reviewList">
+                                {this.props.currentUser.reviews.map(review => {
+                                    return (
+                                            <MyComments className="MyComments">
+                                                <h3>
+                                                    {review.content}
+                                                </h3>
+                                                <h3>
+                                                    {review.rate}
+                                                </h3>
+                                                <h3>
+                                                    {translateTime(review.createdAt)}
+                                                    {translated}
+                                                </h3>
+                                            </MyComments>
+                                            )
+                                })}
+                            </Review_box>
                         </ReviewArea>
                     </UserInfoArea>
                     </Flex_div>

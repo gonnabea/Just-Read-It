@@ -190,7 +190,7 @@ const Span_line = styled.span`
     width:100%;
     margin: 0 2vh;
     color:white;
-    font-size:0.8rem;;
+    font-size:1rem;;
     font-weight:300;
     :hover{
         font-weight:500;

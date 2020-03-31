@@ -11,6 +11,6 @@ a{
      color:rgba(15, 15, 15, 0.425);
      text-overflow: ellipsis;
      background-color:rgba(229, 224, 149, 0.226);
-    font-weight: bold;
+    font-weight: inherit;
 } 
 

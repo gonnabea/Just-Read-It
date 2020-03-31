@@ -43,12 +43,11 @@ function revertRotate(){
 function close(){
     book.style.animation="revertBook 0.5s ease-in-out forwards";
     frontCover.style.animation="closeBook 0.5s ease-in-out forwards";
-    frontCover.style.transformStyle="preserve-3d";
+    
     coverImg.style.animation = "showImage 0.5s forwards";
     book.style.perspective= "130vw";
-    
+    frontCover.style.transfrom="translateZ(2vw)"
     frontCover.addEventListener("mouseover", rotate2)
-    
     
     openBtn.removeEventListener("click", close);
     openBtn.addEventListener("click", open);
@@ -57,20 +56,22 @@ function close(){
 function rotate2(){
     book.style.animation = "book-rotate 0.5s forwards";
     bookSpine1.style.opacity="1";
-bookSpine2.style.opacity="1";
-book.style.perspective= "none";
-book.addEventListener("mouseleave", revertRotate2)
+    bookSpine2.style.opacity="1";
+    book.style.perspective= "none";
+frontCover.style.transfrom="translateZ(2vw)"
+    book.addEventListener("mouseleave", revertRotate2)
 }
 
 function revertRotate2(){
     book.style.animation = "revert-rotate2 0.5s forwards";
+
     book.removeEventListener("mouseleave", revertRotate2)
 }
 
 function open(){
     book.style.animation="moveBook 0.5s ease-in-out forwards";
     frontCover.style.animation="openBook 0.5s ease-in-out forwards";
-    frontCover.style.transformStyle="preserve-3d";
+    
     coverImg.style.animation = "fadeImage 0.5s forwards";
     frontCover.style.transfrom="translateZ(2vw)"
     book.style.perspective= "130vw";
@@ -105,10 +106,18 @@ const starPoint = (starValue) => {
         star+="☆"
     }
 }
+
 async function postReviewApi(e){
     e.preventDefault();
     const yourName = document.getElementById("yourName");
     const profileUrl = document.getElementById("profileUrl");
+    console.log(reviewContent.value.length)
+
+    if(reviewContent.value.length > 150 || reviewContent.value.length == 0)
+    {
+        alert("글자수 제한 최소 0부터 최대 150자까지 됩니다.")
+        return ;
+    }
     await axios({
         method:"post",
         url:postReview.action,
@@ -170,6 +179,8 @@ margin-top:0.3rem;
 background-color: rgba(255,255,255,0.3);
 width:25vw;
 */
+
+
 function bookInit(){
     rotateBtn.addEventListener("click", rotate);
     openBtn.addEventListener("click", open);

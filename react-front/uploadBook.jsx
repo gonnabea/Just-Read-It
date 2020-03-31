@@ -30,7 +30,7 @@ const Box_img = styled.div`
     border-radius:10px;
     border: 1px solid red;
     top:25%;
-    padding:2rem;
+    padding:3rem;
     background-color:rgba(229, 224, 149, 0.7);
     align-items:center;
     justify-content:center;
@@ -51,11 +51,11 @@ const Box_img = styled.div`
 const Input = styled.input`
     margin: 1.2vh;
     font-size: 2vh;
-    width:70%;
+    width:100%;
     background:none;
     border: solid 0px;
     border-bottom: solid 0.15vh white; 
-    
+    margin-bottom:10px;
     ::placeholder{
         color: white;
         text-align:center;
@@ -84,16 +84,17 @@ const Input = styled.input`
 const Ainput = styled.textarea`
     margin: 1.2vh;
     font-size: 2vh;
-    width:70%;
+    width:100%;
     background:none;
     border: solid 0px;
     border-bottom: solid 0.15vh white; 
-    
+    resize:none;
     ::placeholder{
         color: white;
         text-align:center;
     }
     :focus{
+        height:150px;
         color:#F6B93B;
         outline: none;
         animation: makeBorder 0.4s linear forwards;
@@ -196,14 +197,15 @@ const Kakao_list = styled.section`
 `;
 
 const Submit = styled.input`
-    width:100px;
-    height:40px;
+    width:120px;
+    height:50px;
     background-color:white;
     text-align: center;
     font-weight:700;
     font-size: 2vh;
     border: solid .3vh black;
     margin-top:0.2rem;
+    margin-bottom:30px;
     :hover{
         cursor:pointer;
 
@@ -234,6 +236,7 @@ const InputFile = styled.input`
         color: white;
         height: 100%;
     }
+
     @media screen and (max-device-width: 420px)
     {
         font-size:2rem;
@@ -245,7 +248,7 @@ const InputFile = styled.input`
 const Section = styled.section`
     width:100%;
     display:flex;
-    
+    margin-bottom:30px;
     @media screen and (max-device-width: 420px)
     {
         font-size:2rem;
@@ -286,35 +289,56 @@ const GenreSelect = styled.select`
 `
 
 const UploaderCover = styled.div`
-    input[type="file"] {
-    
-  color: #fff;
-  cursor: pointer;
-  margin-bottom: 0;
-  text-transform: uppercase;
-  font-weight:700;
-  width: 100%;
-  height: 35px;
-  border-color: transparent;
-  box-shadow: 0px;
-  outline: none;
-  transition: 0.15s;
-  text-align: center;
-}
-    
+    margin-right:1rem;
 
-    input[type='submit']:active {
-  background-color: #f1ac15;
-}
-button{
-    border: none;
-    background-color: #3498db;
-    color: white;
-    
-  }
+     &>label{
+        cursor:pointer;
+        overflow: hidden;
+        transition: all 0.3s;
+        background: none;
+        border: 3px solid #F8C152;
+        border-radius: 5px;
+        color: #fff;
+        display: block;
+        font-size: 1em;
+        font-weight: bold;
+        position: relative;
+        text-transform: uppercase;
+        width:100%;
 
+        &::before,
+        &::after {
+            background: #fff;
+            content: '';
+            position: absolute;
+            z-index: -1;
+        }
+
+        :hover {
+            color: #F8C152;
+        }
+
+        ::after {
+            height: 100%;
+            left: -20%;
+            top: 0;
+            transform: skew(-50deg);
+            transition-duration: 0.6s;
+            transform-origin: top left;
+            width: 0;
+        }
+
+        :hover:after {
+            height: 100%;
+            width: 135%;
+        }
+    }
     
-`
+    input[type=file]
+    {
+        display:none;
+    }
+`;
 
 class uploadBook extends React.Component {
 
@@ -328,7 +352,6 @@ class uploadBook extends React.Component {
                     {Header(this.props)}
                 </div>
                 <Divs>
-
                     <Box_img>
                         {/* {console.log(this.props.routes.addBook)} */}
                         <form autocomplete="off" style={Form} action={this.props.routes.addBook} method="post" enctype="multipart/form-data">
@@ -337,7 +360,8 @@ class uploadBook extends React.Component {
                             <Input type="text" name="author" id="bookAuthor" placeholder="작가 이름" />
                             <Section>
                                 <UploaderCover>
-                                    <InputFile id="inputFile"style={{ color: "white", cursor: "pointer" }} id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
+                                    <label for="bookThumbnail">File Upload</label> 
+                                    <InputFile id="inputFile" id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
                                 </UploaderCover>
                                 <GenreSelect id="genres" name="genre" required="true">
                                     <option value="">장르를 선택하세요</option>

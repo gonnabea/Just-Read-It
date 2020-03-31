@@ -1,16 +1,24 @@
-
-
-
 const sortNav = document.getElementById("sortNav");
 const sortBtn = document.getElementById("sortBtn");
 const sortContent = document.getElementById("sortContent");
 const genreMenus = document.querySelectorAll("#genreMenus");
 
- 
- 
+
+
 function handleSortBtn(){ 
+    const sort_value = document.getElementById("sort_value");
     console.log("It's working!")
-   
+  
+    if(sort_value)
+    {
+        for(i = 0; i < genreMenus.length; i++)
+        {
+            if(genreMenus[i].value == sort_value.innerHTML)
+            {
+                genreMenus[i].style.animation = "Genre_select 0.2s linear forwards";
+            }
+        }
+    }
     sortBtn.className = 'far fa-caret-square-left fa-3x';
     sortBtn.style.color = "#F6B93B";
     sortContent.style.display="flex";

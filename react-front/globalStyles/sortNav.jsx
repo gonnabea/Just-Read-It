@@ -2,36 +2,34 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
 const SlideContainer = styled.section`
-
-
+    position:absolute;
+    /* top:6.5vh; */
 `;
 
 const GenreSort = styled.nav`
-    margin-top:-4vh;
     background-color:rgba(0,0,0,0.3);
     width: 10rem;
-    height: 100vh;
     z-index: 100;
     position:fixed;
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content:space-between;
     align-items:center;
     display:none;
     color: white;
-
-  
 `;
 
 const SlideNav = styled.section`
     position:fixed;
     z-index:200;
     display:flex;
-    align-items:center;
-    height:80%;
+    
+    height:100%;
     color:#F6B93B;
-    margin-top:20vh;
-
+    flex:1;
+    &>span{
+        align-self:center;
+    }
     @keyframes slide {
         0%{
             width:0;
@@ -65,13 +63,13 @@ const SlideNav = styled.section`
         100%{
             margin-left: 0;
         }
-
     }
 `
 
 const Genre = styled.input`
     width:9.5rem;
-    height:3rem;
+    height:3.67rem;
+    flex:1;
     border:none;
     text-align: center;
     font-weight:700;
@@ -81,6 +79,7 @@ const Genre = styled.input`
     color:white;
     cursor: pointer;
     overflow: hidden;
+
     &:hover{
         color:black;
         background-color:#F6B93B;
@@ -90,27 +89,27 @@ const Genre = styled.input`
   
     @keyframes Genre_select{
         0%{
-            color:black;
-            background-color:#F6B93B;
+           
         }
         100%{
+            color:black;
+            background-color:#F6B93B;
             transition: all 0.5s ease;
             -webkit-transition: all 0.5s ease;
             transform: translate(-15px, 0px) skewX(-30deg);
             -webkit-transform: translate(-15px, 0px) skewX(-30deg);
         }
     }
-    @media screen and (max-device-width: 420px)
-    {
-        height:100%;
-        font-size:1.8rem;
-        margin-top:3.75rem;
-    }
-
+  @media screen and (max-device-width: 420px)
+  {
+      font-size:1.5rem;
+      height:7.2rem;
+  }
 `;
 
 const SlideBtn = styled.span`
-        cursor:pointer;
+    cursor:pointer;
+    align-self:center;
 `;
 
 let sortedBy;
@@ -169,6 +168,7 @@ function sortNav(props) {
           
             <>
             <SlideContainer>
+                <div style={{height:"60px"}}></div>
                 <SlideNav id="sortNav">
                     <SlideBtn id="sortBtn" class="far fa-caret-square-right fa-3x"></SlideBtn>
                     <GenreSort id="sortContent">

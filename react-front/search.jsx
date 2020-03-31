@@ -131,13 +131,14 @@ class search extends React.Component {
     render() {
         const results = this.props.results;
         const searchingBy = this.props.searchingBy;
+      
         console.log(results)
         function CheckSearchResult() {
             if (results[0]) {
                 return (
                     <>
-                        <H_one>
-                            "{searchingBy}" 검색 결과
+                        <H_one >
+                            "<span id="sreach_value">{searchingBy}</span>" 검색 결과
                         </H_one>
                             {resultScreen}
                     </>
@@ -146,7 +147,7 @@ class search extends React.Component {
                 return (
                     <>
                         <H_one color="red">
-                            검색결과가 없습니다.
+                        <span id="sreach_value">검색결과가 없습니다.</span>
                         </H_one>
                     </>
                 )
@@ -172,6 +173,8 @@ class search extends React.Component {
                     <Grid_box>
                             <CheckSearchResult />
                     </Grid_box>
+                    <script src="/vanilla/search.js"></script>
+
             </BaseLayout>
         );
     }

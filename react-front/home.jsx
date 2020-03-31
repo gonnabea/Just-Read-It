@@ -19,7 +19,7 @@ const Recom_div = styled.div`
     background-image:url("https://cdn.pixabay.com/photo/2013/03/02/02/40/portrayal-89193_1280.jpg");
     grid-gap: 10px;
 
-    @media screen and (max-width: 1300px)
+    @media screen and (max-width: 1400px)
     { 
         height:100%;
         grid-area: span 1/ span 3;
@@ -76,10 +76,53 @@ const Li = styled.li`
 
 const Button = styled.button`
     margin:0.6rem;
-    font-size:2vh;
-    width:6vh;
+    font-size:1rem;
     justify-self:center;
     cursor:pointer;
+    overflow: hidden;
+    transition: all 0.3s;
+    background: none;
+    border: 3px solid #F8C152;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+    width:100%;
+    flex:1;
+
+    &::before,
+    &::after {
+        background: #fff;
+        content: '';
+        position: absolute;
+        z-index: -1;
+    }
+
+    :hover {
+        color: #F8C152;
+        background: #fff;
+    }
+
+   ::after {
+        height: 100%;
+        left: -35%;
+        top: 0;
+        transform: skew(-50deg);
+        transition-duration: 0.6s;
+        transform-origin: top left;
+        width: 0;
+    }
+   :hover:after {
+        height: 100%;
+        width: 135%;
+    }
+    @media screen and (amx-device-width: 420px)
+    {
+        font-size:2rem;
+    }
 `;
 
 const Image = styled.img`
@@ -98,8 +141,8 @@ const Image = styled.img`
             box-shadow: 0px 13px 21px 3px rgba(0,0,0,0.75);
         }
     }
-   
 `;
+
 const Reco_span = styled.span`
     display:flex;
     text-align:center;
@@ -200,17 +243,6 @@ const Book = styled.a`
     justify-content:center;
     align-items:center;
     text-align:center;
-
-`;
-const Button_Next = styled.button`
-    position:absolute;
-    bottom:0;
-    z-index:3;
-    font-size:2vh;
-    width:6vh;
-    justify-self:center;
-    cursor:pointer;
-
 `;
 
 const Background_img = styled.div`
@@ -355,14 +387,14 @@ function Home(props) {
         if (props.recomendBooks) {
             return (
                 <Recommen>
-                    {props.user.username}님만을 위한 추천 리스트 :
+                    이 책은 어때요?
                 </Recommen>
             )
         }
         else {
             return (
                  <Recommen>
-                    로그인 하시면 북마크 기능에 기반한 추천리스트를 받아보실 수 있습니다
+                    로그인 하셔서 책 추천을 받아보세요!
                 </Recommen>
             )
         }
@@ -457,7 +489,7 @@ function Home(props) {
                 <Header_line>
                     <div>
                         <Book href={props.routes.bookDetail(book.id)}>
-                            <Image className="home_main_img" src={book.imageUrl} alt={book.imageUrl} />
+                            <Image  className="home_main_img" src={book.imageUrl} alt={book.imageUrl} />
                             <Text_box className="text_box" >
                                 <H_one>
                                     {book.title}
@@ -503,7 +535,6 @@ function Home(props) {
                     <Ul>
                         {recomSys()}
                     </Ul>
-
                 </Recom_div>
 
                 {bookList}

@@ -5,17 +5,79 @@ import Header from "./globalStyles/Header";
 import GlobalStyle from "./globalStyles/ResetCss";
 import styled, { keyframes } from "styled-components";
 
+const Check_user_div = styled.div`
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    width:100%;
+    margin: 0.3rem;
+
+    &>form{
+        width:500px; 
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+
+        &>input{
+            margin-top:0.3rem;
+            float:left;
+        }
+
+        &>textarea{
+            width:500px; 
+            height:200px; 
+            resize:none;
+            margin-top:0.3rem;
+        }
+
+        input[type=submit]
+        {
+            width:150px;
+            font-size:1rem;
+        }
+
+        &>input:last-child{
+            border-radius: 4px;
+            background-color: #F6BF4C;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            transition: all 0.5s;
+            cursor: pointer;
+            &:hover{
+                background-color: #FFFFFF;
+                color: #F6BF4C;
+            }
+        }
+       
+    }
+    @media screen and (max-device-width: 420px)
+    {
+        font-size:1.5rem;
+    }
+`;
+
+const Self_position  = styled.input`
+    position:absolute;
+    display:flex;
+    justify-content:center;
+    align-self:flex-start;
+    width:100%;
+    margin-left: 3rem;
+`;
+
 class bookDetail extends React.Component {
 
     render() {
         const user = this.props.user;
         const book = this.props.book;
         const routes = this.props.routes;
+
         function CheckUser() {
 
             if (user && user.id == book.enrolledBy[0]._id) {
                 return (
-                    <>
+                    <Check_user_div>
                         <form action={routes.editBook(book.id)} method="post">
                             <input type="text" name="title" placeholder="수정할 이름" value={book.title} />
                             <textarea name="description" placeholder="상세내용" value={book.description} />
@@ -25,17 +87,17 @@ class bookDetail extends React.Component {
                         <form action={routes.deleteBook(book.id)} method="post">
                             <input type="submit" value="책 삭제" />
                         </form>
-                    </>
+                    </Check_user_div>
                 )
 
             } else if (user) {
                 
                 return (
-                    <>
+                    <Check_user_div>
                         <form action={`/${routes.myBookList(book.id)}`} method="post">
-                            <input type="submit" value="내 서재에 놓기" />
+                            <Self_position type="submit" value="내 서재에 놓기" />
                         </form>
-                    </>
+                    </Check_user_div>
                 )
             }
 
@@ -50,7 +112,7 @@ class bookDetail extends React.Component {
                     <form action={routes.postReview(book.id)} id="postReview" method="post">
                         <input type="text" id="yourName" name={user.username} style={{display:"none"}}/>
                         <input type="text" id="profileUrl" name={user.profilePhoto} style={{display:"none"}}/>
-                        <InputReview type="textarea" autoComplete="off" name="reviewContent" id="reviewContent" placeholder="책에 대한 평가를 남겨주세요!"  rows="1" />
+                        <InputReview type="textarea" autoComplete="off" name="reviewContent" id="reviewContent" placeholder="책에 대한 평가를 남겨주세요!(150자 제한)"  rows="1" />
                         <InputRate type="number" name="rate" placeholder="평점을 남겨주세요" id="reviewRate" min={0} max={10} value={0} step={.1} />
                         <ReviewSubmit id="postReviewBtn" type="submit" value="등록" />
                     </form>
@@ -107,20 +169,23 @@ class bookDetail extends React.Component {
             <BaseLayout>
             {console.log(this.props.coverColor)}
                 <GlobalStyle />
-                <Background>
-               { Header(this.props)}
+                {Header(this.props)}
                     <BookInfos>
                         <Middle>
                             <Book id="book" coverColor={this.props.coverColor}>
                                 <div id="frontCover">
                                     <img id="coverImg"src={`${book.imageUrl}`} width="100%" height="100%" />
                                 </div>
-                                <BookContent><BookContentP>{book.description}</BookContentP>
-                                <PageController>
-                                <BackPage>{`<`}</BackPage>
-                                <NextPage>></NextPage>
-                                </PageController>
-                                
+                                <BookContent>
+                                    <BookContentP>
+                                        {book.description}
+                                    </BookContentP>
+                                    <PageController>
+
+                                        <BackPage>{`<`}</BackPage>
+
+                                        <NextPage> > </NextPage>
+                                    </PageController>
                                 </BookContent>
                                 <div></div>
                                 <div></div>
@@ -133,7 +198,7 @@ class bookDetail extends React.Component {
                                         <h3>{translated}</h3>
                                         <h3> 조회수 {book.viewsFigure}회 </h3>
                                     </BackCoverContent>
-                                        <LogoImage src="https://library.kissclipart.com/20190305/pee/kissclipart-journey-to-the-west-romance-novel-book-c51c5e00eb418a5e.png"></LogoImage>
+                                        <LogoImage src="/images/orangeBook.png"></LogoImage>
                                 </div>
                                 <div ><bdi id="bookSpine1">{book.author}</bdi>
                                 <bdi id="bookSpine2">{book.title}</bdi></div>
@@ -180,7 +245,6 @@ class bookDetail extends React.Component {
                                                 <h3>{translated}</h3>
                                                 {UserWhoRated(item)}
                                                 </Review>
-                                                
                                             </Comment>
                                         )
                                     })}
@@ -206,9 +270,7 @@ class bookDetail extends React.Component {
                             <CheckUser />
                         </ControlBook>
                     </BookInfos>
-                </Background>
-                    <script src="/vanilla/bookDetail.js"></script>
-                    
+                <script src="/vanilla/bookDetail.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
             </BaseLayout>
         )
@@ -216,14 +278,100 @@ class bookDetail extends React.Component {
 }
 
 const PageController = styled.div`
+    width:100%;
+    display:flex;
+    position:absolute;
+    bottom:-22px;
+    box-sizing: border-box;
 
 `
 
 const NextPage = styled.button`
+    cursor:pointer;
+    overflow: hidden;
+    transition: all 0.3s;
+    background: none;
+    border: 3px solid #F8C152;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+    width:100%;
+    flex:1;
+    &::before,
+    &::after {
+        background: #fff;
+        content: '';
+        position: absolute;
+        z-index: -1;
+    }
 
-`
+    :hover {
+        color: #F8C152;
+    }
+
+   ::after {
+        height: 100%;
+        left: -35%;
+        top: 0;
+        transform: skew(-50deg);
+        transition-duration: 0.6s;
+        transform-origin: top left;
+        width: 0;
+    }
+
+   :hover:after {
+        height: 100%;
+        width: 135%;
+    }
+`;
+
 const BackPage = styled.button`
+  
+    cursor:pointer;
+    overflow: hidden;
+    transition: all 0.3s;
+    background: none;
+    border: 3px solid #F8C152;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+    width:100%;
+    flex:1;
 
+    &::before,
+    &::after {
+        background: #fff;
+        content: '';
+        position: absolute;
+        z-index: -1;
+    }
+
+    :hover {
+        color: #F8C152;
+    }
+
+   ::after {
+        height: 100%;
+        right: -35%;
+        top: 0;
+        transform: skew(50deg);
+        transition-duration: 0.6s;
+        transform-origin: top right;
+        width: 0;
+    }
+
+   :hover:after {
+        height: 100%;
+        width: 135%;
+    }
 `
 
 const BookContent = styled.section`
@@ -231,22 +379,18 @@ const BookContent = styled.section`
 `
 
 const BookContentP  = styled.p`
-
-
+    margin:0;
 `
 
 const LogoImage = styled.img`
-
   width:8rem;
   height:63px;
   position:absolute;
   top:80%;
   left:50%;
   display:inline-block;
- 
-
   z-index:2;
-`
+`;
 
 const BackCoverContent = styled.span`
 display:flex;
@@ -256,33 +400,52 @@ height:40%;
 `
 
 const Avatar = styled.section`
-display:flex;
-flex-direction:column;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    flex:1;
+    &>img{
+        width:60px;
+        height:55px;
+        border-radius:100%;
+        @media screen and (max-device-width: 420px)
+        {
+            width:100%;
+            height:100%;
+        }
+    }
 `
 const Content = styled.span`
-font-weight:700;
-width:15vw;
-overflow:hidden;
-`
+    display:flex;
+    font-weight:700;
+    width:100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align:center;
+    align-self:center;
+    justify-content:center;
+`;
 
 const Review = styled.section`
-display:flex;
-flex-direction:column;
-background-color:#F6B93B;
-border-radius:0px 20px 20px 20px;
-text-align:center;
+    margin:0.6rem;
+    padding:0.3rem;
+    display:flex;
+    flex-direction:column;
+    background-color:#F6B93B;
+    border-radius:0px 20px 20px 20px;
+    text-align:center;
+    justify-content:center;
+    width:100%;
+    flex:2;
 `
 const Star = styled.span`
-color:blue;
-display:flex;
-justify-content:center;
+    color:white;
+    display:flex;
+    justify-content:center;
 `
 
 const Background = styled.section`
-    background-image: url("https://cdn.pixabay.com/photo/2017/10/16/02/49/teddy-bear-2855982_1280.jpg");
-    background-size: cover;
-    height:100%;
-
+   
 `
 
 const Book = styled.section`
@@ -408,6 +571,7 @@ const Book = styled.section`
             height: 700px
         }
     }
+
     div:nth-child(6){
         position: absolute;
         width: 4vw;
@@ -449,7 +613,7 @@ const Book = styled.section`
         }
     }
         
-    @keyframes book-rotate {
+@keyframes book-rotate {
     0%{
         transform: rotateY(0deg);
     }
@@ -458,27 +622,24 @@ const Book = styled.section`
     }
     100%{
         transform: rotateY(30deg);
-        
     }
 }
 
-    @keyframes revert-rotate2{
-        0%{
-            transform: rotateY(30deg);
-        }
-        70%{    
-            box-shadow: 0px 0px 0px;
-        }
-        100%{
-            transform: rotateY(0deg);
-            
-        }
+@keyframes revert-rotate2{
+    0%{
+        transform: rotateY(30deg);
     }
+    70%{    
+        box-shadow: 0px 0px 0px;
+    }
+    100%{
+        transform: rotateY(0deg);
+    }
+}
 
 @keyframes book-rotate2 {
     0%{
         transform: rotateY(0deg);
-        
     }
     100%{
         transform: rotateY(180deg);
@@ -498,34 +659,34 @@ const Book = styled.section`
 }
 
 @keyframes moveBook {
-            0%{
-                
-                transform: translateX(0vw) ;
-            }100%{
-                
-                transform: translateX(40vw);
-            }
-        }
+    0%{
+        
+        transform: translateX(0vw) ;
+    }100%{
+        
+        transform: translateX(40vw);
+    }
+}
 
 @keyframes openBook {
-        0%{
-            transform: rotateY(0deg);
-            box-shadow: 0px 0px 0px;
-            
-        }
-        100%{
-            transform: rotateY(-150deg);
-            box-shadow: 10px 10px 10px;
-        }
+    0%{
+        transform: rotateY(0deg);
+        box-shadow: 0px 0px 0px;
+        
     }
+    100%{
+        transform: rotateY(-150deg);
+        box-shadow: 10px 10px 10px;
+    }
+}
 @keyframes fadeImage {
-                0%{
-                    opacity:1;
-                }
-                100%{
-                    opacity:0;
-                }
-            }      
+    0%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+    }
+}      
 @keyframes revertBook {
     0%{  
         transform: translateX(40vw) ;
@@ -533,16 +694,16 @@ const Book = styled.section`
         
         transform: translateX(0vw);
     }
-    }
+}
 
 @keyframes closeBook {
     0%{
         transform: rotateY(-150deg);
-            box-shadow: 0px 0px 0px;
+        box-shadow: 0px 0px 0px;
     }
     100%{
-        transform: rotateY(0);
-            box-shadow: 10px 10px 10px;
+        transform: rotateY(0) translateZ(2vw);
+        box-shadow: 10px 10px 10px;
     }
 }  
 @keyframes showImage {
@@ -556,7 +717,6 @@ const Book = styled.section`
         opacity:1;
     }
 }
-
 `;
 
 
@@ -564,15 +724,18 @@ const Book = styled.section`
 const BookInfos = styled.div`
     width: 100%;
     height: 100vh;
-;
-`
+    background-image: url("https://cdn.pixabay.com/photo/2017/10/16/02/49/teddy-bear-2855982_1280.jpg");
+    background-size: cover;
+    overflow:auto;
+    overflow-x:hidden;
+`;
 const Middle = styled.div`
 
-display: flex;
-justify-content: space-between;
-align-items:center;
-width: 100%;
-height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    width: 100%;
+    height: 100%;
 
 `;
 
@@ -584,7 +747,8 @@ const CommentSpace = styled.section`
     height: 70vh;
     border-radius: 20px;
     align-items: center;
-    background-color:black;
+    /* background-color:black; */
+    background-image:url("https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg");
     z-index:3;
     @media screen and (max-device-width: 450px) 
     {
@@ -602,8 +766,8 @@ const CommentSpace = styled.section`
         }
     }
     @media screen and (max-width: 700px){
-        position:absolute;
-        bottom:-35rem;
+        position:relative;
+        bottom:-56rem;
         width:100%;
         height:20rem;  
         &>form:nth-child(2){
@@ -618,6 +782,7 @@ const CommentSpace = styled.section`
 `;
 const Comments = styled.ul`
     overflow: auto;
+    overflow-x: hidden;
     width: 100%;
     height:100%;
     background-color:#B3E7FF;
@@ -648,30 +813,29 @@ const Comments = styled.ul`
     }
     >newreview{
         display:flex;
-    flex-direction:column;
-    background-color:#F6B93B;
-    border-radius:0px 20px 20px 20px;
-    text-align:center;
-    >newcontent{
-        font-weight:700;
-    width:15vw;
-    overflow:hidden;
-    }
-    >newstar{
-        color:blue;
-    display:flex;
-    justify-content:center;
-    }
-    >newDate{
+        flex-direction:column;
+        background-color:#F6B93B;
+        border-radius:0px 20px 20px 20px;
+        text-align:center;
+        >newcontent{
+            font-weight:700;
+            width:15vw;
+            overflow:hidden;
+        }
+        >newstar{
+            color:blue;
+            display:flex;
+            justify-content:center;
+        }
+        >newDate{
 
-    }
-    }
+        }
+        }
     }
 `;
 
 const Comment = styled.div`
     display:flex;
-    flex-direction: row;
     justify-content: space-around;
     align-items: center;
     color:black;
@@ -734,10 +898,11 @@ const InputReview = styled.textarea`
     align-items:center;
     text-align:center;
     width: 20vw;
-    height:2.5vh;
+    height:3.5vh;
     border-radius:15px;
-    :focus{
-        
+    resize:none;
+    overflow:hidden;
+    :focus{        
         animation: focus 0.5s;
         animation-fill-mode:forwards;
         ::placeholder{
@@ -772,8 +937,54 @@ const InputRate = styled.input`
     text-align:center;
 `
 const ReviewSubmit = styled.input`
-    border: solid 2px black;
     text-align:center;
+    font-size:1rem;
+    margin: 1rem auto;
+    padding:2px;
+    border-radius:5px;
+    
+    background:#F6BD47;
+    color:#fff;
+    border:none;
+    position:relative;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    
+    &:active{
+        margin-top:20px;
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    }
+    &:hover{
+        background:#fff;
+        color:#F6BD47;
+    }
+    &:before,&:after{
+        content:'';
+        position:absolute;
+        top:0;
+        right:0;
+        height:2px;
+        width:0;
+        background: #F6BD47;
+        transition:400ms ease all;
+    }
+
+    &:after{
+        right:inherit;
+        top:inherit;
+        left:0;
+        bottom:0;
+    }
+    &:hover:before,&:hover:after{
+        width:100%;
+        transition:800ms ease all;
+    }
+
+    @media screen and (max-device-width: 420px)
+    {
+        font-size:1.3rem;
+    } 
 `
 
 const BookIntroduce = styled.section`
@@ -844,6 +1055,8 @@ const ControlBtn = styled.button`
  border-radius:20px;
  font-size:15px;
  border: solid 2px black;
+ outline:none;
+ cursor:pointer;
  :hover{
      background-color:#F6B93B;
      color:white;

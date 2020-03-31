@@ -119,33 +119,29 @@ const Logo_a = styled.a`
 
 const A = styled.a`
   display:flex;
-  align-items:space-between;
   margin:0.7rem;
   text-decoration:none;
+  aligin-items:center;
   color:${props => props.color || "white"};
   font-size:${props => props.font_size || "15px"};
 
   :hover{
-    /* color:#9ACD32; */
     &>i:nth-child(1){
-      /* color:#1B9CFC; */
-      /* color:#F6B93B; */
       color:#F6B93B;
-    }
-
-    &>span:nth-child(2){
-      /* color:black; */
     }
   }
 
   &>i:nth-child(1){
+    align-self:center;
     margin-right:1vw;
     color:#f6b93b;
     position:relative;
     &:hover{
-      /* color:#EA2027; */
       color:black;
-
+    }
+    @media screen and (max-device-width: 420px)
+    {
+    transform:scale(1.4);
     }
   }
 `;
@@ -392,24 +388,26 @@ const Log_text = styled.span`
 `;
 const Icon_nav_ul = styled.ul`
     display:flex;
-    flex-direction:column;
     width:100%;
     visibility:hidden;
-    text-align:center;
+    height:100%;
+
     &>li{
-      position:relative;
-      top:0;
-      display:block;
-      flex-direction:column;
-      /*align-items: flex-end; */
       width:100%;
+      flex:1;
       &>span{
-        width:100%;
-        /* color: #F6B93B; */
+        display:flex;
+        justify-content:center;
+        position:relative;
         color: red;
         font-size: 1rem;
         position:relative;
         top:130px;
+        @media screen and (max-device-width: 420px)
+        {
+          justify-content:flex-end;
+          font-size: 1.55rem;
+        }
       }
     }
 
@@ -516,15 +514,8 @@ function Header(props) {
           {/* <Imag_styles src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTKN4UJ5OtVmqJKkhARClcCZO5Btt3rNI5trOE1pHvVbX78g2m-" /> 
           오리진 이미지(?)
           */}
-          {/* <Imag_styles src="https://imagescdn.gettyimagesbank.com/500/18/930/672/0/935366800.jpg" /> */}
-          {/* <Imag_styles src="https://image.flaticon.com/icons/svg/64/64882.svg" /> */}
-          {/* <Imag_styles src="https://i.pinimg.com/originals/2c/af/b6/2cafb6f0a0e5a5b68e97d2723c0f8ea7.png" /> */}
-          {/* <Imag_styles src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRW4R9k6Lt0CIUblnwfVnKrDmmRpvFj0t82oNv7kNMznsdoeaGH&usqp=CAU" /> */}
-         
-         
-         
-          <Imag_styles src="https://library.kissclipart.com/20190305/pee/kissclipart-journey-to-the-west-romance-novel-book-c51c5e00eb418a5e.png" />
-          {/* <Imag_styles src="https://cdn.imgbin.com/24/5/11/imgbin-text-symbol-yellow-orange-line-ibook-white-opened-book-illustration-Ff2JE8furMPBnXiEqECbmdA6r.jpg" /> */}
+      
+          <Imag_styles src="/images/orangeBook.png" />
        
         </a>
 

@@ -5,6 +5,7 @@ const icon_bars = document.getElementById("header_icon_bars");
 const icon_img = document.querySelectorAll(".header_icon_img");
 const header_search_input = document.getElementById("header_search_input");
 const header_form = document.getElementById("header_form");
+
     
 const handleClick = async ()  =>{
         // incon_box.style.height = "30vh";
@@ -93,6 +94,7 @@ const headerInit = async ()=>{
         })
     incon_box.addEventListener("click", handleClick);
         //icon_img
+     
 }
  
 headerInit();
