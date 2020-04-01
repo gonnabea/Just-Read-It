@@ -19,11 +19,11 @@ function handleSortBtn(){
             }
         }
     }
+
     sortBtn.className = 'far fa-caret-square-left fa-3x';
     sortBtn.style.color = "#F6B93B";
     sortContent.style.display="flex";
-    sortContent.style.animation="slide .5s";
-    sortContent.style.animationFillMode="forwards";
+    sortContent.style.animation="slide .5s forwards";
     sortBtn.style.animation="slideBtn .5s forwards";
     sortNav.style.width="30vh";
     sortBtn.removeEventListener("click", handleSortBtn);

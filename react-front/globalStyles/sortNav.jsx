@@ -79,7 +79,7 @@ const Genre = styled.input`
     color:white;
     cursor: pointer;
     overflow: hidden;
-
+    outline:none;
     &:hover{
         color:black;
         background-color:#F6B93B;
@@ -89,7 +89,6 @@ const Genre = styled.input`
   
     @keyframes Genre_select{
         0%{
-           
         }
         100%{
             color:black;
@@ -97,7 +96,7 @@ const Genre = styled.input`
             transition: all 0.5s ease;
             -webkit-transition: all 0.5s ease;
             transform: translate(-15px, 0px) skewX(-30deg);
-            -webkit-transform: translate(-15px, 0px) skewX(-30deg);
+            /* -webkit-transform: translate(-15px, 0px) skewX(30deg); */
         }
     }
   @media screen and (max-device-width: 420px)

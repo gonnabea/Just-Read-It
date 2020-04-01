@@ -165,6 +165,7 @@ class bookDetail extends React.Component {
                 return totalRate
             }
         }
+        
         return (
             <BaseLayout>
             {console.log(this.props.coverColor)}

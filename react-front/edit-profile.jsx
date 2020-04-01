@@ -15,20 +15,7 @@ const Div = styled.div`
 
     background: rgb(2,79,55);
     background: linear-gradient(128deg, rgba(2,79,55,1) 0%, rgba(5,140,205,0.9752275910364145) 51%, rgba(3,19,29,1) 99%);
-    &>div:first-child{
-
-    }
-
-    &>div>form>input:last-child{
-        &:active {
-            #test{
-                visibility: visible; 
-
-            }
-
-        }
-    }
-
+  
 `;
 
 const Center_box = styled.div`
@@ -45,6 +32,37 @@ const Center_box = styled.div`
         display:flex;
         flex-direction:column;
         align-items:center;
+    }
+    &>form>input{
+        margin: 1.2vh;
+        font-size: 2vh;
+        width:100%;
+        background:none;
+        border: solid 0px;
+        border-bottom: solid 0.15vh white; 
+        
+        ::placeholder{
+            color: white;
+            text-align:center;
+        }
+        :focus{
+            color:#F6B93B;
+            outline: none;
+            animation: makeBorder 0.4s linear forwards;
+            ::placeholder{
+            color:#F6B93B;
+            text-align:center;
+            }
+            @keyframes makeBorder {
+                0%{
+                    background:none;
+                }
+                100%{
+                    border-bottom: solid 0.2vh #F6B93B;
+                    background-color:white;
+                }
+            }
+        }
     }
 `;
 
@@ -119,7 +137,6 @@ const Edit_button = styled.button`
         color: #F6BF4C;
     }
 `;
-
 
 
 class editProfile extends React.Component {
