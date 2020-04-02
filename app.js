@@ -33,11 +33,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/images',express.static("images"));
 app.use(localsMiddleware);
 app.use(userRouter);
 app.use(globalRouter);
 app.use('/uploads', express.static('uploads'));
-app.use('/images',express.static("images"));
 app.set("view engine","jsx");
 app.set("views", path.join(__dirname, '/react-front'));
 app.use(express.static(path.join(__dirname,"/react-front")));
