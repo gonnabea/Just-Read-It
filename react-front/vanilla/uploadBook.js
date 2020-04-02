@@ -5,7 +5,10 @@ const bookTitle2 = document.getElementById("bookTitle");
 const bookDescription = document.getElementById("bookDescription");
 const bookAuthor = document.getElementById("bookAuthor");
 const bookThumbnail = document.getElementById("bookThumbnail");
-
+const bookPrice = document.getElementById("bookPrice");
+const publisher = document.getElementById("publisher")
+const publishedAt = document.getElementById("publishedAt");
+const buyLink = document.getElementById("buyLink")
 
 /*
 const client = async(e) =>{ 
@@ -53,7 +56,9 @@ const findBooks = async e => {
       const a = document.createElement("a");
       const div = document.createElement("div");
       const btn = document.createElement("button");
-      
+      const span3 = document.createElement("span");
+      const span4 = document.createElement("span");
+      const span5 = document.createElement("span");
       return (
         img.src = book.thumbnail,
         a.appendChild(img),
@@ -63,6 +68,12 @@ const findBooks = async e => {
         a.appendChild(span2),
         p.innerHTML = book.contents,
         a.appendChild(p),
+        span3.innerHTML = book.sale_price,
+        a.appendChild(span3),
+        span4.innerHTML = book.publisher,
+        a.appendChild(span4),
+        span5.innerHTML = book.datetime,
+        a.appendChild(span5),
         a.href= book.url,
         
         btn.innerHTML = "선택",
@@ -73,6 +84,11 @@ const findBooks = async e => {
           bookTitle2.value = book.title;
           bookDescription.value = book.contents;
           bookAuthor.value = book.authors[0];
+          bookPrice.value = book.sale_price;
+          publisher.value = book.publisher;
+          publishedAt.value = book.datetime;
+          buyLink.value = book.url;
+
         })
       )
     })

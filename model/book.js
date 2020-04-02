@@ -26,7 +26,10 @@ const bookSchema = new mongoose.Schema({
     genre: {
         type: String
     },
-    coverColor: String
+    price:String,
+    publisher:String,
+    buyLink:String,
+    publishedAt:String
 })
 
 bookSchema.plugin(deepPopulate(mongoose));

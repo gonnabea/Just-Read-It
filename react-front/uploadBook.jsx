@@ -355,13 +355,17 @@ class uploadBook extends React.Component {
                     <Box_img>
                         {/* {console.log(this.props.routes.addBook)} */}
                         <form autocomplete="off" style={Form} action={this.props.routes.addBook} method="post" enctype="multipart/form-data">
-                            <Input type="text" id="bookTitle" name="bookName" placeholder="책 제목" required="true" />
+                            <Input type="text" style="font-weight=700" id="bookTitle" name="bookName" placeholder="책 제목 <필수>" required="true" />
                             <Ainput type="textarea" id="bookDescription" name="bookDescription" placeholder="책 상세설명" />
-                            <Input type="text" name="author" id="bookAuthor" placeholder="작가 이름" />
+                            <Input type="text" name="author" id="bookAuthor" placeholder="작가 이름 <필수>" required={true} />
+                            <Input type="text" name="price" id="bookPrice" placeholder="가격" />
+                            <Input type="text" name="publisher" id="publisher" placeholder="출판사" />
+                            <Input type="text" name="publishedAt" id="publishedAt" placeholder="출판일" />
+                            <Input type="text" name="buyLink" id="buyLink" placeholder="구매 링크" />
                             <Section>
                                 <UploaderCover>
                                     <label for="bookThumbnail">File Upload</label> 
-                                    <InputFile id="inputFile" id="bookThumbnail" type="file" name="bookImage" accept="image/*" />
+                                    <InputFile id="inputFile" id="bookThumbnail" type="file" name="bookImage" accept="image/*" required={true} />
                                 </UploaderCover>
                                 <GenreSelect id="genres" name="genre" required="true">
                                     <option value="">장르를 선택하세요</option>

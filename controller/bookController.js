@@ -16,7 +16,7 @@ export const getAddBook = (req, res) => {
 
 export const postAddBook = async(req, res) => {
     const {
-        body: {bookName, bookDescription, author, genre}, file:{location}
+        body: {bookName, bookDescription, author, genre, price, publisher, buyLink, publishedAt}, file:{location}
     } = req;
     if(genre == ""){
         res.render(routes.addBook, {msg:"장르를 선택하세요!"})
@@ -28,9 +28,13 @@ export const postAddBook = async(req, res) => {
         description:bookDescription,
         imageUrl:location,
         enrolledBy: req.user.id,
-        genre
+        genre,
+        price,
+        publisher,
+        buyLink,
+        publishedAt
     })
-    console.log(newBook.genre)
+    console.log(newBook)
     const currentUser = req.user;
     currentUser.uploadedBooks.push(newBook.id);
     currentUser.save();
@@ -102,7 +106,10 @@ export const bookDetail = async(req, res) => {
         
     const params =  {Bucket: bucketName, Key: key};
     const file = fs.createWriteStream(filePath);
-     s3.getObject(params).createReadStream().pipe(file);
+    
+        s3.getObject(params).createReadStream().pipe(file).then(function(){
+
+        });
     
     console.log(filePath)
     const pickedColor = ColorThief.getColor('images/virtualImg.jpg',3)

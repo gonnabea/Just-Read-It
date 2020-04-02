@@ -389,7 +389,7 @@ function Home(props) {
         if (props.recomendBooks) {
             return (
                 <Recommen>
-                    이 책은 어때요?
+                    추천 받으신 책
                 </Recommen>
             )
         }
