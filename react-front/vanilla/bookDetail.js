@@ -12,6 +12,11 @@ const reviewContent = document.getElementById("reviewContent");
 const reviewRate = document.getElementById("reviewRate");
 const commentList = document.getElementById("commentList");
 
+const prev_btn = document.getElementById("prev_btn");
+const next_btn = document.getElementById("next_btn");
+const book_page = document.getElementById("book_page");
+
+
 
 
 
@@ -111,7 +116,7 @@ async function postReviewApi(e){
     e.preventDefault();
     const yourName = document.getElementById("yourName");
     const profileUrl = document.getElementById("profileUrl");
-    console.log(reviewContent.value.length)
+    // console.log(reviewContent.value.length)
 
     if(reviewContent.value.length > 150 || reviewContent.value.length == 0)
     {
@@ -126,7 +131,7 @@ async function postReviewApi(e){
             rate:reviewRate.value 
         }
     })
-   console.log(yourName.name,profileUrl.name)
+//    console.log(yourName.name,profileUrl.name)
     function currentTime(){
         const date = new Date()
         currentTime = `${date.getFullYear()}년 ${date.getMonth()+1}월 ${date.getDate()}일`
@@ -179,14 +184,108 @@ margin-top:0.3rem;
 background-color: rgba(255,255,255,0.3);
 width:25vw;
 */
+let origin_description = "";
 
+function book_description_length() {
+    // console.log(book_description.innerHTML.length);
 
-function bookInit(){
+    if(book_description.innerHTML.length > 300)
+    {
+        let description = book_description.innerHTML.substring(0, 300);
+        book_description.innerHTML = description;
+    }
+   
+}
+
+const nextPage = async ()=>{
+    // console.log(origin_description)
+    let arr=[];
+    
+    if(origin_description.length / 300 == parseInt(origin_description.length / 300))
+    {
+        arr = new Array(parseInt(origin_description.length / 300));
+    }
+    else
+    {
+        arr = new Array(parseInt(origin_description.length / 300)+1);
+    }
+
+    for(i = 0; i < arr.length; i++)
+    {
+        arr[i] = await origin_description.substring(i == 0 ?  0 :  (i == 1 ? 300 : (i * 300 )), i == 0 ? 300 : (i + 1) * 300);
+    }
+
+    // console.log(arr);
+    
+    // arr.map((x)=>{
+    //     console.log(x.length);
+    //     console.log(x);
+    // })
+    for(i = 0; i < arr.length; i++)
+    {
+        if(book_description.innerHTML == arr[i])
+        { 
+            if(i == arr.length - 1)
+            {
+                return ;
+            }
+            book_page.innerHTML =` ${i + 1} page`;
+            return book_description.innerHTML = arr[i+1];
+        }
+    }
+
+    // book_description.innerHTML = arr[1]
+    // let description = origin_description.substring(300, 600);
+    // book_description.innerHTML = description;
+
+}
+
+const prevPage = async()=>{
+    let arr=[];
+    
+    if(origin_description.length / 300 == parseInt(origin_description.length / 300))
+    {
+        arr = new Array(parseInt(origin_description.length / 300));
+    }
+    else
+    {
+        arr = new Array(parseInt(origin_description.length / 300)+1);
+    }
+
+    for(i = 0; i < arr.length; i++)
+    {
+        arr[i] = await origin_description.substring(i == 0 ?  0 :  (i == 1 ? 300 : (i * 300 )), i == 0 ? 300 : (i + 1) * 300);
+    }
+
+    for(i = 0; i < arr.length; i++)
+    {
+        if(book_description.innerHTML == arr[i])
+        {
+            if(i == 0)
+            {
+                return ;
+            }
+            book_page.innerHTML = `${i - 1} page`;
+
+            return book_description.innerHTML = arr[i-1];
+        }
+    }
+    // let description = origin_description.substring(0, 300);
+    // book_description.innerHTML = description;
+}
+
+async function bookInit(){
+    const book_description =await document.getElementById("book_description");
+    origin_description = book_description.innerHTML;
+
     rotateBtn.addEventListener("click", rotate);
     openBtn.addEventListener("click", open);
     frontCover.addEventListener("mouseover", rotate2);
     postReview.addEventListener("submit", postReviewApi);
-    
+
+    book_description_length();
+    next_btn.addEventListener("click", nextPage);
+    prev_btn.addEventListener("click", prevPage);
 }
 
 bookInit();

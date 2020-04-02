@@ -137,7 +137,9 @@ const Input = styled.input`
     background:none;
     border: solid 0px;
     border-bottom: solid 0.15vh white; 
-    
+    :last-child{
+        cursor:pointer;
+    }
     ::placeholder{
         color: white;
         text-align:center;

@@ -12,5 +12,6 @@ a{
      text-overflow: ellipsis;
      background-color:rgba(229, 224, 149, 0.226);
     font-weight: inherit;
+    background-image: url();
 } 
 

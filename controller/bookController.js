@@ -101,8 +101,8 @@ export const bookDetail = async(req, res) => {
 
         
     const params =  {Bucket: bucketName, Key: key};
-    const file = await fs.createWriteStream(filePath);
-    await s3.getObject(params).createReadStream().pipe(file);
+    const file = fs.createWriteStream(filePath);
+     s3.getObject(params).createReadStream().pipe(file);
     
     console.log(filePath)
     const pickedColor = ColorThief.getColor('images/virtualImg.jpg',3)

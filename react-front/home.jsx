@@ -19,7 +19,7 @@ const Recom_div = styled.div`
     background-image:url("https://cdn.pixabay.com/photo/2013/03/02/02/40/portrayal-89193_1280.jpg");
     grid-gap: 10px;
 
-    @media screen and (max-width: 1400px)
+    @media screen and (max-width: 1300px)
     { 
         height:100%;
         grid-area: span 1/ span 3;
@@ -368,11 +368,12 @@ const Genre = styled.input`
 `;
 
 const SlideBtn = styled.span`
-        cursor:pointer;
+    cursor:pointer;
 `;
  
 const Recommen = styled.h1`
     margin-top:6rem;
+    margin-bottom:1rem;
     color:white;
     display:flex;
     justify-content:flex-start;
@@ -383,6 +384,7 @@ const Recommen = styled.h1`
 `;
 
 function Home(props) {
+
     function recommendList() {
         if (props.recomendBooks) {
             return (
@@ -400,6 +402,30 @@ function Home(props) {
         }
     }
 
+    function logincheck(){
+        if(props.user)
+        {
+            return(
+                    <div style={{ display: "flex", justifyContent: "flex-start" }}>
+                        <Button id="btn_prev" >
+                            Prev
+                        </Button>
+                        <Re_book_pos>
+                            <i id="icon_1" className="fas fa-circle"></i>
+                            <i id="icon_2" className="fas fa-circle"></i>
+                            {/* <i id="icon_3" className="fas fa-circle"></i> */}
+                        </Re_book_pos>
+                        <Button id="btn_next">
+                            Next
+                        </Button>
+                    </div>
+            );
+        }
+        else
+        {
+            return "";
+        }
+    }
     function recomSys() {
         // console.log(props.recomendBooks)
         if (props.recomendBooks) {
@@ -519,19 +545,8 @@ function Home(props) {
 
                 <Recom_div>
                     {recommendList()}
-                    <div style={{ display: "flex", justifyContent: "flex-start" }}>
-                        <Button id="btn_prev" >
-                            Prev
-                        </Button>
-                        <Re_book_pos>
-                            <i id="icon_1" className="fas fa-circle"></i>
-                            <i id="icon_2" className="fas fa-circle"></i>
-                            {/* <i id="icon_3" className="fas fa-circle"></i> */}
-                        </Re_book_pos>
-                        <Button id="btn_next">
-                            Next
-                        </Button>
-                    </div>
+                    {logincheck()}
+                   
                     <Ul>
                         {recomSys()}
                     </Ul>

@@ -25,7 +25,8 @@ const bookSchema = new mongoose.Schema({
     },
     genre: {
         type: String
-    }
+    },
+    coverColor: String
 })
 
 bookSchema.plugin(deepPopulate(mongoose));

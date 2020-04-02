@@ -13,15 +13,15 @@ let num = [];
 let rand = [];
 
 const Shuffle = async () => {
-    let reco_list = await document.querySelectorAll(".reco_list");
 
+    let reco_list = await document.querySelectorAll(".reco_list");
 
     for (j = 0; j < 2; j++) 
     {
         rand[j] = Math.floor(Math.random() * reco_list.length);
     }
     rand = Array.from(new Set(rand))
-    console.log(Array.from(new Set(rand)));
+    // console.log(Array.from(new Set(rand)));
 
     for (i = 0; reco_list.length; i++) {
      
@@ -30,16 +30,19 @@ const Shuffle = async () => {
         {
             for(j = 0; j< rand.length; j++)
             {
+                num[j] = reco_list[rand[j]];
                 reco_list[rand[j]].style.display = "block";
+                // console.log(num)
             }
         }
         else
         {
-            for (j = 0; j < 2; j++) 
+            for (j = 0; j < 3; j++) 
             {
                 rand[j] = Math.floor(Math.random() * reco_list.length);
             }
             rand = Array.from(new Set(rand))
+            num =  new Array(rand.length);
         }
     }
    
@@ -63,7 +66,9 @@ const Imglength = async () => {
         li.style.cursor = "pointer";
         li.style.width = "30px";
         li.style.height = "30px";
+
         count = parseFloat(home_main_img.length / 60);
+
         if (count > parseInt(count)) {
             count += 1;
         }
@@ -78,6 +83,7 @@ const Imglength = async () => {
             }
         }
     }
+
     const li_list = await document.querySelectorAll(".li_list");
 
     for (i = 0; i < li_list.length; i++) {
@@ -102,6 +108,7 @@ const Imglength = async () => {
 const opacity = (e) => {
     let pos = 0;
     let id = setInterval(frame, 1);
+
     function frame() {
 
         if (pos >= 1) {
@@ -122,17 +129,16 @@ const prevBook = async(e)=>{
     {
         reco_list[i].style.animation = `revers_recomment_slid 0.5s ease-in-out forwards`;
     }
- 
 }
 
 const nextBook = async (e) =>{
     let reco_list = await document.querySelectorAll(".reco_list");
     // opacity(e);
+
     for(i = 0; i < reco_list.length; i++)
     {
         reco_list[i].style.animation = `recomment_slid 0.5s ease-in-out forwards`;
     }
-   
 }
 
 
@@ -140,10 +146,14 @@ const homeInit = async () => {
     
     Shuffle();
 
-    prev.addEventListener("click", prevBook);
-    next.addEventListener("click",nextBook);
-    icon_1.addEventListener("click",prevBook);
-    icon_2.addEventListener("click",nextBook);
+    if(prev)
+    {
+        prev.addEventListener("click", prevBook);
+        next.addEventListener("click",nextBook);
+        icon_1.addEventListener("click",prevBook);
+        icon_2.addEventListener("click",nextBook);
+    }
+
 
     for (i = 0; i < home_main_img.length; i++) {
 
@@ -172,7 +182,5 @@ const homeInit = async () => {
     }
 }
 
-if(prev)
-{
-    homeInit();
-}
+
+homeInit();
