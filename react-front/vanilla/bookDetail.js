@@ -221,6 +221,7 @@ const nextPage = async ()=>{
     //     console.log(x.length);
     //     console.log(x);
     // })
+    
     for(i = 0; i < arr.length; i++)
     {
         if(book_description.innerHTML == arr[i])
