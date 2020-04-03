@@ -188,13 +188,15 @@ let origin_description = "";
 
 function book_description_length() {
     // console.log(book_description.innerHTML.length);
-
+    let arr =[];
     if(book_description.innerHTML.length > 300)
     {
         let description = book_description.innerHTML.substring(0, 300);
         book_description.innerHTML = description;
     }
-   
+    arr = new Array(parseInt(origin_description.length / 300));
+
+    book_page.innerHTML =` 0 / ${arr.length}`;
 }
 
 const nextPage = async ()=>{
@@ -231,7 +233,7 @@ const nextPage = async ()=>{
             {
                 return ;
             }
-            book_page.innerHTML =` ${i + 1} page`;
+            book_page.innerHTML =` ${i + 1} / ${arr.length -1}`;
             return book_description.innerHTML = arr[i+1];
         }
     }
@@ -267,7 +269,7 @@ const prevPage = async()=>{
             {
                 return ;
             }
-            book_page.innerHTML = `${i - 1} page`;
+            book_page.innerHTML = `${i - 1} / ${arr.length - 1}`;
 
             return book_description.innerHTML = arr[i-1];
         }

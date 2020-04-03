@@ -20,20 +20,17 @@ const Divs = styled.div`
 
 const Box_img = styled.div`
     position:absolute;
+    top:15%;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
-    
     box-shadow: -1px 0px 21px 0px rgba(0,0,0,0.75);
     border-radius:10px;
     border: 1px solid red;
-    top:25%;
     padding:3rem;
     background-color:rgba(229, 224, 149, 0.7);
-    align-items:center;
-    justify-content:center;
     z-index:2;
     &:hover{
         animation: box_hover 0.5s linear forwards;

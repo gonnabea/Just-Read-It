@@ -19,7 +19,7 @@ export class BaseLayout extends React.Component {
     const { bodyClass } = this.props;
 
     return (
-      <html lang='en'>
+      <html lang='kr'>
         <head>
     <title>{this.props.pageTitle}Just Read It</title>
           {this.prerenderStyles()}</head>

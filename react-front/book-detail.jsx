@@ -164,7 +164,28 @@ class bookDetail extends React.Component {
                 return totalRate
             }
         }
-
+        function publishedAt(){
+           if( book.publishedAt)
+           {
+              return "출판일: "+book.publishedAt.split("T")[0]
+           }
+           return "";
+        }
+        function publisher(){
+            if(book.publisher)
+            {
+                return "출판사: "+book.publisher
+            }
+            return "";
+        }
+        function price()
+        {
+            if(book.price)
+            {
+                return "가격: " + book.price+"원";
+            }
+            return "";
+        }
         return (
             <BaseLayout>
             {console.log(this.props.coverColor)}
@@ -179,7 +200,7 @@ class bookDetail extends React.Component {
                                 <BookContent>
                                     <BookContentP id="book_description">
                                         {book.description}
-                                        <div id="book_page">0 page</div>
+                                        <div id="book_page">0</div>
                                     </BookContentP>
                                     <PageController>
 
@@ -197,9 +218,17 @@ class bookDetail extends React.Component {
                                         <h5>{book.author}</h5>
                                         <h4>{book.likeFigure}명이 서재에 보관 중</h4>
                                         <h3>{translated}</h3>
-                                        <h3> 조회수 {book.viewsFigure}회 </h3>
+                                        <h3> 조회수: {book.viewsFigure}회 </h3>
+                                        <h3>{price()}</h3>
+                                        <h3>{publisher()} </h3>
+                                        <h3>{publishedAt()} </h3>
                                     </BackCoverContent>
-                                        <LogoImage src="/images/orangeBook.png"></LogoImage>
+                                    <a href={book.buyLink} target="_"> 
+                                        <LogoImage src="/images/orangeBook.png">
+                                        </LogoImage>
+                                    <span style={{position:"absolute",right:"28%",
+                                bottom:"19%"}}>Link</span>
+                                    </a> 
                                 </div>
                                 <div ><bdi id="bookSpine1">{book.author}</bdi>
                                 <bdi id="bookSpine2">{book.title}</bdi></div>
@@ -381,6 +410,8 @@ const BookContent = styled.section`
         text-align:center;
         justify-content:center;
     }
+    /* overflow:hidden;
+    text-overflow:hidden; */
 `
 
 const BookContentP  = styled.p`
@@ -399,11 +430,11 @@ const LogoImage = styled.img`
 `;
 
 const BackCoverContent = styled.span`
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-height:40%;
-`
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    height:40%;
+`;
 
 const Avatar = styled.section`
     display:flex;
@@ -797,7 +828,7 @@ const Comments = styled.ul`
     overflow-x: hidden;
     width: 100%;
     height:100%;
-    background-color:#B3E7FF;
+    background-color:#E7E3DC;
     background-size: cover;
     background-position: center center;
     display: flex;
