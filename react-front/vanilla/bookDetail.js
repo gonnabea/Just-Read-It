@@ -212,6 +212,7 @@ const nextPage = async ()=>{
 
     for(i = 0; i < arr.length; i++)
     {
+        
         arr[i] = await origin_description.substring(i == 0 ?  0 :  (i == 1 ? 300 : (i * 300 )), i == 0 ? 300 : (i + 1) * 300);
     }
 
@@ -282,7 +283,10 @@ async function bookInit(){
     rotateBtn.addEventListener("click", rotate);
     openBtn.addEventListener("click", open);
     frontCover.addEventListener("mouseover", rotate2);
-    postReview.addEventListener("submit", postReviewApi);
+    if(postReview)
+    {
+        postReview.addEventListener("submit", postReviewApi);
+    }
 
     book_description_length();
     next_btn.addEventListener("click", nextPage);
