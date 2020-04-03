@@ -175,7 +175,7 @@ async function postReviewApi(e){
 */
 
 /*
-display:flex;
+diay:flex;
 flex-direction: row;
 justify-content: space-around;
 align-items: center;

@@ -226,8 +226,8 @@ class bookDetail extends React.Component {
                                     <a href={book.buyLink} target="_"> 
                                         <LogoImage src="/images/orangeBook.png">
                                         </LogoImage>
-                                    <span style={{position:"absolute",right:"28%",
-                                bottom:"19%"}}>Link</span>
+                                    <span style={{position:"absolute",right:"35%",
+                                bottom:"16%", fontSize:"10px", zIndex:"100", fontWeight:"700"}}>Link</span>
                                     </a> 
                                 </div>
                                 <div ><bdi id="bookSpine1">{book.author}</bdi>
@@ -433,7 +433,7 @@ const BackCoverContent = styled.span`
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    height:40%;
+    height:60%;
 `;
 
 const Avatar = styled.section`
@@ -1089,6 +1089,7 @@ const ControlBook = styled.div`
 
 const ControlBtn = styled.button`
 
+left: 100px;
  background-color:white;
  font-weight:700;
  color:black;

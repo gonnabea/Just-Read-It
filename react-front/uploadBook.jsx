@@ -7,7 +7,7 @@ import GlobalStyle from "./globalStyles/ResetCss";
 
 const Divs = styled.div`
     /* width:100%; */
-    height:100vh;
+    height:100%;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -20,7 +20,7 @@ const Divs = styled.div`
 
 const Box_img = styled.div`
     position:absolute;
-    top:15%;
+    top:10%;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -170,10 +170,14 @@ const Kakao_list = styled.section`
             z-index:4;
             margin-bottom:2vh;
             color:red;
+            outline:none;
             :hover{
                 cursor:pointer;
             }
             :active{
+                /* margin-top:5px; */
+                transform:translateY(5px);
+                box-shadow:0px;
             }
         }
         a{
@@ -181,9 +185,9 @@ const Kakao_list = styled.section`
             opacity:0.85;
             :hover{
                 opacity:1;
-                color:black;
+                color:white;
             }
-            color:rgb(255, 255, 255);
+            color: black;
             display:flex;
             flex-direction:column;
             justify-content:center;

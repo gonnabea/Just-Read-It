@@ -8,7 +8,6 @@ const globalStyle = createGlobalStyle`
     list-style: none;
     text-decoration: none;
 }
-
 ::-webkit-scrollbar { width: 1.5vh; }
 ::-webkit-scrollbar-track { 
     background-color:#5D5D5D;

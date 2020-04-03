@@ -133,6 +133,7 @@ const Side_cover = styled.div`
     text-orientation: mixed;
     text-align:center;
     border-radius:5px;
+    border:0.3px solid white;
 `;
 
 const Back_cover = styled.div`
@@ -172,7 +173,8 @@ const Input = styled.button`
     margin: 1rem auto;
     padding:2px;
     border-radius:5px;
-    
+    width:30px;
+    height:30px;
     background:#F6BD47;
     color:#fff;
     border:none;
@@ -180,8 +182,9 @@ const Input = styled.button`
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
+
     &>i{
-        font-size:2rem;
+        font-size:1.6rem;
     }
     &:active{
         margin-top:20px;
@@ -316,9 +319,10 @@ const Books_box = styled.div`
     justify-content:center;
    
     img:last-child{
-        position:relative;
-        top:-22%;
-        width:140%;
+        position:absolute;
+        /* top:-25%; */
+        top:65%;
+        width:100%;
         height:100px;
         z-index:-1;
         @media screen and (max-device-width: 420px)

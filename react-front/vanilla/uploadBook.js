@@ -77,6 +77,20 @@ const findBooks = async e => {
         a.href= book.url,
         
         btn.innerHTML = "선택",
+        btn.style.backgroundColor = "orange",
+        btn.style.border = "none",
+        btn.style.borderRadius = "10px",
+        btn.style.color = "white",
+        btn.style.padding = "5px",
+        btn.addEventListener("mouseover", function hover(){
+          btn.style.boxShadow = "2px 2px 2px";
+          btn.removeEventListener("mouseover", hover)
+          btn.addEventListener("mouseleave", function leave(){
+            btn.style.boxShadow = "none";
+            btn.removeEventListener("mouseover", leave);
+            btn.addEventListener("mouseover", hover)
+          })
+        }),
         div.appendChild(btn),
         div.appendChild(a),
         resultScreen.appendChild(div),
