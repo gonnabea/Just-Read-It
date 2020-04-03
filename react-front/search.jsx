@@ -103,6 +103,11 @@ const A = styled.a`
     {
         margin:1vh;
     }
+    @media screen and (max-device-width: 600px)
+    {
+        width:100%;
+        margin:10px;
+    }
 `;
 
 const H_one = styled.h1`
