@@ -99,10 +99,11 @@ const A = styled.a`
         }
     }
     /* background-color: white; */
-    @media screen and (max-width: 600px)
+    @media screen and (max-width: 1250px)
     {
-        margin:1vh;
+        width:90%;
     }
+
     @media screen and (max-device-width: 600px)
     {
         width:100%;
@@ -205,7 +206,7 @@ const Grid_items = styled.div`
 `;
 
 const BookTitle = styled.span`
-text-overflow:ellipsis;
+    text-overflow:ellipsis;
     font-size:5vh;
     color:white;
     font-weight: 700;

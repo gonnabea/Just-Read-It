@@ -24,7 +24,10 @@ const Bookdiv = styled.a`
     height:400px;
     font-size:1rem;
     margin:0.7rem;
-    
+    border:1px solid red;
+    border-radius:5px;
+    box-shadow: 0px 4px 5px 1px #F6B93B;
+
     img:first-child{
         width:200px;
         height:250px;
