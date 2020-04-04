@@ -63,6 +63,7 @@ const Div_box = styled.div`
     width:100%;
     height:100%;
     background-color:#E7E3DC;
+
     @media screen and (max-device-width: 420px) 
     {
         top:13rem;
@@ -106,12 +107,16 @@ const Book_img = styled.img`
 `;
 
 const BookTitle = styled.div`
-font-weight: 700;
-font-size: 20px;
+    font-weight: 700;
+    font-size: 20px;
 `
 
 const BackgroundAll = styled.div`
-background-color:#E7E3DC;
+    position:fixed;
+    width:100%;
+    height:100%;
+    background-color:#E7E3DC;
+    overflow: auto;
 `
 
 
@@ -145,9 +150,9 @@ class sortBooks extends React.Component {
         return (
             <BaseLayout>
                 <GlobalStyle />
-                <BackgroundAll>
                     {Header(this.props)}
                     {sortNav(this.props)}
+                <BackgroundAll>
                     <Div_box>
                         <H_one id="sort_value">
                             {sortedBy}

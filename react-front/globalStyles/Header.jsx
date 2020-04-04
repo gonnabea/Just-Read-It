@@ -121,7 +121,7 @@ const A = styled.a`
   display:flex;
   margin:0.7rem;
   text-decoration:none;
-  aligin-items:center;
+  align-items:center;
   color:${props => props.color || "white"};
   font-size:${props => props.font_size || "15px"};
 
@@ -284,8 +284,8 @@ const Binput = styled.input`
 `;
 
 const Prifile_img = styled.img`
-  width:60px;
-  height:55px;
+  width:50px;
+  height:45px;
   position:absolute;
   right:0;
   top:0;

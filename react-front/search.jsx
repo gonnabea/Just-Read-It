@@ -104,6 +104,11 @@ const A = styled.a`
         width:90%;
     }
 
+    @media screen and (max-width: 950px)
+    {
+        width:100%;
+    }
+
     @media screen and (max-device-width: 600px)
     {
         width:100%;
@@ -167,6 +172,12 @@ const TextArea = styled.section`
     width:70%;
     margin-left:15px;
     margin-right:15px;
+
+    @media screen and (max-width: 950px)
+    {
+        width:50%;
+    }
+
 `;
 
 const Description = styled.span`
@@ -233,7 +244,11 @@ const Bookinfo = styled.div`
     
     padding:5px;
     color:white;
-    
+    @media screen and (max-width: 950px)
+    { 
+        width:30%;
+    }
+
 
 `;
 const Publisher = styled.span`

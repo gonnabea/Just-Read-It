@@ -28,6 +28,7 @@ const BookImage = styled.img`
 `;
 
 const ProfileImage = styled.img`
+    margin-top: 20px;
     width:10vh;
     height:10vh;
     border-radius: 100%;

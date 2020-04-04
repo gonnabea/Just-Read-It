@@ -416,7 +416,13 @@ const Recommen = styled.h1`
     }
 `;
 
-
+const BackgroundAll = styled.div`
+position:fixed;
+    width:100%;
+    height:100%;
+    background-color:#E7E3DC;
+    overflow: auto;
+`
 
 function Home(props) {
 
@@ -581,7 +587,7 @@ function Home(props) {
             <GlobalStyle />
             {Header(props)}
             {sortNav(props)}
-           
+           <BackgroundAll>
             <Grid_box>
                 <Recom_div>
                     {recommendList()}
@@ -592,6 +598,7 @@ function Home(props) {
                 </Recom_div>
                 {bookList}
             </Grid_box>
+           </BackgroundAll>
             
          
             <script src="/vanilla/home.js"></script>
