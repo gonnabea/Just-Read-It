@@ -5,11 +5,14 @@ import GlobalStyle from "./globalStyles/ResetCss";
 import styled, { keyframes } from "styled-components";
 
 const Check_user_div = styled.div`
-    display:flex;
+    display:none;
     flex-direction:column;
     height:100%;
     width:100%;
     margin: 0.3rem;
+    background-color:#E7E3DC;
+    justify-content: center;
+    align-items: center;
 
     &>form{
         width:500px; 
@@ -20,6 +23,18 @@ const Check_user_div = styled.div`
         &>input{
             margin-top:0.3rem;
             float:left;
+            resize:none;
+            margin-top:0.3rem;
+            border: solid orange 1px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            border-radius:10px;
+            overflow:hidden;
+            outline: none;
+            color:orange;
+            font-weight:700;
         }
 
         &>textarea{
@@ -27,6 +42,17 @@ const Check_user_div = styled.div`
             height:200px; 
             resize:none;
             margin-top:0.3rem;
+            border: solid orange 1px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            border-radius:10px;
+            overflow:hidden;
+            outline: none;
+            color:;
+            font-weight:700;
+
         }
 
         input[type=submit]
@@ -66,10 +92,27 @@ const Self_position  = styled.input`
 `;
 
 const Submit = styled.div`
-display:flex;
-justify-content:space-around;
-width:100%;
-`
+    display:flex;
+    justify-content:space-around;
+    width:100%;
+`;
+
+const EditBtn = styled.button`
+    border-radius: 4px;
+    font-size:1rem;
+    background-color: #F6BF4C;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.5s;
+    margin-left:30px;
+    cursor: pointer;
+    
+    &:hover{
+        background-color: #FFFFFF;
+        color: #F6BF4C;
+    }
+`;
 
 class bookDetail extends React.Component {
 
@@ -82,7 +125,9 @@ class bookDetail extends React.Component {
 
             if (user && user.id == book.enrolledBy[0]._id) {
                 return (
-                    <Check_user_div>
+                    <>
+                    <EditBtn id="editBtn">책 정보 수정</EditBtn>
+                    <Check_user_div id="editContent">
                         <form action={routes.editBook(book.id)} method="post">
                             <input type="text" name="title" placeholder="수정할 이름" value={book.title} />
                             <textarea name="description" placeholder="상세내용" value={book.description} />
@@ -93,6 +138,7 @@ class bookDetail extends React.Component {
                             <input type="submit" value="책 삭제" />
                         </form>
                     </Check_user_div>
+                    </>
                 )
 
             } else if (user) {
@@ -212,9 +258,7 @@ class bookDetail extends React.Component {
                                         <div id="book_page">0</div>
                                     </BookContentP>
                                     <PageController>
-
                                         <BackPage id="prev_btn">{`<`}</BackPage>
-
                                         <NextPage id="next_btn"> > </NextPage>
                                     </PageController>
                                 </BookContent>
@@ -426,7 +470,7 @@ const BookContent = styled.section`
 const BookContentP  = styled.p`
     font-family: 'Gaegu', cursive;
     font-weight:600;
-    line-height:1.75;
+    line-height:1.5;
 `;
 
 const LogoImage = styled.img`

@@ -6,11 +6,11 @@ const SlideContainer = styled.section`
 `;
 
 const GenreSort = styled.nav`
+    position:fixed;
     background-color:rgba(0,0,0,0.3);
     width: 10rem;
     height:100%;
     z-index: 100;
-    position:fixed;
     display: flex;
     flex-direction: column;
     justify-content:flex-start;

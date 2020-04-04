@@ -226,10 +226,12 @@ const BookTitle = styled.span`
     width:70%;
     display:flex;
     justify-content:flex-start;
+    
     @media screen and (max-width: 1300px)
     { 
         
     }
+    
     @media screen and (max-device-width: 600px)
     {
         width:100%;

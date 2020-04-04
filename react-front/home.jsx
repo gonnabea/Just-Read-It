@@ -417,7 +417,7 @@ const Recommen = styled.h1`
 `;
 
 const BackgroundAll = styled.div`
-position:fixed;
+    position:fixed;
     width:100%;
     height:100%;
     background-color:#E7E3DC;

@@ -15,6 +15,8 @@ const commentList = document.getElementById("commentList");
 const prev_btn = document.getElementById("prev_btn");
 const next_btn = document.getElementById("next_btn");
 const book_page = document.getElementById("book_page");
+const editBtn = document.getElementById("editBtn");
+const editContent = document.getElementById("editContent");
 
 
 
@@ -279,6 +281,22 @@ const prevPage = async()=>{
     // let description = origin_description.substring(0, 350);
     // book_description.innerHTML = description;
 }
+function handleEditBtn(){
+
+    editContent.style.display = "flex";    
+    editBtn.removeEventListener("click", handleEditBtn);
+    editBtn.addEventListener("click", function a(){
+        editContent.style.display = "none";
+        editBtn.addEventListener("click", handleEditBtn);
+        
+    })
+            window.scrollTo(0,{  
+                top:200,
+                behavior: "smooth"
+              });
+
+}
+
 
 async function bookInit(){
     const book_description =await document.getElementById("book_description");
@@ -295,6 +313,7 @@ async function bookInit(){
     book_description_length();
     next_btn.addEventListener("click", nextPage);
     prev_btn.addEventListener("click", prevPage);
+    editBtn.addEventListener("click", handleEditBtn);
 }
 
 bookInit();
