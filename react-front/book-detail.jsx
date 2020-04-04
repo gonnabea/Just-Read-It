@@ -114,6 +114,81 @@ const EditBtn = styled.button`
     }
 `;
 
+const PutToBookmark = styled.div`
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    width:100%;
+    margin: 0.3rem;
+    background-color:#E7E3DC;
+
+    &>form{
+        width:500px; 
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+
+        &>input{
+            margin-top:0.3rem;
+            float:left;
+            resize:none;
+            margin-top:0.3rem;
+            border: solid orange 1px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            border-radius:10px;
+            overflow:hidden;
+            outline: none;
+            color:orange;
+            font-weight:700;
+        }
+
+        &>textarea{
+            width:500px; 
+            height:200px; 
+            resize:none;
+            margin-top:0.3rem;
+            border: solid orange 1px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            border-radius:10px;
+            overflow:hidden;
+            outline: none;
+            font-weight:700;
+
+        }
+
+        input[type=submit]
+        {
+            width:150px;
+            font-size:1rem;
+        }
+
+        &>input:last-child{
+            border-radius: 4px;
+            background-color: #F6BF4C;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            transition: all 0.5s;
+            cursor: pointer;
+            &:hover{
+                background-color: #FFFFFF;
+                color: #F6BF4C;
+            }
+        }
+       
+    }
+    @media screen and (max-device-width: 420px)
+    {
+        font-size:1.5rem;
+    }
+`;
+
 class bookDetail extends React.Component {
 
     render() {
@@ -144,11 +219,11 @@ class bookDetail extends React.Component {
             } else if (user) {
                 
                 return (
-                    <Check_user_div>
+                    <PutToBookmark>
                         <form action={`/${routes.myBookList(book.id)}`} method="post">
                             <Self_position type="submit" value="내 서재에 놓기" />
                         </form>
-                    </Check_user_div>
+                    </PutToBookmark>
                 )
             }
 

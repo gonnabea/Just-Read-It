@@ -20,7 +20,7 @@ const Recom_div = styled.div`
     background-image:url("https://cdn.pixabay.com/photo/2013/03/02/02/40/portrayal-89193_1280.jpg");
     
     grid-gap: 10px;
-    height: 400px;
+    height: 600px;
     width:100vw;
     left: -75px;
     @media screen and (max-width: 1300px)
@@ -427,10 +427,11 @@ const BackgroundAll = styled.div`
 function Home(props) {
 
     function recommendList() {
+        console.log(props.recomendBooks)
         if (props.recomendBooks && props.recomendBooks.length > 0) {
             return (<div style={{marginTop:"60px"}}></div>);
         }
-        else if (props.recomendBooks && props.recomendBooks.length == 0){
+        else if (props.user && !props.recomendBooks ){
             return (
                 <Recommen>
                     북마크 하셔서 추천을 받아보세요
