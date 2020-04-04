@@ -131,6 +131,7 @@ const Edit_button = styled.button`
     color: #FFFFFF;
     text-align: center;
     transition: all 0.5s;
+    margin-left: 10.5px;
     cursor: pointer;
     &:hover{
         background-color: #FFFFFF;
@@ -138,6 +139,9 @@ const Edit_button = styled.button`
     }
 `;
 
+const EditName = styled.input`
+width: 100px;
+`
 
 class editProfile extends React.Component {
     render() {
@@ -148,7 +152,7 @@ class editProfile extends React.Component {
                 <Div className="user_edit proile">
                     <Center_box>
                         <form autoComplete="off" action={this.props.routes.editUser} method="post" enctype="multipart/form-data">
-                            <input autoComplete="off" type="text" name="username" placeholder="변경하실 닉네임" />
+                            <EditName  autoComplete="off" type="text" name="username" placeholder="변경하실 닉네임" />
                             <File_box>
                                 <label for="profilePhoto">Profile Photo</label> 
                                 <input type="file" name="profilePhoto" id="profilePhoto" />
