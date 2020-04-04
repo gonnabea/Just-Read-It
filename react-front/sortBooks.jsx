@@ -124,7 +124,7 @@ const BackgroundAll = styled.div`
 const Bookmark = styled.span`
     position: absolute;
     font-size:2rem;
-    margin-left: 100px;
+    margin-left: 120px;
     color: white;
     margin-top: -10px;
 
