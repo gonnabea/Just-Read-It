@@ -6,7 +6,8 @@ import GlobalStyle from "./globalStyles/ResetCss";
 
 
 const Divs = styled.div`
-    /* width:100%; */
+    position:absolute;
+    width:100%;
     height:100%;
     display:flex;
     flex-direction:column;
@@ -98,7 +99,6 @@ const Ainput = styled.textarea`
         ::placeholder{
         color:#F6B93B;
         text-align:center;
-        
     }
         @keyframes makeBorder {
             0%{
@@ -166,10 +166,11 @@ const Kakao_list = styled.section`
         text-overflow:scroll;
         overflow-x: hidden;
         height:43.5vh;
+        padding:5px;
         button{
             z-index:4;
-            margin-bottom:2vh;
-            color:red;
+            margin-bottom:5px;
+            /* color:red; */
             outline:none;
             :hover{
                 cursor:pointer;

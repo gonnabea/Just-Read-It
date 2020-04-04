@@ -28,6 +28,7 @@ const handle = async () => {
         // img.style.zIndex = "-2";
         // img.style.width = "450px";
         // img.style.height = "10vh";
+        img.style.top = "350px";
         if(screen.width <= 420)
         {
             // img.style.top = "-525px";

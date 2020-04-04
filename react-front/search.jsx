@@ -120,10 +120,12 @@ const H_one = styled.h1`
     text-align:center;
     top:100px;
 
-    box-shadow: 0px 3.5px 5px 3.5px #F7BC43;
+    color: white;
+    background-color: rgba(0,0,0,0.4);
     @media screen and (max-width: 400px)
     {
         font-size:1rem;
+        font-weight:700;
     }
 `;
 
@@ -219,6 +221,7 @@ const BookTitle = styled.span`
     }
     @media screen and (max-device-width: 600px)
     {
+        width:100%;
         font-size: 3vh;
     }
 ` 
@@ -259,6 +262,10 @@ const Bookmark = styled.span`
     }
 `;
 
+const SearchingBy = styled.span`
+color:orange;
+`
+
 class search extends React.Component {
     render() {
         const results = this.props.results;
@@ -271,7 +278,7 @@ class search extends React.Component {
                 return (
                     <>
                         <H_one >
-                            "<span id="sreach_value">{searchingBy}</span>" 검색 결과
+                            <SearchingBy id="sreach_value">{searchingBy}</SearchingBy> 검색 결과
                         </H_one>
                         
                     </>
@@ -280,7 +287,7 @@ class search extends React.Component {
                 return (
                     <>
                         <H_one color="red">
-                        <span id="sreach_value">검색결과가 없습니다.</span>
+                        <SearchingBy id="sreach_value">검색결과가 없습니다.</SearchingBy>
                         </H_one>
                     </>
                 )

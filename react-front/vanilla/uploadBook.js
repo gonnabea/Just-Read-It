@@ -75,7 +75,7 @@ const findBooks = async e => {
         span5.innerHTML = book.datetime,
         a.appendChild(span5),
         a.href= book.url,
-        
+        a.target="_blank",
         btn.innerHTML = "선택",
         btn.style.backgroundColor = "orange",
         btn.style.border = "none",

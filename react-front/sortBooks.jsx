@@ -24,18 +24,33 @@ const Bookdiv = styled.a`
     height:400px;
     font-size:1rem;
     margin:0.7rem;
-    border:1px solid red;
+    border:2px solid orange;
     border-radius:5px;
     box-shadow: 0px 4px 5px 1px #F6B93B;
-
+    color: white;
+    background-color: rgba(0,0,0,0.4);
     img:first-child{
         width:200px;
         height:250px;
+        border-radius: 10px;
     }
     div:nth-child(2){
         margin-top:0.5rem;
     }
 
+    &:hover{
+        animation: img_hover 1s linear infinite forwards;
+    }
+
+    @keyframes img_hover{
+        0%{
+            box-shadow: 0px 0px 20px 5px #F6B93B;
+
+        }
+        100%{
+            box-shadow: 0px 0px 29px 0px #F6B93B;
+        }
+    }
 `;
 const Div_box = styled.div`
     position:relative;
@@ -47,6 +62,7 @@ const Div_box = styled.div`
     top:10rem;
     width:100%;
     height:100%;
+    background-color:#E7E3DC;
     @media screen and (max-device-width: 420px) 
     {
         top:13rem;
@@ -61,6 +77,7 @@ const Div_flex = styled.div`
     text-align:center;
     width:100%;
     height:100%;
+    
 `;
 
 const H_one = styled.h1`
@@ -87,6 +104,18 @@ const Book_img = styled.img`
     }
 
 `;
+
+const BookTitle = styled.div`
+font-weight: 700;
+font-size: 20px;
+`
+
+const BackgroundAll = styled.div`
+background-color:#E7E3DC;
+`
+
+
+
 class sortBooks extends React.Component {
     render() {
         const sortedBy = this.props.sortedBy;
@@ -96,9 +125,9 @@ class sortBooks extends React.Component {
 
                 <Bookdiv href={`/${this.props.routes.bookDetail(book.id)}`}>
                     <Book_img src={book.imageUrl} />
-                    <div>
+                    <BookTitle>
                         {book.title}
-                    </div>
+                    </BookTitle>
                     <div>
                         작가 : {book.author}
                     </div>
@@ -116,6 +145,7 @@ class sortBooks extends React.Component {
         return (
             <BaseLayout>
                 <GlobalStyle />
+                <BackgroundAll>
                     {Header(this.props)}
                     {sortNav(this.props)}
                     <Div_box>
@@ -126,6 +156,7 @@ class sortBooks extends React.Component {
                             {books}
                         </Div_flex>
                     </Div_box>
+                </BackgroundAll>
                 <script src="/vanilla/sortNav.js"></script>
             </BaseLayout>
 

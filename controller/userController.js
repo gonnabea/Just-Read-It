@@ -111,11 +111,17 @@ export const profile = async(req, res) => {
         params: {id}
     } = req;
     const currentUser = await User.findById(id).populate("uploadedBooks").populate("reviews");
+    if(currentUser.reviews[0]){
     const connectedBook = await Book.findById(currentUser.reviews[0].connectedBook);
     res.render("profile", {currentUser, connectedBook})
+    }
+    else{
+        res.render("profile", {currentUser})
+    }
 }
 export const search = async(req, res) => {
     const books = await Book.find({}).populate("review");
+    
     let miniSearch = new MiniSearch({
         fields: ['title', 'author', 'description', 'publisher'], // fields to index for full-text search
         storeFields: ['title', 'author', 'imageUrl', 'description', 'publisher', 'review', 'likeFigure', 'genre'] // fields to return with search results

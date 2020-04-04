@@ -65,6 +65,12 @@ const Self_position  = styled.input`
     margin-left: 3rem;
 `;
 
+const Submit = styled.div`
+display:flex;
+justify-content:space-around;
+width:100%;
+`
+
 class bookDetail extends React.Component {
 
     render() {
@@ -112,8 +118,10 @@ class bookDetail extends React.Component {
                         <input type="text" id="yourName" name={user.username} style={{display:"none"}}/>
                         <input type="text" id="profileUrl" name={user.profilePhoto} style={{display:"none"}}/>
                         <InputReview type="textarea" autoComplete="off" name="reviewContent" id="reviewContent" placeholder="책에 대한 평가를 남겨주세요!(150자 제한)"  rows="1" />
-                        <InputRate type="number" name="rate" placeholder="평점을 남겨주세요" id="reviewRate" min={0} max={10} value={0} step={.1} />
+                
+                        <InputRate type="number" name="rate" placeholder="평점" id="reviewRate" min={0} max={10} value={"평점"} step={.1} />
                         <ReviewSubmit id="postReviewBtn" type="submit" value="등록" />
+                        
                     </form>
                 )
             }
@@ -188,9 +196,10 @@ class bookDetail extends React.Component {
         }
         return (
             <BaseLayout>
-            {console.log(this.props.coverColor)}
+            {/* {console.log(this.props.coverColor)} */}
                 <GlobalStyle />
                 {Header(this.props)}
+                <link href="https://fonts.googleapis.com/css2?family=Gaegu&family=Open+Sans&display=swap" rel="stylesheet"/>
                     <BookInfos>
                         <Middle>
                             <Book id="book" coverColor={this.props.coverColor}>
@@ -217,7 +226,7 @@ class bookDetail extends React.Component {
                                         <h3>{totalStar} ({handleNaN(this.props.totalRate)} / 10)</h3>
                                         <h5>{book.author}</h5>
                                         <h4>{book.likeFigure}명이 서재에 보관 중</h4>
-                                        <h3>{translated}</h3>
+                                        <h3> 등록일: {translated}</h3>
                                         <h3> 조회수: {book.viewsFigure}회 </h3>
                                         <h3>{price()}</h3>
                                         <h3>{publisher()} </h3>
@@ -415,9 +424,10 @@ const BookContent = styled.section`
 `
 
 const BookContentP  = styled.p`
+    font-family: 'Gaegu', cursive;
     font-weight:600;
-   
-`
+    line-height:1.75;
+`;
 
 const LogoImage = styled.img`
   width:8rem;
@@ -434,6 +444,15 @@ const BackCoverContent = styled.span`
     flex-direction:column;
     justify-content:space-between;
     height:60%;
+    font-size:1rem;
+
+    @media scrren and (max-device-width: 420px)
+    {
+        &>*{
+            font-size:2rem;
+        }
+    }
+  
 `;
 
 const Avatar = styled.section`
@@ -555,8 +574,10 @@ const Book = styled.section`
         
         p:nth-child(1){
             /* margin: 2vw; */
-            margin: 40px 50px 40px 50px;
+            margin: 40px 50px 0px 50px;
+            
         }
+        
         div:nth-child(2)
         {
             z-index:10;
@@ -572,7 +593,7 @@ const Book = styled.section`
         @media screen and (max-device-width: 420px) 
         {
             width: 500px;
-            height: 700px
+            height: 650px
         }
     }
 
@@ -583,7 +604,7 @@ const Book = styled.section`
         height: 70vh;
    
         background-color: ${props => props.coverColor ? props.coverColor : "black"};
-        font-size: 2vh;
+        /* font-size: 2vh; */
         display:flex;
         background-size: cover;
         text-overflow:hidden;
@@ -935,16 +956,21 @@ const Comment = styled.div`
 `;
 
 const InputReview = styled.textarea`
-    border: solid 2px black;
+    margin-top:10px;
+    border: solid orange 1px;
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
     width: 20vw;
     height:3.5vh;
-    border-radius:15px;
+    border-radius:10px;
     resize:none;
     overflow:hidden;
+    outline: none;
+    
+    color:orange;
+    font-weight:700;
     :focus{        
         animation: focus 0.5s;
         animation-fill-mode:forwards;
@@ -956,9 +982,12 @@ const InputReview = styled.textarea`
     @keyframes focus {
         0%{
             height:0vh;
+            box-shadow: 0;
         }
         100%{
             height:20vh;
+            box-shadow: 2px 2px 10px;
+            border: none;
         }
     }
 
@@ -976,8 +1005,10 @@ const InputReview = styled.textarea`
     }
 `
 const InputRate = styled.input`
-    border: solid 2px black;
+    border: solid 1px orange;
     text-align:center;
+    border-radius: 10px;
+    outline: none;
 `
 const ReviewSubmit = styled.input`
     text-align:center;
@@ -985,7 +1016,7 @@ const ReviewSubmit = styled.input`
     margin: 1rem auto;
     padding:2px;
     border-radius:5px;
-    
+    margin-left: 60px;
     background:#F6BD47;
     color:#fff;
     border:none;

@@ -13,16 +13,29 @@ const Div = styled.div`
 `;
   
 const Recom_div = styled.div`
+    position: relative;
     overflow:auto;
     overflow-x:hidden;
-    grid-area: span 1/ span 6;
+    grid-area: span 1/ span 5;
     background-image:url("https://cdn.pixabay.com/photo/2013/03/02/02/40/portrayal-89193_1280.jpg");
+    
     grid-gap: 10px;
-
+    height: 400px;
+    width:100vw;
+    left: -75px;
     @media screen and (max-width: 1300px)
     { 
-        height:100%;
+        width:100vw;
         grid-area: span 1/ span 3;
+    }
+
+    @media screen and (min-width: 1600px)
+    { 
+        left: -85px;
+    }
+    @media screen and (max-device-width: 420px)
+    { 
+        left: -50px;
     }
 `;
 
@@ -152,6 +165,10 @@ const Reco_span = styled.span`
     margin-top:1rem;
     margin-right:5rem;
     width:500px;
+    :first-child{
+        font-size:2rem;
+        font-weight:700;
+    }
 `;
 
 const A = styled.a`
@@ -168,20 +185,30 @@ const Reflex = styled.div`
 const Grid_box = styled.div`
     display:grid;
     height:100%;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: repeat(5,1fr);
     text-align:center;
-     background-color:#F6F6F6;
+    
+    width: 90%;
+    position:absolute;
+    left: 75px;
     @media screen and (max-width: 1450px)
     { 
         text-align:center;
         grid-template-columns: repeat(5,1fr);
+    }
+    @media screen and (min-width: 1600px)
+    { 
+        left: 85px;
     }
     @media screen and (max-width: 1300px)
     { 
         text-align:center;
         grid-template-columns: repeat(3,1fr);
     }
-
+    @media screen and (max-device-width: 420px)
+    { 
+        left: 50px;
+    }
 `;
 
 const Text_box = styled.div`
@@ -232,6 +259,11 @@ const Header_line = styled.div`
     display:flex;
     flex-direction:column;
     align-items:space-between;
+    background-color:#e7e3dc;
+    /* margin-right:50px; */
+    /* margin-left:50px; */
+    
+    
 `;
 
 const Book = styled.a`
@@ -372,24 +404,30 @@ const SlideBtn = styled.span`
 `;
  
 const Recommen = styled.h1`
-    margin-top:6rem;
+    margin-top:${props => props.marginTop || "6rem"};
     margin-bottom:1rem;
     color:white;
     display:flex;
     justify-content:flex-start;
+    margin-top: 10%;
     @media screen and (max-device-width: 420px)
     {
         margin-top:10rem;
     }
 `;
 
+
+
 function Home(props) {
 
     function recommendList() {
-        if (props.recomendBooks) {
+        if (props.recomendBooks && props.recomendBooks.length > 0) {
+            return (<div style={{marginTop:"60px"}}></div>);
+        }
+        else if (props.recomendBooks && props.recomendBooks.length == 0){
             return (
                 <Recommen>
-                    추천 받으신 책
+                    북마크 하셔서 추천을 받아보세요
                 </Recommen>
             )
         }
@@ -403,12 +441,12 @@ function Home(props) {
     }
 
     function logincheck(){
-        if(props.user)
+        if(props.recomendBooks && props.recomendBooks.length > 0)
         {
             return(
                     <div style={{ display: "flex", justifyContent: "flex-start" }}>
                         <Button id="btn_prev" >
-                            Prev
+                           {`<`} Prev
                         </Button>
                         <Re_book_pos>
                             <i id="icon_1" className="fas fa-circle"></i>
@@ -416,7 +454,7 @@ function Home(props) {
                             {/* <i id="icon_3" className="fas fa-circle"></i> */}
                         </Re_book_pos>
                         <Button id="btn_next">
-                            Next
+                            Next >
                         </Button>
                     </div>
             );
@@ -437,10 +475,12 @@ function Home(props) {
                     }
                     else {
                         return (
+                          
                             <Li className="reco_list">
                                 <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
                                     <Image height="40vh" width="30vh" src={argument.imageUrl} />
                                     <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"flex-end"}}>
+                                        <Reco_span>추천 받으신 책</Reco_span>
                                         <Reco_span>
                                             제목: {/* <br /> */} {argument.title}
                                         </Reco_span>
@@ -448,7 +488,7 @@ function Home(props) {
                                             작가: {/* <br /> */} {argument.author}
                                         </Reco_span>
                                         <Reco_span>
-                                            본문: {/* <br /> */} {argument.description}
+                                            본문: {/* <br /> */} {argument.description.substring(0, 300)}
                                         </Reco_span>
                                     </div>
                                 </Recom_a>
@@ -541,20 +581,18 @@ function Home(props) {
             <GlobalStyle />
             {Header(props)}
             {sortNav(props)}
+           
             <Grid_box>
-
                 <Recom_div>
                     {recommendList()}
                     {logincheck()}
-                   
                     <Ul>
                         {recomSys()}
                     </Ul>
                 </Recom_div>
-
                 {bookList}
-              
             </Grid_box>
+            
          
             <script src="/vanilla/home.js"></script>
             <script src="/vanilla/sortNav.js"></script>

@@ -142,9 +142,10 @@ const Back_cover = styled.div`
     width: 295px;
 	height: 400px;
     /* background-color:${props => props.coverColor ? props.coverColor : "black"}; */
-     background-image:url("https://cdn.pixabay.com/photo/2017/07/20/09/35/particles-2521732_960_720.jpg");  
+    background-color:#E7E3DC;
+     /* background-image:url("https://cdn.pixabay.com/photo/2017/07/20/09/35/particles-2521732_960_720.jpg");   */
     /* background-image:url("https://cdn.pixabay.com/photo/2019/12/21/07/44/frame-4709861_960_720.png");  */
-    color:white;
+    color:black;
     transform: rotateY(-90deg) translateX(-147.5px) translateZ(20px);
     overflow:hidden;
     text-overflow:hidden;
@@ -284,7 +285,6 @@ const Span = styled.span`
 const H2 = styled.h2`
     margin-top:12vh;
     margin-bottom:3rem;
-
 `;
 
 const Background_img = styled.div`

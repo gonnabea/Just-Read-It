@@ -495,7 +495,7 @@ function Header(props) {
   return (
     <BaseLayout>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-
+     
       <GlobalStyle />
       <Div className="class_name_header" >
         <a href={routes.home}>
