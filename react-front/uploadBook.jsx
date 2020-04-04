@@ -29,7 +29,7 @@ const Box_img = styled.div`
     text-align:center;
     box-shadow: -1px 0px 21px 0px rgba(0,0,0,0.75);
     border-radius:10px;
-    border: 1px solid red;
+    border: 2px solid orange;
     padding:3rem;
     background-color:rgba(229, 224, 149, 0.7);
     z-index:2;

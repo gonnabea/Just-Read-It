@@ -21,7 +21,7 @@ const Bookdiv = styled.a`
     text-align:center;
     color:black;
     width:250px;
-    height:400px;
+    height:500px;
     font-size:1rem;
     margin:0.7rem;
     border:2px solid orange;
@@ -37,6 +37,7 @@ const Bookdiv = styled.a`
     div:nth-child(2){
         margin-top:0.5rem;
     }
+    
 
     &:hover{
         animation: img_hover 1s linear infinite forwards;
@@ -59,14 +60,14 @@ const Div_box = styled.div`
     align-items:center;
     justify-content:center;
     text-align:center;
-    top:10rem;
+    top:7rem;
     width:100%;
     height:100%;
     background-color:#E7E3DC;
 
     @media screen and (max-device-width: 420px) 
     {
-        top:13rem;
+        top:10rem;
     }
 `;
 
@@ -83,6 +84,7 @@ const Div_flex = styled.div`
 
 const H_one = styled.h1`
     margin:1rem;
+    color:orange;
 `;
 
 const Book_img = styled.img`
@@ -117,9 +119,24 @@ const BackgroundAll = styled.div`
     height:100%;
     background-color:#E7E3DC;
     overflow: auto;
-`
+`;
 
+const Bookmark = styled.span`
+    position: absolute;
+    font-size:2rem;
+    margin-left: 100px;
+    color: white;
+    margin-top: -10px;
 
+    &>span{
+        position:absolute;
+        font-size:1rem;
+        color:orange;
+        margin-left: -18px;
+        margin-top: 8px;
+        font-weight: 700;
+    }
+`;
 
 class sortBooks extends React.Component {
     render() {
@@ -142,6 +159,11 @@ class sortBooks extends React.Component {
                     <div>
                         분류 : {sortedBy}
                     </div>
+                    <Bookmark>
+                        <i className="fas fa-bookmark"></i>
+                        <span>{book.likeFigure}</span>
+                    </Bookmark>
+
                     {/* <div>({book.enrolledBy[0].username}님이 등록)</div>
                     <div>{JSON.stringify(book.createdAt)}</div> */}
                 </Bookdiv>
@@ -154,6 +176,7 @@ class sortBooks extends React.Component {
                     {sortNav(this.props)}
                 <BackgroundAll>
                     <Div_box>
+                        
                         <H_one id="sort_value">
                             {sortedBy}
                         </H_one>

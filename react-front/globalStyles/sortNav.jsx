@@ -13,7 +13,7 @@ const GenreSort = styled.nav`
     position:fixed;
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
     display:none;
     color: white;
