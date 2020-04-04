@@ -16,7 +16,7 @@ const Bookdiv = styled.a`
     /* float:left; */
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
+    justify-content:flex-start;
     align-items:center;
     text-align:center;
     color:black;
@@ -37,7 +37,9 @@ const Bookdiv = styled.a`
     div:nth-child(2){
         margin-top:0.5rem;
     }
-    
+    &>div{
+        margin-top:0.5rem;
+    }
 
     &:hover{
         animation: img_hover 1s linear infinite forwards;
