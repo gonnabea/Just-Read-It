@@ -78,7 +78,6 @@ function revertRotate2(){
 function open(){
     book.style.animation="moveBook 0.5s ease-in-out forwards";
     frontCover.style.animation="openBook 0.5s ease-in-out forwards";
-    
     coverImg.style.animation = "fadeImage 0.5s forwards";
     frontCover.style.transfrom="translateZ(2vw)"
     book.style.perspective= "130vw";
@@ -203,7 +202,7 @@ function book_description_length() {
     book_page.innerHTML =` 0 / ${arr.length}`;
 }
 
-const nextPage = async ()=>{
+const nextPage = ()=>{
     // console.log(origin_description)
     let arr=[];
     
@@ -219,7 +218,7 @@ const nextPage = async ()=>{
     for(i = 0; i < arr.length; i++)
     {
         
-        arr[i] = await origin_description.substring(i == 0 ?  0 :  (i == 1 ? 350 : (i * 350 )), i == 0 ? 350 : (i + 1) * 350);
+        arr[i] = origin_description.substring(i == 0 ?  0 :  (i == 1 ? 350 : (i * 350 )), i == 0 ? 350 : (i + 1) * 350);
     }
 
     // console.log(arr);
@@ -248,7 +247,7 @@ const nextPage = async ()=>{
 
 }
 
-const prevPage = async()=>{
+const prevPage = () =>{
     let arr=[];
     
     if(origin_description.length / 350 == parseInt(origin_description.length / 350))
@@ -262,7 +261,7 @@ const prevPage = async()=>{
 
     for(i = 0; i < arr.length; i++)
     {
-        arr[i] = await origin_description.substring(i == 0 ?  0 :  (i == 1 ? 350 : (i * 350 )), i == 0 ? 350 : (i + 1) * 350);
+        arr[i] = origin_description.substring(i == 0 ?  0 :  (i == 1 ? 350 : (i * 350 )), i == 0 ? 350 : (i + 1) * 350);
     }
 
     for(i = 0; i < arr.length; i++)
@@ -299,7 +298,7 @@ function handleEditBtn(){
 
 
 async function bookInit(){
-    const book_description =await document.getElementById("book_description");
+    const book_description = document.getElementById("book_description");
     origin_description = book_description.innerHTML;
 
     rotateBtn.addEventListener("click", rotate);

@@ -50,7 +50,6 @@ const Check_user_div = styled.div`
             border-radius:10px;
             overflow:hidden;
             outline: none;
-            color:;
             font-weight:700;
 
         }
@@ -351,7 +350,7 @@ class bookDetail extends React.Component {
                                         <h3>{publisher()} </h3>
                                         <h3>{publishedAt()} </h3>
                                     </BackCoverContent>
-                                    <a href={book.buyLink} target="_"> 
+                                    <a href={book.buyLink} target="_blank"> 
                                         <LogoImage src="/images/orangeBook.png">
                                         </LogoImage>
                                     <span style={{position:"absolute",right:"35%",
