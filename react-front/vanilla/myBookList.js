@@ -5,8 +5,8 @@ let My_book_list_form = document.querySelectorAll(".My_book_list_form");
 let pos = 0;
 const handle = async () => {
 
-    let Back_cover = await document.querySelectorAll("Back_cover");
-
+    let Back_cover = document.querySelectorAll("Back_cover");
+    /*
     for (i = 0; i < my_book_list_side_cover.length; i++) {
         let r = Math.random() * 256;
         let g = Math.random() * 256;
@@ -18,7 +18,7 @@ const handle = async () => {
         my_book_list_side_cover[i].style.background = "#" + ((1 << 24) * Math.random() | 0).toString(16);
         my_book_list_side_cover[i].style.color = "white";
     }
-
+*/
     if (my_book_list_book.length < 11) {
         let img = document.createElement("img");
         img.src = "/images/shelf.png";

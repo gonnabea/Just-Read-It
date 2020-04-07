@@ -123,17 +123,20 @@ const Side_cover = styled.div`
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    background-color:${props => props.coverColor ? props.coverColor : "pink"};
+    background-color:${props => props.coverColor ? props.coverColor : "skyblue"};
+    
+    background-size: cover;
+    border:solid 2px black;
     color:white;
     z-index:3;
-    color:red;
+    
     font-size:100%;
     overflow:hidden;
     writing-mode: vertical-rl;
     text-orientation: mixed;
     text-align:center;
     border-radius:5px;
-    border:0.3px solid white;
+    
 `;
 
 const Back_cover = styled.div`
@@ -141,8 +144,8 @@ const Back_cover = styled.div`
     z-index:-1;
     width: 295px;
 	height: 400px;
-    /* background-color:${props => props.coverColor ? props.coverColor : "black"}; */
-    background-color:#E7E3DC;
+    background-color:${props => props.coverColor ? props.coverColor : "#E7E3DC"};
+    
      /* background-image:url("https://cdn.pixabay.com/photo/2017/07/20/09/35/particles-2521732_960_720.jpg");   */
     /* background-image:url("https://cdn.pixabay.com/photo/2019/12/21/07/44/frame-4709861_960_720.png");  */
     color:black;

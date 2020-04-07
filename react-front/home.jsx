@@ -18,7 +18,7 @@ const Recom_div = styled.div`
     overflow-x:hidden;
     grid-area: span 1/ span 5;
     background-image:url("https://cdn.pixabay.com/photo/2013/03/02/02/40/portrayal-89193_1280.jpg");
-    
+    background-size:cover;
     grid-gap: 10px;
     height: 600px;
     width:100vw;
@@ -60,7 +60,7 @@ const Recom_a = styled.a`
 `;
 const Ul = styled.ul`
     display:flex;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(0,0,0,0.3);
     width:1000%;
 `;
 
@@ -423,6 +423,16 @@ const BackgroundAll = styled.div`
     background-color:#E7E3DC;
     overflow: auto;
 `
+const Textarea = styled.section`
+    span:nth-child(2){
+        font-size:1.7rem;
+        color:orange;
+    }
+    span:nth-child(3){
+        font-size:1.1rem;
+        color:orange;
+    }
+`   
 
 function Home(props) {
 
@@ -486,18 +496,18 @@ function Home(props) {
                             <Li className="reco_list">
                                 <Recom_a href={`/${props.routes.bookDetail(argument.id)}`}>
                                     <Image height="40vh" width="30vh" src={argument.imageUrl} />
-                                    <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"flex-end"}}>
+                                    <Textarea style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"flex-end"}}>
                                         <Reco_span>추천 받으신 책</Reco_span>
                                         <Reco_span>
                                             제목: {/* <br /> */} {argument.title}
                                         </Reco_span>
                                         <Reco_span>
-                                            작가: {/* <br /> */} {argument.author}
+                                            {/* <br /> */} {argument.author}  저
                                         </Reco_span>
                                         <Reco_span>
-                                            본문: {/* <br /> */} {argument.description.substring(0, 300)}
+                                           {/* <br /> */} {argument.description.substring(0, 300)}
                                         </Reco_span>
-                                    </div>
+                                    </Textarea>
                                 </Recom_a>
                             </Li>
                         )
