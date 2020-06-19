@@ -54,6 +54,7 @@ const headerInit = async ()=>{
                 header_search_input.style.width = `20vh`
             }
             //git branch
+            //git fetch master
             //git checkout jiwon
             //git add .
             //git commit -m "sdf;lkj"

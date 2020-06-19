@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import routes from "../../routes"
@@ -470,8 +470,8 @@ function Header(props) {
     if (props.user) {
       return (
         <>
-          <MenuLink href={`/${props.routes.profile(props.user.id)}`}>
-            <MenuNav>
+          <MenuLink  href={`/${props.routes.profile(props.user.id)}`}>
+            <MenuNav >
               😎 프로필
             </MenuNav>
           </MenuLink>
