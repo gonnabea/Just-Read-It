@@ -460,7 +460,6 @@ function Home(props) {
             )
         }
     }
-
     function logincheck(){
         if(props.recomendBooks && props.recomendBooks.length > 0)
         {
@@ -602,22 +601,20 @@ function Home(props) {
             <GlobalStyle />
             {Header(props)}
             {sortNav(props)}
-           <BackgroundAll>
-            <Grid_box>
-                <Recom_div>
-                    {recommendList()}
-                    {logincheck()}
-                    <Ul>
-                        {recomSys()}
-                    </Ul>
-                </Recom_div>
-                {bookList}
-            </Grid_box>
-           </BackgroundAll>
-            
-         
-            <script src="/vanilla/home.js"></script>
-            <script src="/vanilla/sortNav.js"></script>
+            <BackgroundAll id="BackgroundAll">
+                <Grid_box>
+                    <Recom_div>
+                        {recommendList()}
+                        {logincheck()}
+                        <Ul>
+                            {recomSys()}
+                        </Ul>
+                    </Recom_div>
+                    {bookList}
+                </Grid_box>
+            </BackgroundAll>
+            <script defer src="/vanilla/home.js"></script>
+            <script defer src="/vanilla/sortNav.js"></script>
         </BaseLayout>
     );
 }

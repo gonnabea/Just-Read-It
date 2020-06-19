@@ -2,7 +2,6 @@
 
 const prev = document.getElementById("btn_prev");
 const next = document.getElementById("btn_next");
-
 const icon_1 = document.getElementById("icon_1");
 const icon_2 = document.getElementById("icon_2");
 const icon_3 = document.getElementById("icon_3");
@@ -140,10 +139,8 @@ const nextBook = async (e) =>{
         reco_list[i].style.animation = `recomment_slid 0.5s ease-in-out forwards`;
     }
 }
-
-
+ 
 const homeInit = async () => {
-    
     Shuffle();
 
     if(prev)
