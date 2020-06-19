@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import routes from "../../routes"
 import Title from "../title";
@@ -412,6 +413,32 @@ const Icon_nav_ul = styled.ul`
     }
 
 `;
+
+const LinkInLogout = styled.a`
+  color:black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 45%;
+  font-size: 20px;
+`;
+
+const LinkInLogout_text = styled.span`
+  color:black;
+  margin-left: 10px;
+  font-weight: 700;
+`
+const LinkInLogoutBox = styled.div`
+  background-color: rgba(252, 168, 63, 0.5);
+  height:100%;
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 0 40px white;
+`;
+
 function Header(props) {
 
   function ProfileLink() {
@@ -445,7 +472,23 @@ function Header(props) {
     }
     else {
       return (
-        <i style={{ cursor: "pointer", color: "black" }} className="fas fa-bars fa-3x" id="header_icon_bars"></i>
+      <>
+        <LinkInLogoutBox>
+          <LinkInLogout href={routes.login}>
+            <i className="fas fa-key"></i>
+            <LinkInLogout_text>
+              Login
+            </LinkInLogout_text>
+          </LinkInLogout>
+          <LinkInLogout href={routes.join}>
+            <i class="fas fa-sign-in-alt"></i>
+            <LinkInLogout_text>
+              Join
+            </LinkInLogout_text>
+          </LinkInLogout>
+        </LinkInLogoutBox>
+      </>
+       
       )
     }
   }
@@ -478,13 +521,13 @@ function Header(props) {
           <A href={routes.login}>
             <i className="fas fa-key fa-2x"></i>
             <Span_size>
-              로그인
+              Login
             </Span_size>
           </A>
           <A href={routes.join}>
             <i class="fas fa-sign-in-alt fa-2x"></i>
             <Span_size>
-              가입
+              Join
             </Span_size>
           </A>
         </>
@@ -495,6 +538,7 @@ function Header(props) {
   return (
     <BaseLayout>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+      <script defer src="/vanilla/header.js"></script>
      
       <GlobalStyle />
       <Div className="class_name_header" >
@@ -527,9 +571,9 @@ function Header(props) {
           </Form>
         </Search_box>
 
+          <ProfileImage />
         <Icon_box id="header_icon_box">
 
-          <ProfileImage />
           <Icon_nav_ul id="header_icon_ul">
             <li>
               <ProfileLink />
@@ -542,7 +586,6 @@ function Header(props) {
         </Icon_box>
 
       </Div>
-      <script src="/vanilla/header.js"></script>
     </BaseLayout>
 
   );

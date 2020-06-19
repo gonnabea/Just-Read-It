@@ -14,15 +14,14 @@ const Div = styled.div`
   
 const Recom_div = styled.div`
     position: relative;
-    overflow:auto;
+    overflow:hidden;
     overflow-x:hidden;
     grid-area: span 1/ span 5;
     background-image:url("https://cdn.pixabay.com/photo/2013/03/02/02/40/portrayal-89193_1280.jpg");
     background-size:cover;
-    grid-gap: 10px;
+    justify-self: center;
     height: 600px;
-    width:100vw;
-    left: -75px;
+    width: 100vw;
     @media screen and (max-width: 1300px)
     { 
         width:100vw;
@@ -31,11 +30,11 @@ const Recom_div = styled.div`
 
     @media screen and (min-width: 1600px)
     { 
-        left: -85px;
+       
     }
     @media screen and (max-device-width: 420px)
     { 
-        left: -50px;
+       
     }
 `;
 
@@ -140,7 +139,7 @@ const Button = styled.button`
 
 const Image = styled.img`
     width:${props => props.width || "13.5rem"};
-    height:${props => props.width || "100%"};
+    height:${props => props.width || "300px"};
     border-radius:5px;
     :hover{
          /* animation: hover_shadow 0.1s linear forwards;  */
@@ -186,11 +185,12 @@ const Grid_box = styled.div`
     display:grid;
     height:100%;
     grid-template-columns: repeat(5,1fr);
+    align-self: center;
+    justify-self: center;
     text-align:center;
-    
     width: 90%;
     position:absolute;
-    left: 75px;
+    
     @media screen and (max-width: 1450px)
     { 
         text-align:center;
@@ -198,7 +198,7 @@ const Grid_box = styled.div`
     }
     @media screen and (min-width: 1600px)
     { 
-        left: 85px;
+        
     }
     @media screen and (max-width: 1300px)
     { 
@@ -207,19 +207,20 @@ const Grid_box = styled.div`
     }
     @media screen and (max-device-width: 420px)
     { 
-        left: 50px;
+        
     }
 `;
 
 const Text_box = styled.div`
-    width:100%;
+    width:13.5rem;
+    height: 160px;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:space-around;
     text-align:center;
     overflow:hidden;
     text-overflow:ellipsis;
-
+    
     &>h1:first-child:hover, &>h2:nth-child(2):hover{
         text-decoration:underline;
        
@@ -246,8 +247,8 @@ const Spantwo = styled.span`
 `;
 
 const H_one = styled.h1`
-    font-size: 1rem;
-  
+    font-size: 1.2rem;
+    text-align: center;
 `;
 
 const H_two = styled.h2`
@@ -410,6 +411,7 @@ const Recommen = styled.h1`
     display:flex;
     justify-content:flex-start;
     margin-top: 10%;
+    margin-left: 40px;
     @media screen and (max-device-width: 420px)
     {
         margin-top:10rem;
@@ -421,7 +423,9 @@ const BackgroundAll = styled.div`
     width:100%;
     height:100%;
     background-color:#E7E3DC;
-    overflow: auto;
+    display: flex;
+    overflow-x: hidden;
+    justify-content: center;
 `
 const Textarea = styled.section`
     span:nth-child(2){
@@ -471,7 +475,7 @@ function Home(props) {
                             {/* <i id="icon_3" className="fas fa-circle"></i> */}
                         </Re_book_pos>
                         <Button id="btn_next">
-                            Next >
+                            Next {`>`}
                         </Button>
                     </div>
             );

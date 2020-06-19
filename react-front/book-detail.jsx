@@ -13,7 +13,7 @@ const Check_user_div = styled.div`
     background-color:#E7E3DC;
     justify-content: center;
     align-items: center;
-
+ 
     &>form{
         width:500px; 
         display:flex;
@@ -333,7 +333,7 @@ class bookDetail extends React.Component {
                                     </BookContentP>
                                     <PageController>
                                         <BackPage id="prev_btn">{`<`}</BackPage>
-                                        <NextPage id="next_btn"> > </NextPage>
+                                        <NextPage id="next_btn"> {`>`} </NextPage>
                                     </PageController>
                                 </BookContent>
                                 <div></div>
@@ -537,6 +537,7 @@ const BookContent = styled.section`
         text-align:center;
         justify-content:center;
     }
+    height: 100%;
     /* overflow:hidden;
     text-overflow:hidden; */
 `
@@ -794,111 +795,111 @@ const Book = styled.section`
             height: 700px
         }
     }
-        
-@keyframes book-rotate {
-    0%{
-        transform: rotateY(0deg);
+            
+    @keyframes book-rotate {
+        0%{
+            transform: rotateY(0deg);
+        }
+        70%{    
+            box-shadow: 0px 0px 0px;
+        }
+        100%{
+            transform: rotateY(30deg);
+        }
     }
-    70%{    
-        box-shadow: 0px 0px 0px;
-    }
-    100%{
-        transform: rotateY(30deg);
-    }
-}
 
-@keyframes revert-rotate2{
-    0%{
-        transform: rotateY(30deg);
+    @keyframes revert-rotate2{
+        0%{
+            transform: rotateY(30deg);
+        }
+        70%{    
+            box-shadow: 0px 0px 0px;
+        }
+        100%{
+            transform: rotateY(0deg);
+        }
     }
-    70%{    
-        box-shadow: 0px 0px 0px;
-    }
-    100%{
-        transform: rotateY(0deg);
-    }
-}
 
-@keyframes book-rotate2 {
-    0%{
-        transform: rotateY(0deg);
+    @keyframes book-rotate2 {
+        0%{
+            transform: rotateY(0deg);
+        }
+        100%{
+            transform: rotateY(180deg);
+            
+        }
     }
-    100%{
-        transform: rotateY(180deg);
-        
-    }
-}
 
-@keyframes revert-rotate {
-    0%{
-        transform: rotateY(180deg); 
-        
+    @keyframes revert-rotate {
+        0%{
+            transform: rotateY(180deg); 
+            
+        }
+        100%{
+            transform: rotateY(0deg);
+            
+        }
     }
-    100%{
-        transform: rotateY(0deg);
-        
-    }
-}
 
-@keyframes moveBook {
-    0%{
-        
-        transform: translateX(0vw) ;
-    }100%{
-        
-        transform: translateX(40vw);
+    @keyframes moveBook {
+        0%{
+            
+            transform: translateX(0vw) ;
+        }100%{
+            
+            transform: translateX(40vw);
+        }
     }
-}
 
-@keyframes openBook {
-    0%{
-        transform: rotateY(0deg);
-        box-shadow: 0px 0px 0px;
-        
+    @keyframes openBook {
+        0%{
+            transform: rotateY(0deg);
+            box-shadow: 0px 0px 0px;
+            
+        }
+        100%{
+            transform: rotateY(-150deg);
+            box-shadow: 10px 10px 10px;
+        }
     }
-    100%{
-        transform: rotateY(-150deg);
-        box-shadow: 10px 10px 10px;
+    @keyframes fadeImage {
+        0%{
+            opacity:1;
+        }
+        100%{
+            opacity:0;
+        }
+    }      
+    @keyframes revertBook {
+        0%{  
+            transform: translateX(40vw) ;
+        }100%{
+            
+            transform: translateX(0vw);
+        }
     }
-}
-@keyframes fadeImage {
-    0%{
-        opacity:1;
-    }
-    100%{
-        opacity:0;
-    }
-}      
-@keyframes revertBook {
-    0%{  
-        transform: translateX(40vw) ;
-    }100%{
-        
-        transform: translateX(0vw);
-    }
-}
 
-@keyframes closeBook {
-    0%{
-        transform: rotateY(-150deg);
-        box-shadow: 0px 0px 0px;
+    @keyframes closeBook {
+        0%{
+            transform: rotateY(-150deg);
+            box-shadow: 0px 0px 0px;
+        }
+        100%{
+            transform: rotateY(0) translateZ(2vw);
+            box-shadow: 10px 10px 10px;
+        }
+    }  
+    @keyframes showImage {
+        0%{
+            opacity:0;
+        }
+        50%{
+            opacity:0;
+        }
+        100%{
+            opacity:1;
+        }
     }
-    100%{
-        transform: rotateY(0) translateZ(2vw);
-        box-shadow: 10px 10px 10px;
-    }
-}  
-@keyframes showImage {
-    0%{
-        opacity:0;
-    }
-    50%{
-        opacity:0;
-    }
-    100%{
-        opacity:1;
-    }
-}
 `;
 
 
@@ -1238,22 +1239,22 @@ const ControlBook = styled.div`
 
 const ControlBtn = styled.button`
 
-left: 100px;
- background-color:white;
- font-weight:700;
- color:black;
- margin-left:20px;
- width:100px;
- height:50px;
- border-radius:20px;
- font-size:15px;
- border: solid 2px black;
- outline:none;
- cursor:pointer;
- :hover{
-     background-color:#F6B93B;
-     color:white;
- }
+    left: 100px;
+    background-color:white;
+    font-weight:700;
+    color:black;
+    margin-left:20px;
+    width:100px;
+    height:50px;
+    border-radius:20px;
+    font-size:15px;
+    border: solid 2px black;
+    outline:none;
+    cursor:pointer;
+    :hover{
+        background-color:#F6B93B;
+        color:white;
+    }
 `
 
 export default bookDetail

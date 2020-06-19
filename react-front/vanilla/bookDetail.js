@@ -312,7 +312,9 @@ async function bookInit(){
     book_description_length();
     next_btn.addEventListener("click", nextPage);
     prev_btn.addEventListener("click", prevPage);
+    if(editBtn){
     editBtn.addEventListener("click", handleEditBtn);
+    }
 }
 
 bookInit();
