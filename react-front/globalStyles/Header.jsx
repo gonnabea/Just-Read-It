@@ -447,7 +447,6 @@ const LinkInLogoutBox = styled.div`
 
 const MenuLink = styled.a`
   width: 100%;
-  text-align: center;
   height: 20%;
   display: flex;
   flex-direction: column;
@@ -462,6 +461,8 @@ const MenuLink = styled.a`
 
 const MenuNav = styled.nav`
   width: 100%;
+  position: relative;
+  left: 10px;
 `
 
 function Header(props) {
