@@ -14,9 +14,10 @@ const commentList = document.getElementById("commentList");
 
 const prev_btn = document.getElementById("prev_btn");
 const next_btn = document.getElementById("next_btn");
-const book_page = document.getElementById("book_page");
+const bookPage = document.getElementById("bookPage");
 const editBtn = document.getElementById("editBtn");
 const editContent = document.getElementById("editContent");
+const bookContent = document.getElementById("book_description");
 
 
 
@@ -185,9 +186,9 @@ margin-top:0.3rem;
 background-color: rgba(255,255,255,0.3);
 width:25vw;
 */
-let origin_description = "";
+//let origin_description = "";
 
-
+/*
 
 function book_description_length() {
     // console.log(book_description.innerHTML.length);
@@ -280,6 +281,10 @@ const prevPage = () =>{
     // let description = origin_description.substring(0, 350);
     // book_description.innerHTML = description;
 }
+
+*/
+
+
 function handleEditBtn(){
 
     editContent.style.display = "flex";    
@@ -296,10 +301,43 @@ function handleEditBtn(){
 
 }
 
+let pages = [];
+let textNumber = 200;
+let dividedContent = "";
+let currentPage = 0;
+let totalPage = 0;
+
+function pageInit(){
+    totalPage = parseInt(bookContent.innerHTML.length / textNumber);
+    bookPage.innerHTML = `${currentPage+1} / ${totalPage+1}`;
+    if(totalPage > 1){
+        for(let i=0; i <= totalPage; i++ ) {
+            const page = `${bookContent.innerHTML.substring(textNumber * i, textNumber * (i+1) ).replace(/(?:\r\n|\r|\n)/g, '<br>')} -`;
+            pages.push(page);
+        }
+        bookContent.innerHTML = pages[currentPage];
+    }
+
+}
+
+function nextPage(){
+    if(pages[currentPage+1] !== undefined){
+        bookContent.innerHTML = pages[currentPage+=1];
+        bookPage.innerHTML = `${currentPage+1} / ${totalPage+1}`;
+    }
+}
+
+function prevPage(){
+    if(pages[currentPage-1] !== undefined){
+    bookContent.innerHTML = pages[currentPage-=1];
+    bookPage.innerHTML = `${currentPage+1} / ${totalPage+1}`;
+    }
+}
+
 
 async function bookInit(){
-    const book_description = document.getElementById("book_description");
-    origin_description = book_description.innerHTML;
+    //const book_description = document.getElementById("book_description");
+    //origin_description = book_description.innerHTML;
 
     rotateBtn.addEventListener("click", rotate);
     openBtn.addEventListener("click", open);
@@ -309,12 +347,14 @@ async function bookInit(){
         postReview.addEventListener("submit", postReviewApi);
     }
 
-    book_description_length();
+    //book_description_length();
+    pageInit();
     next_btn.addEventListener("click", nextPage);
     prev_btn.addEventListener("click", prevPage);
     if(editBtn){
     editBtn.addEventListener("click", handleEditBtn);
     }
+    
 }
 
 bookInit();

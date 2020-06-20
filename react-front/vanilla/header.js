@@ -59,7 +59,9 @@ const headerInit = async ()=>{
             //git add .
             //git commit -m "sdf;lkj"
         })
-    incon_box.addEventListener("click", showPopUp);
+        if(incon_box){
+            incon_box.addEventListener("click", showPopUp);
+        }
 }
  
 headerInit();

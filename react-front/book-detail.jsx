@@ -329,8 +329,8 @@ class bookDetail extends React.Component {
                                 <BookContent>
                                     <BookContentP id="book_description">
                                         {book.description}
-                                        <div id="book_page">0</div>
                                     </BookContentP>
+                                        <BookPage id="bookPage">0</BookPage>
                                     <PageController>
                                         <BackPage id="prev_btn">{`<`}</BackPage>
                                         <NextPage id="next_btn"> {`>`} </NextPage>
@@ -432,6 +432,11 @@ class bookDetail extends React.Component {
         )
     }
 }
+
+const BookPage = styled.mark`
+position: absolute;
+top: 0;
+`
 
 const PageController = styled.div`
     width:100%;
@@ -538,14 +543,24 @@ const BookContent = styled.section`
         justify-content:center;
     }
     height: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
     /* overflow:hidden;
     text-overflow:hidden; */
 `
 
-const BookContentP  = styled.p`
+const BookContentP  = styled.section`
     font-family: 'Gaegu', cursive;
     font-weight:600;
-    line-height:1.5;
+    font-size: 20px;
+    overflow: auto;
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    display: flex;
+    justify-content:center;
+    align-items: center;
 `;
 
 const LogoImage = styled.img`
