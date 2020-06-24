@@ -32,7 +32,7 @@ const showPopUp = () => {
     incon_box.addEventListener("click", hidePopUp);
     setTimeout(() => {
         document.addEventListener("click",hidePopUp)
-    }, 300)
+    }, 0)
 }
 
 const hidePopUp = () => {

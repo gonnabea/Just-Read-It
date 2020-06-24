@@ -63,7 +63,7 @@
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",
     "install": "^0.13.0",
-    "npm": "^6.14.1"
+    "npm": "^6.14.5"
   },
   "scripts": {
     "start": "nodemon --exec babel-node init.js"

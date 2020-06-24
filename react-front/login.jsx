@@ -104,27 +104,29 @@ const Box_img = styled.div`
 
 const Input = styled.input`
     margin: 1.2vh;
-    font-size: 2vh;
+    font-size: 15px;
     width:100%;
-  
+    padding: 10px;
     background:none;
     border: solid 0px;
     border-bottom: solid 0.15vh white;
-
+    
     :last-child{
         cursor:pointer;
     }
     ::placeholder{
-        color: white;
+        color: black;
         text-align:center;
+        font-weight:700;
     }
     :focus{
-        color:#F6B93B;
+        color:black;
         outline: none;
         animation: makeBorder 0.4s linear forwards;
         ::placeholder{
-        color:#F6B93B;
+        color:#DD275B;
         text-align:center;
+        font-weight: 700;
     }
         
         @keyframes makeBorder {
@@ -147,14 +149,14 @@ const Input = styled.input`
         border: solid .3vh black;
         :hover{
             color:white;
-            border:none;
+           
             animation: button-color 0.3s linear forwards;
             @keyframes button-color {
                 0%{
                     background-color: white;
                 }
                 100%{
-                    background-color:#F6B93B;
+                    background-color:orange;
                 }
             }
         }
@@ -173,9 +175,8 @@ const Span_line = styled.span`
     margin: 0 2rem;
     color:white;
     font-size:1rem;
-    font-weight:300;
+    font-weight:700;
     :hover{
-        font-weight:500;
         text-decoration:underline;
     }
     @media screen and (max-width: 700px)

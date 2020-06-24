@@ -133,23 +133,25 @@ const Form = styled.form`
 const Input = styled.input`
     margin: 1.2vh;
     font-size: 2vh;
+    padding: 10px;
     width:100%;
     background:none;
     border: solid 0px;
     border-bottom: solid 0.15vh white; 
+    font-weight:700;
     :last-child{
         cursor:pointer;
     }
     ::placeholder{
-        color: white;
+        color: black;
         text-align:center;
     }
     :focus{
-        color:#F6B93B;
+        color:black;
         outline: none;
         animation: makeBorder 0.4s linear forwards;
         ::placeholder{
-        color:#F6B93B;
+        color:#DD275B;
         text-align:center;
         
         }
@@ -172,16 +174,15 @@ const Input = styled.input`
         font-size:2vh;
         border: solid .3vh black;
         :hover{
-        
+            
             color:white;
-            border:none;
             animation: button-color 0.3s linear forwards;
             @keyframes button-color {
                 0%{
                     background-color: white;
                 }
                 100%{
-                    background-color:#F6B93B;
+                    background-color: orange;
                 }
             }
         }
@@ -193,9 +194,8 @@ const Span_line = styled.span`
     margin: 0 2vh;
     color:white;
     font-size:1rem;;
-    font-weight:300;
+    font-weight:700;
     :hover{
-        font-weight:500;
         text-decoration:underline;
     }
     
